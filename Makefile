@@ -236,16 +236,16 @@ endif
 .PHONY = clean_gnuplot
 
 clean:
-	$(DEL) $(BUILD_DIR)/*.o
-	$(DEL) $(BUILD_DIR)/Analysis_Runs/*.o
-	$(DEL) $(BUILD_DIR)/Ecoli/*.o
-	$(DEL) $(BUILD_DIR)/LateX/*.o
-	$(DEL) $(BUILD_DIR)/Ligand/*.o
-	$(DEL) $(BUILD_DIR)/MATLAB/*.o
-	$(DEL) $(BUILD_DIR)/Simulations/*.o
-	$(DEL) $(BUILD_DIR)/Statistics/*.o
-	$(DEL) $(BUILD_DIR)/Varie/*.o
-	$(DEL) $(BUILD_DIR)/Visualization/*.o
+	$(DEL) $(BUILD_DIR)$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Analysis_Runs$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Ecoli$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)LateX$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Ligand$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)MATLAB$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Simulations$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Statistics$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Varie$(Division)*.o
+	$(DEL) $(BUILD_DIR)$(Division)Visualization$(Division)*.o
 
 clean_apngasm:
 	$(DEL) apngasm-master
