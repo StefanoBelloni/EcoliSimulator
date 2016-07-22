@@ -3,9 +3,13 @@ project(directory_test)
 # set the executable in {source}/bin
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-#Bring the headers,
+#Bring the headers, 
 include_directories(include)
- 
+include_directories(include/Ecoli)
+include_directories(include/Global)
+include_directories(include/Ligand)
+include_directories(include/Visualization)
+
 #However, the file(GLOB...) allows for wildcard additions:
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
  
