@@ -127,8 +127,8 @@ double unifRand()
 //    }
     
     //   void seed();
-//    return rand() / double(RAND_MAX+1);
-    return rand_r(&seed_r) / double(RAND_MAX);
+    return rand() / double(RAND_MAX+1);
+//    return rand_r(&seed_r) / double(RAND_MAX);
     //    return 2.0*rand()/RAND_MAX - 1;
     
 }
