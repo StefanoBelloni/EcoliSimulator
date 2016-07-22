@@ -162,7 +162,7 @@ int main(int argc, const char * argv[])
     
     seed_ = (unsigned int) time(NULL);
     seed_r = seed_;
-    n_thread_available = std::thread::hardware_concurrency()/2;
+    n_thread_available = fmax(1,std::thread::hardware_concurrency()/2);
     if (n_thread_available>1) {
         multithread = true;
     }
