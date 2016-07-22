@@ -30,7 +30,7 @@
 #include <system_error>
 #include <sys/stat.h>
 #include "GlobalVariables.h"
-
+#include <cstring>
 #include "simulation_2MultiT.hpp"
 #include <unistd.h>
 
