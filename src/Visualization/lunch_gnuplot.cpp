@@ -28,7 +28,7 @@ void lunch_gnuplot(string name_file_gnu){
 }
 
 
-void lunch_gnuplot_pipe(string name_file_gnu){
+/* void lunch_gnuplot_pipe(string name_file_gnu){
     
     FILE *gp = NULL;
     string command = gnuplotOpen + name_file_gnu;
@@ -41,4 +41,4 @@ void lunch_gnuplot_pipe(string name_file_gnu){
     
     fflush(gp);
     
-}
+}*/
