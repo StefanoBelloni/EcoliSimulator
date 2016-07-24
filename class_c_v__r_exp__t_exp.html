@@ -22,12 +22,6 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -54,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -504,26 +499,26 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>update dynamic to control run/tumble <br />
- It controll the hitting time \(\tau_{n+1}\) of the inernal variable lambda_[...] Heuristically we have:</p><ul>
+ It controll the hitting time <img class="formulaInl" alt="$\tau_{n+1}$" src="form_8.png"/> of the inernal variable lambda_[...] Heuristically we have:</p><ul>
 <li>if the distribution is exponential we have <br />
 <ul>
-<li>\(\int_{\tau_{n}}^{\tau_{n+1}}\Lambda^*(s)ds\sim Exp(1)\)</li>
+<li><img class="formulaInl" alt="$\int_{\tau_{n}}^{\tau_{n+1}}\Lambda^*(s)ds\sim Exp(1)$" src="form_9.png"/></li>
 </ul>
 </li>
 <li>if the distribution is IG we have <br />
 <ul>
-<li>\(\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq const\}\)</li>
+<li><img class="formulaInl" alt="$\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq const\}$" src="form_10.png"/></li>
 </ul>
 </li>
 <li>if the distribution is Exp_IG we have <br />
 <ul>
-<li>\(\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq Exp(1)\}\)<br />
+<li><img class="formulaInl" alt="$\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq Exp(1)\}$" src="form_11.png"/><br />
 </li>
 </ul>
 </li>
 </ul>
-<p>Where in general we can write: \(d\Lambda(s)=\lambda(s)dt+\sigma(s)dW(t)\).<br />
- note \(\sigma(s)=0\) in the first case above. </p>
+<p>Where in general we can write: <img class="formulaInl" alt="$d\Lambda(s)=\lambda(s)dt+\sigma(s)dW(t)$" src="form_12.png"/>.<br />
+ note <img class="formulaInl" alt="$\sigma(s)=0$" src="form_13.png"/> in the first case above. </p>
 
 <p>Reimplemented from <a class="el" href="class_e__coli.html#afd02577729a810d07accfded1ec79c07">E_coli</a>.</p>
 
@@ -623,7 +618,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>probability mean rate to tumble <br />
- It uses the parameter Q </p><dl class="section return"><dt>Returns</dt><dd>return the value \(\lambda(Q)\) </dd></dl>
+ It uses the parameter Q </p><dl class="section return"><dt>Returns</dt><dd>return the value <img class="formulaInl" alt="$\lambda(Q)$" src="form_7.png"/> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_parameter_estimation___c_v__r_i_g__t_exp.html#afb01d4b4dee7f673a3aa90d273590e0e">ParameterEstimation_CV_rIG_tExp</a>, and <a class="el" href="class_parameter_estimation___c_v__r_exp__t_exp.html#a523044f380ebc94ed66a55a81192a9df">ParameterEstimation_CV_rExp_tExp</a>.</p>
 
@@ -1065,10 +1060,10 @@ Additional Inherited Members</h2></td></tr>
 <li>m[0]=m[0]+dt*(c-nu_*m[0]);</li>
 <li><p class="startli">Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];</p>
 <p class="formulaDsp">
-\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}" src="form_0.png"/>
 </p>
  <p class="formulaDsp">
-\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}" src="form_1.png"/>
 </p>
  </li>
 </ul>
@@ -1098,10 +1093,10 @@ Additional Inherited Members</h2></td></tr>
 <li>m[0]=m[0]+dt*(c-nu_*m[0]);</li>
 <li><p class="startli">Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];</p>
 <p class="formulaDsp">
-\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}" src="form_0.png"/>
 </p>
  <p class="formulaDsp">
-\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}" src="form_1.png"/>
 </p>
  </li>
 </ul>
@@ -1126,9 +1121,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>vector of the internal dynamic variables: they satisfy </p><p class="formulaDsp">
-\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + f_{k}, \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + f_{k}, \end{equation}" src="form_2.png"/>
 </p>
-<p> featuring a relaxation term and a forcing term \(f_{k} = k\cdot m_{k-1}\) for \(k\geq1\) and \(f_{0}= c\) for \(k=0\). </p>
+<p> featuring a relaxation term and a forcing term <img class="formulaInl" alt="$f_{k} = k\cdot m_{k-1}$" src="form_3.png"/> for <img class="formulaInl" alt="$k\geq1$" src="form_4.png"/> and <img class="formulaInl" alt="$f_{0}= c$" src="form_5.png"/> for <img class="formulaInl" alt="$k=0$" src="form_6.png"/>. </p>
 
 </div>
 </div>
@@ -1155,10 +1150,10 @@ Additional Inherited Members</h2></td></tr>
 <li>m[0]=m[0]+dt*(c-nu_*m[0]);</li>
 <li><p class="startli">Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];</p>
 <p class="formulaDsp">
-\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}" src="form_0.png"/>
 </p>
  <p class="formulaDsp">
-\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}" src="form_1.png"/>
 </p>
  </li>
 </ul>
@@ -1183,7 +1178,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Memory term in celani vergassola Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2]; </p><p class="formulaDsp">
-\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}" src="form_1.png"/>
 </p>
  
 </div>

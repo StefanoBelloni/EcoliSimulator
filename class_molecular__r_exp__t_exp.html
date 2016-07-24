@@ -22,12 +22,6 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -54,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -434,10 +429,10 @@ Additional Inherited Members</h2></td></tr>
 <p>Class implementing Celani Shimitzu Vergassola Molecular model</p>
 <p>This model is taken from <b>CSV11</b> [A. Celani, T.S. Shimizu and M. Vergassola, Molecular and functional aspects of bacterial chemotaxis, J. Stat. Phys. 144, 219-240 (2011).], and implement the <code>mean field</code> approximation for the molecular-base model of the internal dynamic of the bacterium. The generalization to the Inverse gaussian and exponential-inverse gaussian is straightforward.</p>
 <p>The chemotactic transduction pathway is conveniently modeled by the following set of mean-field equations: </p><p class="formulaDsp">
-\begin{align} a&amp;=G(m,L),\\ \frac{d}{dt}m&amp;=F(a,m),\\ \frac{d}{dt}y&amp;=k_a a(1-y)-k_zy,\\ \frac{d}{dt}p_r&amp;=\frac{1-\frac{p_r}{h(y)}}{\tau_t}. \end{align}
+<img class="formulaDsp" alt="\begin{align} a&amp;=G(m,L),\\ \frac{d}{dt}m&amp;=F(a,m),\\ \frac{d}{dt}y&amp;=k_a a(1-y)-k_zy,\\ \frac{d}{dt}p_r&amp;=\frac{1-\frac{p_r}{h(y)}}{\tau_t}. \end{align}" src="form_15.png"/>
 </p>
 <p>The detailed expressions for the functions that appear above are </p><p class="formulaDsp">
-\begin{align*} G(m,L)&amp;=\frac{1}{1+e^{f(m,L)}},\\ f(m,L)&amp;=n_a\alpha_m(m_0-m)+n_a\ln\frac{1+\frac{L}{K_{off}}}{1+\frac{L}{K_{on}}},\\ F(a,m)&amp;=k_r[\textrm{CheR}](1-a)\frac{M-a}{M-m+K_R}-k_b[\textrm{CheB}]a\frac{m}{m+K_B};\\ h(y)&amp;=\frac{1}{1+\Big(\frac{y}{y_0}\Big)^H}. \end{align*}
+<img class="formulaDsp" alt="\begin{align*} G(m,L)&amp;=\frac{1}{1+e^{f(m,L)}},\\ f(m,L)&amp;=n_a\alpha_m(m_0-m)+n_a\ln\frac{1+\frac{L}{K_{off}}}{1+\frac{L}{K_{on}}},\\ F(a,m)&amp;=k_r[\textrm{CheR}](1-a)\frac{M-a}{M-m+K_R}-k_b[\textrm{CheB}]a\frac{m}{m+K_B};\\ h(y)&amp;=\frac{1}{1+\Big(\frac{y}{y_0}\Big)^H}. \end{align*}" src="form_16.png"/>
 </p>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a58969116800cf2bcad6561a7e39cca93"></a>
@@ -541,26 +536,26 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>update dynamic to control run/tumble <br />
- It controll the hitting time \(\tau_{n+1}\) of the inernal variable lambda_[...] Heuristically we have:</p><ul>
+ It controll the hitting time <img class="formulaInl" alt="$\tau_{n+1}$" src="form_8.png"/> of the inernal variable lambda_[...] Heuristically we have:</p><ul>
 <li>if the distribution is exponential we have <br />
 <ul>
-<li>\(\int_{\tau_{n}}^{\tau_{n+1}}\Lambda^*(s)ds\sim Exp(1)\)</li>
+<li><img class="formulaInl" alt="$\int_{\tau_{n}}^{\tau_{n+1}}\Lambda^*(s)ds\sim Exp(1)$" src="form_9.png"/></li>
 </ul>
 </li>
 <li>if the distribution is IG we have <br />
 <ul>
-<li>\(\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq const\}\)</li>
+<li><img class="formulaInl" alt="$\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq const\}$" src="form_10.png"/></li>
 </ul>
 </li>
 <li>if the distribution is Exp_IG we have <br />
 <ul>
-<li>\(\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq Exp(1)\}\)<br />
+<li><img class="formulaInl" alt="$\tau_{n+1}=\inf\{s&gt;\tau_n:\Lambda(s)ds\geq Exp(1)\}$" src="form_11.png"/><br />
 </li>
 </ul>
 </li>
 </ul>
-<p>Where in general we can write: \(d\Lambda(s)=\lambda(s)dt+\sigma(s)dW(t)\).<br />
- note \(\sigma(s)=0\) in the first case above. </p>
+<p>Where in general we can write: <img class="formulaInl" alt="$d\Lambda(s)=\lambda(s)dt+\sigma(s)dW(t)$" src="form_12.png"/>.<br />
+ note <img class="formulaInl" alt="$\sigma(s)=0$" src="form_13.png"/> in the first case above. </p>
 
 <p>Reimplemented from <a class="el" href="class_e__coli.html#afd02577729a810d07accfded1ec79c07">E_coli</a>.</p>
 

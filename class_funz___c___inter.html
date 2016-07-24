@@ -22,12 +22,6 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -54,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -229,17 +224,17 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Function used in the population interacting with the ligand setting. </p>
 <p>In case the program mode selected is <code> population interacting with the ligand</code> the Ligand concentration follows the following equation:</p>
 <p class="formulaDsp">
-\[ \frac{\partial}{\partial t}c(t,x,y)=D_c\Delta_{(x,y)}c(t,x,y)-K_c c(t,x,y)+K_p\sum_{i=1}^{n_c}\delta_{(t,x,y)}(p^i_b(t,x,y)) \]
+<img class="formulaDsp" alt="\[ \frac{\partial}{\partial t}c(t,x,y)=D_c\Delta_{(x,y)}c(t,x,y)-K_c c(t,x,y)+K_p\sum_{i=1}^{n_c}\delta_{(t,x,y)}(p^i_b(t,x,y)) \]" src="form_19.png"/>
 </p>
-<p>where \(p^i_b\) is the position of the bacterium number \(i\).</p>
-<p>The simulation is performed using an ADI method where the boundary conditions are of Neumann's type. The method is as follows: Let \(U=(q_{i,j})_{i=1...n_x,j=1...n_y}\) be the matrix of the mesh for the rectangular domain and \(Q\) the matrix of the source. Let \(L_x^{n_x}\) be the Laplacian-matrix is the \(x\) direction, it is a \(n_x\times n_x\) matrix (similar for \(y\)), then using the Thompson's Algorithm for the resulting tridiagonal system we solve the PDE in two steps:</p>
+<p>where <img class="formulaInl" alt="$p^i_b$" src="form_20.png"/> is the position of the bacterium number <img class="formulaInl" alt="$i$" src="form_21.png"/>.</p>
+<p>The simulation is performed using an ADI method where the boundary conditions are of Neumann's type. The method is as follows: Let <img class="formulaInl" alt="$U=(q_{i,j})_{i=1...n_x,j=1...n_y}$" src="form_22.png"/> be the matrix of the mesh for the rectangular domain and <img class="formulaInl" alt="$Q$" src="form_23.png"/> the matrix of the source. Let <img class="formulaInl" alt="$L_x^{n_x}$" src="form_24.png"/> be the Laplacian-matrix is the <img class="formulaInl" alt="$x$" src="form_25.png"/> direction, it is a <img class="formulaInl" alt="$n_x\times n_x$" src="form_26.png"/> matrix (similar for <img class="formulaInl" alt="$y$" src="form_27.png"/>), then using the Thompson's Algorithm for the resulting tridiagonal system we solve the PDE in two steps:</p>
 <p class="formulaDsp">
-\[ L^{n_x}_x\otimes U = (U\otimes L^{n_y}_y)^T +\frac{dt\cdot Q}{2} \]
+<img class="formulaDsp" alt="\[ L^{n_x}_x\otimes U = (U\otimes L^{n_y}_y)^T +\frac{dt\cdot Q}{2} \]" src="form_28.png"/>
 </p>
 <p class="formulaDsp">
-\[ L^{n_y}_y\otimes U^T = (U^T\otimes L^{n_x}_x)^T+\frac{dt\cdot Q^T}{2} \]
+<img class="formulaDsp" alt="\[ L^{n_y}_y\otimes U^T = (U^T\otimes L^{n_x}_x)^T+\frac{dt\cdot Q^T}{2} \]" src="form_29.png"/>
 </p>
-<p>where with \(\otimes\) we indicate the <code>matrix</code> product, and with \(Q^T\) the transpose of \(Q\). </p>
+<p>where with <img class="formulaInl" alt="$\otimes$" src="form_30.png"/> we indicate the <code>matrix</code> product, and with <img class="formulaInl" alt="$Q^T$" src="form_31.png"/> the transpose of <img class="formulaInl" alt="$Q$" src="form_23.png"/>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afaccac026c6c1985d40ae798e78e4dfe"></a>
 <div class="memitem">

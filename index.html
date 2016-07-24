@@ -22,12 +22,6 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -54,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -273,57 +268,57 @@ Ecoli Classes</h2>
 </ul>
 <h2><a class="anchor" id="sub_cv"></a>
 CV_rExp_tExp Class</h2>
-<p>The fist Model is taken from <b>CM10</b>, whose identification name is <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>. The main feature is the Variable \(Q(t)\) which take into account the memory of the bacterium to build the <code>rate function</code> of the jump process associated to the <code>runs</code>. The barrier for the <code>runs</code> is a random variable exponentially distributed{with mean equal to 1}.</p>
+<p>The fist Model is taken from <b>CM10</b>, whose identification name is <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>. The main feature is the Variable <img class="formulaInl" alt="$Q(t)$" src="form_33.png"/> which take into account the memory of the bacterium to build the <code>rate function</code> of the jump process associated to the <code>runs</code>. The barrier for the <code>runs</code> is a random variable exponentially distributed{with mean equal to 1}.</p>
 <p class="formulaDsp">
-\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}" src="form_0.png"/>
 </p>
  <p class="formulaDsp">
-\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}" src="form_1.png"/>
 </p>
 <h2><a class="anchor" id="sub_cv1"></a>
 CV_rExpIG_tExp Class</h2>
-<p>This class extend the class <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b> (<b><a class="el" href="class_c_v__r_exp_i_g__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium ExpIG run dustribution CLASS implementig the mod...">CV_rExpIG_tExp</a> : public <a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>), and the main feature is characterized by the fact that the evolution of the <code>rate function</code>, which depends also on \(Q(t)\), is not a deterministic process, but a <code>Diffusion process</code>{Solution of a SDE}, i.e.</p>
+<p>This class extend the class <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b> (<b><a class="el" href="class_c_v__r_exp_i_g__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium ExpIG run dustribution CLASS implementig the mod...">CV_rExpIG_tExp</a> : public <a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>), and the main feature is characterized by the fact that the evolution of the <code>rate function</code>, which depends also on <img class="formulaInl" alt="$Q(t)$" src="form_33.png"/>, is not a deterministic process, but a <code>Diffusion process</code>{Solution of a SDE}, i.e.</p>
 <p class="formulaDsp">
-\[ d\Lambda(t)=\lambda(Q(t))dt+\sigma(Q(t))dW(t) \]
+<img class="formulaDsp" alt="\[ d\Lambda(t)=\lambda(Q(t))dt+\sigma(Q(t))dW(t) \]" src="form_34.png"/>
 </p>
 <p>and the barrier for the <code>runs</code> is a RV exponentially distributed.</p>
 <h2><a class="anchor" id="sub_cv2"></a>
 CV_rIG_tExp Class</h2>
-<p>This class extend the class <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b> (<b><a class="el" href="class_c_v__r_i_g__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium IG run Distribution CLASS implementig the model ...">CV_rIG_tExp</a> : public <a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>), and the main feature is characterized by the fact that the evolution of the <code>rate function</code>, which depends also on \(Q(t)\), is not a deterministic process, but a <code>Diffusion process</code>{Solution of a SDE}, i.e.</p>
+<p>This class extend the class <b><a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b> (<b><a class="el" href="class_c_v__r_i_g__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium IG run Distribution CLASS implementig the model ...">CV_rIG_tExp</a> : public <a class="el" href="class_c_v__r_exp__t_exp.html" title="Celani Vergassola Kernel Model Class for a bacterium: ">CV_rExp_tExp</a></b>), and the main feature is characterized by the fact that the evolution of the <code>rate function</code>, which depends also on <img class="formulaInl" alt="$Q(t)$" src="form_33.png"/>, is not a deterministic process, but a <code>Diffusion process</code>{Solution of a SDE}, i.e.</p>
 <p class="formulaDsp">
-\[ d\Lambda(t)=\lambda(Q(t))dt+\sigma(Q(t))dW(t) \]
+<img class="formulaDsp" alt="\[ d\Lambda(t)=\lambda(Q(t))dt+\sigma(Q(t))dW(t) \]" src="form_34.png"/>
 </p>
 <p>and the barrier for the <code>runs</code> is a deterministic value</p>
 <h2><a class="anchor" id="Molecular_rx_ty"></a>
 Molecular_rx_ty</h2>
 <p>This model is taken from <b>CSV11</b>, and implement the <code>mean field</code> approximation for the molecular-base model of the internal dynamic of the bacterium. The generalization to the Inverse gaussian and exponential-inverse gaussian is straightforward.</p>
 <p>The chemotactic transduction pathway is conveniently modeled by the following set of mean-field equations: </p><p class="formulaDsp">
-\begin{align} a&amp;=G(m,L),\\ \frac{d}{dt}m&amp;=F(a,m),\\ \frac{d}{dt}y&amp;=k_a a(1-y)-k_zy,\\ \frac{d}{dt}p_r&amp;=\frac{1-\frac{p_r}{h(y)}}{\tau_t}. \end{align}
+<img class="formulaDsp" alt="\begin{align} a&amp;=G(m,L),\\ \frac{d}{dt}m&amp;=F(a,m),\\ \frac{d}{dt}y&amp;=k_a a(1-y)-k_zy,\\ \frac{d}{dt}p_r&amp;=\frac{1-\frac{p_r}{h(y)}}{\tau_t}. \end{align}" src="form_15.png"/>
 </p>
 <p>The detailed expressions for the functions that appear above are </p><p class="formulaDsp">
-\begin{align*} G(m,L)&amp;=\frac{1}{1+e^{f(m,L)}},\\ f(m,L)&amp;=n_a\alpha_m(m_0-m)+n_a\ln\frac{1+\frac{L}{K_{off}}}{1+\frac{L}{K_{on}}},\\ F(a,m)&amp;=k_r[\textrm{CheR}](1-a)\frac{M-a}{M-m+K_R}-k_b[\textrm{CheB}]a\frac{m}{m+K_B};\\ h(y)&amp;=\frac{1}{1+\Big(\frac{y}{y_0}\Big)^H}. \end{align*}
+<img class="formulaDsp" alt="\begin{align*} G(m,L)&amp;=\frac{1}{1+e^{f(m,L)}},\\ f(m,L)&amp;=n_a\alpha_m(m_0-m)+n_a\ln\frac{1+\frac{L}{K_{off}}}{1+\frac{L}{K_{on}}},\\ F(a,m)&amp;=k_r[\textrm{CheR}](1-a)\frac{M-a}{M-m+K_R}-k_b[\textrm{CheB}]a\frac{m}{m+K_B};\\ h(y)&amp;=\frac{1}{1+\Big(\frac{y}{y_0}\Big)^H}. \end{align*}" src="form_16.png"/>
 </p>
 <h2><a class="anchor" id="EO_rx_ty"></a>
 EO_rx_ty</h2>
 <p>This model is taken from <b>OthmerErban</b>: the function for the internal dynamics are those reported in OthmerCartoon} in { Chapter Semplificato}}. The generalization to the Inverse gaussian and exponential-inverse gaussian is performed straightforward.</p>
 <p class="formulaDsp">
-\begin{equation} \begin{aligned} \frac{d}{dt}y_{1}(t)&amp;=\frac{G(c(t,x))-(y_{1}+y_{2})}{\tau_{a}}\\ \frac{d}{dt}y_{2}(t)&amp;=\frac{G(c(t,x))-y_{2}}{\tau_{e}} \end{aligned} \end{equation}
+<img class="formulaDsp" alt="\begin{equation} \begin{aligned} \frac{d}{dt}y_{1}(t)&amp;=\frac{G(c(t,x))-(y_{1}+y_{2})}{\tau_{a}}\\ \frac{d}{dt}y_{2}(t)&amp;=\frac{G(c(t,x))-y_{2}}{\tau_{e}} \end{aligned} \end{equation}" src="form_14.png"/>
 </p>
 <h1><a class="anchor" id="sec_LIg"></a>
 Ligand evolution</h1>
 <p>In case the program mode selected is <code>population interacting with the ligand</code> the Ligand concentration follows the following equation:</p>
 <p class="formulaDsp">
-\[ \frac{\partial}{\partial t}c(t,x,y)=D_c\Delta_{(x,y)}c(t,x,y)-K_c c(t,x,y)+K_p\sum_{i=1}^{n_c}\delta_{(t,x,y)}(p^i_b(t,x,y)) \]
+<img class="formulaDsp" alt="\[ \frac{\partial}{\partial t}c(t,x,y)=D_c\Delta_{(x,y)}c(t,x,y)-K_c c(t,x,y)+K_p\sum_{i=1}^{n_c}\delta_{(t,x,y)}(p^i_b(t,x,y)) \]" src="form_19.png"/>
 </p>
-<p>where \(p^i_b\) is the position of the bacterium number \(i\).</p>
-<p>The simulation is performed using an ADI method where the boundary conditions are of Neumann's type. The method is as follows: Let \(U=(q_{i,j})_{i=1...n_x,j=1...n_y}\) be the matrix of the mesh for the rectangular domain and \(Q\) the matrix of the source. Let \(L_x^{n_x}\) be the Laplacian-matrix is the \(x\) direction, it is a \(n_x\times n_x\) matrix (similar for \(y\)), then using the Thompson's Algorithm for the resulting tridiagonal system we solve the PDE in two steps:</p>
+<p>where <img class="formulaInl" alt="$p^i_b$" src="form_20.png"/> is the position of the bacterium number <img class="formulaInl" alt="$i$" src="form_21.png"/>.</p>
+<p>The simulation is performed using an ADI method where the boundary conditions are of Neumann's type. The method is as follows: Let <img class="formulaInl" alt="$U=(q_{i,j})_{i=1...n_x,j=1...n_y}$" src="form_22.png"/> be the matrix of the mesh for the rectangular domain and <img class="formulaInl" alt="$Q$" src="form_23.png"/> the matrix of the source. Let <img class="formulaInl" alt="$L_x^{n_x}$" src="form_24.png"/> be the Laplacian-matrix is the <img class="formulaInl" alt="$x$" src="form_25.png"/> direction, it is a <img class="formulaInl" alt="$n_x\times n_x$" src="form_26.png"/> matrix (similar for <img class="formulaInl" alt="$y$" src="form_27.png"/>), then using the Thompson's Algorithm for the resulting tridiagonal system we solve the PDE in two steps:</p>
 <p class="formulaDsp">
-\[ L^{n_x}_x\otimes U = (U\otimes L^{n_y}_y)^T +\frac{dt\cdot Q}{2} \]
+<img class="formulaDsp" alt="\[ L^{n_x}_x\otimes U = (U\otimes L^{n_y}_y)^T +\frac{dt\cdot Q}{2} \]" src="form_28.png"/>
 </p>
 <p class="formulaDsp">
-\[ L^{n_y}_y\otimes U^T = (U^T\otimes L^{n_x}_x)^T+\frac{dt\cdot Q^T}{2} \]
+<img class="formulaDsp" alt="\[ L^{n_y}_y\otimes U^T = (U^T\otimes L^{n_x}_x)^T+\frac{dt\cdot Q^T}{2} \]" src="form_29.png"/>
 </p>
-<p>where with \(\otimes\) we indicate the <code>matrix</code> product, and with \(Q^T\) the transpose of \(Q\).</p>
+<p>where with <img class="formulaInl" alt="$\otimes$" src="form_30.png"/> we indicate the <code>matrix</code> product, and with <img class="formulaInl" alt="$Q^T$" src="form_31.png"/> the transpose of <img class="formulaInl" alt="$Q$" src="form_23.png"/>.</p>
 <h1><a class="anchor" id="sec_Analyzis"></a>
 General Analysis</h1>
 <h2><a class="anchor" id="file_sec"></a>
@@ -371,39 +366,39 @@ Management Outputs and Files</h2>
 Management Outputs and Files</h2>
 <p>In this section we present the basic analysis (that is as well a Statisical analysis) that the program provide.</p>
 <ul>
-<li>We estimate the density function \(p(t,x)dx\) via binning in a histogram, i.e.<br />
- let divide the area of the experiment into a grid: we call the rectangle in position \(i\) along the \(x\)-axis and \(j\) along the \(y\)-axis \(\Delta x_{i,j}\). We denote with \(N\) the number of particles in the simulation and with $x_{k}(t)$ the position of the particle \(k\) at time \(t\), we compute the histogram of the density function as follows <p class="formulaDsp">
-\[ \mathcal{H}(t,x):=\sum_{i,j}\sum_{k=1}^{N} \mathbf{1}_{\{x_{k}(t)\in \Delta x_{i,j}\}}\cdot \mathbf{1}_{\{x\in \Delta x_{i,j}\}}; \]
+<li>We estimate the density function <img class="formulaInl" alt="$p(t,x)dx$" src="form_35.png"/> via binning in a histogram, i.e.<br />
+ let divide the area of the experiment into a grid: we call the rectangle in position <img class="formulaInl" alt="$i$" src="form_21.png"/> along the <img class="formulaInl" alt="$x$" src="form_25.png"/>-axis and <img class="formulaInl" alt="$j$" src="form_36.png"/> along the <img class="formulaInl" alt="$y$" src="form_27.png"/>-axis <img class="formulaInl" alt="$\Delta x_{i,j}$" src="form_37.png"/>. We denote with <img class="formulaInl" alt="$N$" src="form_38.png"/> the number of particles in the simulation and with $x_{k}(t)$ the position of the particle <img class="formulaInl" alt="$k$" src="form_39.png"/> at time <img class="formulaInl" alt="$t$" src="form_40.png"/>, we compute the histogram of the density function as follows <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathcal{H}(t,x):=\sum_{i,j}\sum_{k=1}^{N} \mathbf{1}_{\{x_{k}(t)\in \Delta x_{i,j}\}}\cdot \mathbf{1}_{\{x\in \Delta x_{i,j}\}}; \]" src="form_41.png"/>
 </p>
  We do not use more sophisticated estimation since we perform no comparison with continuous model. In case such a comparison should be performed, we should employ the kernel density estimation technique with more appropriate kernel functions.</li>
 <li>We perform the analysis of the barycenter of the population, i.e. <p class="formulaDsp">
-\[ \mathcal{B}(t):=\frac{1}{N}\sum_{k=1}^{N}x_{k}(t); \]
+<img class="formulaDsp" alt="\[ \mathcal{B}(t):=\frac{1}{N}\sum_{k=1}^{N}x_{k}(t); \]" src="form_42.png"/>
 </p>
- its speed in direction \(\vec{e_{j}}\), i.e. <p class="formulaDsp">
-\[ \mathcal{V}_{j}(t):=\frac{1}{N}\sum_{k=1}^{N}\frac{\langle x_{k}(t+\delta t) - x_{k}(t), \vec{e}_{j} \rangle}{\delta t}; \]
+ its speed in direction <img class="formulaInl" alt="$\vec{e_{j}}$" src="form_43.png"/>, i.e. <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathcal{V}_{j}(t):=\frac{1}{N}\sum_{k=1}^{N}\frac{\langle x_{k}(t+\delta t) - x_{k}(t), \vec{e}_{j} \rangle}{\delta t}; \]" src="form_44.png"/>
 </p>
  as well as the calculation of the mean square displacement <p class="formulaDsp">
-\[ \langle r^2(\tau)\rangle=\lim\limits_{N\rightarrow\infty}\frac{1}{N}\cdot\sum\limits_{n=1}^N\left({x}_n(\tau)-{x}_n(0)\right)^2, \]
+<img class="formulaDsp" alt="\[ \langle r^2(\tau)\rangle=\lim\limits_{N\rightarrow\infty}\frac{1}{N}\cdot\sum\limits_{n=1}^N\left({x}_n(\tau)-{x}_n(0)\right)^2, \]" src="form_45.png"/>
 </p>
- and the simple linear regression. In the present case it is appropriate to force the regression line to pass through the origin, i.e \(\langle r^2(\tau)\rangle = \beta\cdot t\).</li>
+ and the simple linear regression. In the present case it is appropriate to force the regression line to pass through the origin, i.e <img class="formulaInl" alt="$\langle r^2(\tau)\rangle = \beta\cdot t$" src="form_46.png"/>.</li>
 </ul>
 <h2><a class="anchor" id="sec_Stat"></a>
 Fit parameters of the models</h2>
 <p>The program performs the identification of the parameters of the model starting from the data. The program allows to analyze data with the following format:</p>
 <p>The data recoded are: </p><p class="formulaDsp">
-\[ t_j\quad c_{\tau^r}\quad c_{\tau^t}\quad \tau^r\quad \tau^t \]
+<img class="formulaDsp" alt="\[ t_j\quad c_{\tau^r}\quad c_{\tau^t}\quad \tau^r\quad \tau^t \]" src="form_47.png"/>
 </p>
-<p>where \(t_j\) is the time of the beginning of the \(j\)-th run, \(c_{\tau^r}\) is the concentration recorded at time of the end of the run \(j\), \(c_{\tau^t}\) the beginning end of the tumble \(j\) and \(\tau^r\) are (resp. \(\tau^t\)) the duration of the run (resp. tumble) \(j\)-th.</p>
+<p>where <img class="formulaInl" alt="$t_j$" src="form_48.png"/> is the time of the beginning of the <img class="formulaInl" alt="$j$" src="form_36.png"/>-th run, <img class="formulaInl" alt="$c_{\tau^r}$" src="form_49.png"/> is the concentration recorded at time of the end of the run <img class="formulaInl" alt="$j$" src="form_36.png"/>, <img class="formulaInl" alt="$c_{\tau^t}$" src="form_50.png"/> the beginning end of the tumble <img class="formulaInl" alt="$j$" src="form_36.png"/> and <img class="formulaInl" alt="$\tau^r$" src="form_51.png"/> are (resp. <img class="formulaInl" alt="$\tau^t$" src="form_52.png"/>) the duration of the run (resp. tumble) <img class="formulaInl" alt="$j$" src="form_36.png"/>-th.</p>
 <p>Once the program identifies which kind of data are to be analyzed, it proceed trying to find which is the best model fitting the data.</p>
 <ul>
-<li>[step 0] Construct a vector of classes <b><a class="el" href="class_q__tau__stat.html" title="This class save the statistics of the simulations. ">Q_tau_stat</a></b> whose dimension depends on the maximm vale of the index \(Q\) and the discretization of the interval \([\min Q:dQ:\max Q]\) with step size \(dQ\). Each class summarized the statistical moments and data from the data set.</li>
+<li>[step 0] Construct a vector of classes <b><a class="el" href="class_q__tau__stat.html" title="This class save the statistics of the simulations. ">Q_tau_stat</a></b> whose dimension depends on the maximm vale of the index <img class="formulaInl" alt="$Q$" src="form_23.png"/> and the discretization of the interval <img class="formulaInl" alt="$[\min Q:dQ:\max Q]$" src="form_53.png"/> with step size <img class="formulaInl" alt="$dQ$" src="form_54.png"/>. Each class summarized the statistical moments and data from the data set.</li>
 <li>[step 1] it reads through the file all the entries,</li>
-<li>[step 2] calculate the \(Q\)-index from <b>CM10</b> and all the corresponding statistics.</li>
+<li>[step 2] calculate the <img class="formulaInl" alt="$Q$" src="form_23.png"/>-index from <b>CM10</b> and all the corresponding statistics.</li>
 <li>[step 3] Plot the calculated data.</li>
-<li>[step 4] Calculate the empirical rate-function using a piecewise linear model in \(Q\)</li>
-<li>[step 5] Calculate the weighted-mean square approximation (one for positive \(Q\), and one for negative value of \(Q\))</li>
+<li>[step 4] Calculate the empirical rate-function using a piecewise linear model in <img class="formulaInl" alt="$Q$" src="form_23.png"/></li>
+<li>[step 5] Calculate the weighted-mean square approximation (one for positive <img class="formulaInl" alt="$Q$" src="form_23.png"/>, and one for negative value of <img class="formulaInl" alt="$Q$" src="form_23.png"/>)</li>
 <li>[step 6] Produced a Kolmogorov-Smirnov test using the idea in <b>BrownIG</b> for the goodness of fit of point process</li>
-<li>[step 7] Iterate the steps [0] - [6] adapting the discretization of the variable \(Q\) and the maximum and minimum value that it can assume.</li>
+<li>[step 7] Iterate the steps [0] - [6] adapting the discretization of the variable <img class="formulaInl" alt="$Q$" src="form_23.png"/> and the maximum and minimum value that it can assume.</li>
 </ul>
 <h1><a class="anchor" id="add_new"></a>
 Note to Add new Models</h1>

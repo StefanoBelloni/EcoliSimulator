@@ -29,6 +29,7 @@ var NAVTREE =
       [ "Note to Add new Models", "index.html#add_new", null ],
       [ "Bibliography", "index.html#biblio", null ]
     ] ],
+    [ "README", "md_README.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [

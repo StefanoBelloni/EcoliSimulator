@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['readme',['README',['../md_README.html',1,'']]],
   ['rand_5fnormal',['rand_normal',['../_funz_rand_8h.html#a58f0d3329b31b268d22ccf20abef93ff',1,'rand_normal(double stddev):&#160;FunzRand.cpp'],['../_funz_rand_8cpp.html#a58f0d3329b31b268d22ccf20abef93ff',1,'rand_normal(double stddev):&#160;FunzRand.cpp']]],
   ['rand_5fnormal_5fec',['rand_normal_ec',['../class_e__coli.html#a137d6054db95a5266f7c6c86a78180d9',1,'E_coli']]],
   ['random_5fengine_5fsaved',['random_engine_saved',['../structrandom_obj.html#aea52ee7155075a227df20d367bc79982',1,'randomObj']]],
@@ -19,6 +20,7 @@ var searchData=
   ['read_5ffile_5fpar_2ecpp',['Read_file_par.cpp',['../_read__file__par_8cpp.html',1,'']]],
   ['read_5finfo_5fstat',['read_info_stat',['../class_funz___c.html#aa7fb70040e6014ab30099a806ead0133',1,'Funz_C::read_info_stat()'],['../class_funz___c___par.html#a739e4fb845cdaecbe62240925b1b0456',1,'Funz_C_Par::read_info_stat()']]],
   ['readablefilerisp',['ReadableFileRisp',['../_declar__funz_8h.html#a21b725bea404ff0a553bcc5c3b0624f9',1,'ReadableFileRisp(int &amp;stat_sim, int demo_mode):&#160;FunzBiginEnd.cpp'],['../main_functions_8h.html#a21b725bea404ff0a553bcc5c3b0624f9',1,'ReadableFileRisp(int &amp;stat_sim, int demo_mode):&#160;FunzBiginEnd.cpp'],['../_funz_bigin_end_8cpp.html#a21b725bea404ff0a553bcc5c3b0624f9',1,'ReadableFileRisp(int &amp;stat_sim, int demo_mode):&#160;FunzBiginEnd.cpp']]],
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['red',['RED',['../_colori_8h.html#a5451d1cd6797769c9c6bd6e6c0f2d882',1,'Colori.h']]],
   ['renamecpp',['renameCpp',['../baricentro__plot_8cpp.html#a8059cb41d5aae9d98bee5e6ab29fa941',1,'baricentro_plot.cpp']]],
   ['rescaled_5ftime',['rescaled_time',['../_goodness_fit___p_p_8cpp.html#af6b9e9186a2919b2d552f5577735f537',1,'GoodnessFit_PP.cpp']]],
