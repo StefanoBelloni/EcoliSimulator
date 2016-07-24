@@ -1,0 +1,55 @@
+\form#0:\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + \delta^{k}_{0} c + (1-\delta^{k}_{0})k\cdot m_{k-1}, \end{equation}
+\form#1:\begin{equation} \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t) \end{equation}
+\form#2:\begin{equation} \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + f_{k}, \end{equation}
+\form#3:$f_{k} = k\cdot m_{k-1}$
+\form#4:$k\geq1$
+\form#5:$f_{0}= c$
+\form#6:$k=0$
+\form#7:$\lambda(Q)$
+\form#8:$\tau_{n+1}$
+\form#9:$\int_{\tau_{n}}^{\tau_{n+1}}\Lambda^*(s)ds\sim Exp(1)$
+\form#10:$\tau_{n+1}=\inf\{s>\tau_n:\Lambda(s)ds\geq const\}$
+\form#11:$\tau_{n+1}=\inf\{s>\tau_n:\Lambda(s)ds\geq Exp(1)\}$
+\form#12:$d\Lambda(s)=\lambda(s)dt+\sigma(s)dW(t)$
+\form#13:$\sigma(s)=0$
+\form#14:\begin{equation} \begin{aligned} \frac{d}{dt}y_{1}(t)&=\frac{G(c(t,x))-(y_{1}+y_{2})}{\tau_{a}}\\ \frac{d}{dt}y_{2}(t)&=\frac{G(c(t,x))-y_{2}}{\tau_{e}} \end{aligned} \end{equation}
+\form#15:\begin{align} a&=G(m,L),\\ \frac{d}{dt}m&=F(a,m),\\ \frac{d}{dt}y&=k_a a(1-y)-k_zy,\\ \frac{d}{dt}p_r&=\frac{1-\frac{p_r}{h(y)}}{\tau_t}. \end{align}
+\form#16:\begin{align*} G(m,L)&=\frac{1}{1+e^{f(m,L)}},\\ f(m,L)&=n_a\alpha_m(m_0-m)+n_a\ln\frac{1+\frac{L}{K_{off}}}{1+\frac{L}{K_{on}}},\\ F(a,m)&=k_r[\textrm{CheR}](1-a)\frac{M-a}{M-m+K_R}-k_b[\textrm{CheB}]a\frac{m}{m+K_B};\\ h(y)&=\frac{1}{1+\Big(\frac{y}{y_0}\Big)^H}. \end{align*}
+\form#17:$(x_{min},x_{max})$
+\form#18:$(y_{min},y_{max})$
+\form#19:\[ \frac{\partial}{\partial t}c(t,x,y)=D_c\Delta_{(x,y)}c(t,x,y)-K_c c(t,x,y)+K_p\sum_{i=1}^{n_c}\delta_{(t,x,y)}(p^i_b(t,x,y)) \]
+\form#20:$p^i_b$
+\form#21:$i$
+\form#22:$U=(q_{i,j})_{i=1...n_x,j=1...n_y}$
+\form#23:$Q$
+\form#24:$L_x^{n_x}$
+\form#25:$x$
+\form#26:$n_x\times n_x$
+\form#27:$y$
+\form#28:\[ L^{n_x}_x\otimes U = (U\otimes L^{n_y}_y)^T +\frac{dt\cdot Q}{2} \]
+\form#29:\[ L^{n_y}_y\otimes U^T = (U^T\otimes L^{n_x}_x)^T+\frac{dt\cdot Q^T}{2} \]
+\form#30:$\otimes$
+\form#31:$Q^T$
+\form#32:$\epsilon_{i,j}(t):=\frac{1}{\epsilon}\|\mathbf{E}[X_j(t)] - \mathbf{E}[X_i(t)]\|$\f and $
+\form#33:$Q(t)$
+\form#34:\[ d\Lambda(t)=\lambda(Q(t))dt+\sigma(Q(t))dW(t) \]
+\form#35:$p(t,x)dx$
+\form#36:$j$
+\form#37:$\Delta x_{i,j}$
+\form#38:$N$
+\form#39:$k$
+\form#40:$t$
+\form#41:\[ \mathcal{H}(t,x):=\sum_{i,j}\sum_{k=1}^{N} \mathbf{1}_{\{x_{k}(t)\in \Delta x_{i,j}\}}\cdot \mathbf{1}_{\{x\in \Delta x_{i,j}\}}; \]
+\form#42:\[ \mathcal{B}(t):=\frac{1}{N}\sum_{k=1}^{N}x_{k}(t); \]
+\form#43:$\vec{e_{j}}$
+\form#44:\[ \mathcal{V}_{j}(t):=\frac{1}{N}\sum_{k=1}^{N}\frac{\langle x_{k}(t+\delta t) - x_{k}(t), \vec{e}_{j} \rangle}{\delta t}; \]
+\form#45:\[ \langle r^2(\tau)\rangle=\lim\limits_{N\rightarrow\infty}\frac{1}{N}\cdot\sum\limits_{n=1}^N\left({x}_n(\tau)-{x}_n(0)\right)^2, \]
+\form#46:$\langle r^2(\tau)\rangle = \beta\cdot t$
+\form#47:\[ t_j\quad c_{\tau^r}\quad c_{\tau^t}\quad \tau^r\quad \tau^t \]
+\form#48:$t_j$
+\form#49:$c_{\tau^r}$
+\form#50:$c_{\tau^t}$
+\form#51:$\tau^r$
+\form#52:$\tau^t$
+\form#53:$[\min Q:dQ:\max Q]$
+\form#54:$dQ$
