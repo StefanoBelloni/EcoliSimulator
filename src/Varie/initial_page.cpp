@@ -201,7 +201,7 @@ void setDefoultGlobalVar(){
 //    //string gnuplotSetTerminalPlot = "set terminal x11 size 1400,900";// size 600, 400\nset size 1, 1";
 //#endif
     
-    gnuplotSetTerminalPlot = "set terminal wxt size 1250,750 position 10,10"; // enhanced font 'Verdana,10' persist";
+    gnuplotSetTerminalPlot = "set terminal wxt size 1200,700 position 20,20"; // enhanced font 'Verdana,10' persist";
     
     //string gnuplotSetTerminalSave_eps = "set terminal postscript eps color blacktext \"Helvetica\" 20";
     //string gnuplotSetTerminalSave_eps = "set terminal postscript default";
@@ -211,9 +211,9 @@ void setDefoultGlobalVar(){
     
     //string gnuplotSetTerminalSave_eps = "set terminal postscript eps size 3.5,2.62 enhanced color font 'Helvetica,20' linewidth 2";
     //string gnuplotSetTerminalSave_png = "set terminal pngcairo size 900,500"; // enhanced font 'Verdana,10' ";
-    gnuplotSetTerminalSave_png = "set terminal pngcairo size 1440,900";// size 350,262 enhanced font 'Verdana,20'";
+    gnuplotSetTerminalSave_png = "set terminal pngcairo size 1380,840";// size 350,262 enhanced font 'Verdana,20'";
     
-    gnuplotSetTerminalSave_gif = "set term gif animate size 1440,900";
+    gnuplotSetTerminalSave_gif = "set term gif animate size 1380,840";
     //******************************************************************************************
     //                                      MATLAB GLOBAL
     //******************************************************************************************
