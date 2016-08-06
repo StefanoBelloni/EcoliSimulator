@@ -161,7 +161,7 @@ int menu_simulation(){
         
         int risp=0;
         cout << BOLDBLUE<< "\nDo you want to use the same seed for the random generator\nfor every simulation in the same routine?\n";
-        cout << BOLDRED <<"\nNOTE:" << RESET << " You'll have the same values for newly generated angles\nfor every simulations     only if the models are of the type _tExp"<< BOLDBLACK << "\n\npress 0 for yes, 1 for no " << RESET;
+        cout << BOLDRED <<"\nNOTE:" << RESET << " You'll have the same values for newly generated angles\npress 0 for yes, 1 for no :" << RESET;
         sssr(risp, "same seed for the random generator");
         
         if (risp==0) {
