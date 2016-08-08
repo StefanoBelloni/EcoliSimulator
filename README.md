@@ -3,7 +3,7 @@ Version 2.0.1a
 
 The program EcoliSimulator is a command-line based simulator of different models for Ecoli, which produce graphical, numerical and Statistical analysis of the result obtained.
 The documentation can be found at https://stefanobelloni.github.io/EcoliSimulator/
-
+A small video about this program can be found at http://www.stefanobelloni.it/#EcoliSimulator
 -------------------------------------------------------------------------------
 
 Contents
