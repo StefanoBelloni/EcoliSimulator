@@ -24,7 +24,7 @@ using std::vector;
  *
  */
 
-void RunUpDownDivision(vector<int> &tau_vector, int somma_tau, int n_tau_x ,int &n_salto, double tau, double &tau_mean, double &tau_var, double dx){
+void RunUpDownDivision(vector<int> &tau_vector, int &somma_tau, int n_tau_x ,int &n_salto, double tau, double &tau_mean, double &tau_var, double dx){
     
     int index_tau_x=floor(tau/dx);    
     
@@ -32,7 +32,7 @@ void RunUpDownDivision(vector<int> &tau_vector, int somma_tau, int n_tau_x ,int 
     tau_mean+=tau;
     tau_var+=tau*tau;
     
-    if (index_tau_x>=n_tau_x) {
+    if (index_tau_x >= n_tau_x) {
         somma_tau++;
     }else{
         tau_vector[index_tau_x]++;

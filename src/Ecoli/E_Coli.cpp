@@ -674,7 +674,8 @@ void E_coli::reset_par(){
 
 
 void E_coli::save_run(double t, std::ofstream &file_run, double dt){
-    
+   
+
     file_run << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << endl;
     
 //    if (t-t_r>8) {
@@ -690,7 +691,8 @@ void E_coli::save_run(double t, std::ofstream &file_run, double dt){
 
 void E_coli::save_tumble(double t, ofstream &file_tumble, double dt){
 
-    file_tumble << t << " " << t-t_t +unifRand_ec()*dt/2 << " " << c << endl;
+    double rnd = unifRand_ec();
+    file_tumble << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << endl;
 
 //    file_tumble << t << " " << t-t_t << endl << " " << c << endl;
 //    last_tau_r=t-t_t;

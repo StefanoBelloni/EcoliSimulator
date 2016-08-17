@@ -54,26 +54,30 @@ void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector
     
     tau_x=tau_max;
     tau=somma_tau;
-    
+   
+    //cout << "somma_tau = " << somma_tau << endl;
+
     for (int i=n_tau_x-1; i>=0; i--) {
         
-        // Da rivedere: che converta da int into double !
-        tau = tau_vector[i]+tau;                
-        file_tau << tau_x << " " << (double)tau/cont_salti << " " << (double)tau_vector[i]/(cont_salti*dx) << endl;
-        tau_x=max(0,tau_x-dx);
+        tau = (double)tau_vector[i]+tau;                
+        file_tau << tau_x << " " << tau/(double)cont_salti << " " << (double)tau_vector[i]/((double)cont_salti*dx) << endl;
+        tau_x=max(0.0,tau_x-dx);
 //        cont_salti++;
 //        cout << "***********\n";
 //        cout << "tau_x: = " << tau_x << ": " << (double)tau/cont_salti << " " << (double)tau_vector[i]/cont_salti << endl;
         
-        
+    //cout << "tau_x = " << tau_x << " , dx = " << dx << endl;
+    //cout << "tau_vector["<<i<<"] = " << tau_vector[i] << "\n";
+    //cout << "tau = " << tau << endl;
+    //cout << "cont_salti = " << cont_salti << endl;    
         tau_vector[i]=0;        
         
     }
-    
+   
+
     //------------------------------------->  // exp(-x)  <- allora exp(-0)=1!! 
     
-    file_tau << tau_x << " " << 1 << " " << 1 << endl;
+    //file_tau << 0.0 << " " << 1 << " " << 1 << endl;
     
-    file_tau.close();
-    
+    file_tau.close(); 
 }

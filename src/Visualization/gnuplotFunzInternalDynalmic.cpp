@@ -244,7 +244,7 @@ int CV_rIG_tExp::saveIntDyn(string dynFile){
         while (Q_min<=Q_max) {
             Q=Q_min;
             file_dat << Q_min << " " << f_lambda() << " " << f_sigma() << endl;
-            file_dat << Q_min << " " << 1/tau_r << endl;
+            //file_dat << Q_min << " " << 1/tau_r << endl;
             Q_min+=dQ;
         }
         

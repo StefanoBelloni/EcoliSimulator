@@ -31,7 +31,7 @@ void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector
 
 void funz_clear();
 int writeLog(string topic, string msg);
-void RunUpDownDivision(vector<int> &tau_vector, int somma_tau, int n_tau_x ,int &n_salto, double tau, double &tau_mean, double &tau_var,double dx);
+void RunUpDownDivision(vector<int> &tau_vector, int &somma_tau, int n_tau_x ,int &n_salto, double tau, double &tau_mean, double &tau_var,double dx);
 
 /**
  * This function analysis the runs and tumbles:
@@ -114,17 +114,17 @@ double Analysis_run(string name_file_read, string names[], int run){
     file_salti.close();
     
     if (run!=1) {
-        tau_max=1.6;
-        dx=max(.01,min(0.1,tau_max/sqrt(n_salto[4])));        
+        tau_max=2;
+        dx=max(.005,min(0.05,tau_max/sqrt(n_salto[4])));        
     }else {
-        dx=max(.01,min(0.1,tau_max/sqrt(n_salto[4])));
+        dx=max(.005,min(0.1,tau_max/sqrt(n_salto[4])));
     }
     
-    while (tau_x<tau_max) {
+    while (tau_x<=tau_max) {
         tau_x=tau_x+dx;
         n_tau_x++;
     }
-
+	
     //*******************************
     
     if (automatic_!=1) {        
@@ -149,6 +149,7 @@ double Analysis_run(string name_file_read, string names[], int run){
 
             if (run==1) {
                 file_salti >> t__ >> tau >> up_down;
+                //cout << "tau = " << tau << endl;
 //                file_salti >> tau >> tau >> up_down;
                 if (t__ <= t__p){
                     n_batterio++;
