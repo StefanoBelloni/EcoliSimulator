@@ -50,7 +50,7 @@ void FullWindows(){
 #else
 void SetWindow(int Width = 60, int Height = 98){
     
-    string command =string("printf '\e[8;");
+    string command =string("printf '\\e[8;");
     command+=to_string(Width)+string(";");
     command+=to_string(Height)+string("t'");
     
@@ -58,7 +58,8 @@ void SetWindow(int Width = 60, int Height = 98){
 }
 
 void FullWindows(){
-    SetWindow(100000000,1000000000);
+    SetWindow(100000,1000000);
+	//SetWindow(100000000,1000000000);
 }
 
 #endif
@@ -74,7 +75,7 @@ void funz_clearAll();
 
 void initial_page(){
     
-    funz_clear();
+    funz_clearAll();
     
 //#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
 ////    system("mode 650");
