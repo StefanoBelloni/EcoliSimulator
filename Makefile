@@ -52,6 +52,12 @@ TARGET = EcoliSimulator
 CFLAGS= -g -std=c++11 -Wall -pedantic
 LDFLAGS =
 
+ifeq ($(OS),linux)
+	LDFLAGS += -pthread
+endif
+
+
+
 # folders
 SRC_DIR=src
 HEAD_DIR=include
