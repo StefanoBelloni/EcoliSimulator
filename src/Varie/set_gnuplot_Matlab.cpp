@@ -18,6 +18,14 @@
 #include "MATLAB_Global.h"
 #include "apngasm_Global.h"
 #include "Dir_Global.h"
+//#include <direct.h>
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+    #include <direct.h>
+    #define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
+    #include <unistd.h>
+#endif
 
 #include "setSizesTitles.hpp"
 
@@ -105,12 +113,12 @@ void set_Location()
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             std::getline (std::cin,Location);
             Location=homeDir+Location;
-            cout << RED << "\nthe path is : \n" << RESET;
+            cout << RED << "\nthe path is: \n" << RESET;
             cout << Location << endl;
             
             cout << BLUE << "\nThe new path where the program is going to save the summaries and plot is :\n";
             cout << RESET << Location << endl;
-            cout << BOLDRED << "\nDo you conferm it? Press 0 to correct the path\n" << RESET;
+            cout << BOLDRED << "\nDo you conferm it? Press 0 to correct the path, 1 otherwise\n" << RESET;
             
             getInput( risp_);
             
@@ -168,7 +176,7 @@ void set_gnuplot()
             cout << gnuplotOpen << endl;
             gnuplotOpen+=gnuplot_;
             
-            cout << "specificcally, through the terminal to open it it is lunche the command " << endl;
+            cout << "specificcally, through the terminal to open it, it is lunched the command " << endl;
             cout << gnuplotOpen << endl;
         }
         
@@ -187,7 +195,9 @@ void set_gnuplot()
         cout << "The terminal in used is " << term << "\npress 0 for yes, 1 for no " << RESET;
         getInput( risp_);
         if  (risp_==0){
-            cout << "give the name of the terminal, for example x11, qt, etc...  : ";
+            cout << "give the name of the terminal:";
+	    string gnu_term = gnuplotOpen+"-e \"set terminal\"";
+	    system(gnu_term.c_str());	
             cin >> term;
         }
         string cmd_term=string("set terminal ")+term+string (" size ");
@@ -198,7 +208,8 @@ void set_gnuplot()
         int w = 1440;
         int h = 900;
         cout << BLUE << "\n#######################################################################" << RESET << endl;
-        cout << RED << "Do you want to set the size (in pixel) of the immages (default 1440,900)\nproduced by gnuplot\npress 0 for yes, 1 for no " << RESET;
+	cout << "current option:" <<  gnuplotSetTerminalPlot << std::endl;
+        cout << RED << "Do you want to set the size (in pixel) of the immages \nproduced by gnuplot\npress 0 for yes, 1 for no " << RESET;
         getInput( risp_);
         if (risp_==0) {
             cout << "heigh: " << RESET << endl;
@@ -300,7 +311,7 @@ void set_matlab(string &versione_Matlab)
         if (risp_==0) {
             
             funz_clear();
-            cout << BOLDRED << "#######################################################################" << RESET << endl;
+            cout << BOLDRED << "\n#######################################################################" << RESET << endl;
             cout << BOLDRED << "# MATLAB_SETTING" << RESET << endl;
             cout << BOLDRED << "#######################################################################" << RESET << endl;
             
@@ -378,7 +389,7 @@ void set_matlab(string &versione_Matlab)
         }
         funz_clearAll();
         
-        cout << BOLDRED << "#########################" << RESET << endl;
+        cout << BOLDRED << "\n#########################" << RESET << endl;
         cout << BOLDRED << "#    MATLAB_SETTING     #" << RESET << endl;
         cout << BOLDRED << "#########################" << RESET << endl;
         
@@ -432,7 +443,7 @@ void set_apngasm(){
             cout << BOLDRED << "######################" << RESET << endl;
             cout << BOLDRED << "#   APNGASM_SETTING  #" << RESET << endl;
             cout << BOLDRED << "######################" << RESET << endl;
-            string name="name_file*.png";
+            string name=" name_file*.png";
             
 //*****************************************************************************************************************************
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
@@ -446,7 +457,7 @@ void set_apngasm(){
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
             cout << "no automatic visalization ...\n";            
 #else
-            string command_call=  "name_out.png";
+            string command_call= firefox_path + "name_out.png";
             system(command_call.c_str());
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -475,6 +486,8 @@ void set_apngasm(){
         cout << RESET << command;
         
         cout << BLUE << "\n#######################################################################" << RESET << endl;
+	std::string path = (getcwd(NULL,0));
+	cout << "The working directory is: " << path << std::endl;
         cout << RED <<"Do you want to set a different path? \npress 0 for yes, 1 for no " << RESET;
         getInput( risp_);
         
@@ -492,7 +505,7 @@ void set_apngasm(){
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
             apngas_lunch+="\\apngasm.exe";
 #else
-            apngas_lunch+="/apngasm.exe";
+            apngas_lunch+="/apngasm";
 #endif  
       
         }
