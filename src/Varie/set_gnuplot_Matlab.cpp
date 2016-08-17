@@ -446,7 +446,7 @@ void set_apngasm(){
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
             cout << "no automatic visalization ...\n";            
 #else
-            string command_call= "open -a firefox name_out.png";
+            string command_call=  "name_out.png";
             system(command_call.c_str());
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -593,7 +593,7 @@ void set_gif(){
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
             cout << "no automatic visalization ...\n";
 #else
-            string command_call= "open -a firefox name_out.gif";
+            string command_call= firefox_path+" name_out.gif";
             system(command_call.c_str());
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -661,8 +661,9 @@ void set_lunch_firefox(){
        
         if (demo_==0) {
             size_t position = firefox_path.find("firefox");
+            size_t position1 = firefox_path.find("Safari");
             string command = firefox_path;
-            if (position != std::string::npos) {
+            if (position != std::string::npos || position1!=std::string::npos) {
                 command+="https://stefanobelloni.github.io/EcoliSimulator/";
             }
             system(command.c_str());

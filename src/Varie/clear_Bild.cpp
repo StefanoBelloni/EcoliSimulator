@@ -50,6 +50,13 @@ void getInput(T &risposta){
     }
 }
 
+template<>
+void getInput(std::string &risposta){
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::getline (std::cin,risposta);
+}
+
 template void getInput(int &risposta);
 template void getInput(double &risposta);
 template void getInput(std::string &risposta);
