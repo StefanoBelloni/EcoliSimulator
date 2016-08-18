@@ -156,7 +156,6 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
     z.resize( n_dx , vector<int>( n_dy , 0 ) );
     
     int i_x,i_y;
-    double x_0[2];
     
     double max_z=0.0;
     
@@ -196,9 +195,6 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
             
             for (i_x=-n_x_min; i_x<n_dx+n_x_max; i_x++) {
                 for (i_y=-n_y_min; i_y<n_dy+n_y_max; i_y++) {
-                    
-                    x_0[0]=delta_x_p;
-                    x_0[1]=delta_y_p;
                     
                     if (i_x>=0 && i_x<n_dx && i_y>=0 && i_y<n_dy) {
                         max_z=max(max_z,z[i_x][i_y]);

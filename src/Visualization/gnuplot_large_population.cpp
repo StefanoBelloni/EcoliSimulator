@@ -67,7 +67,7 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
     double max_y=-10000;
     double max_z=0.0;
     double maxC = 0.0;
-    int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
+    unsigned int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
     // Lettura riga file.
     string temp_string;
     vector< vector<double> > x_t,y_t,sign_c_t; // matrici equivalenti a P(2,i,j) in Matlab_program

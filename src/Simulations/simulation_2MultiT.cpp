@@ -112,7 +112,7 @@ int simulation_2MultiT(E_coli *batterio, double T_f,Funz_C *f,double *x0,double 
     }
     
     // join and get values ...
-    for (int i=0; i<th.size(); i++) {
+    for (unsigned int i=0; i<th.size(); i++) {
 
 //        cout << "join in startThreadSimulation ... " << endl;
 //        cout << "th["<<i<<"].join();" << endl;
@@ -132,14 +132,6 @@ int simulation_2MultiT(E_coli *batterio, double T_f,Funz_C *f,double *x0,double 
         }
 
     }
-    
-//    for (int i=0;i<num_colonne_parzial.size();i++){
-//        cout << "dim_col_t_parziale[" << i << "] = " << num_colonne_parzial[i] << endl;
-//    }
-//    
-//    cout << "dim_col_t = " << dim_col_t << endl;
-    
-//    sleep(1);
     
     int err_files =  mergeFilesSimulation(n_thread,names_files_Ecoli_mod, names_indice_mod, names_files_tau_mod, names_file_dyn_mod);
         
@@ -171,20 +163,6 @@ string setNametempFiles(string name, int n_thread){
 void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2> x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread, int& dim_line_save)
 {
     
-//    my_mutex.lock();
-//    cout << "start thread number " << n_thread << endl
-////    batterio->Tipo_batterio+="_thread_";
-////    ostringstream convert;   // stream used for the conversion
-////    convert << n_thread;
-////    batterio->Tipo_batterio+=convert.str();
-//         << batterio->Tipo_batterio << endl;
-//    my_mutex.unlock();
-//    sleep(n_thread);
-    
-//    cout << "const_save = " << const_salv << endl;
-//    cout << "dt*const = " << const_salv*dt << endl;
-    
-//    funz_clear();
     
     double errore = 0.000000001;
     
@@ -204,10 +182,7 @@ void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2
         batterio->engine_barrier = &rnd_ecoli.random_engines_barrier[n];
         batterio->engine_theta = &rnd_ecoli.random_engines_theta[n];
     }
-    
-//    batterio->engine_altro = &random_engines;
-//    batterio->engine_barrier = &random_engines;
-//    batterio->engine_theta = &random_engines;
+
     
     // FILES
     ofstream file_Ecoli[3];
@@ -224,15 +199,6 @@ void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2
     double c_iniziale_prec=-10;
     //-------->
     m0.resize(n_m0);
-    
-//    double x0[0];
-    
-//    my_mutex.lock();
-//    x0[0] = x_0[0];
-//    x0[1] = x_0[1];
-//    my_mutex.unlock();
-    
-    
     
     int i=0;
     int i_temp=0;

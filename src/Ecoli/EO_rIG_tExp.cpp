@@ -107,12 +107,7 @@ double EO_rIG_tExp::f_sigma(){
     return 0;
     
 }
-//
-//void CV_rIG_tExp::save_dyn(std::ofstream &file_, double t){
-//    
-//    file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << endl;
-//    
-//};
+
 
 void EO_rIG_tExp::change_par(int change){
     

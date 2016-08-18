@@ -152,7 +152,7 @@ double CV_rIG_tExp::f_sigma(){
 //    
 //    file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << endl;
 //    
-//};
+//}
 
 void CV_rIG_tExp::change_par(int change){
     

@@ -159,7 +159,7 @@ double Funz_C::new_F_C(double t, std::array<double,2> x){
     
     return 1;
     
-};
+}
 
 void Funz_C::set_parameter(){
     
@@ -239,13 +239,13 @@ void Funz_C::set_parameter(){
         sssr(num_funz,"Which form of the function c(t,x) you want to use");
 
     
-};
+}
 
 void Funz_C::all_informations(std::ofstream &file_save){
   
     cout << "stampo informazioni " << endl;
     
-};
+}
 
 void Funz_C::print_fc(std::ofstream &file_save, double t){
     

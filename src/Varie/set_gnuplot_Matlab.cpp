@@ -42,6 +42,7 @@ void set_Location();
 void set_gif();
 void set_lunch_firefox();
 void general_settings();
+void lunch_apngas(string name_out, string name_input);
 /**
  * This function set all the parameters to call the external program and set The location of the summary folder
  */
@@ -413,9 +414,8 @@ void set_apngasm(){
 
     int risp_=0;
     int demo_=0;
-    string name;
+    string name, command;
 //    string name_out="name_out.png";
-    string command;
     ofstream file_prova;
     
     do{
@@ -445,28 +445,24 @@ void set_apngasm(){
             cout << BOLDRED << "######################" << RESET << endl;
             cout << BOLDRED << "#   APNGASM_SETTING  #" << RESET << endl;
             cout << BOLDRED << "######################" << RESET << endl;
-            string name=" name_file*.png";
+            string name;
             
-//*****************************************************************************************************************************
+//********** CREATE *************************************************************************************************
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-            command= apngas_lunch+" name_out.png "+ name + apngas_opt;            
+            name="name_file1.png";
 #else
-            command= apngas_lunch+name+" -o name_out.png "+apngas_opt;                                               
+            name="name_file*.png";
 #endif
-//*****************************************************************************************************************************
-            system(command.c_str());
-//*****************************************************************************************************************************
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-            cout << "no automatic visalization ...\n";            
-#else
+            
+            lunch_apngas("name_out.png", name);
+
             string command_call= firefox_path + "name_out.png";
             system(command_call.c_str());
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "press Enter to continue ... " << endl;
             cin.ignore();
-#endif
-//*****************************************************************************************************************************
+//*********** DELETE ************************************************************************************************
             remove("output.png");
             remove("name_out.png");
             remove("prova_gnuplot.gnu");
@@ -485,7 +481,7 @@ void set_apngasm(){
         }
         
         cout << BLUE << "The call of the program is done via: \n:";
-        cout << RESET << command;
+        cout << RESET << apngas_lunch+std::string("-o ")+string("name_out.png")+std::string(" ")+name+apngas_opt;;
         
         cout << BLUE << "\n#######################################################################" << RESET << endl;
 	std::string path = (getcwd(NULL,0));

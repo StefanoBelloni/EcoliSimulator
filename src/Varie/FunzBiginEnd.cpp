@@ -408,11 +408,11 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
     checks.push_back("--dir=");
     checks.push_back("-qclear");
     checks.push_back("--data"); 
-    int j=0;
+    unsigned int j=0;
     bool initial_p = true;
     bool search_more;
     int rtn_v = 0;
-    for (int i=1; i<argc; i++) {
+    for (unsigned int i=1; i<argc; i++) {
 //        cout << "######################"<< endl;
 //        cout << ":::::::::::::::::::::: argv: " << argv[i] << endl;
         j=0;
@@ -499,7 +499,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                         cout << temp << endl;
                         
                         n_thread_available = atoi(temp.c_str());
-                        int maxthread = std::thread::hardware_concurrency();
+                        unsigned int maxthread = std::thread::hardware_concurrency();
                         n_thread_available=std::min(n_thread_available,maxthread);
                         cout << "n_thread_available = " << n_thread_available << endl;
                         if (n_thread_available < 2) {

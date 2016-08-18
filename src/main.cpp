@@ -88,7 +88,7 @@ int automatic_ = 100;
 double epsilon = 1.0;
 bool multithread = false;
 bool colors = true;
-int n_thread_available = 1;
+unsigned int n_thread_available = 1;
 
 //string fileEcoliRisp = "EcoliTest.Ecoli";
 string fileEcoliRisp = "EcoliRisposte.Ecoli";

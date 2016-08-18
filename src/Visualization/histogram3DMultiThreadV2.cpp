@@ -299,7 +299,7 @@ void writeFunC_andHist(double delta_y_p, double delta_x_p, int dim_col_t, int n_
     //****************************************
     // JOIN ...
     
-    for (int i = 0; i<th.size(); i++) {
+    for (unsigned int i = 0; i<th.size(); i++) {
         //                cout << "funz ... " << endl;
         //                cout << "th["<<i<<"].join();" << endl;
         try{

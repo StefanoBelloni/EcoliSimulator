@@ -14,7 +14,7 @@ extern std::vector<std::string> vettore_text;
 extern int contatore_risposte;
 
 extern bool multithread;
-extern int n_thread_available;
+extern unsigned int n_thread_available;
 
 extern std::string fileEcoliRisp;
 extern const std::string EcoliPath;

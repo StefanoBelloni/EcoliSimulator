@@ -94,7 +94,7 @@ double Funz_C_Inter::new_F_C(double t, std::array<double,2> x){
 			(*f_c)[n_x[2]*n_y+n_x[1]]+
 			(*f_c)[n_x[2]*n_y+n_x[3]])/4;
     
-};
+}
 
 void Funz_C_Inter::print_fc(std::ofstream &file_save, double t){
 

@@ -13,7 +13,7 @@ double ParameterEstimation_CV_rExp_tExp::f_lambda(){
     
     return s_lambda_r.s_funz_lambda(Q);
     
-};
+}
 
 
 ParameterEstimation_CV_rExp_tExp::ParameterEstimation_CV_rExp_tExp():CV_rExp_tExp(){
@@ -22,7 +22,7 @@ ParameterEstimation_CV_rExp_tExp::ParameterEstimation_CV_rExp_tExp():CV_rExp_tEx
     codice_batterio = EcoliType::PAR_CV_REXP_TEXP;
     simulation = 1;
     
-};
+}
 
 ParameterEstimation_CV_rExp_tExp::ParameterEstimation_CV_rExp_tExp(const ParameterEstimation_CV_rExp_tExp& modello):CV_rExp_tExp(modello){
     

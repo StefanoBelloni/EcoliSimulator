@@ -228,7 +228,7 @@ double Analysis_run(string name_file_read, string names[], int run){
     }
     return tau_mean[4]/max(n_salto[4],1);
     
-};
+}
 
 
 void writeLineTable(){

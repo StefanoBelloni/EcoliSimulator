@@ -58,7 +58,7 @@ void E_coli::agg_ligand(double t, Funz_C *f){
 //    cout << "c(t) = " << c <<"("<<t<<")\n";
     response_function();
     
-};
+}
 
 
 //*************************************************************** 
@@ -84,7 +84,7 @@ void E_coli::agg_ligand(double t, Funz_C *f){
 //    
 //    return 0;
 //    
-//};
+//}
 
 
 
@@ -110,7 +110,7 @@ void E_coli::stationary_dyn(double dt, std::vector<double> &m0, int change_pos){
     
     
     
-};
+}
 
 
 //*************************************************************** 
@@ -337,7 +337,7 @@ int E_coli::agg_dyn(double dt, double t)
     
     return salto_;
     
-};
+}
 
 //**********************************************************************************
 
@@ -687,7 +687,7 @@ void E_coli::save_run(double t, std::ofstream &file_run, double dt){
     
 //    last_tau_r=t-t_r;
     
-};
+}
 
 void E_coli::save_tumble(double t, ofstream &file_tumble, double dt){
 
@@ -697,14 +697,14 @@ void E_coli::save_tumble(double t, ofstream &file_tumble, double dt){
 //    file_tumble << t << " " << t-t_t << endl << " " << c << endl;
 //    last_tau_r=t-t_t;
 
-};
+}
 
 
 void E_coli::save_theta(double t, double theta, std::ofstream &file_theta){
     
     file_theta << t << " " << theta << endl;
     
-};
+}
 
 void E_coli::save_E_coli_initial(std::ofstream *file_, double t){
     
@@ -715,7 +715,7 @@ void E_coli::save_E_coli_initial(std::ofstream *file_, double t){
     file_[1] << t << " " << theta << endl;
     file_[2] << t << " " << c << endl;
     my_mutex.unlock();
-};
+}
 
 void E_coli::save_E_coli(std::ofstream *file_, double t){
     
@@ -735,13 +735,13 @@ void E_coli::save_E_coli(std::ofstream *file_, double t){
     file_[2] << t << " " << c << endl;
 //    my_mutex.unlock();
     
-};
+}
 
 void E_coli::save_dyn(ofstream &file_, double t){
     
     file_ << t << " " << lambda_r << " " << lambda_t << endl;
     
-};
+}
 
 //************************************************************************************
 
@@ -883,7 +883,7 @@ void ParameterEstimation_E_coli::set_GoodnessFit(int Good, double D_n, double cu
 //    file_save << "\nThe diffusion coefficient for the angle theta is D_theta = "<< D_theta << endl;
 //    
 //    
-//};
+//}
 
 //int lambda_prod(){}
 //
@@ -1042,7 +1042,7 @@ double E_coli::Exp_dist_ec(){
     
 //    return e;
     
-};
+}
 
 double E_coli::rand_normal_ec(double stddev){//Box muller method
     
@@ -1050,7 +1050,7 @@ double E_coli::rand_normal_ec(double stddev){//Box muller method
     std::normal_distribution<double> norm_Rand_(0.0,stddev);
     return norm_Rand_(*engine_altro);
     
-};
+}
 
 double E_coli::gamma_par_double_ec(){
     
@@ -1063,7 +1063,7 @@ double E_coli::gamma_par_double_ec(){
     }
     
     return disp_gamma-log(x)*beta;
-};
+}
 
 double E_coli::unifRand_ec(){
     
@@ -1077,7 +1077,7 @@ double E_coli::unifRand_ec(){
     std::uniform_real_distribution<double> std_unifRand_(0.0,1.0);
     return std_unifRand_(*engine_altro);
 //    return rand_r(seed_ecoli) / double(RAND_MAX);
-};
+}
 
 double E_coli::deltaW_ec(double dt){
     
@@ -1095,7 +1095,7 @@ double E_coli::deltaW_ec(double dt){
     }
     
     return dW;
-};
+}
 
 double E_coli::newtheta_ec(double theta){
     
@@ -1136,7 +1136,7 @@ double E_coli::newtheta_ec(double theta){
         theta= theta-2*pi;
     }
     return theta;
-};
+}
 
 
 int E_coli::dist_iniz_ec(array<double,2> x0, double R,unsigned int num_dist)
