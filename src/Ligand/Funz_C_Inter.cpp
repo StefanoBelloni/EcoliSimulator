@@ -85,10 +85,14 @@ Funz_C_Inter::Funz_C_Inter(){
 
 double Funz_C_Inter::new_F_C(double t, std::array<double,2> x){
     
-    int n_x[2];
-    get_coordinate(x,n_x);
-    
-    return (*f_c)[n_x[0]*n_y+n_x[1]];
+    int n_x[4];
+    get_coordinate1(x,n_x);
+	// I calculate the mean around the points
+	// TODO: one should whight better the meen according to x-x_i (resp y) ...
+    return ((*f_c)[n_x[0]*n_y+n_x[1]]+
+			(*f_c)[n_x[0]*n_y+n_x[3]]+
+			(*f_c)[n_x[2]*n_y+n_x[1]]+
+			(*f_c)[n_x[2]*n_y+n_x[3]])/4;
     
 };
 

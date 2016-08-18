@@ -770,6 +770,8 @@ void E_coli::produce(Funz_C* f_i, double dt)
 //    (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]+=((*(f_i->f_c))[n_x[0]*f_i->n_y+n_x[1]])*product*dt;
     
     (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]+=(production_rate*dt/4);
+    (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[3]]+=(production_rate*dt/4);
+    (*(f_i->q_c))[n_x[2]*f_i->n_y+n_x[1]]+=(production_rate*dt/4);
     (*(f_i->q_c))[n_x[2]*f_i->n_y+n_x[3]]+=(production_rate*dt/4);
     
 //    cout << "(*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] = " << (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] << endl;
