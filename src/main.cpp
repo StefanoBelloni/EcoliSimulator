@@ -80,7 +80,7 @@ int Funz_C::num_funz = 9;
 //********************************************************************************************************************
 
 std::mutex my_mutex;
-
+bool save_data;
 vector<double> vettore_risposte;
 vector<std::string> vettore_text;
 int contatore_risposte = -1;

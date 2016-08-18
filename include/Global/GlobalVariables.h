@@ -46,4 +46,6 @@ extern bool same_seed;
 
 
 extern std::mutex my_mutex;
-
+/** global variable to save or not the DATA .dat and gnuplot scripts
+  * default is false: otherwise too much space is needed */
+extern bool save_data;

@@ -54,7 +54,7 @@ int set_MODE_Program(string &versione_Matlab, int &demo_mode, int read_from_file
 //        cout << BOLDBLUE<< "Do you want to impost all the parameters for the simulations and collect the results in a folder on the Desktop?\n"<<endl;
 
         cout << BOLDBLUE<< "\nSETTING MENU FOR THE MODE OF INSERTING PARAMETERS?\nPRESS\n"<<endl;
-        cout << BLACK << "[ 1 ] to Read Parameter from a File or preimpost them mnually"<<endl;
+        cout << BLACK << "[ 1 ] to Read Parameter from a File or preimpost them manually"<<endl;
         cout          << "      (The analysis is done only via gnuplot)" << endl;
         cout << RED <<"[ 0 ] for a step-by-step programm "<<endl;
         cout        << "     (The analysis is done via gnuplot and Matlab" << endl;
@@ -62,7 +62,7 @@ int set_MODE_Program(string &versione_Matlab, int &demo_mode, int read_from_file
         cout           << "      (The analysis is done only via gnuplot)" << RESET<< endl;
         if (automatic_!=121) {
             //cout << "...\n";
-            cout << "[121] if you want to set the path of gnuplot and Matlab and apngas\n";
+            cout << BOLDBLUE << "\n[121] if you want to enter the setting menu.\n" << RESET;
         }
         cout << "\n--> Option number: ";
         //    cin >> automatic_;
@@ -101,7 +101,10 @@ int set_MODE_Program(string &versione_Matlab, int &demo_mode, int read_from_file
     
         if (automatic_==1) {
             
-            cout << BLUE << "\nDo you want to read the parameters from a file?\n0 to Load from a File and simulate;\n1 to Insert Manually the parameters\n121 if you want only to save parameters and not simulate " << RESET;
+            cout << BLUE << "\nDo you want to read the parameters from a file?\n"
+						 <<"0 to Load from a File and simulate;\n"
+						 <<"1 to Insert manually the parameters and lunch in authomatic mode\n"
+						 <<"121 if you want only to save parameters and not simulate " << RESET;
             getInput( read_from_file);
             if (read_from_file==0) {
                 cout << "Do you wnat to load EcoliRisposte.Ecoli:\npress 0 if yes, 1 to change the name: ";

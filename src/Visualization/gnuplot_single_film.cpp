@@ -29,6 +29,7 @@
 
 
 void lunch_gnuplot(string name_file_gnu);
+void lunch_apngas(string name_out, string name_input);
 string setNameScriptSingleFilm(int cont_sim, int save);
 int writeSciptFilmSingle(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
 int writeSciptFilmSingle_gif(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
@@ -190,15 +191,16 @@ void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_in
         name.erase(name.end()-3, name.end());
         name = name+"png";
         
+        string name_input;
         #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-        string command_apngas_= apngas_lunch+name+" film2D000001.png "+apngas_opt;            
+        name_input = "film2D000001.png";
         #else
-        string command_apngas_= apngas_lunch+"film2D*.png -o "+name+apngas_opt;                                               
+        name_input = "film2D*.png";
         #endif
 
         cout << "saving file \n";
             
-        system(command_apngas_.c_str());
+        lunch_apngas(name, name_input);
         
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
         system("del film2D*.png");
@@ -209,8 +211,8 @@ void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_in
         
         // Guardo il filmato 
         if (risp==0) {                    
-            command_apngas_ = "open -a firefox "+name;
-            system(command_apngas_.c_str());
+            string command_play_video = firefox_path+std::string(" ")+name;
+            system(command_play_video.c_str());
             
         }
     }
@@ -368,8 +370,8 @@ void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &name
             name = name+"gif";
             // Guardo il filmato
             if (risp==0) {                    
-                string command_apngas_ = "open -a firefox "+name;
-                system(command_apngas_.c_str());
+                string command_play_video = firefox_path+std::string(" ")+name;
+                system(command_play_video.c_str());
                 
             }
         }

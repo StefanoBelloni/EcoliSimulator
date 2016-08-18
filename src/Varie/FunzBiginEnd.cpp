@@ -112,6 +112,8 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
                 std::cout<< "Do you want to save the result of the current simulation in the Summarising folder?\n0 for yes, 1 for no: ";
                 
                 getInput( risp);
+				std::cout << "Do you want to save also all the scripts and data? this might take lots of space on the disk\n0 for yes, 1 for no: "; 
+				getInput(save_data);
 //                getInput(risp);
             }
 //            SetFolderData(demo_mode, number_routine);
@@ -342,6 +344,12 @@ void helpMenu(){
         << "                           "<<BOLDRED<<"NOTE:"<< RESET << " if you type only '--file'" << endl
         << "                                 is intended the default," << endl
         << "                                 i.e. 'EcoliRisposte.Ecoli'" << endl
+        << BOLDBLUE << "   --data ............." << RESET << " save all the data produced in the simulation" <<endl
+        << "                       it can take lot of space on the disk." << endl
+		<< "                       If you set once --data, it will be valid also" << endl
+		<< "                       for future lunch of EcoliSimulator."<<endl
+        << "                       " << BOLDRED << "NOTE:"<<RESET << " The default option saves only the summary, video and plots."<<endl
+		<< "                       to set it back, type --data=no"<<endl
         << BOLDBLUE << "   --clclog ..........." << RESET << "clear the file Ecoli.LogEcoli" << endl
         << BOLDBLUE << "   --dir=x ..........." << RESET << "specify the path (from the user's root) where to save the data" << endl
         << "                       defoult (for the first lunch) is the working directory."<<endl
@@ -399,7 +407,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
     checks.push_back("--script");
     checks.push_back("--dir=");
     checks.push_back("-qclear");
-    
+    checks.push_back("--data"); 
     int j=0;
     bool initial_p = true;
     bool search_more;
@@ -591,6 +599,15 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                         exit(0);
                         break;
                     }
+					{
+					case 12:
+                        size_t position = temp.find("--data=no");
+                        if (position != std::string::npos){
+                        	save_data = false;
+						}else{
+							save_data = true;	
+						}
+					}
                     {
                     default:
                         break;

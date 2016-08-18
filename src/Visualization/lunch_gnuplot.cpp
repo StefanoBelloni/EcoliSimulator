@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 
+#include "apngasm_Global.h"
 #include "GnuplotGlobal.h"
 using namespace std ;
 
@@ -27,18 +28,8 @@ void lunch_gnuplot(string name_file_gnu){
 //    cout << "command gnuplot : " << endl;
 }
 
+void lunch_apngas(string name_out, string name_input){
 
-/* void lunch_gnuplot_pipe(string name_file_gnu){
-    
-    FILE *gp = NULL;
-    string command = gnuplotOpen + name_file_gnu;
-    gp = popen(command.c_str(), "w");
-    
-    if(gp == NULL)
-        cout << "Could not open pipe for write!" << endl;
-    else
-        cout << "Lunch gnuplot: " << command << endl;
-    
-    fflush(gp);
-    
-}*/
+	string command_apngas_= apngas_lunch+std::string("-o ")+name_out+std::string(" ")+name_input+apngas_opt;
+	system(command_apngas_.c_str());
+}

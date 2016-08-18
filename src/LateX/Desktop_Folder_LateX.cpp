@@ -192,7 +192,8 @@ int SetFolder_LateX(int demo_mode, int number_routine)
     
 #endif
    
-    SetFolderData(final_dir);
+    if (save_data)
+		SetFolderData(final_dir);
     
     //************************
     // CREAZIONE FILE LATEX

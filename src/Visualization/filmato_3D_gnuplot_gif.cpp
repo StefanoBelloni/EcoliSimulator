@@ -176,15 +176,17 @@ void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, doub
                 // Guardo il filmato
                 if (risp==0) {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-                    // TODO:
-                    // Check how to do it in Windows!!!
-                    // Aggiustare ...
-                    string command_apngas_ = "C:/ path to firefox/firefox.exe "+name_;
-                    system(command_apngas_.c_str());
+                    
+                    string string command_play_video = firefox_path+std::string(" ")+name_;
+                    system(command_play_video.c_str());
+
 #else
-                    string command_apngas_ = "open -a firefox "+name_;
-                    cout << "command open .gif: " << command_apngas_ << endl;
-                    system(command_apngas_.c_str());
+
+                    string command_play_video = firefox_path+std::string(" ")+name_;
+//                    cout << "command open .gif: " << command_play_video << endl;
+                    system(command_play_video.c_str());
+
+
 #endif
                 }
             }

@@ -41,7 +41,7 @@ void funz_clearAll();
 int scriptMultiPlot(int risp_n, string title, double min_x, double max_x, double min_y, double max_y, double max_z, vector<int> frame_n, double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int con_gen, int smaller = 0);
 void lunch_gnuplot(string name_file_gnu);
 int scriptUpDownPer(string title, double T, int save, int smaller = 0);
-
+void lunch_apngas(string name_out, string name_input);
 int writeLog(string what, string msg);
 
 /** This fuction crate the script so save, see save 4,9,16 snapshot of the density and ligand.
@@ -156,17 +156,15 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
                 string name = names_info[0];
                 name.erase(name.end()-3, name.end());
                 name = name+"png ";
-                
+                string name_input;
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-                // TODO:
-                // check after the change in the name ...
-                string command_apngas_= apngas_lunch+name+bufferSim+"film3Dh0001.png "+apngas_opt;
-#else
-                string command_apngas_= apngas_lunch+bufferSim+"film3Dh*.png -o "+name+apngas_opt;
-#endif
                 
-                cout << "saving file \n";
-                system(command_apngas_.c_str());
+                name_input = bufferSim+std::string("film3Dh0001.png");
+#else
+                name_input = bufferSim+std::string("film3Dh*.png");
+#endif
+
+                lunch_apngas(name, name_input);
                 string commandRemovePng;
                 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
@@ -182,16 +180,9 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
                 
                 // Guardo il filmato
                 if (risp==0) {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-                    // TODO:
-                    // Check how to do it in Windows!!!
-                    // Aggiustare ...
-                    command_apngas_ = "C:/ path to firefox/firefox.exe "+name;
-                    system(command_apngas_.c_str());
-#else
-                    command_apngas_ = "open -a firefox "+name;
-                    system(command_apngas_.c_str());
-#endif
+                    string command_play_video = firefox_path+std::string(" ")+name;
+                    system(command_play_video.c_str());
+                    
                 }
             }
             

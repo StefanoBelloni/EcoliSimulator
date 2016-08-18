@@ -199,7 +199,8 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, d
             baricentro_plot(file_info[0],x_t,y_t,n_c,dim_col_t);
         }
     }
-    
+
+	funz_clear();
 //    if (automatic_==0) {
 //        
 //        cout << "plot the Distribution of the internal dynamic ? \npress 0 for yes, 1 for no ";

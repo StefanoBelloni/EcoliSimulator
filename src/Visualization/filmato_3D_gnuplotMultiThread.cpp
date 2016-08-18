@@ -79,7 +79,7 @@ int executeCommandLine2(std::string play_video);
 using namespace std;
 
 int writeLog(string what, string msg);
-
+void lunch_apngas(string name_out, string name_input);
 bool is_file_exist(const char* fileName);
 
 /** This fuction crate the script so save, see save 4,9,16 snapshot of the density and ligand.
@@ -245,16 +245,16 @@ void filmato_3D_gnuplotMultiT(string names_info[],double max_x, double max_y, do
                 name.erase(name.end()-3, name.end());
                 name = name+"png ";
                 
+                string name_input;
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-                // TODO:
-                // check after the change in the name ...
-                string command_apngas_= apngas_lunch+name+bufferSim+"film3Dh0001.png "+apngas_opt;
+                
+                name_input = bufferSim+std::string("film3Dh0001.png");
 #else
-                string command_apngas_= apngas_lunch+bufferSim+"film3Dh*.png -o "+name+apngas_opt;
+                name_input = bufferSim+std::string("film3Dh*.png");
 #endif
                 
                 cout << "saving file \n";
-                system(command_apngas_.c_str());
+                lunch_apngas(name, name_input);
                 string commandRemovePng;
                 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
@@ -270,16 +270,8 @@ void filmato_3D_gnuplotMultiT(string names_info[],double max_x, double max_y, do
 
                 // Guardo il filmato
                 if (risp==0) {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
-                    // TODO:
-                    // Check how to do it in Windows!!!
-                    // Aggiustare ...
-                    command_apngas_ = "C:/ path to firefox/firefox.exe "+name;
-                    system(command_apngas_.c_str());
-#else
-                    command_apngas_ = "open -a firefox "+name;
-                    system(command_apngas_.c_str());
-#endif
+                    string command_play_video = firefox_path+std::string(" ")+name;
+                    system(command_play_video.c_str());
                 }
             }
             

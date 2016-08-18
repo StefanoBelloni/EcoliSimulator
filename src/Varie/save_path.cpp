@@ -99,7 +99,13 @@ int import_path(string version_MATLAB){
             cout << "Error getting value for no_apngasm" << endl;
             no_apngams = true;
         }
-        
+        getline(path,temp_string);
+        try{
+            save_data = std::stoi(temp_string.c_str());
+        }catch(std::invalid_argument&){
+            cout << "Error getting value for save_data" << endl;
+            save_data= false;
+        }
         path.close();
         
     }
@@ -135,7 +141,7 @@ int save_path(string versione_MATLAB){
     path << apngas_lunch << endl;
     path << apngas_opt << endl;
     path << no_apngams << endl;
-    
+    path << save_data << endl; 
 //    path << "#############################\n";
 //    path << "#"  << VERSION << endl;
 //    path << colors << endl;

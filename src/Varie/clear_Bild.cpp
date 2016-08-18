@@ -56,7 +56,16 @@ void getInput(std::string &risposta){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline (std::cin,risposta);
 }
-
+// alternative version for string:
+/*
+void getInput(std::string &risposta){
+    char input[100];
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cin.getline(input,sizeof(input));
+	risposta=std::string(input);
+}*/
 template void getInput(int &risposta);
 template void getInput(double &risposta);
+template void getInput(bool &risposta);
 template void getInput(std::string &risposta);

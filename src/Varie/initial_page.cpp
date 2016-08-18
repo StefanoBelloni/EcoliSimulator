@@ -257,6 +257,7 @@ void setDefoultGlobalVar(){
     Location = getcwd(NULL,0);
     firefox_path ="open -a firefox ";
 #endif
-    
+   
+   save_data = false;
     
 }
