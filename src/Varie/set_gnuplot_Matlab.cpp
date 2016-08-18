@@ -223,25 +223,27 @@ void set_gnuplot()
         msg.str("");
         msg << cmd_term << w << "," << h ;
         gnuplotSetTerminalPlot = msg.str();
-        
-        // position windows ...
-        int p_w = 10;
-        int p_h = 10;
-        cout << BLUE << "\n\n#######################################################################" << RESET << endl;
-        cout << RED << "Do you want to set the position (top-left corner) of the windows (default 10,10)\nused by gnuplot to plot\npress 0 for yes, 1 for no " << RESET;
-        getInput( risp_);
-        if (risp_==0) {
-            cout << "heigh: " << RESET << endl;
-            getInput( p_h);
-            cout << "width: " << RESET << endl;
-            getInput( p_w);
-            risp_=1;
+      
+       // position if I choose wxt terminal ... 
+        if (term=="wxt"){
+            // position windows ...
+            int p_w = 10;
+            int p_h = 10;
+            cout << BLUE << "\n\n#######################################################################" << RESET << endl;
+            cout << RED << "Do you want to set the position (top-left corner) of the windows (default 10,10)\nused by gnuplot to plot\npress 0 for yes, 1 for no " << RESET;
+            getInput( risp_);
+            if (risp_==0) {
+                cout << "heigh: " << RESET << endl;
+                getInput( p_h);
+                cout << "width: " << RESET << endl;
+                getInput( p_w);
+                risp_=1;
+            }
+    //        stringstream msg;
+            msg.str("");
+            msg << " position " << p_w << "," << p_h ;
+            gnuplotSetTerminalPlot += msg.str();
         }
-//        stringstream msg;
-        msg.str("");
-        msg << " position " << p_w << "," << p_h ;
-        gnuplotSetTerminalPlot += msg.str();
-        
         
         //**************************************************
         //DEMO

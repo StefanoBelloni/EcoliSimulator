@@ -11,7 +11,7 @@
 std::string setSizesTitles(int dim, int save_){
     
     int size=20;
-    char buffer[24];
+    char buffer[36];
     if (save_==sizeTitle::NO_SAVE) {
         
         switch (dim) {
@@ -58,7 +58,7 @@ std::string setSizesTitles(int dim, int save_){
      
     }
     
-    snprintf(buffer, sizeof(char) * 24, " font ',%d'", size);
+    snprintf(buffer, sizeof(char) * 36, " font 'Helvetica,%d'", size);
     return std::string(buffer);
         
         
