@@ -44,20 +44,11 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
         cout           << "*********************************\n"<<RESET;
         cout << "Do you want to produce a detailed analysis of the runs and tumbles times? \npress 0 for yes, 1 for no ";
         
-        if (automatic_==0) {
-            //                    cin >> risposta;
-            
-            getInput( risposta);
-            
-        }else {
-            risposta=0;
-        }
-        
+		sssr(risposta,"Analysis Runs?");
+
         if (risposta==0) {
             
-            
-            cout << "Analysis run" << endl;
-            
+			cout << "Analysis run" << endl;
             cont_gen_sim-=n_compare;
             
             for (int i=0; i<n_compare; i++) {
@@ -71,16 +62,12 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                     std::cout << "\ntipo batterio:" << batteri[0]->Tipo_batterio << endl;
                 }
 
-                
                 setNames(names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod, which_compare[i], sel_prog, cont_gen_sim, stat_);
-                
-                
                 
                 //**********************************************************
                 // RUN
                 Name_jumps(names_tau_mod[0], names_jumps,1);                
                 meanR = Analysis_run(names_tau_mod[0], names_jumps,1);
-                
                 
                 if (meanR<0.0) {
                     cout << "\nError in Analysis_run\n";
@@ -88,9 +75,6 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                 }else{
                     cout << "mean = " << meanR << endl;
                 }
-                
-                
-                
 //                gnuplot_run(names_jumps,names_info_mod[0],mean,1);
                 
                 //**********************************************************
@@ -105,14 +89,9 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                     cout << "mean = " << meanT << endl;
                 }
                 
-                
-                
-
-                
                  //**********************************************************
                 
 //                gnuplot_run(names_jumps,names_info_mod[0],mean,0);
-
                 // GENERO GLI SCRIPT ...
                 
                 Name_jumps(names_tau_mod[0], names_jumps,1);
@@ -145,7 +124,7 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                     lunch_gnuplot(setNameRunMultiplot(cont_gen_sim, sizeTitle::SAVE, 0));
                 }
                 
-                print_and_open_run(names_info_mod[0],cont_gen_sim);
+                print_and_open_run2V(names_info_mod[0],cont_gen_sim);
                 
                 // _u.txt files help to create plots, I remove them when I don't need them
                 
@@ -158,10 +137,6 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                 
 //                Name_jumps(names_tau_mod[1], names_jumps,0); // last 0 -> delete files
 //                Name_jumps(names_tau_mod[1], names_jumps,0);
-                
-                
-                
-                
             }
         }
         
@@ -177,12 +152,7 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
 //
 //        }
         
-    }
-
-    
-    
-    
-    
+    } 
 }
 
 
@@ -204,24 +174,11 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
         cout << "ANALYSIS RUNS AND TUMBLES:\n";
         cout << "Do you want to produce a detailed analysis of the runs and tumbles times? \npress 0 for yes, 1 for no ";
         
-        if (automatic_==0) {
-            //                    cin >> risposta;
-            
-            getInput( risposta);
-            
-        }else {
-            risposta=0;
-        }
-        
-        if (risposta==0) {
-            
-            
+		sssr(risposta,"Analysis Runs?");
+                
+		if (risposta==0) {
+
             cout << "Analysis run" << endl;
-            
-//            cont_gen_sim-=n_compare;
-//            
-//            for (int i=0; i<n_compare; i++) {
-//                cont_gen_sim++;
             
                 funz_clear();
                 
@@ -288,7 +245,7 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
                     gnuplot_run_multiplot(names_info_mod[0], names_jumps,1,cont_gen_sim,0);
                 }
                 
-                print_and_open_run(names_info_mod[0],cont_gen_sim);
+                print_and_open_run2V(names_info_mod[0],cont_gen_sim);
                 
                 remove("r_u.txt");
                 remove("r_d.txt");

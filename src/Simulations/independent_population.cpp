@@ -100,7 +100,7 @@ int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         
         
         //*********************************           
-        //          GNUPLOT
+        //          GNUPLOT POPULATION
         //*********************************         
         {
             
@@ -110,16 +110,25 @@ int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         cout           << "*********************************\n"<<RESET;
 
             
-        cout << "\nDo you want to use gnuplot to process the files ?\npress 0 for yes, 1 for no ... ";
-        if (automatic_==0) {
-//            cin >> gnuplot_risp;
-            
-            getInput( gnuplot_risp);
-            
-        }else {
-            gnuplot_risp=0;
+        cout << BOLDBLUE << "\nThe Analysis of the Simulation will proceed as follow:";
+		if (n_c==1){
+			cout << "\n 1- Analysis of the trajectory (with video) and internal dynamics;";
+			cout << "\n 2- Analysis of the statistics of runs and tumbles\n";
+		}else{
+        	cout << "\n 1- Analysis of the density of the population: empirical density (with video), barycenter (speed), m.s.d etc. ";
+			cout << "\n 2- Analysis of the statistics of runs and tumbles\n";
         }
+		cout << RESET << "\nDo you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no: ";
+        //if (automatic_==0) {
+//            cin >> gnuplot_risp;    
+            //getInput( gnuplot_risp);
+        //}else {
+            //gnuplot_risp=0;
+        //}
         
+		sssr(gnuplot_risp,"Do you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no ");
+    
+
         
         if (gnuplot_risp==0) {
             
@@ -256,7 +265,7 @@ int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
                 cout           << "*VISUALIZATION WITH MATLAB:\n";
                 cout           << "*********************************\n"<<RESET;
                 
-                cout << "\nDo you want to use Matlab to process the files (recomanded for large populations)?\npress 0 for yes, 1 for no ... ";
+                cout << "\nDo you want to use Matlab to perform step 1 and 2?\npress 0 for yes, 1 for no ... ";
 //                cin >> Matlab;
                 
                 getInput( Matlab);

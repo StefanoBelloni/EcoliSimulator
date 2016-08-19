@@ -37,7 +37,7 @@ void Write_LateX_file(std::string name_file, std::ofstream &file_teX){
         file_teX << "****" << endl;
         file_teX << "\\begin{figure}[h!] " << endl
                  << "\\centering" << endl
-                 << "\\includegraphics[width=.65\\linewidth]{"<<name_file<<"}" << endl
+                 << "\\includegraphics[width=.95\\linewidth]{"<<name_file<<"}" << endl
                  << "\\end{figure}" << endl;
     }
     

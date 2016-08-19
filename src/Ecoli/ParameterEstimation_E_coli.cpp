@@ -19,7 +19,7 @@ ParameterEstimation_E_coli::ParameterEstimation_E_coli():E_coli(){
 //    cout << Tipo_batterio << endl;
 //    cout << "modello: x[0]=" << x[0] << endl;
 //    cout << "         x[0]+1.0 = " << x[0]+1.0 << endl;
-};
+}
 
 
 ParameterEstimation_E_coli::ParameterEstimation_E_coli(const E_coli& m):E_coli(m){

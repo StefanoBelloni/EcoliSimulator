@@ -229,15 +229,15 @@ int SetFolder_LateX(int demo_mode, int number_routine)
 #else
     
     cout << "lateX file created ... to be compiled manually\n";
+   // TODO: give the possibility to set if outo compilation tex file ... 
+    //cout<<BOLDRED<<"\n*****************************************\n";
+    //cout         <<" the LateX File is going to be compiled ...\n";
+    //cout         <<"\n*****************************************\n"<< RESET << endl;
+    //sprintf (final_dir, "cd %s",str_final_dir.c_str());
     
-//    cout<<BOLDRED<<"\n*****************************************\n";
-//    cout         <<" the LateX File is going to be compiled ...\n";
-//    cout         <<"\n*****************************************\n"<< RESET << endl;
-//    sprintf (final_dir, "cd %s",str_final_dir.c_str());
-//    
-//    string command_maketex=final_dir;
-//    command_maketex +=" && latexmk -pdf *.tex";
-//    system(command_maketex.c_str());
+    //string command_maketex=final_dir;
+    //command_maketex +=" && latexmk -pdf *.tex";
+    //system(command_maketex.c_str());
     
 #endif
 

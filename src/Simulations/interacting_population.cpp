@@ -75,16 +75,17 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         
         std::cout << "simulation number " << cont_gen_sim << endl; 
         std::cout << "\ntipo batterio:" << batteri_int[0]->Tipo_batterio << endl;
-        cout << "Plot the film via gnuplot(0) or Matlab(1) " << endl; 
-        
-        if (automatic_==0) {
-            
-            getInput( risp);
-            
-        }else {
-            risp=0;
+		cout << BOLDBLUE << "\nThe Analysis of the Simulation will proceed as follow:";
+		if (n_c==1){
+			cout << "\n 1- Analysis of the trajectory (with video) and internal dynamics;";
+			cout << "\n 2- Analysis of the statistics of runs and tumbles\n";
+		}else{
+        	cout << "\n 1- Analysis of the density of the population: empirical density (with video), barycenter (speed), m.s.d etc. ";
+			cout << "\n 2- Analysis of the statistics of runs and tumbles\n";
         }
-        
+		cout << RESET << "\nDo you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no: ";
+ 
+		sssr(risp,"Do you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no ");
         
         if (risp==0) {
             

@@ -66,7 +66,7 @@ void gnuplot_Multiplot(Funz_C *f, int dim_col_t, int cont_gen_sim, string names_
     
     if (automatic_!=1) {
         
-        cout << BOLDRED << "Take care that there are two windows: they might be overlapping ... \n" << RESET;
+        cout << BOLDRED << "Take care that there are 3 windows: they might be overlapping ... \n" << RESET;
         if (!(risp_n==4||risp_n==9||risp_n==16)) {
             cout << "Default n = 4 ";
             risp_n=4;

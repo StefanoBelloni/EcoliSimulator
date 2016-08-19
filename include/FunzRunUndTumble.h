@@ -8,6 +8,7 @@
 
 #include <string>
 
+void print_and_open_run2V(std::string name, int cont_gen_sim);
 void print_and_open_run(std::string name, int cont_gen_sim);
 void funz_clear();
 void setNames(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, int tipo_simulazione, int sel_prog, int cont_gen_sim, int stat_);

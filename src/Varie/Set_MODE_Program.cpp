@@ -58,8 +58,9 @@ int set_MODE_Program(string &versione_Matlab, int &demo_mode, int read_from_file
         cout          << "      (The analysis is done only via gnuplot)" << endl;
         cout << RED <<"[ 0 ] for a step-by-step programm "<<endl;
         cout        << "     (The analysis is done via gnuplot and Matlab" << endl;
-        cout << YELLOW << "[-1 ] for a demo program (circa 20 min.)"<<endl;
-        cout           << "      (The analysis is done only via gnuplot)" << RESET<< endl;
+        cout << YELLOW << "[-1 ] for a demo program (simulation single bacterium," << endl
+					   << "      interacting and non interaction population, Statistical fitting."<<endl;
+        cout           << "      The analysis is done only via gnuplot)" << RESET<< endl;
         if (automatic_!=121) {
             //cout << "...\n";
             cout << BOLDBLUE << "\n[121] if you want to enter the setting menu.\n" << RESET;

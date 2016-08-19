@@ -207,7 +207,7 @@ int main(int argc, const char * argv[])
     auto start = chrono::steady_clock::now();
     
     // initialize max engine to be used ...
-    for (int i=0; i< n_thread_available; i++) {
+    for (unsigned int i=0; i< n_thread_available; i++) {
         rnd_ecoli.random_engines.push_back(*new std::mt19937_64(clock()));
         rnd_ecoli.random_engine_saved.push_back(rnd_ecoli.random_engines[i]);
         rnd_ecoli.random_engines_barrier.push_back(*new std::mt19937_64(clock())); // da migliorare ...

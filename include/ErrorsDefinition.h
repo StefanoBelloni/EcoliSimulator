@@ -15,6 +15,6 @@
 #define ERROR_OVERFLOW_PROGRAM_SELECTOR     203
 #define ERROR_OPENING_FILE                  300
 
-#define VERSION "EcoliSimulator_Version_2.0.1a"
+#define VERSION "EcoliSimulator_Version_2.0.1b"
 
 #endif /* ErrorsDefinition_h */

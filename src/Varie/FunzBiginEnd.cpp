@@ -52,7 +52,7 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
         // If I use the same seed at the new cycle of simulation I clear the random engines ...
         if (same_seed) {
             cout << BOLDRED << "same seed ... " << endl << RESET;
-            for (int i=0; i< n_thread_available; i++) {
+            for (unsigned int i=0; i< n_thread_available; i++) {
                 
 //                cout << "ri inizialize random engine saved ... " << endl;
                 
@@ -412,7 +412,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
     bool initial_p = true;
     bool search_more;
     int rtn_v = 0;
-    for (unsigned int i=1; i<argc; i++) {
+    for (int i=1; i<argc; i++) {
 //        cout << "######################"<< endl;
 //        cout << ":::::::::::::::::::::: argv: " << argv[i] << endl;
         j=0;
@@ -431,7 +431,6 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                     // reset
                     {
                     case 0:
-                        
                         last_deleting();
                         
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)

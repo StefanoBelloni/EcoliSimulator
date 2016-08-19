@@ -204,7 +204,11 @@ double Analysis_run(string name_file_read, string names[], int run){
                 if(n_salto[i]>=10) 
                 {
                     fraction_run_file(names[i],n_salto[i],tau_vector[i],n_tau_x,dx,tau_max, somma_tau[i]);    
-                    file_dati[i] << "There are $" << n_salto[i] << "$ records\n\n" << endl
+                    file_dati[i] << "% " << n_salto[i] << " "
+								 		 << tau_mean[i]/n_salto[i] << " "
+										 << tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2) << " "
+										 << sqrt(tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2)) << endl;
+					file_dati[i] << "There are $" << n_salto[i] << "$ records\n\n" << endl
                                 << "mean: $$\\mathbf{E}[\\tau]= " << tau_mean[i]/n_salto[i] <<"$$\n" <<endl
                                 << "variance $$\\mathbf{Var}[\\tau] = " << tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2) << "$$\n" << endl
                                 << "standard deviation $$\\mathbf{std}[\\tau] = " << sqrt(tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2)) << "$$\n" << endl;       
@@ -219,7 +223,11 @@ double Analysis_run(string name_file_read, string names[], int run){
             
             int i=4;
             fraction_run_file(names[i],n_salto[i],tau_vector[i],n_tau_x,dx,tau_max, somma_tau[i]);    
-            file_dati[i] << "\nThere are $" << n_salto[i] << "$ records\n\n" << endl
+                    file_dati[i] << "% " << n_salto[i] << " "
+								 		 << tau_mean[i]/n_salto[i] << " "
+										 << tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2) << " "
+										 << sqrt(tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2)) << endl;            
+					file_dati[i] << "\nThere are $" << n_salto[i] << "$ records\n\n" << endl
                          << "mean: $$\\mathbf{E}[\\tau]= " << tau_mean[i]/n_salto[i] <<"$$\n" <<endl
                          << "variance $$\\mathbf{Var}[\\tau] = " << tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2) << "$$\n" << endl
                          << "standard deviation $$\\mathbf{std}[\\tau] = " << sqrt(tau_var[i]/n_salto[i]-pow(tau_mean[i]/n_salto[i],2)) << "$$\n" << endl;

@@ -12,6 +12,11 @@
 
 #include "FunzRunUndTumble.h"
 
+
+void str_row_table(std::ofstream& file, int tipo, int n_records, double mean, double var, double std_);
+
+enum{tip_all = 0,tip_up,tip_down,tip_mix,tip_c,tip_tumble};
+
 using namespace std;
 
 /**
@@ -90,32 +95,96 @@ void print_and_open_run(std::string name, int cont_gen_sim){
         file_info << buffer << endl;
     }
     file_lettura.close();
-    
 }
 
 
 
 void print_and_open_run2V(std::string name, int cont_gen_sim){
     
-//    name.erase(name.end()-4, name.end());
-//    string buffer = "_info.txt";
-//    string titolo=name+buffer;
-//    ofstream file_info;
-//    file_info.open (titolo.c_str(), std::ofstream::out | std::ofstream::app);
-//    
-//    ifstream file_lettura;
-//    
-//    file_info << "\\begin{center}"<<endl;
-//    \begin{tabular}{| l || c | c | r |}
-//    \hline
-//    run/tumble & $\MExp[\tau_{i}] $& $\textrm{var}[\tau_{i}]$ & $\sqrt{\textrm{var}[\tau_{i}]}$\\ \hline \hline
-//    $\tau_{r}$: $\langle\theta,\nabla c\rangle=0$ & 0.809631 & 0.639319 &0.799574\\ \hline \hline
-//    $\tau_{t}$ & 0.107593 & 0.00999627 & 0.0999814\\
-//    \hline
-//    \end{tabular}
-//    \captionof{table}{{\bf CV-rExp-tExp} constant environment: there are $13\,183\,128$ runs and $13\,181\,992$ tumbles: $\tau_{r}$ means duration of a \emph{run} and $\tau_{r}$ stands for the duration of a \emph{tumble}. We write $\langle\theta,\nabla c\rangle$ to indicate the sign of the measured gradient of $c(x,t)$ during a run.}
-//    \label{Table6.1}
-//    \end{center}
+    name.erase(name.end()-4, name.end());
+    string buffer = "_info.txt";
+    string titolo=name+buffer;
+    ofstream file_info;
+    file_info.open (titolo.c_str(), std::ofstream::out | std::ofstream::app);
     
-    
+    ifstream file_lettura;
+	string temp;
+    int n_salti;
+	double mean,var,std_;
+
+//enum{tip_all = 0,tip_up,tip_down,tip_mix, tip_c,tip_tumble};
+	const char* file_names[] = {"r_a.txt","r_u.txt","r_d.txt","r_m.txt","r_c.txt","t_a.txt"};
+
+
+	file_info << "\\begin{verbatim}" << endl;
+    file_info << "********************************************" << endl;
+    file_info << "**       ANALYSIS RUNS AND TUMBLES        **" << endl;
+    file_info << "********************************************" << endl;
+    file_info << "\\end{verbatim}" << endl;
+
+    file_info << "\\begin{center}" << endl
+    		  << "\\begin{tabular}{| l || c | c | c | r |}" << endl
+    		  << "\\hline" << endl
+    		  << "run/tumble & number data & $\\mathbf{E}[\\tau_{i}] $& $\\textrm{var}[\\tau_{i}]$ & $\\sqrt{\\textrm{var}[\\tau_{i}]}$\\\\ \\hline \\hline" << endl;
+	
+    for(int i = 0; i<6; i++){
+		file_lettura.open(file_names[i]);
+		if(file_lettura.is_open()){
+			file_lettura >> temp;
+			file_lettura >> n_salti;
+			std::cout << "n_salti n. " << i << ": " << n_salti << endl;
+			if (n_salti>0){
+				file_lettura >> mean;
+				file_lettura >> var;
+				file_lettura >> std_;
+				str_row_table(file_info,i,n_salti, mean, var,std_);
+			}
+			file_lettura.close();
+		}else{
+			cout << "Error opening file: " << file_names[i] << endl;
+		}
+
+	}
+
+	file_info << "\\hline" << endl
+			  << "\\end{tabular}" << endl
+			  << "\\end{center}" << endl;
+	file_info.close();
+}
+
+
+/** this function returns the string of the line of the table of the runs/tumble */
+void str_row_table(ofstream& file, int tipo, int n_records, double mean, double var, double std_){
+	string kind;
+
+	switch(tipo){
+		case tip_all:
+			kind = string("all $\\tau_{r}$");
+			break;
+		case tip_up: 
+			kind = string("$\\tau_{r}$: $\\langle\\theta,\\nabla c\\rangle>0$");
+			break;
+		case tip_down:
+			kind = string("$\\tau_{r}$: $\\langle\\theta,\\nabla c\\rangle<0$");
+			break;
+		case tip_mix:
+			kind = string("$\\tau_{r}$: $\\langle\\theta,\\nabla c\\rangle$ mix");
+			break;
+		case tip_c:
+			kind = string("$\\tau_{r}$: $\\langle\\theta,\\nabla c\\rangle$ = 0");
+			break;
+		case tip_tumble:
+			kind = string("$\\tau_{t}$");
+			break;
+		default:
+			kind = string("$\\tau$");
+			break;
+	}
+
+	file << kind << " & "
+		 << n_records << " & " 
+		 << mean << " & "
+		 << var << " & "
+		 << std_ << "\\\\ \\hline" << endl;
+
 }
