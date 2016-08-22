@@ -16,7 +16,7 @@ using namespace std;
  * @param U_T pointer to the traspose matrix
  */
 
-void Transpose_Matrix(double *U, double *U_T, int n_x, int n_y, double &f_max){
+void Transpose_Matrix(long double *U, long double *U_T, int n_x, int n_y, long double &f_max){
     
     for (int i=0; i<n_x; i++) {
         for (int j=0; j<n_y; j++) {
@@ -29,7 +29,7 @@ void Transpose_Matrix(double *U, double *U_T, int n_x, int n_y, double &f_max){
 }
 
 /**This function print a matrix in a tidy way*/
-void print_matrix(double *U, int n_x, int n_y){
+void print_matrix(long double *U, int n_x, int n_y){
     
     for (int i=0; i<n_x; i++) {
         for (int j=0; j<n_y; j++) {

@@ -28,12 +28,12 @@ void Funz_C::preview_F_C(){
     
     // SETTING.
     
-    double T_f=0.0;
-    double dt=0.0;
-    double Max_fc=0.0;
+    long double T_f=0.0L;
+    long double dt=0.0L;
+    long double Max_fc=0.0L;
     int n_frame_max;//=(int)T_f/dt;
     
-//    cout << "void Funz_C::preview_F_C(double T_f, double dt)\n";
+//    cout << "void Funz_C::preview_F_C(long double T_f, long double dt)\n";
     
     cout << BOLDBLUE << "\n*************************************\n"
     << " PREVIEW LIGAND CONCENTRATION MENU\n"

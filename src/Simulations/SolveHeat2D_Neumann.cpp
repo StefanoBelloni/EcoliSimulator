@@ -21,21 +21,21 @@
  * @param kd_,r parameters of the finite laplacian
  */
 
-int SolveHeat2D_Neumann2(double **U, double **Q, double n_t, double r, int n_x, int n_y, double dt, double kd_, double &f_max){
+int SolveHeat2D_Neumann2(long double **U, long double **Q, long double n_t, long double r, int n_x, int n_y, long double dt, long double kd_, long double &f_max){
     
     // Loop on the time !!!
     int error_=0;
-    double dt_2=0.5*dt;
-    double *U_T;
-    double *Q_T;
+    long double dt_2=0.5*dt;
+    long double *U_T;
+    long double *Q_T;
     
-    double temp=0;
+    long double temp=0;
     
-    U_T = new double[n_x*n_y];
-    Q_T = new double[n_x*n_y];
+    U_T = new long double[n_x*n_y];
+    Q_T = new long double[n_x*n_y];
     
-    double **pU_T=&U_T;
-    double **pQ_T=&Q_T;
+    long double **pU_T=&U_T;
+    long double **pQ_T=&Q_T;
     
     
     
@@ -84,24 +84,12 @@ int SolveHeat2D_Neumann2(double **U, double **Q, double n_t, double r, int n_x, 
             (*U)[i_x*n_y+n_y-1] = (*U)[i_x*n_y+n_y-2];        
         }
         
-//        std::cout << "U|bordo = \n";
-//        print_matrix(*U, n_x,n_y);
-        
-        
         // DEVO TRASPORRE LA MATRICE E FARE LE STESSE COSE
         
         Transpose_Matrix(*U, U_T, n_x, n_y,temp);
         Transpose_Matrix(*Q, Q_T, n_x, n_y,temp);
         
-//        std::cout << "U_T = \n";
-//        print_matrix(U_T, n_y,n_x);
-        
         rhs_Lap_U_Add(pU_T, n_y, n_x, r, pQ_T, dt_2, kd_);
-        
-//        std::cout << "U_T = \n";
-//        print_matrix(U_T, n_y,n_x);
-        
-        // TODO :::::: check ::::::
         
         for (int i=1; i<n_y-1; i++) {
             error_=solve_tridiag_Lap(-r, pU_T, n_y, i, n_x);
@@ -112,9 +100,6 @@ int SolveHeat2D_Neumann2(double **U, double **Q, double n_t, double r, int n_x, 
             }
         }
         
-//        std::cout << "(U_T+Q_T)/Lap_y = \n";
-//        print_matrix(U_T, n_y,n_x);
-        
         // i 4 Angoli
         
         U_T[0*n_y+0]     = U_T[1*n_y+1];
@@ -124,41 +109,10 @@ int SolveHeat2D_Neumann2(double **U, double **Q, double n_t, double r, int n_x, 
         
         Transpose_Matrix(U_T, *U, n_y, n_x, f_max);
         
-//        std::cout << "U = \n";
-//        print_matrix(*U, n_x,n_y);
-        
-        
-//        for (int i_x = 1; i_x<n_x-1; i_x++) {
-//            (*U)[i_x*n_y+0]     = (*U)[i_x*n_y+1];
-//            (*U)[i_x*n_y+n_y-1] = (*U)[i_x*n_y+n_y-2];        
-//        }
-//        
-        
-        
         for (int i_y = 1; i_y<n_y-1; i_y++) {
             (*U)[0*n_y+i_y]     = (*U)[1*n_y+i_y];
             (*U)[(n_x-1)*n_y+i_y] = (*U)[(n_x-2)*n_y+i_y];        
         }
-        
-
-//        std::cout << "U|bordo = \n";
-//        print_matrix(*U, n_y,n_x);
-        
-        
-//        rhs_Lap_U_Add2_tr(U, n_x, n_y, r, Q, dt_2); 
-//
-//        for (int i=1; i<n_x-1; i++) {
-//            error_=solve_tridiag_Lap_tr(-r, U, n_y, i);
-//            if (error_==-1) {                    
-//                return -1;
-//            }
-//        }
-//        
-//        // BC left/right
-//        for (int i_x = 0; i_x<n_x; i_x++) {        
-//            (*U)[i_x*n_y+0]     = (*U)[i_x*n_y+1]; 
-//            (*U)[i_x*n_y+n_y-1] = (*U)[i_x*n_y+n_y-2];
-//        }
         
         
     }

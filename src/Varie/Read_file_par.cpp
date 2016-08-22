@@ -31,7 +31,7 @@ int read_file_par(int demo_mode)
 {
     string stringa_vuota;
     string stringa_vuota1;    
-    double risp;
+    long double risp;
     
     funz_clear();
     
@@ -48,7 +48,7 @@ int read_file_par(int demo_mode)
     }
     
     if (!file_par.is_open()) {
-        std::cout << "Error opening the file\n";
+        std::cout << "Error opening the file: " << fileEcoliRisp << endl;
         string msg("Error opening file: ");
         msg+=fileEcoliRisp;
         writeLog("ERROR",msg);

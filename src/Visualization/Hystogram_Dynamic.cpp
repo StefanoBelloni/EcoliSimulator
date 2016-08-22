@@ -27,7 +27,7 @@ using std::string;
 int writeLog(string what, string msg);
 void funz_clear();
 string setNameScriptDyn(int con_sim, int save_);
-int scriptInternalDynamics(const double& Q_m, const double& Q_M,const string name_dynamic, double width, int save_, int cont_sim, string name);
+int scriptInternalDynamics(const long double& Q_m, const long double& Q_M,const string name_dynamic, long double width, int save_, int cont_sim, string name);
 void lunch_gnuplot(string name_file_gnu);
 
 /**
@@ -60,12 +60,12 @@ void Histogram_Dynamic(std::string name, std::string name_dynamic, int cont_sim)
         file_dynamics.open(name_dynamic.c_str());
         std::string command;
         
-        double t=0;
-        double Q=0;
-        double Q_M=-10000.0;
-        double Q_m=10000.0;
+        long double t=0;
+        long double Q=0;
+        long double Q_M=-10000.0;
+        long double Q_m=10000.0;
         int n_dati=0;
-        double width=0;
+        long double width=0;
         while (!file_dynamics.eof()) {
             file_dynamics >> t >> t >> t >> Q;
             Q_M = fmax(Q,Q_M);
@@ -194,7 +194,7 @@ void Histogram_Dynamic(std::string name, std::string name_dynamic, int cont_sim)
 /*! \brief write script for the internal Dynamic histogram
  */
 
-int scriptInternalDynamics(const double& Q_m, const double& Q_M,const string name_dynamic, double width, int save_, int cont_sim, string name){
+int scriptInternalDynamics(const long double& Q_m, const long double& Q_M,const string name_dynamic, long double width, int save_, int cont_sim, string name){
     
     std::ofstream file_dyn_plot;
     

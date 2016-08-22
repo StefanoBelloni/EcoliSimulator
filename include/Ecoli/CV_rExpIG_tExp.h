@@ -29,7 +29,7 @@ public:
     
     void print_info(std::ofstream &file_save);
     void reset_par();
-    double reset_barrier();
+    long double reset_barrier();
 
 };
 

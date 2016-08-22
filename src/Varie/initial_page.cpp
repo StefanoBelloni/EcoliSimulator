@@ -59,7 +59,8 @@ void SetWindow(int Width = 60, int Height = 98){
 
 void FullWindows(){
     SetWindow();
-	//SetWindow(100000000,1000000000);
+//	SetWindow(100000000,1000000000);
+    
 }
 
 #endif

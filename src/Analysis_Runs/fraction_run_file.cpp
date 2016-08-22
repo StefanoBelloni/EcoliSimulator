@@ -12,6 +12,7 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -40,14 +41,14 @@ using namespace std;
  * @param tau_max maximum tau to be display, left limit of the interval [0,tau_max] where we do the fraction of run
  * @param somma_tau sum of all the tau of the same kind (up/down/const etc. gradient)
 */
-void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector, int n_tau_x, double dx, double tau_max, double somma_tau)
+void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector, int n_tau_x, long double dx, long double tau_max, long double somma_tau)
 {
     
-    double tau=0;  
-    double tau_x=0;    
+    long double tau=0;  
+    long double tau_x=0;    
     const char * write = file_write.c_str();
 //    int mediana=0;
-//    double tau_mediana;
+//    long double tau_mediana;
     ofstream file_tau;   
     
     file_tau.open(write);
@@ -59,12 +60,12 @@ void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector
 
     for (int i=n_tau_x-1; i>=0; i--) {
         
-        tau = (double)tau_vector[i]+tau;                
-        file_tau << tau_x << " " << tau/(double)cont_salti << " " << (double)tau_vector[i]/((double)cont_salti*dx) << endl;
+        tau = (long double)tau_vector[i]+tau;                
+        file_tau << std::setprecision(20) << tau_x << " " << tau/(long double)cont_salti << " " << (long double)tau_vector[i]/((long double)cont_salti*dx) << endl;
         tau_x=max(0.0,tau_x-dx);
 //        cont_salti++;
 //        cout << "***********\n";
-//        cout << "tau_x: = " << tau_x << ": " << (double)tau/cont_salti << " " << (double)tau_vector[i]/cont_salti << endl;
+//        cout << "tau_x: = " << tau_x << ": " << (long double)tau/cont_salti << " " << (long double)tau_vector[i]/cont_salti << endl;
         
     //cout << "tau_x = " << tau_x << " , dx = " << dx << endl;
     //cout << "tau_vector["<<i<<"] = " << tau_vector[i] << "\n";

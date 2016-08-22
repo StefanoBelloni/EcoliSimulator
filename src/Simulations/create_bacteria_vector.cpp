@@ -163,7 +163,7 @@ void create_bacteria_vector(vector<E_coli*> &batteri){
 
 void initialization_interacting_population(int tipo_simulazione, vector<E_coli* > *batteri_int, int n_c, int cont_gen_sim){
     
-    double _production_rate = 10;
+    long double _production_rate = 10;
     cout << "Insert the rate of production of Ligand of a bacterium (default value 10.0) " << endl;
     sssr(_production_rate,"Insert the rate of production of Ligand of a bacterium (default value 10.0)");
 

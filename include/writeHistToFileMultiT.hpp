@@ -18,11 +18,11 @@
 // HISTOGRAM
 //***********************
 
-void writeHistToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeHistToFileMultiT(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                            const int& cont_sim, const int& n_dx, const int& n_dy, const int& n_c,
-                           const double& min_x, const double& min_y,
-                           const double& dx, const double& dy,
-                           std::vector<std::vector<double> >& x,std::vector<std::vector<double> >& y,
+                           const long double& min_x, const long double& min_y,
+                           const long double& dx, const long double& dy,
+                           std::vector<std::vector<long double> >& x,std::vector<std::vector<long double> >& y,
                            const int& n_x_min, const int& n_x_max,
                            const int& n_y_min, const int& n_y_max,
                            int &max_z, int n_thread = 0);
@@ -30,14 +30,14 @@ void writeHistToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, in
 
 void startThred_writeHist(const int start_for, const int end_for, const int update_for,
                           const int cont_sim, const int n_c, const int n_dx, const int n_dy,
-                          const double dx, const double dy,
+                          const long double dx, const long double dy,
                           const int n_x_min, const int n_x_max,
                           const int n_y_min, const int n_y_max,
-                          const double min_x, const double min_y,
-                          double delta_y_p, double delta_x_p,
-                          const double delta_y_p_init,
-                          const double delta_x_p_init,
-                          std::vector<std::vector<double> >& x,std::vector<std::vector<double> >& y,
+                          const long double min_x, const long double min_y,
+                          long double delta_y_p, long double delta_x_p,
+                          const long double delta_y_p_init,
+                          const long double delta_x_p_init,
+                          std::vector<std::vector<long double> >& x,std::vector<std::vector<long double> >& y,
                           int& max_z_local, bool display = false);
 
 
@@ -46,27 +46,27 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
 //***********************
 
 
-void writeFunzCToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonn,
+void writeFunzCToFileMultiT(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonn,
                             const int cont_sim, const int n_dx, const int n_dy,
-                            const double min_x, const double min_y,
-                            const double dx, const double dy,
+                            const long double min_x, const long double min_y,
+                            const long double dx, const long double dy,
                             const int n_x_min, const int n_x_max,
                             const int n_y_min, const int n_y_max,
-                            double& maxC,
-                            const double Dt,
+                            long double& maxC,
+                            const long double Dt,
                             Funz_C *f,
                             int n_thread);
 
 void startThred_writeFunC(const int start_for, const int end_for, const int update_for,
                           const int cont_sim,
-                          const double dx, const double dy,
+                          const long double dx, const long double dy,
                           const int n_x_min, const int n_x_max,
                           const int n_y_min, const int n_y_max,
-                          const double min_x, const double min_y,
-                          double delta_y_p, double delta_x_p,
-                          const double delta_y_p_init,
-                          const double delta_x_p_init,
-                          double Dt, Funz_C* f, double& maxC);
+                          const long double min_x, const long double min_y,
+                          long double delta_y_p, long double delta_x_p,
+                          const long double delta_y_p_init,
+                          const long double delta_x_p_init,
+                          long double Dt, Funz_C* f, long double& maxC);
 
 
 #endif /* writeHistToFileMultiT_hpp */

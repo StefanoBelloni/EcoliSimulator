@@ -45,10 +45,10 @@ void seed()
 //******************************************************************
 //                      GAMMA DITRIBUTION (FOR E_COLI!!!)
 //******************************************************************
-double gamma_par_double()
+long double gamma_par_double()
 {
     
-    double x=1;    
+    long double x=1.0L;
     
     for(int i=0;i<alpha;i++){ 
         x=x*unifRand();
@@ -62,13 +62,13 @@ double gamma_par_double()
 //******************************************************************
 //                     NORMAL DITRIBUTION 
 //******************************************************************
-double rand_normal(double stddev)
+long double rand_normal(long double stddev)
 {//Box muller method
-    static double n2 = 0.0;
+    static long double n2 = 0.0L;
     static int n2_cached = 0;
     if (!n2_cached)
     {
-        double x, y, r;
+        long double x, y, r;
         do
         {
             x = 2.0*rand()/RAND_MAX - 1;
@@ -78,10 +78,10 @@ double rand_normal(double stddev)
         }
         while (r == 0.0 || r > 1.0);
         {
-            double d = sqrt(-2.0*log(r)/r);
-            double n1 = x*d;
+            long double d = sqrt(-2.0*log(r)/r);
+            long double n1 = x*d;
             n2 = y*d;
-            double result = n1*stddev;
+            long double result = n1*stddev;
             n2_cached = 1;
             return result;
         }
@@ -100,7 +100,7 @@ double rand_normal(double stddev)
 //                     EXPONENTIAL DITRIBUTION 
 //******************************************************************
 
-double Exp_dist(){
+long double Exp_dist(){
     
     return -log(unifRand());
     
@@ -113,7 +113,7 @@ double Exp_dist(){
 //                     UNIFORM DITRIBUTION 
 //******************************************************************
 
-double unifRand()
+long double unifRand()
 {
     // re-seed after 5 Mil random generators ... 
 //    cont_rand++;
@@ -128,7 +128,7 @@ double unifRand()
     
     //   void seed();
     return rand() / (RAND_MAX+1.0);
-//    return rand_r(&seed_r) / double(RAND_MAX);
+//    return rand_r(&seed_r) / long double(RAND_MAX);
     //    return 2.0*rand()/RAND_MAX - 1;
     
 }
@@ -139,12 +139,12 @@ double unifRand()
 //                     INCREMENT WIENER 
 //******************************************************************
 
-double deltaW(double dt)
+long double deltaW(long double dt)
 {
     
-    double dW=0.0;
+    long double dW=0.0L;
     short R=4;
-    double stdt=sqrt(dt/R);
+    long double stdt=sqrt(dt/R);
     
     for (int j=0; j<R; j++) {
         dW+=rand_normal(stdt);
@@ -155,11 +155,11 @@ double deltaW(double dt)
 //******************************************************************
 //******************************************************************
 
-double newtheta(double theta)
+long double newtheta(long double theta)
 {
     
-    double s=1;
-    double theta_=0;
+    long double s=1;
+    long double theta_=0;
     
     if (unifRand()<=.5) {
         s=-1;
@@ -167,7 +167,7 @@ double newtheta(double theta)
     theta_=theta;
     theta=theta+pi*s*(gamma_par_double())/180;
  
-    if (fabs(theta)>5000) {
+    if (std::abs(theta)>5000) {
         
         std::cout << "problem generation new_theta: given a default theta=theta+46*Unif[0,1]\n";
         
@@ -189,7 +189,7 @@ double newtheta(double theta)
 //******************
 //  signum_f
 //******************
-int signum_f(double x){
+int signum_f(long double x){
     
     if (x > 0) return 1;
     if (x < 0) return -1;

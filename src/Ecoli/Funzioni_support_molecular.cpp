@@ -14,16 +14,16 @@
 const int MAXITER    = 200;
 
 // the accepted error
-const double error    = 0.00001;
+const long double error    = 0.00001L;
 
 // the Euler constant
-//const double e        = 2.718281828459;
+//const long double e        = 2.718281828459;
 
 /**
  * Function to calculate stationary state in CV model see paper [Celani Schimizu Vergassola] E_coli "something" 2011
  */
 
-double F_CSV(Molecular_rExp_tExp *batterio, double m_s, double L_use)
+long double F_CSV(Molecular_rExp_tExp *batterio, long double m_s, long double L_use)
 {
     
     return exp(batterio->n_a*batterio->a_m*(m_s-batterio->m_0))*(batterio->kCheB*m_s*(batterio->M_max-m_s+batterio->K_R))/(batterio->kCheR*(m_s+batterio->K_B)*(batterio->M_max-m_s))-pow((1+L_use/batterio->K_off)/(1+L_use/batterio->K_on),batterio->n_a);
@@ -31,10 +31,10 @@ double F_CSV(Molecular_rExp_tExp *batterio, double m_s, double L_use)
 }
 
 /**
- * Implementation of the secant method to find the zero of the equation given by double F_CSV = 0
+ * Implementation of the secant method to find the zero of the equation given by long double F_CSV = 0
  */
 
-int SecantMethodForEquation(Molecular_rExp_tExp *batterio, double& x, double x0, double x1, double c){
+int SecantMethodForEquation(Molecular_rExp_tExp *batterio, long double& x, long double x0, long double x1, long double c){
     
     int n = 2;
     

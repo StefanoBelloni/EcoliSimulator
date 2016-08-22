@@ -53,9 +53,9 @@
 
 using namespace std;
 
-int set_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau_stat> &Q_tau_vect, int &q_0);
-int reset_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau_stat> &Q_tau_vect, int n_iterata, int &q_0);
-int constract_Q_tau_vect(double dq, double q_max, double q_min, vector<Q_tau_stat> &Q_tau_vect, string name_file_dati, int &n_stat, int n_q, double &tau_t_stima, double &q_max_s, double &q_min_s);
+int set_parameter_Q_tau(long double &dq, long double &q_max, long double &q_min, vector<Q_tau_stat> &Q_tau_vect, int &q_0);
+int reset_parameter_Q_tau(long double &dq, long double &q_max, long double &q_min, vector<Q_tau_stat> &Q_tau_vect, int n_iterata, int &q_0);
+int constract_Q_tau_vect(long double dq, long double q_max, long double q_min, vector<Q_tau_stat> &Q_tau_vect, string name_file_dati, int &n_stat, int n_q, long double &tau_t_stima, long double &q_max_s, long double &q_min_s);
 
 int Statistical_Analysis(string name_file_dati, string name_info_file, vector<int> which_compare, int n_compare, int &cont_gen_sim, string &versione_Matlab);
 
@@ -64,10 +64,10 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
 //    SET PARAMETERS Q_tau
 //**********************************
 
-int set_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau_stat> &Q_tau_vect, int &q_0){
+int set_parameter_Q_tau(long double &dq, long double &q_max, long double &q_min, vector<Q_tau_stat> &Q_tau_vect, int &q_0){
     
     int n_q=0;
-    double Q=0.0;
+    long double Q=0.0;
     int risp=0;
     int n_old=(int)Q_tau_vect.size();
     
@@ -145,9 +145,9 @@ int set_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau_s
     return n_q;
 }
 
-int reset_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau_stat> &Q_tau_vect, int n_iterata, int n_tumb, int &q_0){
+int reset_parameter_Q_tau(long double &dq, long double &q_max, long double &q_min, vector<Q_tau_stat> &Q_tau_vect, int n_iterata, int n_tumb, int &q_0){
     
-    double Q=0;
+    long double Q=0;
     int n_old=(int)Q_tau_vect.size();
     int n_q=0;
     
@@ -156,7 +156,7 @@ int reset_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau
     if (n_iterata==6) {
         
 //        n_old=0;
-        dq = max(.001,min((q_max-q_min)/sqrt(n_tumb),0.1));
+        dq = max(.001L,min((q_max-q_min)/sqrt(n_tumb),0.1L));
         
         q_max+=dq;
         q_min-=dq;
@@ -191,15 +191,15 @@ int reset_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau
         cout << "Reset parameters ... \n";
         
         
-        double q_max_1 =q_max+pow(-1.0,signum)*Q/(pow(2.0, n_iterata));
-        double q_min_1 =q_min-pow(-1.0,signum)*Q/(pow(2.0, n_iterata));
+        long double q_max_1 =q_max+pow(-1.0,signum)*Q/(pow(2.0, n_iterata));
+        long double q_min_1 =q_min-pow(-1.0,signum)*Q/(pow(2.0, n_iterata));
         
         if (q_max>q_min) {
             q_max=q_max_1;
             q_min=q_min_1;
         }
         
-        dq = min((q_max-q_min)/sqrt(n_tumb),0.1);
+        dq = min((q_max-q_min)/sqrt(n_tumb),0.1L);
         
         
         
@@ -265,9 +265,9 @@ int reset_parameter_Q_tau(double &dq, double &q_max, double &q_min, vector<Q_tau
 #include <cstring>
 
 int funz_tipo_file(vector<string> &tipo_dati, int n_col);
-void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, double dq, double q_max, double q_min, double *m, streampos &position, double &tau_0_t_stima, double &q_max_s,double &q_min_s);
+void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s,long double &q_min_s);
 
-int constract_Q_tau_vect(double dq, double q_max, double q_min, vector<Q_tau_stat> &Q_tau_vect, string name_file_dati, int &n_stat_tumb, int n_q, double &tau_t_stima, double &q_max_s,double &q_min_s)
+int constract_Q_tau_vect(long double dq, long double q_max, long double q_min, vector<Q_tau_stat> &Q_tau_vect, string name_file_dati, int &n_stat_tumb, int n_q, long double &tau_t_stima, long double &q_max_s,long double &q_min_s)
 /*   I file devono essere così formattati 
  *   nome variable: t    c   delta_c   tau tumble  EOC (=EndOfColumn)     <- senza spazi bianchi
  *   VARIENTE 1:
@@ -297,7 +297,7 @@ int constract_Q_tau_vect(double dq, double q_max, double q_min, vector<Q_tau_sta
     }else {
         
         vector<string> tipo_dati;
-        vector<vector<double> > dati_rec;
+        vector<vector<long double> > dati_rec;
         string temporary;
         int n_col=-1;
         
@@ -311,12 +311,12 @@ int constract_Q_tau_vect(double dq, double q_max, double q_min, vector<Q_tau_sta
 
         position=file_dati.tellg();
         
-        double m[3];
+        long double m[3];
         int tipo_file = funz_tipo_file(tipo_dati, n_col);
         
         cout << "tipo file = " << tipo_file << endl;
         
-        dati_rec.resize(2, vector<double>( 2+n_col , 0 ));
+        dati_rec.resize(2, vector<long double>( 2+n_col , 0 ));
         
         while (!file_dati.eof()) {
             
@@ -374,9 +374,9 @@ int constract_Q_tau_vect(double dq, double q_max, double q_min, vector<Q_tau_sta
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
-double Calculate_Q1(double *m, double dt, double c, double d_c, double dQ);
+long double Calculate_Q1(long double *m, long double dt, long double c, long double d_c, long double dQ);
 
-void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, double dq, double q_max, double q_min, double *m, streampos &position, double &tau_0_t_stima, double &q_max_s, double &q_min_s)
+void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s, long double &q_min_s)
 
 /*   WHICH STATISICAL ANALYSIS IS PERFORMED ?
  *   Q_tau_vect è così strutturato:
@@ -390,7 +390,7 @@ void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, ve
 
 {
     
-    double Q=0;
+    long double Q=0;
     int index_Q;
     switch (tipo_file) {
         case 1:
@@ -410,12 +410,12 @@ void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, ve
             if (dati_rec[0][0]>=dati_rec[1][0]) {
 /*
                 cout << "Stationary Dynamic ...\n";
-                double T=10;
-                double t=0;
-                double dt=0.1;
-                double D_theta=.25;
-                double tau_r=1/(3*D_theta);
-                double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
+                long double T=10;
+                long double t=0;
+                long double dt=0.1;
+                long double D_theta=.25;
+                long double tau_r=1/(3*D_theta);
+                long double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
 */
                 m[0]=0.5;
                 m[1]=0.25;
@@ -509,19 +509,19 @@ int funz_tipo_file(vector<string> &tipo_dati, int n_col){
 //**********************************
 
 
-double Calculate_Q1(double *m, double dt, double c, double d_c, double dQ){
+long double Calculate_Q1(long double *m, long double dt, long double c, long double d_c, long double dQ){
     
-    double D_theta=.25;
-    double tau_r=1/(3*D_theta);
-    double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
-    double beta_2=1;
-    double beta_3=-beta_2/2;
-//    double Q_=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
-    double Q_=0.0;
-//    double Q_1 = -1.0;
-    double Q=0.0;
-    double w=0.0;
-    double cum_w=0.0;
+    long double D_theta=.25;
+    long double tau_r=1/(3*D_theta);
+    long double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
+    long double beta_2=1;
+    long double beta_3=-beta_2/2;
+//    long double Q_=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
+    long double Q_=0.0;
+//    long double Q_1 = -1.0;
+    long double Q=0.0;
+    long double w=0.0;
+    long double cum_w=0.0;
     
 //    if (Q_<=dQ && Q_>=-dQ) {
 //        Q_1=0.0;
@@ -529,7 +529,7 @@ double Calculate_Q1(double *m, double dt, double c, double d_c, double dQ){
     
     d_c=(d_c-c)/dt;
     
-    double dt_=0.1;
+    long double dt_=0.1;
     int n_dt=max(1, floor(dt/dt_));
     
     dt_ = (n_dt>1)?dt_:dt;

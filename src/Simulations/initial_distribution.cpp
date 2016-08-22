@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-int dist_iniz(double x[], double x0[], double R,unsigned int num_dist);
+int dist_iniz(long double x[], long double x0[], long double R,unsigned int num_dist);
 
 /**
  * This function set the initial position. What it does is: if the distribution is the n. 5, then update the new center, otherwise it calls dist_iniz(x,x0,Raggio,num_dist).
@@ -19,7 +19,7 @@ int dist_iniz(double x[], double x0[], double R,unsigned int num_dist);
  * @return if the initial position change return 1, otherwise 0. If the position didn't change the initial condition for this bacterium are the same as the previous one, so we don't have to perform initial-condition calculation.
  */
 
-int initial_position(int j,double *x, double *x0, double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, double Delta_delta_dist)
+int initial_position(int j,long double *x, long double *x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist)
 {
     int cambiato=0;
     

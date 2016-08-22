@@ -25,7 +25,7 @@ void timestamp();
  */
 
 
-void inizializzazione_parametri(int sel_prog, double &T_f, int &n_c, double* x0, int &num_dist,double &Raggio, int &delta_dist, int &const_salv, double &dt)
+void inizializzazione_parametri(int sel_prog, long double &T_f, int &n_c, long double* x0, int &num_dist,long double &Raggio, int &delta_dist, int &const_salv, long double &dt)
 {
     
 //    int condition_if=0;
@@ -34,7 +34,7 @@ void inizializzazione_parametri(int sel_prog, double &T_f, int &n_c, double* x0,
     
     funz_clear();
     
-    double sec_save;
+    long double sec_save;
 //    int N=1;
     
     // MENU INIZIALE: INSERIMENTO DATI SIMULAZIONE
@@ -114,7 +114,7 @@ void inizializzazione_parametri(int sel_prog, double &T_f, int &n_c, double* x0,
  * It might be used to read from file in a different way from the default, so the parameters and not the imput.
  */
 
-void inizializzazione_parametri(int sel_prog, double &T_f, int &n_c, double* x0, int &num_dist,double &Raggio, int &delta_dist, int &const_salv, double &dt, string name_file, vector<Funz_C*> &f, int &tipo_funz_c_class, int &tipo_response_c, double &RC_0, double &RC_1, int &RC_q){
+void inizializzazione_parametri(int sel_prog, long double &T_f, int &n_c, long double* x0, int &num_dist,long double &Raggio, int &delta_dist, int &const_salv, long double &dt, string name_file, vector<Funz_C*> &f, int &tipo_funz_c_class, int &tipo_response_c, long double &RC_0, long double &RC_1, int &RC_q){
     
     ifstream file_info_stat;
     int change=0;

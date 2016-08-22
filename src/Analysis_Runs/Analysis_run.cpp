@@ -27,11 +27,11 @@
 using namespace std;
 
 //void loadbar(unsigned int x, unsigned int n, unsigned int w);
-void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector, int n_tau_x, double dx, double tau_max, double somma_tau);
+void fraction_run_file(string file_write, int cont_salti, vector<int> tau_vector, int n_tau_x, long double dx, long double tau_max, long double somma_tau);
 
 void funz_clear();
 int writeLog(string topic, string msg);
-void RunUpDownDivision(vector<int> &tau_vector, int &somma_tau, int n_tau_x ,int &n_salto, double tau, double &tau_mean, double &tau_var,double dx);
+void RunUpDownDivision(vector<int> &tau_vector, int &somma_tau, int n_tau_x ,int &n_salto, long double tau, long double &tau_mean, long double &tau_var,long double dx);
 
 /**
  * This function analysis the runs and tumbles:
@@ -42,7 +42,7 @@ void RunUpDownDivision(vector<int> &tau_vector, int &somma_tau, int n_tau_x ,int
  *
  ************************/
 
-double Analysis_run(string name_file_read, string names[], int run){
+long double Analysis_run(string name_file_read, string names[], int run){
     
     if (run==1) {
         cout <<"Analysis runs ... \n";
@@ -59,10 +59,10 @@ double Analysis_run(string name_file_read, string names[], int run){
     stringstream sstm;       
     string temp_string;
     
-//    vector<double> tau_all;
+//    vector<long double> tau_all;
     
-    vector<double> tau_mean(5,0);
-    vector<double> tau_var(5,0);
+    vector<long double> tau_mean(5,0);
+    vector<long double> tau_var(5,0);
     vector<int> somma_tau(5,0);
     
     vector<vector<int> > tau_vector;
@@ -96,9 +96,9 @@ double Analysis_run(string name_file_read, string names[], int run){
     
     cout << "Nome file da leggere: " << read << endl;
     
-    double dx=0.01;
-    double tau_x=0.0;
-    double tau_max=7.0;
+    long double dx=0.01L;
+    long double tau_x=0.0L;
+    long double tau_max=7.0L;
     
     int n_salti_max=0;
     int n_linea=0;
@@ -132,13 +132,13 @@ double Analysis_run(string name_file_read, string names[], int run){
         n_salto[4]=0;
         tau_vector.resize( 5 , vector<int>( n_tau_x , 0 ) );
         file_salti.open(read);
-        double tau=0.0;
-        double c=0.0;
+        long double tau=0.0L;
+        long double c=0.0L;
         int up_down=2;
         int tipo_tau;
         int n_batterio = 0;
-        double t__=0;
-        double t__p=0;
+        long double t__=0.0L;
+        long double t__p=0.0L;
         
         cout << "There are " << n_salti_max << " data recorded\nTill now analyzed\n";
         
@@ -149,7 +149,7 @@ double Analysis_run(string name_file_read, string names[], int run){
 
             if (run==1) {
                 file_salti >> t__ >> tau >> up_down;
-                //cout << "tau = " << tau << endl;
+//                cout << std::setprecision(20) << "tau = " << tau << endl;
 //                file_salti >> tau >> tau >> up_down;
                 if (t__ <= t__p){
                     n_batterio++;

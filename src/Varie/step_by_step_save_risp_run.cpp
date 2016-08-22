@@ -51,11 +51,11 @@ void sssr(int &valore, string text){
 /** This function deals with the expected imput
  * if we have to wait for the user, wait and save in vettore_risposte, or we just read from vettore_risposte
  * It also check if the imput is of the desired type or not.
- * Same function as before , but when we expect a double
+ * Same function as before , but when we expect a long double
  * @param value to be return to set it after the imput.
  */
 
-void sssr(double &valore, string text){
+void sssr(long double &valore, string text){
     
     if (automatic_!=2) {
 //        cin >> valore;

@@ -23,7 +23,7 @@ using namespace std;
 /*! \brief gnuplot Multiplot
  */
 void gnuplot_Multiplot(Funz_C *f, int dim_col_t, int cont_gen_sim, string names_info,
-                       double min_x, double max_x, double min_y, double max_y, double max_z, double max_fc)
+                       long double min_x, long double max_x, long double min_y, long double max_y, long double max_z, long double max_fc)
 //*************************
 // MULTIPLOT ...
 {
@@ -44,7 +44,7 @@ void gnuplot_Multiplot(Funz_C *f, int dim_col_t, int cont_gen_sim, string names_
     file_info.open(names_info.c_str());
     string title;
     int n_data=1;
-    double dt;
+    long double dt;
     cout << "names_info[0] = " << names_info[0] << endl;
     
     file_info >> title;

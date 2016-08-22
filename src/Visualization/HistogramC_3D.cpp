@@ -36,7 +36,7 @@ using namespace std;
 //
 
 
-//vector<vector<double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
+//vector<vector<long double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
 
 
 // COSTANTI
@@ -52,21 +52,21 @@ void loadbar(unsigned int x, unsigned int n, unsigned int w);
 /** Function to create the histogram for the function c, it is used to PREVIEW LIGAND CONCENTRATION. (void Funz_C::preview_F_C())
  */
 
-double Histogram_3D_FunzC(Funz_C *f, double dt, int n_frame_max){
+long double Histogram_3D_FunzC(Funz_C *f, long double dt, int n_frame_max){
 // COSTANTI
 
 int i_x,i_y; // Contatori vari.
-//    double delta_x=0;
-double delta_x_p; // estremi intervallo x histogram
-//    double delta_y=0;
-double delta_y_p; // estremi intervallo y histogram
+//    long double delta_x=0;
+long double delta_x_p; // estremi intervallo x histogram
+//    long double delta_y=0;
+long double delta_y_p; // estremi intervallo y histogram
 //    int found=0; // se ho sistemato il batterio considerato --> setto la variabile pari a 1.
-double max_fc=-1.0;
+long double max_fc=-1.0;
 
-double t=0.0;
-double fc=0.0;
+long double t=0.0;
+long double fc=0.0;
     
-array<double,2> x_0;
+array<long double,2> x_0;
     
 char buffer[52]; // The filename buffer.
 
@@ -75,8 +75,8 @@ char buffer[52]; // The filename buffer.
 ofstream file3D_hist;
 ofstream file3D_c;
 
-    double x_delta_hist=f->min_x;
-    double y_delta_hist=f->min_y;
+    long double x_delta_hist=f->min_x;
+    long double y_delta_hist=f->min_y;
     
     int n_dx=0;
     int n_dy=0;
@@ -162,7 +162,7 @@ return max_fc;
 //      Gnuplot F_c max
 //****************************************************************************************
 
-void Funz_C::gnuplotFunC(double max_fc, double dt, int n_frames){
+void Funz_C::gnuplotFunC(long double max_fc, long double dt, int n_frames){
     
     ofstream file_3D_hist;
     ofstream file_play_video;

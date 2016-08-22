@@ -83,16 +83,16 @@ class Funz_C{
 //    static int num_funz;   // Usi sempre una sola funzione C per volta ha senso avere static variables
 //    static int change_par;
 //
-//    static double D_c;
+//    static long double D_c;
 //
-//    static double max_x,min_x,max_y,min_y;
+//    static long double max_x,min_x,max_y,min_y;
 //
-//    static double degradation_rate;
+//    static long double degradation_rate;
 //
 //    static int n_x;
 //    static int n_y;
-//    static double dx;
-//    static double dy;
+//    static long double dx;
+//    static long double dy;
 //    static int interact;   // == 0 se program interacting particles
     
     
@@ -101,29 +101,29 @@ class Funz_C{
     /** variable which track if the parameters has been changed: one might change int into boolean, 1 = change*/
     int change_par;
     /** Diffusion coefficient: used in the interacting model*/
-    double D_c;
+    long double D_c;
     /** size of the area of the experiment*/
-    double max_x,min_x,max_y,min_y;
+    long double max_x,min_x,max_y,min_y;
     /** degradation rate of ligand see model in the  population interacting with the ligand case*/
-    double degradation_rate;
+    long double degradation_rate;
     /** number od point in the mesh in the x direction (for interacting case)*/
     int n_x;
     /** number od point in the mesh in the y direction (for interacting case)*/
 	int n_y;
     /** size-step mesh x direction*/
-    double dx;
+    long double dx;
     /** size-step mesh y direction*/
-    double dy;
+    long double dy;
     /** == 0 se program interacting particles */
     int interact;   // == 0 se program interacting particles
     
     /** pointer to a matrix(n_x,n_y) with the value of the function: it is used to solve the PDE in the interacting case*/
-    double **f_c;  // pointer to a matrix(n_x,n_y) with the value of the function
+    long double **f_c;  // pointer to a matrix(n_x,n_y) with the value of the function
     /** pointer to a matrix(n_x,n_y) with the value of the sorce: it is used to solve the PDE in the interacting case */
-    double **q_c;  // pointer to a matrix(n_x,n_y) with the value of the sorce
+    long double **q_c;  // pointer to a matrix(n_x,n_y) with the value of the sorce
     
     /** return the value of Ligand concentration in the point x */
-    virtual double new_F_C(double t, std::array<double,2> x);
+    virtual long double new_F_C(long double t, std::array<long double,2> x);
     /** reset parameters to the default*/
     void reset_parameter();
     /** set parameters of the ligand concentration 
@@ -134,8 +134,8 @@ class Funz_C{
     /** set in which the rectangle (dx_n,dy_n) of the mesh of the domain the point x fells
      * @param n is the array where the "coordinate" of the rectangle are saved
      */
-    virtual void get_coordinate(std::array<double,2> x, int *n);
-    virtual void get_coordinate1(std::array<double,2> x, int *n);
+    virtual void get_coordinate(std::array<long double,2> x, int *n);
+    virtual void get_coordinate1(std::array<long double,2> x, int *n);
     /** save information for the report
      */
     virtual void all_informations(std::ofstream &file_save);
@@ -144,15 +144,15 @@ class Funz_C{
     /** read parameters from file */
     virtual void read_info_stat(int fchange_par, std::ifstream &file_stat, std::streampos &posizion);
     /** save the mesh and relative value of Ligand in a file to draw with gnuplot*/
-    virtual void print_fc(std::ofstream &file_save, double t);
+    virtual void print_fc(std::ofstream &file_save, long double t);
     /** similar to all_information */
     virtual void print_info(std::ofstream &file_save);
     /** previw of the dynamics of the ligand concentration (non-interacting case)*/
     virtual void preview_F_C();
     /** draw function c */
-    void gnuplotFunC(double max_fc, double dt, int n_frames);
+    void gnuplotFunC(long double max_fc, long double dt, int n_frames);
     /** create hystogram for the preview*/
-    friend double Histogram_3D_FunzC(Funz_C *f, double dt, int n_frame_max);
+    friend long double Histogram_3D_FunzC(Funz_C *f, long double dt, int n_frame_max);
 };
 
 

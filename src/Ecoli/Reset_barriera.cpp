@@ -20,7 +20,7 @@
 //  Reset_barriera-> TUMBLE
 //*****************************************
 
-double E_coli::reset_barrier_t(){    
+long double E_coli::reset_barrier_t(){    
     return Exp_dist_ec();
 }
 
@@ -28,33 +28,33 @@ double E_coli::reset_barrier_t(){
 //  Reset_barriera-> RUN
 //*****************************************
 
-double E_coli::reset_barrier(){    
+long double E_coli::reset_barrier(){    
     return Exp_dist_ec();
 }
 
-double CV_rIG_tExp::reset_barrier(){
+long double CV_rIG_tExp::reset_barrier(){
     return 1.0;    
 }
-double CV_rExpIG_tExp::reset_barrier(){
+long double CV_rExpIG_tExp::reset_barrier(){
     return Exp_dist_ec();
 }
 
-double Molecular_rIG_tExp::reset_barrier(){
+long double Molecular_rIG_tExp::reset_barrier(){
     return 1.0;
 }
-double Molecular_rExpIG_tExp::reset_barrier(){
+long double Molecular_rExpIG_tExp::reset_barrier(){
     return Exp_dist_ec();
 }
 
-double EO_rIG_tExp::reset_barrier(){
+long double EO_rIG_tExp::reset_barrier(){
     return 1.0;    
 }
-double EO_rExpIG_tExp::reset_barrier(){
+long double EO_rExpIG_tExp::reset_barrier(){
     return Exp_dist_ec();
 }
 
 
-//double EO_rExp_tExp::reset_barrier(){
+//long double EO_rExp_tExp::reset_barrier(){
 //    return Exp_dist();
 //}
 

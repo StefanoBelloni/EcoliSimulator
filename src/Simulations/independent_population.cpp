@@ -47,7 +47,7 @@ int compareModels(std::vector<E_coli* > &batteri, std::vector<int> &which_compar
  * It's a while loop, so you can repeat the simulation with the same parameters
  */
 
-int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, string &names_indice_mod, string *names_tau_mod, string &names_file_dyn_mod, string *names_info_mod, int sel_prog, vector<int> &which_compare, vector<E_coli* > &batteri, double T_f, double *x0, double dt,int n_c, double Raggio,int delta_dist, int num_dist,int const_salv, string &versione_Matlab, string names_jumps[], int &cont_gen_sim, int n_stat, vector<string> *pt_name_file_satistics, vector<string> *pt_name_info_satistics){
+int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, string &names_indice_mod, string *names_tau_mod, string &names_file_dyn_mod, string *names_info_mod, int sel_prog, vector<int> &which_compare, vector<E_coli* > &batteri, long double T_f, long double *x0, long double dt,int n_c, long double Raggio,int delta_dist, int num_dist,int const_salv, string &versione_Matlab, string names_jumps[], int &cont_gen_sim, int n_stat, vector<string> *pt_name_file_satistics, vector<string> *pt_name_info_satistics){
 
     int another_one=0;
     int dim_col_t=1;   
@@ -126,7 +126,7 @@ int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
             //gnuplot_risp=0;
         //}
         
-		sssr(gnuplot_risp,"Do you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no ");
+		sssr(gnuplot_risp,"Do you want to perform step 1 using gnuplot for the visualization");
     
 
         

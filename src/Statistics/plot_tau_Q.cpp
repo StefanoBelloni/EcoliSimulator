@@ -35,7 +35,7 @@ int plot_tau_Q(std::string title_, std::vector<Q_tau_stat> &vet_stat, int save_,
     
     
     
-    double mean_Poisson=0;
+    long double mean_Poisson=0;
     
     int dim_vet=(int)vet_stat.size();
     

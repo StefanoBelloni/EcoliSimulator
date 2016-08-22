@@ -33,10 +33,10 @@ using std::vector;
 //***********************************************************************************
 
 /** Function to crate a [sizeX*sinzeY] vector*/
-double *create_vector2D(int sizeX, int sizeY){
+long double *create_vector2D(int sizeX, int sizeY){
 // to access the vector v[i][j] --> v[i*sizeY+j];
-    double *array;    
-    return array = new double[sizeX*sizeY];
+    long double *array;    
+    return array = new long double[sizeX*sizeY];
 
 }
 
@@ -46,14 +46,14 @@ double *create_vector2D(int sizeX, int sizeY){
 
 // Come in MatrixLib, ma passo i dati per referenza ...
 
-void vectorAdd_2(double *up, double *v, int len, double dt)
+void vectorAdd_2(long double *up, long double *v, int len, long double dt)
 {
     for (int i = 0; i < len; i++) {
         up[i] += v[i]*dt;
     }
 }
 
-void matrixAdd_2(double **Ap, double **B, int n, int m, double dt)
+void matrixAdd_2(long double **Ap, long double **B, int n, int m, long double dt)
 {
     for (int i = 0; i < n; i++) {
         vectorAdd_2((*Ap) + i, (*B)+i, m, dt);
@@ -77,18 +77,18 @@ void matrixAdd_2(double **Ap, double **B, int n, int m, double dt)
  *          if r<0 explicit method.
  */
 
-void rhs_Lap_U_Add(double **U, int n_x, int n_y, double r, double **Q, double dt, double kd_)
+void rhs_Lap_U_Add(long double **U, int n_x, int n_y, long double r, long double **Q, long double dt, long double kd_)
 
 
 {
     
-    double a_1;
-    double a_2;
+    long double a_1;
+    long double a_2;
     int true_=0;
     
-    double h=1-2*r;
-    double kd=kd_*dt;
-//    double kd=0;
+    long double h=1-2*r;
+    long double kd=kd_*dt;
+//    long double kd=0;
 
     
     //prima riga == tutti zeros
@@ -140,15 +140,15 @@ void rhs_Lap_U_Add(double **U, int n_x, int n_y, double r, double **Q, double dt
  *  ref. http://www.cfd-online.com/Wiki/Tridiagonal_matrix_algorithm_-_TDMA_%28Thomas_algorithm%29
  */
 
-int solve_tridiag_Lap(double r, double **rhs, int n, int j, int n_y)
+int solve_tridiag_Lap(long double r, long double **rhs, int n, int j, int n_y)
 {
     int i;
-    double s;
-    double h=1-2*r;
+    long double s;
+    long double h=1-2*r;
     
-    double *pd = new double[n];
-    double *dg = new double[n];
-    double *bd = new double[n];
+    long double *pd = new long double[n];
+    long double *dg = new long double[n];
+    long double *bd = new long double[n];
         
     for (int i=0; i<n-1; i++) {
         pd[i]=r;

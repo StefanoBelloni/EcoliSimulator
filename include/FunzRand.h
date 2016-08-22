@@ -18,24 +18,24 @@
 #include <cmath>
 #include <ctime>
 
-double Exp_dist();
-double rand_normal(double stddev);
-double gamma_par_double();
-double unifRand();
+long double Exp_dist();
+long double rand_normal(long double stddev);
+long double gamma_par_double();
+long double unifRand();
 void seed();
-double deltaW(double dt);
-int signum_f(double x);
-double newtheta(double theta);
+long double deltaW(long double dt);
+int signum_f(long double x);
+long double newtheta(long double theta);
 
 
-//inline double Exp_dist();
-//inline double rand_normal(double stddev);
-//inline double gamma_par_double();
-//inline double unifRand();
+//inline long double Exp_dist();
+//inline long double rand_normal(long double stddev);
+//inline long double gamma_par_long double();
+//inline long double unifRand();
 //inline void seed();
-//inline double deltaW(double dt);
-//inline int signum_f(double x);
-//inline double newtheta(double theta);
+//inline long double deltaW(long double dt);
+//inline int signum_f(long double x);
+//inline long double newtheta(long double theta);
 
 //
 //  FunzRand.cpp
@@ -86,10 +86,10 @@ double newtheta(double theta);
 // * generate a rundom number distributed as a gamma(4,18.32;4.6)
 // *
 // */
-//inline double gamma_par_double()
+//inline long double gamma_par_long double()
 //{
 //    
-//    double x=1;    
+//    long double x=1;    
 //    
 //    for(int i=0;i<alpha;i++){ 
 //        x=x*unifRand();
@@ -107,13 +107,13 @@ double newtheta(double theta);
 // * generate a random number normal(0,stddev) using the Box muller method
 // * @param stddev standar deviation of the distribution
 // */
-//inline double rand_normal(double stddev)
+//inline long double rand_normal(long double stddev)
 //{//Box muller method
-//    static double n2 = 0.0;
+//    static long double n2 = 0.0;
 //    static int n2_cached = 0;
 //    if (!n2_cached)
 //    {
-//        double x, y, r;
+//        long double x, y, r;
 //        do
 //        {
 //            x = 2.0*rand()/RAND_MAX - 1;
@@ -123,10 +123,10 @@ double newtheta(double theta);
 //        }
 //        while (r == 0.0 || r > 1.0);
 //        {
-//            double d = sqrt(-2.0*log(r)/r);
-//            double n1 = x*d;
+//            long double d = sqrt(-2.0*log(r)/r);
+//            long double n1 = x*d;
 //            n2 = y*d;
-//            double result = n1*stddev;
+//            long double result = n1*stddev;
 //            n2_cached = 1;
 //            return result;
 //        }
@@ -148,7 +148,7 @@ double newtheta(double theta);
 ///** generate an exponential distribution with parameter one
 // */
 //
-//inline double Exp_dist(){
+//inline long double Exp_dist(){
 //    
 //    return -log(unifRand());
 //    
@@ -164,7 +164,7 @@ double newtheta(double theta);
 ///** generate an uniform distribution: it's written the possibility to reseed (now it's commented, look at it.)
 // */
 //
-//inline double unifRand()
+//inline long double unifRand()
 //{
 //    // re-seed after 5 Mil random generators ... 
 ////    cont_rand++;
@@ -180,13 +180,13 @@ double newtheta(double theta);
 ////  }
 //    
 //    //   void seed();
-////    return rand() / double(RAND_MAX+1);
+////    return rand() / long double(RAND_MAX+1);
 //    
 ////    my_mutex.lock();
 ////    cout << "seed_r = " << seed_r << endl;
 ////    my_mutex.unlock();
 //    
-//    return rand_r(&seed_r) / double(RAND_MAX);
+//    return rand_r(&seed_r) / long double(RAND_MAX);
 //    
 //    //    return 2.0*rand()/RAND_MAX - 1;
 //    
@@ -200,16 +200,16 @@ double newtheta(double theta);
 //
 ///** calculate the increment in dt of a wiener process, dividing dt in further 4 sub-steps
 // * you might want with minimum error pass the number of subdivision, for example with
-// * inline double deltaW(double dt, int R = 4)
+// * inline long double deltaW(long double dt, int R = 4)
 // * @param dt time-step
 // */
 //
-//inline double deltaW(double dt)
+//inline long double deltaW(long double dt)
 //{
 //    
-//    double dW=0.0;
+//    long double dW=0.0;
 //    short R=4;
-//    double stdt=sqrt(dt/R);
+//    long double stdt=sqrt(dt/R);
 //    
 //    for (int j=0; j<R; j++) {
 //        dW+=rand_normal(stdt);
@@ -224,11 +224,11 @@ double newtheta(double theta);
 // * @param theta old direction.
 // */
 //
-//inline double newtheta(double theta)
+//inline long double newtheta(long double theta)
 //{
 //    
-//    double s=1;
-//    double theta_=0;
+//    long double s=1;
+//    long double theta_=0;
 //    
 //    if (unifRand()<=.5) {
 //        s=-1;
@@ -237,7 +237,7 @@ double newtheta(double theta);
 //    // + or - 50% probability
 //    
 //    theta_=theta;
-//    theta=theta+pi1*s*(gamma_par_double())/180;
+//    theta=theta+pi1*s*(gamma_par_long double())/180;
 // 
 //    // there might be problem generating the gamma distribution (happens sometimes on Windows)
 //    
@@ -272,7 +272,7 @@ double newtheta(double theta);
 //
 //#define error_signum 0.00000000000001
 //
-//inline int signum_f(double x){
+//inline int signum_f(long double x){
 //    
 //    if (x >  error_signum) return 1;
 //    if (x < -error_signum) return -1;

@@ -32,7 +32,7 @@ void timestamp ( );
 int Stima_tempo(int n_c, int n_val_termine, time_t timer1);
 int funz_tipo_file(vector<string> &tipo_dati, int n_col);
 int plot_goodness_fit(std::string title_, int n_data, int save_, int n_iterata);
-double rescaled_time(s_lambda lambda, vector<vector<double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, double *m, streampos &position);
+long double rescaled_time(s_lambda lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position);
 void funz_clear();
 
 /** This function implement the test of goodness of fit for point process [Ref. Assessing Model Goodness of Fit from
@@ -41,7 +41,7 @@ void funz_clear();
  * @param lambda estimated value for the probability rate (lambda in the model)
  */
 
-int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_iterata, double &D_n, double &cumD_n){
+int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_iterata, long double &D_n, long double &cumD_n){
     
     // (dq,q_max,q_min,Q_tau_vect,name_file_dati, n_stat_tamb,n_q,tau_0_t_stima)
     
@@ -77,15 +77,15 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
     ifstream file_dati;
     file_dati.open(name_file_dati.c_str());
     
-    vector<double> Resc_times_vect;   // contain the cumulative value "z_k = 1-exp(-tau_k)"
-    double du=max(0.001,1/n_data);
+    vector<long double> Resc_times_vect;   // contain the cumulative value "z_k = 1-exp(-tau_k)"
+    long double du=max(0.001,1/n_data);
     int error_good=1;
     cout << "Discretization Uniform variable: dU = " << du << endl;
     
     int n_rescale = floor(1/du);
     int U_indeX = 0;
-//    double D_n=0.0;
-//    double cumD_n=0.0;
+//    long double D_n=0.0;
+//    long double cumD_n=0.0;
     Resc_times_vect.resize(n_rescale);
     
     for (int i=0; i<n_rescale; i++) {
@@ -93,7 +93,7 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
     }
     
     
-    double tau=0.0;
+    long double tau=0.0;
     
     streampos position;
     
@@ -104,7 +104,7 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
         cout << "'file_dati' opened ...\n";
         
         vector<string> tipo_dati;
-        vector<vector<double> > dati_rec;
+        vector<vector<long double> > dati_rec;
         string temporary;
         int n_col=-1;
         
@@ -121,12 +121,12 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
         
         position=file_dati.tellg();
         
-        double m[3]={0.5,0.25,0.25};
+        long double m[3]={0.5,0.25,0.25};
         int tipo_file = funz_tipo_file(tipo_dati, n_col);
 
         cout << "tipo file = " << tipo_file << endl;
         
-        dati_rec.resize(2, vector<double>( 2+n_col , 0 ));
+        dati_rec.resize(2, vector<long double>( 2+n_col , 0 ));
         
         cout <<BLUE<<"\n****************************\n";
         cout << "Calculation rescaled time ...\n";
@@ -215,22 +215,22 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
  * it calculate the rescaled time using a pice-wise linear approximation in the memory parameter Q(t) in Vergassola celani
  */
 
-double rescaled_time(s_lambda lambda, vector<vector<double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, double *m, streampos &position)
+long double rescaled_time(s_lambda lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position)
 {
  
-    double tau=0.0;
+    long double tau=0.0;
     
-    double D_theta=.25;
-    double tau_r=1/(3*D_theta);
-    double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
-    double beta_2=1;
-    double beta_3=-beta_2/2;
-    //double Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
-    double Q=0;
-    double t=0.0;
+    long double D_theta=.25;
+    long double tau_r=1/(3*D_theta);
+    long double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
+    long double beta_2=1;
+    long double beta_3=-beta_2/2;
+    //long double Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
+    long double Q=0;
+    long double t=0.0;
     
-    double c=0.0,d_c=0.0;
-    double dt=0.0;
+    long double c=0.0,d_c=0.0;
+    long double dt=0.0;
     
     lambda.CumDen=0.0;
     lambda.Cumlambda=0.0;
@@ -272,7 +272,7 @@ double rescaled_time(s_lambda lambda, vector<vector<double> >dati_rec, int n_col
             
             d_c=(d_c-c)/dt;
             
-            double dt_=0.05;
+            long double dt_=0.05;
             int n_dt=max(1, floor(dt/dt_));
             
             dt_ = (n_dt>1)?dt_:dt;

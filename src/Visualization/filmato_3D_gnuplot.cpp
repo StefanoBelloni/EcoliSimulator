@@ -38,9 +38,9 @@ using namespace std;
 
 void funz_clear();
 void funz_clearAll();
-int scriptMultiPlot(int risp_n, string title, double min_x, double max_x, double min_y, double max_y, double max_z, vector<int> frame_n, double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int con_gen, int smaller = 0);
+int scriptMultiPlot(int risp_n, string title, long double min_x, long double max_x, long double min_y, long double max_y, long double max_z, vector<int> frame_n, long double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int con_gen, int smaller = 0);
 void lunch_gnuplot(string name_file_gnu);
-int scriptUpDownPer(string title, double T, int save, int smaller = 0);
+int scriptUpDownPer(string title, long double T, int save, int smaller = 0);
 void lunch_apngas(string name_out, string name_input);
 int writeLog(string what, string msg);
 
@@ -51,7 +51,7 @@ int writeLog(string what, string msg);
  * note that we have to be careful how to pass the parameters to apngasm if we;re on Unix or Windows (line 213)
  */
 
-void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double min_x,double min_y, double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, double max_fc)
+void filmato_3D_gnuplot(string names_info[],long double max_x, long double max_y, long double min_x,long double min_y, long double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, long double max_fc)
 {    
     funz_clearAll();
     
@@ -78,7 +78,7 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
     
     int n_data=1;
 //    int j_frame=0;
-    double dt;    
+    long double dt;    
     file_info >> title;
     file_info >> n_data;
     file_info >> dt;
@@ -90,7 +90,7 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
     cout << "Do you want to see the movie of the evolution of the density? \npress 0 for yes, 1 for no ";
     sssr(risp,"Do you want to see the movie of the evolution of the density? press 0 for yes, 1 for no ");
     
-    double maxX,maxY,minX,minY;
+    long double maxX,maxY,minX,minY;
     if (f->interact==0){
         maxX=f->max_x; maxY=f->max_y; minX=f->min_x; minY=f->min_y;
     }else{
@@ -194,14 +194,14 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
         auto diff = end - start;
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the creation and saving of the film:\n     ";
-        cout << chrono::duration <double, milli> (diff).count()/1000 << " seconds" << endl;
+        cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
         cout << "***************************************************\n"<<RESET;
 
         
         // LOG FILE
 //        stringstream msg;
 //        msg.str("");
-//        msg << chrono::duration <double, milli> (diff).count()/1000 << " seconds";        
+//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";        
 //        writeLog("FILM: (single-thread) created and saved in ",msg.str());
         
 //******************************************************************
@@ -235,7 +235,7 @@ void filmato_3D_gnuplot(string names_info[],double max_x, double max_y, double m
 //        .png and then plays it.
 //***********************************************************************************************
 
-int scriptFilmato3Dgnuplot(double Dt/*dt*(epsilon*epsilon)*/, double maxX, double maxY, double minX, double minY, double max_z, double max_fc, int dim_col_t, int save_, int cont_sim){
+int scriptFilmato3Dgnuplot(long double Dt/*dt*(epsilon*epsilon)*/, long double maxX, long double maxY, long double minX, long double minY, long double max_z, long double max_fc, int dim_col_t, int save_, int cont_sim){
 
     char buffer[8];
     snprintf(buffer, sizeof(char)*8, "sim%03d",cont_sim);
@@ -393,7 +393,7 @@ int scriptFilmato3Dgnuplot(double Dt/*dt*(epsilon*epsilon)*/, double maxX, doubl
  * This function writes the script for the multiplot of snapshot of density and Ligand concentration.
  */
 
-int scriptMultiPlot(int risp_n, string title, double min_x, double max_x, double min_y, double max_y, double max_z, vector<int> frame_n, double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int cont_gen_sim, int smaller){
+int scriptMultiPlot(int risp_n, string title, long double min_x, long double max_x, long double min_y, long double max_y, long double max_z, vector<int> frame_n, long double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int cont_gen_sim, int smaller){
  
     
     char buffer[32];
@@ -495,7 +495,7 @@ int scriptMultiPlot(int risp_n, string title, double min_x, double max_x, double
 /*! \brief write the script for the up down
  */
 
-int scriptUpDownPer(string title, double T, int save_, int smaller){
+int scriptUpDownPer(string title, long double T, int save_, int smaller){
     
     string fileName = title+"_percentage.gnu";
     

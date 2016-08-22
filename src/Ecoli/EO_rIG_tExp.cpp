@@ -52,15 +52,15 @@ EO_rIG_tExp::EO_rIG_tExp(const EO_rIG_tExp& modello):EO_rExp_tExp(modello){
 
 #define barriera_r_inf -100
 
-int EO_rIG_tExp::agg_dyn(double dt, double t)
+int EO_rIG_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     
     
     if (salto_==1) {
         
-        double sigma_x=f_sigma();
-        double lambda_star=lambda_r+dt*f_lambda()+sigma_x*deltaW_ec(dt);
+        long double sigma_x=f_sigma();
+        long double lambda_star=lambda_r+dt*f_lambda()+sigma_x*deltaW_ec(dt);
         
         bool condition_salto
         =  (exp(-2*(barriera_r-lambda_r)*(barriera_r-lambda_star)/(dt*pow(sigma_x,2)))>=unifRand()) 
@@ -87,7 +87,7 @@ int EO_rIG_tExp::agg_dyn(double dt, double t)
     return salto_;    
 }
 
-double EO_rIG_tExp::f_sigma(){
+long double EO_rIG_tExp::f_sigma(){
     
     switch (tipo_sigma) 
     {

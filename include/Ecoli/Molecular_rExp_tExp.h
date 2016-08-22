@@ -44,68 +44,68 @@ protected:
 
     // CSV11 VARIABILI
     /** see model in detailed description*/
-    double a_m;
+    long double a_m;
     /** see model in detailed description*/
-    double m_0;
+    long double m_0;
     /** see model in detailed description*/
-    double K_off;
+    long double K_off;
     /** see model in detailed description*/
-    double K_on;
+    long double K_on;
     /** see model in detailed description*/
-    double n_a;
+    long double n_a;
     /** see model in detailed description*/
-    double M_max;
+    long double M_max;
     /** see model in detailed description*/
-    double A_max;
+    long double A_max;
     /** see model in detailed description*/
-    double L_max;
+    long double L_max;
     /** see model in detailed description*/
-    double y_max;
+    long double y_max;
     /** see model in detailed description*/
-    double K_R;
+    long double K_R;
     /** see model in detailed description*/
-    double K_B;
+    long double K_B;
     /** see model in detailed description*/
-    double kCheR;
+    long double kCheR;
     /** see model in detailed description*/
-    double kCheB;
-    //    double y_0;
-    //    double y_0;
+    long double kCheB;
+    //    long double y_0;
+    //    long double y_0;
     /** see model in detailed description*/
-    double y_0;
+    long double y_0;
     /** see model in detailed description*/
-    double k_a;
+    long double k_a;
     /** see model in detailed description*/
-    double k_z;
+    long double k_z;
     /** see model in detailed description*/
-    double H;
+    long double H;
     //*************************
     
     /** Internal variable methalination level: see model in detailed description*/
-    double meth;
+    long double meth;
     /** Internal variable: see model in detailed description*/
-    double a;
+    long double a;
     /** Internal variable: see model in detailed description*/
-    double y;
+    long double y;
     /** Internal variable: see model in detailed description*/
-    double p_r;
+    long double p_r;
     /** factor to adjust initial value for probability rate, it's make stable the process, it's like play with y_0 */
-    double factor_prob;
+    long double factor_prob;
     
-    int writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_);
+    int writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_);
     
 public:
     
     Molecular_rExp_tExp();
     Molecular_rExp_tExp(const Molecular_rExp_tExp& modello);
-    void stationary_dyn(double dt, std::vector<double> &m0, int changed_pos);
+    void stationary_dyn(long double dt, std::vector<long double> &m0, int changed_pos);
     void change_par(int change);
     void change_molecular();
-    friend double F_CSV(Molecular_rExp_tExp *batterio, double m_s, double L_use);
-    int agg_dyn(double dt, double t);
-    void agg_dyint(double dt, double t);
-    void save_dyn(std::ofstream &file_, double t);
-    void gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim);
+    friend long double F_CSV(Molecular_rExp_tExp *batterio, long double m_s, long double L_use);
+    int agg_dyn(long double dt, long double t);
+    void agg_dyint(long double dt, long double t);
+    void save_dyn(std::ofstream &file_, long double t);
+    void gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
     void print_info(std::ofstream &file_save);
     void reset_par();
     

@@ -82,15 +82,15 @@ public:
     Funz_C_Par(const Funz_C_Par& f);
     
     /** parameters in the model: see general information*/
-    double C_0;
+    long double C_0;
     /** parameters in the model: see general information*/
-    double C_1;
+    long double C_1;
     /** parameters in the model: see general information*/
-    double C_2;
+    long double C_2;
     /** parameters in the model: see general information*/    
-    double C_3;
+    long double C_3;
     
-    double new_F_C(double t, std::array<double,2> x);
+    long double new_F_C(long double t, std::array<long double,2> x);
     /** set parameters of the ligand concentration
      It call the base function <br>
      if the user wants to change parameters, the 

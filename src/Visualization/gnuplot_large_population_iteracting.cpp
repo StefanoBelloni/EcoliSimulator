@@ -40,25 +40,25 @@ using namespace std;
  * it changes how we read the file ... first loop on time or bacteria ??
  */
 
-double histogram_3D_gnuplotV2MultiThreadV2(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> >& x,vector<vector<double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, double &maxC, int risp_Max, int cont_sim, string name_info);
+long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_info);
 
-void gnuplot_large_population_interacting(string file_info[], string name_dyn, double T_f, int n_c, int dim_col_t, string names, Funz_C *f, int cont_gen_sim, double maxC)
+void gnuplot_large_population_interacting(string file_info[], string name_dyn, long double T_f, int n_c, int dim_col_t, string names, Funz_C *f, int cont_gen_sim, long double maxC)
 // Nelle variabili -> da aggiungere quanto relativo ai salti per batterio
 {
     int risp;
     
     // big number to be set to the proper limit of the domain
-    double min_x=10000;
-    double max_x=-10000;
-    double min_y=10000;
-    double max_y=-10000;
-    double max_z=0;
+    long double min_x=10000;
+    long double max_x=-10000;
+    long double min_y=10000;
+    long double max_y=-10000;
+    long double max_z=0;
     
     // Lettura riga file.
     string temp_string;
     //    char comma = ','; // dummy variable per leggere dal file e dividerlo nelle sue parti fondamentali.
     
-    vector< vector<double> > x_t,y_t,sign_c_t;; // matrix equivalent to P(2,i,j) in Matlab_program
+    vector< vector<long double> > x_t,y_t,sign_c_t;; // matrix equivalent to P(2,i,j) in Matlab_program
     
     cout << "GNUPLOT" << endl;
     
@@ -70,9 +70,9 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, d
     if (automatic_!=1) {
         
     
-        x_t.resize( dim_col_t, vector<double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!! 
-        y_t.resize( dim_col_t , vector<double>( n_c , 0 ) );
-        sign_c_t.resize( dim_col_t , vector<double>( n_c , 0 ) );
+        x_t.resize( dim_col_t, vector<long double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!! 
+        y_t.resize( dim_col_t , vector<long double>( n_c , 0 ) );
+        sign_c_t.resize( dim_col_t , vector<long double>( n_c , 0 ) );
         
         
         
@@ -97,15 +97,15 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, d
             }
         }
         
-        double max_x_=max(max_x,max_y);
-        double max_y_=max_x;
-        double min_x_=min(min_x,min_y);
-        double min_y_=min_x;
+        long double max_x_=max(max_x,max_y);
+        long double max_y_=max_x;
+        long double min_x_=min(min_x,min_y);
+        long double min_y_=min_x;
         
         // Creo i files per fare il filmato.
         
-        double dx;
-        double dy;
+        long double dx;
+        long double dy;
 
         dx=(max_x_-min_x_)/pow(2*n_c,1/3.);
         dy=(max_y_-min_y_)/pow(2*n_c,1/3.);
@@ -119,8 +119,8 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, d
         
         
         
-        double x_delta_hist=min_x;
-        double y_delta_hist=min_y;
+        long double x_delta_hist=min_x;
+        long double y_delta_hist=min_y;
         
         int n_dx=0;
         int n_dy=0;
@@ -138,15 +138,15 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, d
         int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
         
         if (nthread<=1) {
-            max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, 1,cont_gen_sim, file_info[0]);
+            max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
         }else{
-            max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, 1,cont_gen_sim,file_info[0]);
+            max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, 0,cont_gen_sim,file_info[0]);
         }
         
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);
         
         if (error!=0) {
-            cout << "\nerror in function percSignFunzC(vector< vector<double> > c_t, int n_c, int dim_col_t)\n";
+            cout << "\nerror in function percSignFunzC(vector< vector<long double> > c_t, int n_c, int dim_col_t)\n";
         }
         
     }

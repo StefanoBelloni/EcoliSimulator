@@ -35,24 +35,24 @@ public:
 
 protected:
     
-    double s_lambda_t;
+    long double s_lambda_t;
     
     int GoodFit;
-    double KS_D_n;
-    double KS_L1;
+    long double KS_D_n;
+    long double KS_L1;
     
     string distribution_I_r;    
-    double I_tau_r[2];
+    long double I_tau_r[2];
     string distribution_I_t;
-    double I_tau_t[2];
+    long double I_tau_t[2];
     
     // methods
     
 public:
     
     void s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect);
-    void set_GoodnessFit(int Good, double D_n, double cumD_n);
-//    int agg_dyn(double dt, double t);
+    void set_GoodnessFit(int Good, long double D_n, long double cumD_n);
+//    int agg_dyn(long double dt, long double t);
     
     
 };

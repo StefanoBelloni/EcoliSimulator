@@ -21,11 +21,11 @@
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
-void E_coli::agg_dyint(double dt, double t){
+void E_coli::agg_dyint(long double dt, long double t){
     
 }
 
-void CV_rExp_tExp::agg_dyint(double dt, double t){
+void CV_rExp_tExp::agg_dyint(long double dt, long double t){
     
     int n_iteration=5;
     dt=dt/n_iteration;
@@ -50,15 +50,15 @@ void CV_rExp_tExp::agg_dyint(double dt, double t){
     
 }
 
-void Molecular_rExp_tExp::agg_dyint(double dt, double t){
+void Molecular_rExp_tExp::agg_dyint(long double dt, long double t){
     
     
-    double f;
-    double a_p=a;
-    double h;
-    double meth_p=meth;
-    double y_p=y;
-    double prob_p=p_r;
+    long double f;
+    long double a_p=a;
+    long double h;
+    long double meth_p=meth;
+    long double y_p=y;
+    long double prob_p=p_r;
     int n_iteration=1;
     dt=dt/n_iteration;
     
@@ -122,7 +122,7 @@ void Molecular_rExp_tExp::agg_dyint(double dt, double t){
 }
 
 
-void EO_rExp_tExp::agg_dyint(double dt, double t){
+void EO_rExp_tExp::agg_dyint(long double dt, long double t){
     
     int n_iteration=5;
     dt=dt/n_iteration;

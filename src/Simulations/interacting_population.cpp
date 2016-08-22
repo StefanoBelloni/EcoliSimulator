@@ -31,7 +31,7 @@ using namespace std;
 #include "Funz_C_Inter.h"
 
 
-void print_and_open_info(string name, E_coli* batterio, Funz_C* f, double T_f, double *x0,  double dt,  int n_c,  double Raggio,  int delta_dist,  int num_dist,  int const_salv, int cont_gen_sim);
+void print_and_open_info(string name, E_coli* batterio, Funz_C* f, long double T_f, long double *x0,  long double dt,  int n_c,  long double Raggio,  int delta_dist,  int num_dist,  int const_salv, int cont_gen_sim);
 
 /**
  * Base function to produce simulation of  population interacting with the ligand. We pass al the parameters needed, bacteria, model, names of files, type of result( just simulation, or simulate to produce statistical files.
@@ -41,7 +41,7 @@ void print_and_open_info(string name, E_coli* batterio, Funz_C* f, double T_f, d
  * It's a while loop, so you can repeat the simulation with the same parameters
  */
 
-int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, string &names_indice_mod, string *names_tau_mod, string &names_file_dyn_mod, string *names_info_mod, int tipo_simulazione, int sel_prog, vector<E_coli* > &batteri_int, double T_f, double *x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string &versione_Matlab, string names_jumps[], int &cont_gen_sim, int &which_compare){
+int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, string &names_indice_mod, string *names_tau_mod, string &names_file_dyn_mod, string *names_info_mod, int tipo_simulazione, int sel_prog, vector<E_coli* > &batteri_int, long double T_f, long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string &versione_Matlab, string names_jumps[], int &cont_gen_sim, int &which_compare){
     
     // Set the right list of bacteria
     
@@ -60,7 +60,7 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         print_and_open_info(names_info_mod[0], batteri_int[0], f, T_f, x0, dt, n_c, Raggio, delta_dist, num_dist, const_salv, cont_gen_sim);
     }
     
-    double f_max=0;
+    long double f_max=0;
     
     if (automatic_!=1) {
         dim_col_t=simulation_interacting(batteri_int, T_f, f, x0, dt, n_c, Raggio, delta_dist, num_dist, const_salv, names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod, cont_gen_sim, f_max);
@@ -85,7 +85,7 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         }
 		cout << RESET << "\nDo you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no: ";
  
-		sssr(risp,"Do you want to perform step 1 using gnuplot for the visualization?\npress 0 for yes, 1 for no ");
+		sssr(risp,"Do you want to perform step 1 using gnuplot for the visualization");
         
         if (risp==0) {
             
@@ -108,11 +108,11 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
     //*********************************           
     // Analysis Runs and tumbles
     //*********************************           
-    if (automatic_!=1) {
+//    if (automatic_!=1) {
 
         FunzRunUndTumble(T_f,n_c,cont_gen_sim,n_compare,names_Ecoli_mod,names_indice_mod,names_tau_mod,names_file_dyn_mod, names_info_mod, names_jumps,sel_prog,batteri_int,which_compare, stat_);
         
-    }    
+//    }    
 //    int risposta=1;
     
 //    cout << "Delete all files produced in the simulations ? \npress 0 for yes, 1 for no "<<endl

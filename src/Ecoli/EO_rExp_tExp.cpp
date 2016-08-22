@@ -56,7 +56,7 @@ EO_rExp_tExp::EO_rExp_tExp(const EO_rExp_tExp& modello):ParameterEstimation_E_co
     tau_t=modello.tau_t;
 }
 
-int EO_rExp_tExp::agg_dyn(double dt, double t)
+int EO_rExp_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     if (salto_==1) {
@@ -225,13 +225,13 @@ void EO_rExp_tExp::change_lambda_par()
     
 }
 
-void EO_rExp_tExp::save_dyn(std::ofstream &file_, double t){
+void EO_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
     
     file_ << t << " " << lambda_r << " " << lambda_t << " " << m[0] << " " << m[1] << endl;
     
 }
 
-double EO_rExp_tExp::f_lambda(){
+long double EO_rExp_tExp::f_lambda(){
     
     switch (tipo_lambda) {
         case 0:
@@ -265,7 +265,7 @@ double EO_rExp_tExp::f_lambda(){
 
 //****************************************************************************
 
-void EO_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int changed_pos){
+void EO_rExp_tExp::stationary_dyn(long double dt, std::vector<long double> &m0,int changed_pos){
     
     t_r=0.0;
     t_t=0.0;

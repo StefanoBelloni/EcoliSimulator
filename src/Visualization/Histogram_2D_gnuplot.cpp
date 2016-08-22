@@ -39,7 +39,7 @@ void Histogram_2D(string name_info_mod[],string name_files_tau_mod[], int save_,
     
     string title;
     int n_data;
-    double dt;
+    long double dt;
     
     std::ifstream file_info;
     file_info.open(name_info_mod[0].c_str());
@@ -65,7 +65,7 @@ void Histogram_2D(string name_info_mod[],string name_files_tau_mod[], int save_,
     cout << "Analysis Runs " << endl;
     
     n_salti=max(200,sqrt(n_salti));
-    double a=10.0/n_salti;
+    long double a=10.0/n_salti;
     
 
     //Primo Metodo

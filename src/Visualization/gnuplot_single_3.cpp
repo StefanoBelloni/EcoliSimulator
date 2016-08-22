@@ -33,15 +33,15 @@
 #endif
 
 void lunch_gnuplot(string name_file_gnu);
-void gnuplot_run(string names[], string nome_info, double mean, int tipo_run, int save_, int cont_sim);
+void gnuplot_run(string names[], string nome_info, long double mean, int tipo_run, int save_, int cont_sim);
 void Name_jumps(std::string name_file_read, std::string names[], int delete_);
-double Analysis_run(string name_file_read, string names[], int run);
+long double Analysis_run(string name_file_read, string names[], int run);
 string setNameScriptgnuplotSingleGeneral(string tipo, int con_gen_sim, int save_);
 string setNameSCRIPTlunchGnuplotSingleGeneral(string tipo, int con_gen_sim, int save_);
 
 //*********************************************************************
 
-void E_coli::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim){
+void E_coli::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim){
     
     // if save_ == 1 -> salvo
     // if save_ == 0 -> 'plotto'
@@ -60,7 +60,7 @@ void E_coli::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_
 
 //***********
 
-void CV_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim){
+void CV_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim){
     
     E_coli::gnuplot_single(names_files_Ecoli_mod, names_indice_mod, names_files_tau_mod, names_file_dyn_mod, names_info_mod, T_f,f,save_, con_gen_sim);
     
@@ -78,7 +78,7 @@ void CV_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_i
 
 //***********
 
-void Molecular_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim){
+void Molecular_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim){
     
     E_coli::gnuplot_single(names_files_Ecoli_mod, names_indice_mod, names_files_tau_mod, names_file_dyn_mod, names_info_mod, T_f,f,save_, con_gen_sim);
     
@@ -97,7 +97,7 @@ void Molecular_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &
 
 //***********
 
-void EO_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim){
+void EO_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim){
     
     E_coli::gnuplot_single(names_files_Ecoli_mod, names_indice_mod, names_files_tau_mod, names_file_dyn_mod, names_info_mod, T_f,f,save_, con_gen_sim);
     
@@ -118,7 +118,7 @@ void EO_rExp_tExp::gnuplot_single(string *names_files_Ecoli_mod, string &names_i
 // SCRIPTS
 //**********************************************************************
 
-int E_coli::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_){
+int E_coli::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_){
     
     string title;
     std::ofstream file_single_plot(setNameScriptgnuplotSingleGeneral(tipo,con_gen_sim, save_).c_str());
@@ -130,7 +130,7 @@ int E_coli::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod,
     snprintf(buffer1, sizeof(char) * 16,"sim-%03d-",con_gen_sim);
     
     int n_data=1;
-    double dt;
+    long double dt;
     
     int conform_save = (save_==1)?sizeTitle::SAVE:sizeTitle::NO_SAVE;
     
@@ -192,7 +192,7 @@ int E_coli::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod,
             
             Name_jumps(names_files_tau_mod[0], names_jumps,1);
             
-            double mean=Analysis_run(names_files_tau_mod[0], names_jumps,1);
+            long double mean=Analysis_run(names_files_tau_mod[0], names_jumps,1);
             
             if (mean<0.0) {
                 cout << "\nError in Analysis_run\n";
@@ -273,7 +273,7 @@ int E_coli::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod,
             cout << "There are " << n_salti << " jumps" << endl;
             
             n_salti=max(150,sqrt(n_salti));
-            double a=15.0/n_salti;
+            long double a=15.0/n_salti;
             
             //Primo Metodo
             
@@ -352,7 +352,7 @@ int E_coli::writeScriptLunchgnuplotSingle(string tipo, int save_, int con_gen_si
 
 //************
 
-int CV_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_){
+int CV_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_){
     
     string title;
     std::ofstream file_single_plot;
@@ -393,7 +393,7 @@ int CV_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecol
 
 //************
 
-int Molecular_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_){
+int Molecular_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_){
     
     string title;
     std::ofstream file_single_plot;
@@ -443,7 +443,7 @@ int Molecular_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_fil
 }
 
 
-int EO_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_){
+int EO_rExp_tExp::writeScriptgnuplotSingle(string tipo, string *names_files_Ecoli_mod, string *names_files_tau_mod, string *names_info_mod, string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_){
     
     string title;
     std::ofstream file_single_plot;

@@ -23,21 +23,21 @@ class s_lambda{
     
     public:
     
-    std::vector<double> lambda;
-    std::vector<double> sigma;
-    std::vector<double> syntetic_indeX;    
+    std::vector<long double> lambda;
+    std::vector<long double> sigma;
+    std::vector<long double> syntetic_indeX;    
     
     std::vector<int> n_data;
     
-    double Q_max;
-    double Q_min;
+    long double Q_max;
+    long double Q_min;
     
     int distr;   // distr = 0 -> exponential
-    double CumDen;
-    double Cumlambda;
+    long double CumDen;
+    long double Cumlambda;
     
     
-    double dQ;
+    long double dQ;
     
     int n_records;
     int pos_steady;
@@ -47,12 +47,12 @@ class s_lambda{
     // Method
     
     /** empirical probability rate to tumble for the level of the memory term equal to Q*/
-    double s_funz_lambda(double Q);  //return the proper lambda
+    long double s_funz_lambda(long double Q);  //return the proper lambda
     /** variance of the diffusion controlling tumble events*/
-    double s_funz_sigma(double Q);
+    long double s_funz_sigma(long double Q);
     
     /** calculate the statistical intensity*/
-    double StatIntensity(double dt, double t, double Q);
+    long double StatIntensity(long double dt, long double t, long double Q);
     
     s_lambda();
     

@@ -806,8 +806,8 @@ void Scrittura_m_files(){
         << "  " << endl 
         << "  " << endl 
         << "fprintf('\\nSet view parameter\\n');  " << endl 
-        << "phi_s=str2double(input('\\nFrontal view (in grad): ','s'));  " << endl 
-        << "theta_s=str2double(input('\\nLateral view (in grad): ','s'));  " << endl 
+        << "phi_s=str2long double(input('\\nFrontal view (in grad): ','s'));  " << endl 
+        << "theta_s=str2long double(input('\\nLateral view (in grad): ','s'));  " << endl 
         << "  " << endl 
         << "if ~isnan(phi_s)  " << endl 
         << "    phi=phi_s;  " << endl 
@@ -823,8 +823,8 @@ void Scrittura_m_files(){
         << "  " << endl 
         << "if ac=='y'  " << endl 
         << "    ac=input('\\nMoltiplication factor: ','s');  " << endl 
-        << "    if ~isnan(str2double(ac))   " << endl 
-        << "        k=str2double(ac);  " << endl 
+        << "    if ~isnan(str2long double(ac))   " << endl 
+        << "        k=str2long double(ac);  " << endl 
         << "    end  " << endl 
         << "end  " << endl 
         << "fprintf('\\n\\n...........  WE PRESENT ...........\\n\\n')      " << endl 
@@ -1009,13 +1009,13 @@ void Scrittura_m_files(){
         << "  " << endl 
         << "fattore_mesh = input('Which step to be applied to the mesh?  ','s');  " << endl 
         << "  " << endl 
-        << "if ~isnan(str2double(fattore_mesh))   " << endl 
-        << "    fattore_mesh = str2double(fattore_mesh);  " << endl 
+        << "if ~isnan(str2long double(fattore_mesh))   " << endl 
+        << "    fattore_mesh = str2long double(fattore_mesh);  " << endl 
         << "else  " << endl 
         << "    fattore_mesh=1;  " << endl 
         << "end  " << endl 
         << "  " << endl 
-        << "% fattore_mesh = str2double(fattore_mesh);  " << endl 
+        << "% fattore_mesh = str2long double(fattore_mesh);  " << endl 
         << "  " << endl 
         << "b_1=mesh_(1):hd(1)*fattore_mesh:mesh_(2);  " << endl 
         << "  " << endl 
@@ -1044,8 +1044,8 @@ void Scrittura_m_files(){
         << "T=car_tecniche(1);  " << endl 
         << "  " << endl 
         << "fprintf('\\nSet view parameter\\n');  " << endl 
-        << "phi_s=str2double(input('\\nFrontal view (in grad): ','s'));  " << endl 
-        << "theta_s=str2double(input('\\nLateral view (in grad): ','s'));  " << endl 
+        << "phi_s=str2long double(input('\\nFrontal view (in grad): ','s'));  " << endl 
+        << "theta_s=str2long double(input('\\nLateral view (in grad): ','s'));  " << endl 
         << "  " << endl 
         << "if ~isnan(phi_s) || ~isnan(theta_s)  " << endl 
         << "    phi=phi_s;  " << endl 
@@ -1057,15 +1057,15 @@ void Scrittura_m_files(){
         << "  " << endl 
         << "if ac=='y'  " << endl 
         << "ac=input('\\nMoltiplication factor: ','s');  " << endl 
-        << "if ~isnan(str2double(ac))   " << endl 
-        << "k=str2double(ac);  " << endl 
+        << "if ~isnan(str2long double(ac))   " << endl 
+        << "k=str2long double(ac);  " << endl 
         << "end  " << endl 
         << "end  " << endl 
         << "  " << endl 
         << "ac=input('\\nSet max Z: ','s');  " << endl 
         << "  " << endl 
-        << "if ~isnan(str2double(ac))   " << endl 
-        << "    Z_max_ = str2double(ac);  " << endl 
+        << "if ~isnan(str2long double(ac))   " << endl 
+        << "    Z_max_ = str2long double(ac);  " << endl 
         << "end  " << endl 
         << "  " << endl 
         << "fprintf('\\n\\n........... CINE-ECOLI!!!  ...........\\n\\n')     " << endl 
@@ -1315,8 +1315,8 @@ void Scrittura_m_files(){
         << "    fprintf('\\nNow Z is set as Z(max)  = 40')          " << endl 
         << "    ac=input('\\nSet Z max: ','s');  " << endl 
         << "  " << endl 
-        << "    if ~isnan(str2double(ac))   " << endl 
-        << "        Z_max_ = str2double(ac);  " << endl 
+        << "    if ~isnan(str2long double(ac))   " << endl 
+        << "        Z_max_ = str2long double(ac);  " << endl 
         << "    else  " << endl 
         << "        Z_max_ = 40;  " << endl 
         << "    end  " << endl 
@@ -1350,8 +1350,8 @@ void Scrittura_m_files(){
         << "        fattore_mesh = input('Which step to be applied to the mesh?  ','s');  " << endl 
         << "      " << endl 
         << "         %% RIFINISCO LA GRIGLIA  " << endl 
-        << "        if ~isnan(str2double(fattore_mesh))   " << endl 
-        << "            fattore_mesh = str2double(fattore_mesh);  " << endl 
+        << "        if ~isnan(str2long double(fattore_mesh))   " << endl 
+        << "            fattore_mesh = str2long double(fattore_mesh);  " << endl 
         << "        else  " << endl 
         << "            fattore_mesh=1;  " << endl 
         << "        end  " << endl 
@@ -1366,8 +1366,8 @@ void Scrittura_m_files(){
         << "          " << endl 
         << "  " << endl 
         << "  " << endl 
-        << "        if ~isnan(str2double(ac))   " << endl 
-        << "            Z_max_ = str2double(ac);  " << endl 
+        << "        if ~isnan(str2long double(ac))   " << endl 
+        << "            Z_max_ = str2long double(ac);  " << endl 
         << "        else  " << endl 
         << "            Z_max_ = 40;  " << endl 
         << "        end  " << endl 
@@ -1547,7 +1547,7 @@ void Scrittura_m_files(){
         << "%   CH = GETKEY waits for a keypress and returns the ASCII code. Accepts  " << endl 
         << "%   all ascii characters, including backspace (8), space (32), enter (13),  " << endl 
         << "%   etc, that can be typed on the keyboard. Non-ascii keys (ctrl, alt, ..)  " << endl 
-        << "%   return a NaN. CH is a double.   " << endl 
+        << "%   return a NaN. CH is a long double.   " << endl 
         << "%  " << endl 
         << "%   CH = GETKEY('non-ascii') uses non-documented matlab features to return  " << endl 
         << "%   a string describing the key pressed. In this way keys like ctrl, alt,  " << endl 
@@ -1593,7 +1593,7 @@ void Scrittura_m_files(){
         << "        error('Argument should be the string ''non-ascii''') ;  " << endl 
         << "    end  " << endl 
         << "else  " << endl 
-        << "    callstr = 'set(gcbf,''Userdata'',double(get(gcbf,''Currentcharacter''))) ; uiresume ' ;  " << endl 
+        << "    callstr = 'set(gcbf,''Userdata'',long double(get(gcbf,''Currentcharacter''))) ; uiresume ' ;  " << endl 
         << "end  " << endl 
         << "  " << endl 
         << "% Set up the figure  " << endl 
@@ -2427,8 +2427,8 @@ void Scrittura_m_filesAutomatic(){
         << "  " << endl
         << "  " << endl
         << "fprintf('\\nSet view parameter\\n');  " << endl
-//        << "phi_s=str2double(input('\\nFrontal view (in grad): ','s'));  " << endl
-//        << "theta_s=str2double(input('\\nLateral view (in grad): ','s'));  " << endl
+//        << "phi_s=str2long double(input('\\nFrontal view (in grad): ','s'));  " << endl
+//        << "theta_s=str2long double(input('\\nLateral view (in grad): ','s'));  " << endl
         << "  " << endl
 //        << "if ~isnan(phi_s)  " << endl
 //        << "    phi=phi_s;  " << endl
@@ -2444,8 +2444,8 @@ void Scrittura_m_filesAutomatic(){
         << "  " << endl
 //        << "if ac=='y'  " << endl
 //        << "    ac=input('\\nMoltiplication factor: ','s');  " << endl
-//        << "    if ~isnan(str2double(ac))   " << endl
-//        << "        k=str2double(ac);  " << endl
+//        << "    if ~isnan(str2long double(ac))   " << endl
+//        << "        k=str2long double(ac);  " << endl
 //        << "    end  " << endl
 //        << "end  " << endl
         << "fprintf('\\n\\n...........  WE PRESENT ...........\\n\\n')      " << endl
@@ -2630,13 +2630,13 @@ void Scrittura_m_filesAutomatic(){
         << "  " << endl
 //        << "fattore_mesh = input('Which step to be applied to the mesh?  ','s');  " << endl
         << "  " << endl
-//        << "if ~isnan(str2double(fattore_mesh))   " << endl
-//        << "    fattore_mesh = str2double(fattore_mesh);  " << endl
+//        << "if ~isnan(str2long double(fattore_mesh))   " << endl
+//        << "    fattore_mesh = str2long double(fattore_mesh);  " << endl
 //        << "else  " << endl
         << "    fattore_mesh=1;  " << endl
 //        << "end  " << endl
         << "  " << endl
-        << "% fattore_mesh = str2double(fattore_mesh);  " << endl
+        << "% fattore_mesh = str2long double(fattore_mesh);  " << endl
         << "  " << endl
         << "b_1=mesh_(1):hd(1)*fattore_mesh:mesh_(2);  " << endl
         << "  " << endl
@@ -2665,8 +2665,8 @@ void Scrittura_m_filesAutomatic(){
         << "T=car_tecniche(1);  " << endl
         << "  " << endl
         << "fprintf('\\nSet view parameter\\n');  " << endl
-//        << "phi_s=str2double(input('\\nFrontal view (in grad): ','s'));  " << endl
-//        << "theta_s=str2double(input('\\nLateral view (in grad): ','s'));  " << endl
+//        << "phi_s=str2long double(input('\\nFrontal view (in grad): ','s'));  " << endl
+//        << "theta_s=str2long double(input('\\nLateral view (in grad): ','s'));  " << endl
 //        << "  " << endl
 //        << "if ~isnan(phi_s) || ~isnan(theta_s)  " << endl
 //        << "    phi=phi_s;  " << endl
@@ -2678,15 +2678,15 @@ void Scrittura_m_filesAutomatic(){
 //        << "  " << endl
 //        << "if ac=='y'  " << endl
 //        << "ac=input('\\nMoltiplication factor: ','s');  " << endl
-//        << "if ~isnan(str2double(ac))   " << endl
-//        << "k=str2double(ac);  " << endl
+//        << "if ~isnan(str2long double(ac))   " << endl
+//        << "k=str2long double(ac);  " << endl
 //        << "end  " << endl
 //        << "end  " << endl
 //        << "  " << endl
 //        << "ac=input('\\nSet max Z: ','s');  " << endl
         << "  " << endl
-//        << "if ~isnan(str2double(ac))   " << endl
-//        << "    Z_max_ = str2double(ac);  " << endl
+//        << "if ~isnan(str2long double(ac))   " << endl
+//        << "    Z_max_ = str2long double(ac);  " << endl
 //        << "end  " << endl
         << "  " << endl
         << "fprintf('\\n\\n........... CINE-ECOLI!!!  ...........\\n\\n')     " << endl
@@ -2936,8 +2936,8 @@ void Scrittura_m_filesAutomatic(){
         << "    fprintf('\\nNow Z is set as Z(max)  = 40')          " << endl
 //        << "    ac=input('\\nSet Z max: ','s');  " << endl
         << "  " << endl
-//        << "    if ~isnan(str2double(ac))   " << endl
-//        << "        Z_max_ = str2double(ac);  " << endl
+//        << "    if ~isnan(str2long double(ac))   " << endl
+//        << "        Z_max_ = str2long double(ac);  " << endl
 //        << "    else  " << endl
         << "        Z_max_ = 40;  " << endl
 //        << "    end  " << endl
@@ -2971,8 +2971,8 @@ void Scrittura_m_filesAutomatic(){
 //        << "        fattore_mesh = input('Which step to be applied to the mesh?  ','s');  " << endl
 //        << "      " << endl
 //        << "         %% RIFINISCO LA GRIGLIA  " << endl
-//        << "        if ~isnan(str2double(fattore_mesh))   " << endl
-//        << "            fattore_mesh = str2double(fattore_mesh);  " << endl
+//        << "        if ~isnan(str2long double(fattore_mesh))   " << endl
+//        << "            fattore_mesh = str2long double(fattore_mesh);  " << endl
 //        << "        else  " << endl
 //        << "            fattore_mesh=1;  " << endl
 //        << "        end  " << endl
@@ -2987,8 +2987,8 @@ void Scrittura_m_filesAutomatic(){
 //        << "          " << endl
 //        << "  " << endl
 //        << "  " << endl
-//        << "        if ~isnan(str2double(ac))   " << endl
-//        << "            Z_max_ = str2double(ac);  " << endl
+//        << "        if ~isnan(str2long double(ac))   " << endl
+//        << "            Z_max_ = str2long double(ac);  " << endl
 //        << "        else  " << endl
 //        << "            Z_max_ = 40;  " << endl
 //        << "        end  " << endl
@@ -3168,7 +3168,7 @@ void Scrittura_m_filesAutomatic(){
         << "%   CH = GETKEY waits for a keypress and returns the ASCII code. Accepts  " << endl
         << "%   all ascii characters, including backspace (8), space (32), enter (13),  " << endl
         << "%   etc, that can be typed on the keyboard. Non-ascii keys (ctrl, alt, ..)  " << endl
-        << "%   return a NaN. CH is a double.   " << endl
+        << "%   return a NaN. CH is a long double.   " << endl
         << "%  " << endl
         << "%   CH = GETKEY('non-ascii') uses non-documented matlab features to return  " << endl
         << "%   a string describing the key pressed. In this way keys like ctrl, alt,  " << endl
@@ -3214,7 +3214,7 @@ void Scrittura_m_filesAutomatic(){
         << "        error('Argument should be the string ''non-ascii''') ;  " << endl
         << "    end  " << endl
         << "else  " << endl
-        << "    callstr = 'set(gcbf,''Userdata'',double(get(gcbf,''Currentcharacter''))) ; uiresume ' ;  " << endl
+        << "    callstr = 'set(gcbf,''Userdata'',long double(get(gcbf,''Currentcharacter''))) ; uiresume ' ;  " << endl
         << "end  " << endl
         << "  " << endl
         << "% Set up the figure  " << endl

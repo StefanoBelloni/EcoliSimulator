@@ -8,7 +8,7 @@
 
 #ifndef constants_h
 #define constants_h
-
-const double pi = 3.141592653589793238462;
+#include <math.h>
+const long double pi = acos(-1.0L);
 
 #endif /* constants_h */

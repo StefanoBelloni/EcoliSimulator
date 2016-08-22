@@ -28,19 +28,19 @@ using namespace std;
 // SISTEMARE MULTI-THREAD ...
 
 
-double histogram_3D_gnuplotV2MultiThreadV2(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> >& x,vector<vector<double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, double &maxC, int risp_Max, int cont_sim, string name_file_info)
+long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_file_info)
 {
     if (f->interact!=0){
         maxC=0.0;
     }
-    double maxC_temp = maxC;
-    double delta_x_p=dx; // estremi intervallo x histogram
-    //    double delta_y=0;
-    double delta_y_p=dy; // estremi intervallo y histogram
+    long double maxC_temp = maxC;
+    long double delta_x_p=dx; // estremi intervallo x histogram
+    //    long double delta_y=0;
+    long double delta_y_p=dy; // estremi intervallo y histogram
     //    int found=0; // se ho sistemato il batterio considerato --> setto la variabile pari a 1.
     int max_z=0;
-    double Dt=0.1;
-//    double T_f=1.0;
+    long double Dt=0.1;
+//    long double T_f=1.0;
     int num_funz=0;
     int n_x_min=0;
     int n_y_min = 0;
@@ -125,7 +125,7 @@ double histogram_3D_gnuplotV2MultiThreadV2(double max_x, double max_y, double mi
 //    maxC = maxC_temp;
     cout << "maxC = " << maxC << endl;
     cout << "\ncreation file 3D histograms terminated ... \n";
-//    cout << "Press a key (double) ... ";
+//    cout << "Press a key (long double) ... ";
 //    cin >> maxC_temp;
 //    cin >> maxC_temp;
     //    cout << "max_z = " << max_z << endl;
@@ -140,17 +140,17 @@ double histogram_3D_gnuplotV2MultiThreadV2(double max_x, double max_y, double mi
 /*! \brief write funz and hist to File using all the threads available
  */
 
-void writeFunC_andHist(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeFunC_andHist(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                        const int cont_sim, const int n_dx, const int n_dy,
-                       const double min_x, const double min_y,
-                       const double dx, const double dy,
+                       const long double min_x, const long double min_y,
+                       const long double dx, const long double dy,
                        const int n_x_min, const int n_x_max,
                        const int n_y_min, const int n_y_max,
-                       double& maxC,
-                       const double Dt,
+                       long double& maxC,
+                       const long double Dt,
                        Funz_C *f, int n_thread,
-                       vector<vector<double> >& x,vector<vector<double> >& y,
-                       int n_c, int& max_z, double& maxC_temp){
+                       vector<vector<long double> >& x,vector<vector<long double> >& y,
+                       int n_c, int& max_z, long double& maxC_temp){
 
     
     //*************************************************************************************
@@ -175,8 +175,8 @@ void writeFunC_andHist(double delta_y_p, double delta_x_p, int dim_col_t, int n_
         display = true;
     }
     
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
     
     
     vector<int> max_z_local(n_thread);
@@ -251,11 +251,11 @@ void writeFunC_andHist(double delta_y_p, double delta_x_p, int dim_col_t, int n_
     //        n_thread=1;
     //    }
     
-    //             const double delta_y_p_init = delta_y_p;
-    //             const double delta_x_p_init = delta_x_p;
+    //             const long double delta_y_p_init = delta_y_p;
+    //             const long double delta_x_p_init = delta_x_p;
     
     
-    vector<double> max_C_local(n_thread);
+    vector<long double> max_C_local(n_thread);
     //             vector<thread> th;
     
     

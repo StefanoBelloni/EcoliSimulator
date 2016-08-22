@@ -22,7 +22,7 @@ void lunch_gnuplot(string name_file_gnu);
  * function to plot the run or tumbles
  */
 
-void gnuplot_run(string names[], string nome_info, double mean, int tipo_run, int save_, int cont_sim)
+void gnuplot_run(string names[], string nome_info, long double mean, int tipo_run, int save_, int cont_sim)
 {
     
     //tipo_run ==1 run, altro tumble

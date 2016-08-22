@@ -31,10 +31,10 @@ void funz_clearAll();
  * @param which_compare is a vector
  */
 
-void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, string *names_jumps, int sel_prog, vector<E_coli*> batteri, vector<int> &which_compare, int stat_){
+void FunzRunUndTumble(long double T_f, int n_c, int cont_gen_sim, int n_compare, string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, string *names_jumps, int sel_prog, vector<E_coli*> batteri, vector<int> &which_compare, int stat_){
     
-    double meanR=0.0;
-    double meanT=0.0;
+    long double meanR=0.0;
+    long double meanT=0.0;
         
     if (T_f>10 || n_c>10) {
         int risposta=1;
@@ -163,15 +163,18 @@ void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, stri
  * @param which_compare is an int
  */
 
-void FunzRunUndTumble(double T_f, int n_c, int cont_gen_sim, int n_compare, string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, string *names_jumps, int sel_prog, vector<E_coli*> batteri, int which_compare, int stat_){
+void FunzRunUndTumble(long double T_f, int n_c, int cont_gen_sim, int n_compare, string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, string *names_jumps, int sel_prog, vector<E_coli*> batteri, int which_compare, int stat_){
     
-    double meanR=0.0;
-    double meanT=0.0;
+    long double meanR=0.0;
+    long double meanT=0.0;
     
     if (T_f>10 || n_c>10) {
         int risposta=1;
         funz_clear();
-        cout << "ANALYSIS RUNS AND TUMBLES:\n";
+        funz_clearAll();
+        cout <<BOLDRED << "*********************************\n";
+        cout           << "ANALYSIS RUNS AND TUMBLES:\n";
+        cout           << "*********************************\n"<<RESET;
         cout << "Do you want to produce a detailed analysis of the runs and tumbles times? \npress 0 for yes, 1 for no ";
         
 		sssr(risposta,"Analysis Runs?");

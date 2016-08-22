@@ -277,11 +277,11 @@ It is possible to use more then one thread in order to perform the simulations i
  Since the data recorded from every simulation can reach an enormous number\footnote{For Example, simulating a single bacterium (Celani Vergassona inverse Gaussian distribution Approach) for 1000 sec. with time step of 0.01 sec. produces the following average of data:
  
  
- - Positions and sign gradient: 300000 doubles
- - Ligand concentration: 100000 doubles
- - Direction: 100000 doubles
+ - Positions and sign gradient: 300000 long doubles
+ - Ligand concentration: 100000 long doubles
+ - Direction: 100000 long doubles
  - Jumps: 1250 runs times and 1250 tumbles times.
- - Internal Dynamic 100000 doubles.
+ - Internal Dynamic 100000 long doubles.
  
  the data are saved in .dat files, whose name are univocal determined for every run of the program and are made up of 3 different parts, Prefix-MittlePart-Suffix, i.e.
  
@@ -383,23 +383,23 @@ It is possible to use more then one thread in order to perform the simulations i
  
  - E_coli::change_par() implement the way you interact with the parameters of your model
  - virtual void E_coli::reset_par(); This is a helper function, to be sure you reset the parameters. You can implement it in the constructor of the new class
- - virtual void E_coli::stationary_dyn(double dt, std::vector<double> &m0, int changed_pos); implement the stationary distribution
- - virtual int E_coli::agg_dyn(double dt, double t); implement the condition that make you pass from tumble to run and vice versa
- - virtual void E_coli::agg_dyint(double dt, double t); implement you're internal dynamic model
- - virtual void E_coli::save_dyn(ofstream &file, double t); save which internal variable you want to analyse
+ - virtual void E_coli::stationary_dyn(long double dt, std::vector<long double> &m0, int changed_pos); implement the stationary distribution
+ - virtual int E_coli::agg_dyn(long double dt, long double t); implement the condition that make you pass from tumble to run and vice versa
+ - virtual void E_coli::agg_dyint(long double dt, long double t); implement you're internal dynamic model
+ - virtual void E_coli::save_dyn(ofstream &file, long double t); save which internal variable you want to analyse
  - virtual void E_coli::print_info(std::ofstream &file_save); call the base function and add what is new
  - virtual void E_coli::gnuplot_response(string names_info_mod, int save_, int con_gen_sim); you can you one of the two implementation for Exp or IG distribution
  
  Functions that are already implemented somewhere for most of the porposes
  
- - virtual double E_coli::reset_barrier(); you can you one of the two implementation for Exp or IG distribution
- - virtual double E_coli::reset_barrier_t(); you can you one of the two implementation for Exp or IG distribution
+ - virtual long double E_coli::reset_barrier(); you can you one of the two implementation for Exp or IG distribution
+ - virtual long double E_coli::reset_barrier_t(); you can you one of the two implementation for Exp or IG distribution
  - virtual void E_coli::s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect);  you can you one of the two implementation for Exp or IG distribution
  - virtual void E_coli::gnuplot_single add the features you want to display, such as the internal variable dynamics
  
  Function that till now have been used only in the base form
  
- - virtual void E_coli::produce(Funz_C* f_i, double dt); This function is virtual, but all model use the basic function
+ - virtual void E_coli::produce(Funz_C* f_i, long double dt); This function is virtual, but all model use the basic function
  - virtual void E_coli::gnuplot_single_film This function is virtual, but all model use the basic function
  - virtual void E_coli::gnuplotFunzInternalDynalmic(string buffer, int save_,  int con_gen_sim); it is not yet implemented
  

@@ -69,7 +69,7 @@ using namespace std;
  * note that we have to be careful how to pass the parameters to apngasm if we;re on Unix or Windows (line 213)
  */
 
-void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, double min_x,double min_y, double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, double max_fc)
+void filmato_3D_gnuplot_gif(string names_info[],long double max_x, long double max_y, long double min_x,long double min_y, long double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, long double max_fc)
 {
     funz_clearAll();
     
@@ -96,7 +96,7 @@ void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, doub
     
     int n_data=1;
     //    int j_frame=0;
-    double dt;
+    long double dt;
     file_info >> title;
     file_info >> n_data;
     file_info >> dt;
@@ -108,7 +108,7 @@ void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, doub
     cout << "Do you want to see the movie of the evolution of the density? \npress 0 for yes, 1 for no ";
     sssr(risp,"Do you want to see the movie of the evolution of the density? press 0 for yes, 1 for no ");
     
-    double maxX,maxY,minX,minY;
+    long double maxX,maxY,minX,minY;
     if (f->interact==0){
         maxX=f->max_x; maxY=f->max_y; minX=f->min_x; minY=f->min_y;
     }else{
@@ -201,14 +201,14 @@ void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, doub
         auto diff = end - start;
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the creation and saving of the film:\n     ";
-        cout << chrono::duration <double, milli> (diff).count()/1000 << " seconds" << endl;
+        cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
         cout << "***************************************************\n"<<RESET;
         
         
         // LOG FILE
         //        stringstream msg;
         //        msg.str("");
-        //        msg << chrono::duration <double, milli> (diff).count()/1000 << " seconds";
+        //        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
         //        writeLog("FILM: (single-thread) created and saved in ",msg.str());
         
         //******************************************************************
@@ -245,7 +245,7 @@ void filmato_3D_gnuplot_gif(string names_info[],double max_x, double max_y, doub
 //        .png and then plays it.
 //***********************************************************************************************
 
-int scriptFilmato3Dgnuplot_gif(double Dt/*dt*(epsilon*epsilon)*/, double maxX, double maxY, double minX, double minY, double max_z, double max_fc, int dim_col_t, int save_, int cont_sim){
+int scriptFilmato3Dgnuplot_gif(long double Dt/*dt*(epsilon*epsilon)*/, long double maxX, long double maxY, long double minX, long double minY, long double max_z, long double max_fc, int dim_col_t, int save_, int cont_sim){
     
     char buffer[8];
     snprintf(buffer, sizeof(char)*8, "sim%03d",cont_sim);

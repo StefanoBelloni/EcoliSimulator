@@ -64,7 +64,7 @@ Funz_C::Funz_C(const Funz_C& f)
     interact = f.interact;
 }
 
-void Funz_C::get_coordinate1(array<double,2> x, int *n){
+void Funz_C::get_coordinate1(array<long double,2> x, int *n){
     
     n[0]=min(n_x-2,max(1,floor((x[0]-min_x)/dx))); // Non voglio andare sul bordo
     n[1]=min(n_y-2,max(1,floor((x[1]-min_y)/dy)));
@@ -72,20 +72,20 @@ void Funz_C::get_coordinate1(array<double,2> x, int *n){
     n[3]=min(n_y-2,n[1]+1);
 }
 
-void Funz_C::get_coordinate(array<double,2> x, int *n)
+void Funz_C::get_coordinate(array<long double,2> x, int *n)
 {
     n[0]=min(n_x-2,max(1,floor((x[0]-min_x)/dx))); // Non voglio andare sul bordo
     n[1]=min(n_y-2,max(1,floor((x[1]-min_y)/dy)));
 }
                                 
 
-double Funz_C::new_F_C(double t, std::array<double,2> x){
+long double Funz_C::new_F_C(long double t, std::array<long double,2> x){
     
-    double R = sqrt(pow(x[0], 2) + pow(x[1], 2));
-    double T=50;
+    long double R = sqrt(pow(x[0], 2) + pow(x[1], 2));
+    long double T=50.0L;
     
     if (x[0]>max_x || x[0]<min_x || x[1]>max_y || x[1]<min_y) {
-        return 0;
+        return 0.0L;
     }
     
     switch (num_funz) 
@@ -93,22 +93,22 @@ double Funz_C::new_F_C(double t, std::array<double,2> x){
         case 0:
             
             
-            return 18.2*exp(-pow(R,2)/7)*(R<=100);
+            return 18.2L*exp(-pow(R,2)/7.0L)*(R<=100);
             
             
             break;
             
         case 1:
-            return 1+2*(t>15);
+            return 1.0L+2.0L*(t>15.0L);
             
             break;
             
             
         case 2:
             
-            T=150;
+            T=150.0L;
             
-            R=1+(R<8)*1.2*fabs((1+(t)/T)*sin(2*pi*(R+2*(t)/T)/2)/(R+(t)/T))+.8*(R>=8)*(R<16)*fabs(cos(atan(sin(R)+t/T)))+(R>=16)*.1*fabs((1+(t)/T)*cos(sqrt(fabs(x[1])))*atan((pow(x[0], 2)))*sin(R+1.1*pi*((t)/T)));
+            R=1+(R<8.0L)*1.2L*fabs((1+(t)/T)*sin(2.0L*pi*(R+2.0L*(t)/T)/2.0L)/(R+(t)/T))+.8L*(R>=8.0L)*(R<16.0L)*fabs(cos(atan(sin(R)+t/T)))+(R>=16.0L)*.1L*fabs((1+(t)/T)*cos(sqrt(fabs(x[1])))*atan((pow(x[0], 2)))*sin(R+1.1L*pi*((t)/T)));
             if (std::isnan(R)) {
                 return 0;
             }
@@ -120,19 +120,19 @@ double Funz_C::new_F_C(double t, std::array<double,2> x){
             
         case 3:
             
-            return 1+2*(t<=6)+2*(t>6)*(t<=6+3)*pow(t-5,2)+32*(t>6+3);
+            return 1.0L+2.0L*(t<=6.0L)+2.0L*(t>6.0L)*(t<=9.0L)*pow(t-5.0L,2)+32.0L*(t>9.0L);
             
             break;
             
         case 4:
             
-            return 1+7*(t<8)+(t>=15)*(t<25)+3*(t>25);
+            return 1.0L+7.0L*(t<8.0L)+(t>=15.0L)*(t<25.0L)+3.0L*(t>25.0L);
             
             break;
             
         case 5:
             
-            return 3*(1+max(R,x[0])/2);
+            return 3.0L*(1.0L+max(R,x[0])/2.0L);
             
             break;
             
@@ -140,19 +140,19 @@ double Funz_C::new_F_C(double t, std::array<double,2> x){
             
             //cout << "18.2*exp(10*x[0])=" <<18.2*exp(10*x[0]) << endl;
             
-            return 18.2*exp(1*x[0]);
+            return 18.2L*exp(1.0L*x[0]);
             
             break;
             
         case 7:
             
-            return 18.2*exp(0.2*t);
+            return 18.2L*exp(0.2L*t);
             
             break;
             
         default:
             
-            return 3;
+            return 3L;
             
             break;
     }
@@ -247,11 +247,11 @@ void Funz_C::all_informations(std::ofstream &file_save){
     
 }
 
-void Funz_C::print_fc(std::ofstream &file_save, double t){
+void Funz_C::print_fc(std::ofstream &file_save, long double t){
     
-    array<double,2> x;
+    array<long double,2> x;
     
-    int n=max(1,floor(.1/dx));
+    int n=max(1,floor(.1L/dx));
     
     for (int i=0; i<n_x; i=i+n) {
         for (int j=0; j<n_y; j=j+n){
@@ -270,13 +270,13 @@ void Funz_C::reset_parameter(){
     
     num_funz=9;
     
-    max_x=20;
-    min_x=-20;
-    max_y=20;
-    min_y=-20;
+    max_x=20.0L;
+    min_x=-20.0L;
+    max_y=20.0L;
+    min_y=-20.0L;
     
-    D_c=0.01; 
-    degradation_rate=0.05;
+    D_c=0.01L;
+    degradation_rate=0.05L;
     
 }
 

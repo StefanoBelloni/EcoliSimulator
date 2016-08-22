@@ -9,7 +9,7 @@
 #include <iostream>
 #include "ParameterEstimation_CV_rExp_tExp.h"
 
-double ParameterEstimation_CV_rExp_tExp::f_lambda(){
+long double ParameterEstimation_CV_rExp_tExp::f_lambda(){
     
     return s_lambda_r.s_funz_lambda(Q);
     

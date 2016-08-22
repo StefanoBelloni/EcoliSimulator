@@ -38,7 +38,7 @@ using namespace std;
  * In this function the remaining information are compliting by calling the virtual function print_info in E_coli
  */
 
-void print_and_open_info(string name, E_coli* batterio, Funz_C* f, double T_f, double *x0,  double dt,  int n_c,  double Raggio,  int delta_dist,  int num_dist,  int const_salv, int cont_gen_sim)
+void print_and_open_info(string name, E_coli* batterio, Funz_C* f, long double T_f, long double *x0,  long double dt,  int n_c,  long double Raggio,  int delta_dist,  int num_dist,  int const_salv, int cont_gen_sim)
 {
     
     time_t timer1;

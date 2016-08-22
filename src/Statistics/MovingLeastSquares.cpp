@@ -11,13 +11,13 @@
 #include "s_lambda.h"
 
 
-double w_funz(double x, double epsilon_){
+long double w_funz(long double x, long double epsilon_){
     return 1/(x*x+epsilon_*epsilon_);
     return 2*exp(-x*x/4);
 //    return 1.1;
 }
 
-double w_funz(int n_rec){
+long double w_funz(int n_rec){
     
     return n_rec+1;
 
@@ -38,7 +38,7 @@ int MovingLeastSquares(int set_epsilon, s_lambda &lambda){
     //if set_epsilon == 0 set epsilon.
     std::cout << "Moving-Least-Squares Approximation :\n";
     
-    double epsilon_=1.5;
+    long double epsilon_=1.5;
         
 //    if (set_epsilon==0) {
 //        std::cout << "Which level of epsilon? ";
@@ -46,9 +46,9 @@ int MovingLeastSquares(int set_epsilon, s_lambda &lambda){
 //    }
     
     std::cout << "w(r)=1/(r^2+e^2), e = " << epsilon_ << std::endl;
-    double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0, sum5=0.0;
-    double x=0;
-    double w_1;
+    long double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0, sum5=0.0;
+    long double x=0;
+    long double w_1;
     s_lambda lambda_approx;
     
     int n=(int)lambda.lambda.size();
@@ -173,9 +173,9 @@ int MovingLeastSquares(int set_epsilon, s_lambda &lambda, int not_moving)
     
     
 
-    double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0;
-    double sum5=0.0;
-    double x=0;
+    long double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0;
+    long double sum5=0.0;
+    long double x=0;
     s_lambda lambda_approx;
     
     int n=(int)lambda.lambda.size();
@@ -292,10 +292,10 @@ int MovingLeastSquares(s_lambda &lambda){
     //if set_epsilon == 0 set epsilon.
     std::cout << "Moving-Least-Squares Approximation :\n";
     
-    double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0, sum5=0.0;
-    double sum1s=0.0, sum4s=0.0;
-    double x=0;
-    double w_1;
+    long double sum1=0.0, sum2=0.0, sum3=0.0, sum4=0.0, sum5=0.0;
+    long double sum1s=0.0, sum4s=0.0;
+    long double x=0;
+    long double w_1;
     s_lambda lambda_approx;
     
     int n=(int)lambda.lambda.size();

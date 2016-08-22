@@ -21,9 +21,9 @@
 //
 //using namespace std;
 //
-//double histogram_3D_gnuplot(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> > x,vector<vector<double> > y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f);
+//long double histogram_3D_gnuplot(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> > x,vector<vector<long double> > y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f);
 //
-//void Matlab_large_population(double T_f, int n_c, int dim_col_t, string names, Funz_C *f) 
+//void Matlab_large_population(long double T_f, int n_c, int dim_col_t, string names, Funz_C *f) 
 //// Nelle variabili -> da aggiungere quanto relativo ai salti per batterio
 //{
 //    
@@ -33,18 +33,18 @@
 //    
 //    int risp;
 //    
-//    double min_x=10000;
-//    double max_x=-10000;
+//    long double min_x=10000;
+//    long double max_x=-10000;
 //    
-//    double min_y=10000;
-//    double max_y=-10000;
-//    double max_z=0;
+//    long double min_y=10000;
+//    long double max_y=-10000;
+//    long double max_z=0;
 //    
 //    // Lettura riga file.
 //    string temp_string;
 ////    char comma = ','; // dummy variable per leggere dal file e dividerlo nelle sue parti fondamentali.
 //    
-//    vector< vector<double> > x_t,y_t; // matrici equivalenti a P(2,i,j) in Matlab_program    
+//    vector< vector<long double> > x_t,y_t; // matrici equivalenti a P(2,i,j) in Matlab_program    
 //    
 //    cout << "GNUPLOT" << endl;
 //    
@@ -59,8 +59,8 @@
 //    //****************************************************************************
 //    
 //    
-//    x_t.resize( dim_col_t, vector<double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!! 
-//    y_t.resize( dim_col_t , vector<double>( n_c , 0 ) );
+//    x_t.resize( dim_col_t, vector<long double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!! 
+//    y_t.resize( dim_col_t , vector<long double>( n_c , 0 ) );
 //    
 //    
 //    
@@ -86,8 +86,8 @@
 //    
 //    // Creo i files per fare il filmato.
 //    
-//    double dx;
-//    double dy;
+//    long double dx;
+//    long double dy;
 //    
 //    if (n_c>4000) {
 //        dx=(max_x-min_x)/sqrt(n_c);
@@ -99,8 +99,8 @@
 //    
 //    
 //    
-//    double x_delta_hist=min_x;
-//    double y_delta_hist=min_y;
+//    long double x_delta_hist=min_x;
+//    long double y_delta_hist=min_y;
 //    
 //    int n_dx=0;
 //    int n_dy=0;

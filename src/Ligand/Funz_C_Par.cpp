@@ -27,11 +27,11 @@
 
 using namespace std;
 
-double Funz_C_Par::new_F_C(double t, std::array<double,2> x)
+long double Funz_C_Par::new_F_C(long double t, std::array<long double,2> x)
 {
     
-    double c=1;
-    double R = sqrt(pow(x[0], 2) + pow(x[1], 2));
+    long double c=1;
+    long double R = sqrt(pow(x[0], 2) + pow(x[1], 2));
     
     if (x[0]>max_x || x[0]<min_x || x[1]>max_y || x[1]<min_y) {
         return 0;

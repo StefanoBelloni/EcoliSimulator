@@ -181,9 +181,9 @@ int E_coli::saveIntDyn(string dynFile){
     ofstream file_dat;
     
     if (!is_file_exist(dynFile.c_str())) {
-        double Q_min=-2;
-        double Q_max=2;
-        double dQ= 0.01;
+        long double Q_min=-2;
+        long double Q_max=2;
+        long double dQ= 0.01;
         
         file_dat.open(dynFile.c_str());
         
@@ -208,9 +208,9 @@ int CV_rExp_tExp::saveIntDyn(string dynFile){
     ofstream file_dat;
     
     if (!is_file_exist(dynFile.c_str())) {
-        double Q_min=-2;
-        double Q_max=2;
-        double dQ= 0.01;
+        long double Q_min=-2;
+        long double Q_max=2;
+        long double dQ= 0.01;
         
         file_dat.open(dynFile.c_str());
         
@@ -235,9 +235,9 @@ int CV_rIG_tExp::saveIntDyn(string dynFile){
     ofstream file_dat;
     
     if (!is_file_exist(dynFile.c_str())) {
-        double Q_min=-2;
-        double Q_max=2;
-        double dQ= 0.01;
+        long double Q_min=-2;
+        long double Q_max=2;
+        long double dQ= 0.01;
         
         file_dat.open(dynFile.c_str());
         
@@ -264,9 +264,9 @@ int EO_rExp_tExp::saveIntDyn(string dynFile){
     ofstream file_dat;
     
     if (!is_file_exist(dynFile.c_str())) {
-        double Q_min=-2;
-        double Q_max=2;
-        double dQ= 0.01;
+        long double Q_min=-2;
+        long double Q_max=2;
+        long double dQ= 0.01;
         
         file_dat.open(dynFile.c_str());
         
@@ -291,9 +291,9 @@ int EO_rIG_tExp::saveIntDyn(string dynFile){
     ofstream file_dat;
     
     if (!is_file_exist(dynFile.c_str())) {
-        double Q_min=-2;
-        double Q_max=2;
-        double dQ= 0.01;
+        long double Q_min=-2;
+        long double Q_max=2;
+        long double dQ= 0.01;
         
         file_dat.open(dynFile.c_str());
         

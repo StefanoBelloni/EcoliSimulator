@@ -20,21 +20,21 @@ public:
     Molecular_rIG_tExp();
     Molecular_rIG_tExp(const Molecular_rIG_tExp& modello);
     
-    int agg_dyn(double dt, double t);
+    int agg_dyn(long double dt, long double t);
     
     void reset_par();
     
     
     void change_par(int change);
     void change_sigma_par();
-    double f_sigma();
+    long double f_sigma();
 
     int tipo_sigma;
-    double B_0;
-    double B_1;
-    double B_2;
+    long double B_0;
+    long double B_1;
+    long double B_2;
     
-    double reset_barrier();
+    long double reset_barrier();
 //    void print_info(std::ofstream &file_save);
 //    void gnuplotFunzInternalDynalmic(string title, int save_, int gen_con_sim);
 //    int saveIntDyn(string nameFile);

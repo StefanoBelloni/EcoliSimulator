@@ -29,17 +29,17 @@ class ParameterEstimation_CV_rExp_tExp : public CV_rExp_tExp{
     public:
     
 //    s_lambda s_lambda_r;
-//    double s_lambda_t;
+//    long double s_lambda_t;
     
 //    string distribution_I_r;    
-//    double I_tau_r[2];
+//    long double I_tau_r[2];
 //    string distribution_I_t;
-//    double I_tau_t[2];
+//    long double I_tau_t[2];
     
     // methods
     
 //    friend s_lambda s_F_lambda_r(E_coli *batterio, vector<Q_tau_stat> vector_lambda, int n_vect, int funz_L);
-    double f_lambda();  // virtual from CV_rExp_tExp
+    long double f_lambda();  // virtual from CV_rExp_tExp
     void s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect);
 //    void gnuplotFunzInternalDynalmic(string title, int save_, int gen_con_sim);
     int saveIntDyn(string nameFile);

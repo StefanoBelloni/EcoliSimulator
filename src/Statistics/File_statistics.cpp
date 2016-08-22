@@ -32,7 +32,7 @@ int set_statistical_file(string name_file_satistics, int tipo_statistical_file,
                          string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod);
 void funz_clear();
 
-void set_statistical_file_info(E_coli *batterio, double T_f,Funz_C *f,double *x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string name_info_satistics);
+void set_statistical_file_info(E_coli *batterio, long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string name_info_satistics);
 
 int writeLog(string what, string msg);
 
@@ -44,7 +44,7 @@ int writeLog(string what, string msg);
  * this function set the names of the statistics via the function set_statistical_names, the info to process the data, and prepare the statistical data after a simulation
  */
 
-void File_statistics(E_coli *batterio, double T_f,Funz_C *f,double *x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv,string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, int i, int &cont_gen_sim, vector<string> *pt_name_file_satistics, vector<string> *pt_name_info_satistics){
+void File_statistics(E_coli *batterio, long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv,string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, int i, int &cont_gen_sim, vector<string> *pt_name_file_satistics, vector<string> *pt_name_info_satistics){
     
     vector<int> tipo_statistical_file;
 
@@ -207,14 +207,14 @@ int set_statistical_file(string name_file_satistics, int tipo_statistical_file,
             
             statistical_file << "t c delta_c tau tumble EOC";
 //            cout << "t c delta_c tau tumble EOC" << endl;
-            double t_run=0.0;
-            double t_tam=0.0;
-            double last_t=0.0;
-            double last_tau_r=0.0;
-            double last_tau_t=0.0;
-            double c_prec=1.0;
-            double c_new=0.0;
-            double last_t_run=1000000000000000.0;
+            long double t_run=0.0L;
+            long double t_tam=0.0L;
+            long double last_t=0.0L;
+            long double last_tau_r=0.0L;
+            long double last_tau_t=0.0L;
+            long double c_prec=1.0L;
+            long double c_new=0.0L;
+            long double last_t_run=1000000000000000.0L;
             int c;
 
 //            cout << "*******************************************************************" << endl;
@@ -236,7 +236,7 @@ int set_statistical_file(string name_file_satistics, int tipo_statistical_file,
                 {
 //                    cout << "#################################################################" << endl;
                     c_prec = c_new;
-                    last_t=0.00;
+                    last_t=0.00L;
                     if (t_tam < t_run) { // if I strated with a tumble, I skip it
                         if (!(data_sets[4] >> t_tam >> last_tau_t >> c_new)) {
                             break; // if I cannot read it I'm done
@@ -283,22 +283,22 @@ int set_statistical_file(string name_file_satistics, int tipo_statistical_file,
             
             statistical_file << "t tau kind tumble EOC";
             
-            double t_run=0.0;
-            double last_t=0.0;
-            double last_tau_r=0.0;
-            double last_tau_t=0.0;
-            double c_prec=1.0;
-            double c_new=0.0;
-            double last_t_run=0.0; 
+            long double t_run=0.0L;
+            long double last_t=0.0L;
+            long double last_tau_r=0.0L;
+            long double last_tau_t=0.0L;
+            long double c_prec=1.0L;
+            long double c_new=0.0L;
+            long double last_t_run=0.0L;
             int c;
-            double t=0.0;   
+            long double t=0.0L;
             
             while (!data_sets[3].eof() && !data_sets[4].eof()) {
                 
                 data_sets[3] >> t_run >> last_tau_r >> c ;
                 
                 if (t_run<last_t_run) {
-                    last_t=0.0;
+                    last_t=0.0L;
                     c_prec=1;
                 }else {
                     data_sets[4] >> t >> last_tau_t >> c_new;
@@ -373,14 +373,14 @@ cout << "t c delta_c tau tumble EOC" << endl;
 
 
 
-double c_prec=1;
-double c_new=0;
-double last_tau_t=0;
-double last_tau_r=0;
-double last_t=0;
-double t_run=0;
-double t=0;
-double t_c=-1;
+long double c_prec=1;
+long double c_new=0;
+long double last_tau_t=0;
+long double last_tau_r=0;
+long double last_t=0;
+long double t_run=0;
+long double t=0;
+long double t_c=-1;
 
 int found_c=0;
 int found_t=0;
@@ -440,7 +440,7 @@ using namespace std;
  * the parameters are selfunderstandable 
  */
 
-void set_statistical_file_info(E_coli *batterio, double T_f,Funz_C *f,double *x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string name_info_satistics){
+void set_statistical_file_info(E_coli *batterio, long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string name_info_satistics){
     
     ofstream file_statistical_info;
     

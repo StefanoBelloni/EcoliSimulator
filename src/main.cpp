@@ -81,11 +81,11 @@ int Funz_C::num_funz = 9;
 
 std::mutex my_mutex;
 bool save_data;
-vector<double> vettore_risposte;
+vector<long double> vettore_risposte;
 vector<std::string> vettore_text;
 int contatore_risposte = -1;
 int automatic_ = 100;
-double epsilon = 1.0;
+long double epsilon = 1.0;
 bool multithread = false;
 bool colors = true;
 unsigned int n_thread_available = 1;
@@ -260,7 +260,7 @@ int main(int argc, const char * argv[])
     stringstream msg;
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
-    msg << chrono::duration <double, milli> (diff).count()/1000 << " seconds" << endl;
+    msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
     msg << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
     string topic("Time to complete the program: ");
     writeLog(topic, msg.str());

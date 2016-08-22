@@ -52,7 +52,7 @@ CV_rIG_tExp::CV_rIG_tExp(const CV_rIG_tExp& modello):CV_rExp_tExp(modello){
 
 #define barriera_r_inf -100
 
-int CV_rIG_tExp::agg_dyn(double dt, double t)
+int CV_rIG_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     
@@ -63,8 +63,8 @@ int CV_rIG_tExp::agg_dyn(double dt, double t)
     
     if (salto_==1) {
         
-        double sigma_x=f_sigma();
-        double lambda_star=lambda_r+dt*f_lambda()+sigma_x*deltaW_ec(dt);
+        long double sigma_x=f_sigma();
+        long double lambda_star=lambda_r+dt*f_lambda()+sigma_x*deltaW_ec(dt);
         
 //        if (lambda_r>barriera_r) {            
 //            cout << "t = " << t << endl;
@@ -127,7 +127,7 @@ int CV_rIG_tExp::agg_dyn(double dt, double t)
     return salto_;    
 }
 
-double CV_rIG_tExp::f_sigma(){
+long double CV_rIG_tExp::f_sigma(){
 
     switch (tipo_sigma) 
     {
@@ -148,7 +148,7 @@ double CV_rIG_tExp::f_sigma(){
 
 }
 //
-//void CV_rIG_tExp::save_dyn(std::ofstream &file_, double t){
+//void CV_rIG_tExp::save_dyn(std::ofstream &file_, long double t){
 //    
 //    file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << endl;
 //    

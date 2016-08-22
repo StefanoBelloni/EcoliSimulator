@@ -31,8 +31,8 @@
 void lunch_gnuplot(string name_file_gnu);
 void lunch_apngas(string name_out, string name_input);
 string setNameScriptSingleFilm(int cont_sim, int save);
-int writeSciptFilmSingle(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
-int writeSciptFilmSingle_gif(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
+int writeSciptFilmSingle(string title, long double dt, long double T_f, long double c_max, long double x_m, long double  y_m, long double x_M, long double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
+int writeSciptFilmSingle_gif(string title, long double dt, long double T_f, long double c_max, long double x_m, long double  y_m, long double x_M, long double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim);
 string setNameScriptLunchFilm(int cont_sim, int save);
 int writeSciptLunchFilmSingle(int cont_sim, int save);
 int writeSciptLunchFilmSingle_gif(int cont_sim, int save, string name_);
@@ -41,7 +41,7 @@ int writeSciptLunchFilmSingle_gif(int cont_sim, int save, string name_);
 //          .PNG
 //************************************************************************************************************
 
-void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int cont_sim)
+void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int cont_sim)
 {
     
     string title;
@@ -52,8 +52,8 @@ void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_in
     file_info.open(names_info_mod[0].c_str());
     
     int n_data=1;
-    double dt;
-    double dt_=0;
+    long double dt;
+    long double dt_=0;
     int n_Dt = 1;
     
     file_info >> title;
@@ -87,16 +87,16 @@ void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_in
     }
 
 
-    double c_max=-1;
-    double x_M=-10000,x_m=10000,y_M=-10000,y_m=10000;
+    long double c_max=-1;
+    long double x_M=-10000,x_m=10000,y_M=-10000,y_m=10000;
     
         // File istruzioni per gnuplot        
             
     ifstream file_c;
     ifstream file_x;
-    double c_temp=0;
-    double x_temp=0;
-    double y_temp=0;
+    long double c_temp=0;
+    long double x_temp=0;
+    long double y_temp=0;
     int int_temp=0;
     
     c_max=0;
@@ -226,7 +226,7 @@ void E_coli::gnuplot_single_film(string *names_files_Ecoli_mod, string &names_in
 
 /*! \brief produce the .gif film*/
 
-void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, double T_f, Funz_C *f, int cont_sim)
+void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int cont_sim)
 {
     
     string title;
@@ -237,8 +237,8 @@ void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &name
     file_info.open(names_info_mod[0].c_str());
     
     int n_data=1;
-    double dt;
-    double dt_=0;
+    long double dt;
+    long double dt_=0;
     int n_Dt = 1;
     
     file_info >> title;
@@ -272,15 +272,15 @@ void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &name
         }
         
         
-        double c_max=-1;
-        double x_M=-10000,x_m=10000,y_M=-10000,y_m=10000;
+        long double c_max=-1;
+        long double x_M=-10000,x_m=10000,y_M=-10000,y_m=10000;
         
         // File istruzioni per gnuplot
         ifstream file_c;
         ifstream file_x;
-        double c_temp=0;
-        double x_temp=0;
-        double y_temp=0;
+        long double c_temp=0;
+        long double x_temp=0;
+        long double y_temp=0;
         int int_temp=0;
         c_max=0;
         
@@ -382,7 +382,7 @@ void E_coli::gnuplot_single_film_gif(string *names_files_Ecoli_mod, string &name
 
 /*! Write the script for the film of 1D*/
 
-int writeSciptFilmSingle(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim)
+int writeSciptFilmSingle(string title, long double dt, long double T_f, long double c_max, long double x_m, long double  y_m, long double x_M, long double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim)
 {
     
     //save_ == 0 -> salva
@@ -491,7 +491,7 @@ string setNameScriptLunchFilm(int cont_sim, int save){
 
 /*! Write the script for the film of 1D*/
 
-int writeSciptFilmSingle_gif(string title, double dt, double T_f, double c_max, double x_m, double  y_m, double x_M, double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim)
+int writeSciptFilmSingle_gif(string title, long double dt, long double T_f, long double c_max, long double x_m, long double  y_m, long double x_M, long double y_M, int n_data, int salti_, string *names_files_Ecoli_mod, string &names_file_dyn_mod, int save_, int cont_sim)
 {
     
     //save_ == 0 -> salva

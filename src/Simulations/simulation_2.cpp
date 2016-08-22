@@ -27,7 +27,7 @@
 #include "LoadBar.hpp"
 
 int Stima_tempo(int n_c, int n_val_termine, int &j_cel_finale, int &j_cel_inizio, time_t timer1);
-int initial_position(int j,double *x, double *x0, double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, double Delta_delta_dist);
+int initial_position(int j,long double *x, long double *x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
 void timestamp ( );
 void funz_clearAll();
 void loadbar(unsigned int x, unsigned int n, int time_, unsigned int w);
@@ -54,7 +54,7 @@ void funz_clear();
  */
 
 
-int simulation_2(E_coli *batterio, double T_f,Funz_C *f,double *x_0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread)
+int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double *x_0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread)
 {        
 //    funz_clear();      
     
@@ -79,10 +79,10 @@ int simulation_2(E_coli *batterio, double T_f,Funz_C *f,double *x_0,double dt,in
     
     char buffer[52];
     int time_stampato=(n_c==1)?0:1;
-    array<double,2> x0;
+    array<long double,2> x0;
     x0[0]=x_0[0];
     x0[1]=x_0[1];
-    double errore = 0.000000001;
+    long double errore = 0.000000001;
     
     snprintf(buffer, sizeof(char) * 52,"Call_Matlab%d-sim-%03d.txt", n_sim,cont_gen_sim);
     
@@ -97,8 +97,8 @@ int simulation_2(E_coli *batterio, double T_f,Funz_C *f,double *x_0,double dt,in
     int n_m0=batterio->N_dyn_var();
     //int change_pos=0;
     // se change_pos == 0 allora ho cambiato la posizione e ricalcolo la dinamica stazionaria
-    vector<double> m0;
-    double c_iniziale_prec=-10;
+    vector<long double> m0;
+    long double c_iniziale_prec=-10;
     m0.resize(n_m0);
     
     int i=0;
@@ -119,7 +119,7 @@ int simulation_2(E_coli *batterio, double T_f,Funz_C *f,double *x_0,double dt,in
     
     // VARIABLES
     
-    double Delta_delta_dist;
+    long double Delta_delta_dist;
     int delta_dist_cont,cont_dist_5;
     unsigned int cont_temp;
     unsigned int cont_salvataggio_pos=0,cont_temp_glob;//,cont_string_bat;
@@ -228,7 +228,7 @@ int simulation_2(E_coli *batterio, double T_f,Funz_C *f,double *x_0,double dt,in
     //****************************************************************************
     
     
-    double t=0;                    //tempo cronometro batterio 
+    long double t=0;                    //tempo cronometro batterio 
     //cont_string_bat=0;
     int max_index_T=floor(T_f/dt);
 //    int n_salv=0;

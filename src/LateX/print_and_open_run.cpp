@@ -13,7 +13,7 @@
 #include "FunzRunUndTumble.h"
 
 
-void str_row_table(std::ofstream& file, int tipo, int n_records, double mean, double var, double std_);
+void str_row_table(std::ofstream& file, int tipo, int n_records, long double mean, long double var, long double std_);
 
 enum{tip_all = 0,tip_up,tip_down,tip_mix,tip_c,tip_tumble};
 
@@ -110,7 +110,7 @@ void print_and_open_run2V(std::string name, int cont_gen_sim){
     ifstream file_lettura;
 	string temp;
     int n_salti;
-	double mean,var,std_;
+	long double mean,var,std_;
 
 //enum{tip_all = 0,tip_up,tip_down,tip_mix, tip_c,tip_tumble};
 	const char* file_names[] = {"r_a.txt","r_u.txt","r_d.txt","r_m.txt","r_c.txt","t_a.txt"};
@@ -154,7 +154,7 @@ void print_and_open_run2V(std::string name, int cont_gen_sim){
 
 
 /** this function returns the string of the line of the table of the runs/tumble */
-void str_row_table(ofstream& file, int tipo, int n_records, double mean, double var, double std_){
+void str_row_table(ofstream& file, int tipo, int n_records, long double mean, long double var, long double std_){
 	string kind;
 
 	switch(tipo){

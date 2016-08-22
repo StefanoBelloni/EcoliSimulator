@@ -35,11 +35,11 @@
 
 #include "Manipulation_Matrix.h"
 
-int SolveHeat2D_Neumann2(double **U, double **Q, double n_t, double r, int n_x, int n_y, double dt, double kd_, double &f_max);
+int SolveHeat2D_Neumann2(long double **U, long double **Q, long double n_t, long double r, int n_x, int n_y, long double dt, long double kd_, long double &f_max);
 void timestamp();
 int Stima_tempo(int n_c, int n_val_termine, int &j_cel_finale, int &j_cel_inizio, time_t timer1);
 
-int initial_position(int j,double *x, double *x0, double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, double Delta_delta_dist);
+int initial_position(int j,long double *x, long double *x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
 
 using namespace std;
 
@@ -64,12 +64,12 @@ void loadbar(unsigned int x, unsigned int n, unsigned int w);
  * Function that performs the actual simulation of  population interacting with the ligand
  */
 
-int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double* x_0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int cont_gen_sim, double &f_max)
+int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,long double* x_0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int cont_gen_sim, long double &f_max)
 {     
     // In file_fc salvo la funzione c(t,x,y) come "x y f(x,y)"
     
     f_max = 0.0;
-    array<double,2> x0;
+    array<long double,2> x0;
     x0[0]=x_0[0];
     x0[1]=x_0[1];
     funz_clear();
@@ -91,7 +91,7 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
         indici_b[i]=i;
     }
     
-    double errore = 0.00001;
+    long double errore = 0.00001;
     
     int error_=0;
     int dim_col_t=-1;
@@ -100,19 +100,19 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
 //    int i_temp=0;
     
     //int change_pos=0;
-    double c_iniziale_prec=-1;
+    long double c_iniziale_prec=-1;
     
     //int cont_string_bat=0;
     
     int n_m0=batterio[0]->N_dyn_var();
 //    int change_pos=0; // se change_pos == 0 allora ho cambiato la posizione e ricalcolo la dinamica stazionaria
-    vector<double> m0;
+    vector<long double> m0;
     
     m0.resize(n_m0);
     
     vector<int> sign_p(n_c,2);
     
-    double t=0;                    //tempo cronometro batterio 
+    long double t=0.0L;                    //tempo cronometro batterio
     //cont_string_bat=0;
     int max_index_T=floor(T_f/dt);
     int n_val_termine=floor(max_index_T*.01)+10;
@@ -123,7 +123,7 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
     
     // VARIABLES
     
-    double Delta_delta_dist;
+    long double Delta_delta_dist;
     int delta_dist_cont,cont_dist_5;
 //    unsigned int cont_temp;
 //    unsigned int cont_salvataggio_pos=0,cont_temp_glob;
@@ -219,41 +219,43 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
 //        cout << "           SIMULATION" << endl;
 //        cout <<"****************************************"<<endl;
         
-        double D_c=f->D_c;   //
+        long double D_c=f->D_c;   //
         
         // Adjact this from the theory to decide how many time subdivide dt and solve the PDE's there for stability reason
         // TODO: the number of iteratin can be decided by the theory and the parameters of th Diffusion equation ...
         // since it is incoditionally stable, 1 should works!!!
         int n_t= 1;
-        double dt_=dt;///(double)n_t;
+        const int n_witout_PDE = 5;
+        int PDE_iter=0;
+        long double dt_=dt*n_witout_PDE;///(long double)n_t;
         
         
-        double r=D_c*dt_/pow(f->dx,2);
+        long double r=D_c*dt_/pow(f->dx,2);
 //        n_t=max(1,floor(r/.2));
-        
-        cout << "      Number iteretion for every PDE solution ... = "<< n_t << endl;
-
+//        cout << "      PDE solution update every "<< dt_ << " seconds" << endl;
 //        r=D_c*dt_/pow(f->dx,2);
         
-        array<double,2> x_f;
-        double dx=f->dx;
+        array<long double,2> x_f;
+        long double dx=f->dx;
         
         int n_x=f->n_x;
         int n_y=f->n_y;
         
         // Creo la matrice della soluzione della PDE !!
-        double *U = create_vector2D(n_x, n_y);
+        long double *U = create_vector2D(n_x, n_y);
         f->f_c = &U;
         
         // Creo la matrice della forzante della PDE !!
-        double *Q = create_vector2D(n_x, n_y);
+        long double *Q = create_vector2D(n_x, n_y);
         f->q_c = &Q;
         
         //***************************************************
         //              INITIAL CONDITIONS
         //***************************************************
         // Ligand
-                    
+        
+        
+        cout <<"      Initial data ... Ligand concentration \r" << std::flush;
             // Initial Value.
             for (int i_x = 1; i_x<n_x-1; i_x++) {
                 
@@ -271,7 +273,7 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
                 }
 //                cout << endl;
             }
-            
+        
             // B.C.     
             for (int i_x = 0; i_x<n_x; i_x++) {        
                 U[i_x*n_y+0]     = U[i_x*n_y+1]; 
@@ -288,7 +290,8 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
         
         
         // Batteri
-        cout <<"      Initial data ... "<<endl;
+
+        cout <<"      Initial data ... Ligand concentration\r"<< std::flush;
         
         int cont_temp_glob=1;
         
@@ -324,6 +327,8 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
             cont_temp_glob++;
             
         }
+        
+        cout << "                                                                         " << endl;
         
 //        cout << "Print f("<<t<<",:,:)" << endl;                    
 
@@ -468,35 +473,23 @@ int simulation_interacting(vector<E_coli*> batterio, double T_f,Funz_C *f,double
                 
 //                cout << "Solve PDE at t = " << t << endl;
                 
-                error_=SolveHeat2D_Neumann2(f->f_c, f->q_c, n_t, r, n_x, n_y, dt_, f->degradation_rate, f_max);
-//                error_=SolveHeat2D_Neumann2(&U, &Q, n_t, r, n_x, n_y, dt_, f->degradation_rate);
-//                error_=SolveHeat2D_Dirichle(f->f_c, f->q_c, n_t, r, n_x, n_y, dt_);
+                if (PDE_iter>n_witout_PDE) {
+//                    cout << "Solve PDE at t = " << t << "\r"<< std::flush;
+                    error_=SolveHeat2D_Neumann2(f->f_c, f->q_c, n_t, r, n_x, n_y, dt_, f->degradation_rate, f_max);
+                    if (error_==-1) {
+                        return -1;
+                    }
                 
-                if (error_==-1) {
-                    return -1;
+                    // B.C. rinforzo!! e azzero la matrice Q ...	
+                    for (int i_x = 0; i_x<n_x; i_x++) {
+                        for (int i_y = 0; i_y<n_y; i_y++) {
+                            Q[i_x*n_y+i_y] = 0.0;// -max(0.0,f->degradation_rate*U[i_x*n_y+i_y]);;
+                        }
+                    }
+                    PDE_iter=0;
                 }
                 
-                // B.C. rinforzo!! e azzero la matrice Q ...
-                /**/
-                // non sembra necessario, ma 'un si sa mai!!  
-                
-                for (int i_x = 0; i_x<n_x; i_x++) { 
-                    
-                    // v[i][indici_b[j]] --> v[i*sizeY+j]
-                    
-//                    U[i_x*n_y+0] = U[i_x*n_y+1]; 
-//                    U[i_x*n_y+n_y-1] = U[i_x*n_y+n_y-2];
-                    
-                    for (int i_y = 0; i_y<n_y; i_y++) {
-                        
-//                        U[0*n_y+i_y] = U[1*n_y+i_y];
-//                        U[(n_x-1)*n_y+i_y] = U[(n_x-2)*n_y+i_y]; 
-                        Q[i_x*n_y+i_y] = 0.0;// -max(0.0,f->degradation_rate*U[i_x*n_y+i_y]);;
-                        
-                    }
-                }  
-                
-                
+                PDE_iter++;
                 
                 /**/
                 

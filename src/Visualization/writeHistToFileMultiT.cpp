@@ -33,11 +33,11 @@ int writeLog(std::string what, string msg);
 
 /*! \brief This function write the histogram of the density to file: multithread.
  */
-void writeHistToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonn,
+void writeHistToFileMultiT(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonn,
                            const int& cont_sim, const int& n_dx, const int& n_dy, const int& n_c,
-                           const double& min_x, const double& min_y,
-                           const double& dx, const double& dy,
-                           vector<vector<double> >& x,vector<vector<double> >& y,
+                           const long double& min_x, const long double& min_y,
+                           const long double& dx, const long double& dy,
+                           vector<vector<long double> >& x,vector<vector<long double> >& y,
                            const int& n_x_min, const int& n_x_max,
                            const int& n_y_min, const int& n_y_max,
                            int &max_z, int n_thread)
@@ -52,8 +52,8 @@ void writeHistToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, in
         display = true;
     }
 
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
 
     
     vector<int> max_z_local(n_thread);
@@ -136,14 +136,14 @@ void writeHistToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, in
 
 void startThred_writeHist(const int start_for, const int end_for, const int update_for,
                           const int cont_sim, const int n_c, const int n_dx, const int n_dy,
-                          const double dx, const double dy,
+                          const long double dx, const long double dy,
                           const int n_x_min, const int n_x_max,
                           const int n_y_min, const int n_y_max,
-                          const double min_x, const double min_y,
-                          double delta_y_p, double delta_x_p,
-                          const double delta_y_p_init,
-                          const double delta_x_p_init,
-                          vector<vector<double> >& x,vector<vector<double> >& y,
+                          const long double min_x, const long double min_y,
+                          long double delta_y_p, long double delta_x_p,
+                          const long double delta_y_p_init,
+                          const long double delta_x_p_init,
+                          vector<vector<long double> >& x,vector<vector<long double> >& y,
                           int& max_z_local, bool display)
 {
     
@@ -157,7 +157,7 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
     
     int i_x,i_y;
     
-    double max_z=0.0;
+    long double max_z=0.0;
     
     for (int n_colonna=start_for; n_colonna<end_for; n_colonna+=update_for) {
         
@@ -240,21 +240,21 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
 /*! \brief it writes the histogram of the function c to file: multithread.
  */
 
-void writeFunzCToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonn,
+void writeFunzCToFileMultiT(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonn,
                             const int cont_sim, const int n_dx, const int n_dy,
-                            const double min_x, const double min_y,
-                            const double dx, const double dy,
+                            const long double min_x, const long double min_y,
+                            const long double dx, const long double dy,
                             const int n_x_min, const int n_x_max,
                             const int n_y_min, const int n_y_max,
-                            double& maxC,
-                            const double Dt,
+                            long double& maxC,
+                            const long double Dt,
                             Funz_C *f,
                             int n_thread)
 {
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
     
-    vector<double> max_C_local(n_thread);
+    vector<long double> max_C_local(n_thread);
     vector<thread> th;
     
     int start_for=0, end_for = 0, update_for=n_salti_colonn;
@@ -322,19 +322,19 @@ void writeFunzCToFileMultiT(double delta_y_p, double delta_x_p, int dim_col_t, i
 
 void startThred_writeFunC(const int start_for, const int end_for, const int update_for,
                           const int cont_sim,
-                          const double dx, const double dy,
+                          const long double dx, const long double dy,
                           const int n_x_min, const int n_x_max,
                           const int n_y_min, const int n_y_max,
-                          const double min_x, const double min_y,
-                          double delta_y_p, double delta_x_p,
-                          const double delta_y_p_init,
-                          const double delta_x_p_init,
-                          double Dt, Funz_C* f, double& maxC)
+                          const long double min_x, const long double min_y,
+                          long double delta_y_p, long double delta_x_p,
+                          const long double delta_y_p_init,
+                          const long double delta_x_p_init,
+                          long double Dt, Funz_C* f, long double& maxC)
 {
     char buffer[52]; // The filename buffer.
     ofstream file3D_c;
-    array<double,2> x_0;
-    double c=0;
+    array<long double,2> x_0;
+    long double c=0;
     int i_x=0,i_y=0;
     
     for (int n_colonna=start_for; n_colonna<end_for; n_colonna+=update_for) {

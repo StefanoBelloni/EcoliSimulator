@@ -41,17 +41,17 @@
 class Funz_C_Inter : public Funz_C_Par {
 public:
     
-//    vector<vector<double> > f_c;    
+//    vector<vector<long double> > f_c;    
     
     Funz_C_Inter();
     
     
     
     void set_parameter(); 
-//    void get_coordinate(double *x, int *n);
+//    void get_coordinate(long double *x, int *n);
     /** it returns the value of the discretized version of c(t,x) on a grid*/
-    double new_F_C(double t, std::array<double,2> x);
-    void print_fc(std::ofstream &file_save, double t);
+    long double new_F_C(long double t, std::array<long double,2> x);
+    void print_fc(std::ofstream &file_save, long double t);
     void print_info(std::ofstream &file_save);
 
     

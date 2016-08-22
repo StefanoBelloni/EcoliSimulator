@@ -277,7 +277,7 @@ EcoliRisp<<"9"<<endl;
 EcoliRisp<<"#Do you want to change parameters of the function? press 0 for yes, "<<endl;
 EcoliRisp<<"1"<<endl;
 EcoliRisp<<"#What dx do you want to applay to the mesh? (dx=dy)"<<endl;
-EcoliRisp<<"0.01"<<endl;
+EcoliRisp<<"0.002"<<endl;
 EcoliRisp<<"#Which is the degradation rate of the PDE model of the Evolution of Ligand"<<endl;
 EcoliRisp<<"0.05"<<endl;
 EcoliRisp<<"#Insert the diffusion coefficient D"<<endl;

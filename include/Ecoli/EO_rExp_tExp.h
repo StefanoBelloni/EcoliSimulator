@@ -34,21 +34,21 @@ class EO_rExp_tExp : public ParameterEstimation_E_coli {
     
 protected:
     
-//    double D_theta;
-    double t_e;
-    double t_a;
+//    long double D_theta;
+    long double t_e;
+    long double t_a;
     
     //Parametri funzione lambda
     int tipo_lambda;
-    double A_0;
-    double A_1; 
-    double A_2; 
-    double A_3;
+    long double A_0;
+    long double A_1; 
+    long double A_2; 
+    long double A_3;
     
-//    double y_2;
-    vector<double> m;
+//    long double y_2;
+    vector<long double> m;
     
-    int writeScriptgnuplotSingle(std::string tipo, std::string *names_files_Ecoli_mod, std::string *names_files_tau_mod, std::string *names_info_mod, std::string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_);
+    int writeScriptgnuplotSingle(std::string tipo, std::string *names_files_Ecoli_mod, std::string *names_files_tau_mod, std::string *names_info_mod, std::string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_);
     
 public:
     
@@ -57,15 +57,15 @@ public:
     
     void change_par(int change);
     void change_lambda_par();
-    virtual double f_lambda();
-    void stationary_dyn(double dt, std::vector<double> &m0, int changed_pos);
+    virtual long double f_lambda();
+    void stationary_dyn(long double dt, std::vector<long double> &m0, int changed_pos);
     
-    int agg_dyn(double dt, double t);
-    void agg_dyint(double dt, double t);
+    int agg_dyn(long double dt, long double t);
+    void agg_dyint(long double dt, long double t);
     
-    void save_dyn(std::ofstream &file_, double t);
+    void save_dyn(std::ofstream &file_, long double t);
     
-    void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim);
+    void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
 //    void gnuplotFunzInternalDynalmic(std::string buffer, int save_, int cont_gen_sim);
     int saveIntDyn(std::string nameFile);
     

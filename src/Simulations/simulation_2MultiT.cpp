@@ -64,7 +64,7 @@ using namespace std;
 /*! \brief Function that performs the actual simulation of independent population */
 
 
-int simulation_2MultiT(E_coli *batterio, double T_f,Funz_C *f,double *x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread)
+int simulation_2MultiT(E_coli *batterio, long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread)
 {
     
     
@@ -81,8 +81,8 @@ int simulation_2MultiT(E_coli *batterio, double T_f,Funz_C *f,double *x0,double 
     
     vector<E_coli*> batterioCopia;
     vector<Funz_C*> funzCcopy;
-    vector<std::array<double, 2> > x_0;
-    array<double, 2> x__temp;
+    vector<std::array<long double, 2> > x_0;
+    array<long double, 2> x__temp;
     x__temp[0]=x0[0];
     x__temp[1]=x0[1];
     
@@ -160,11 +160,11 @@ string setNametempFiles(string name, int n_thread){
 
 /*! start a thread of simulation. */
 
-void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2> x0,double dt,int n_c,double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread, int& dim_line_save)
+void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<long double,2> x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread, int& dim_line_save)
 {
     
     
-    double errore = 0.000000001;
+    long double errore = 0.000000001;
     
     seedRandomObj(n_thread+1,this_thread::get_id());
 
@@ -195,8 +195,8 @@ void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2
     // VARIABILI VARIE
     // Variabili salti
     int n_m0=batterio->N_dyn_var();
-    vector<double> m0;
-    double c_iniziale_prec=-10;
+    vector<long double> m0;
+    long double c_iniziale_prec=-10;
     //-------->
     m0.resize(n_m0);
     
@@ -211,7 +211,7 @@ void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2
     int n_files=0;
 
     // DATI PER LARGE DISTRIBUTION
-    double Delta_delta_dist;
+    long double Delta_delta_dist;
     int delta_dist_cont,cont_dist_5;
     unsigned int cont_temp;
     unsigned int cont_salvataggio_pos=0,cont_temp_glob;//,cont_string_bat;
@@ -260,7 +260,7 @@ void startThreadSimulation(E_coli *batterio, double T_f,Funz_C *f,array<double,2
  
     //   INIZIALIZZAZIONE PARAMETRI
     
-    double t=0;                    //tempo cronometro batterio
+    long double t=0;                    //tempo cronometro batterio
     //cont_string_bat=0;
     int max_index_T=floor(T_f/dt);
     

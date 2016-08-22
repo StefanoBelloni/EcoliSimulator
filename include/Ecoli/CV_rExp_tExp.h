@@ -25,7 +25,7 @@ class CV_rExp_tExp : public ParameterEstimation_E_coli {
     
 protected:
     
-//    double D_theta;
+//    long double D_theta;
     /** parameter in the Celani Vergassola Model: 
      - m[2]=m[2]+dt*(2*m[1]-nu_*m[2]);
      - m[1]=m[1]+dt*(m[0]-nu_*m[1]);
@@ -40,7 +40,7 @@ protected:
      \f}
      
      */
-    double nu_;
+    long double nu_;
     /** parameter in the Celani Vergassola Model:
      - m[2]=m[2]+dt*(2*m[1]-nu_*m[2]);
      - m[1]=m[1]+dt*(m[0]-nu_*m[1]);
@@ -55,7 +55,7 @@ protected:
      \f}
      
      */
-    double beta_2;
+    long double beta_2;
     /** parameter in the Celani Vergassola Model:
      - m[2]=m[2]+dt*(2*m[1]-nu_*m[2]);
      - m[1]=m[1]+dt*(m[0]-nu_*m[1]);
@@ -70,7 +70,7 @@ protected:
      \f}
      
      */
-    double beta_3;
+    long double beta_3;
     
     //Parametri funzione lambda
     /** type of function: if you want to add new function change the function f_lambda() accordingly*/
@@ -79,22 +79,22 @@ protected:
       - in tipo_lambda=2;
          -A_0;   // estremo destro
      */
-    double A_0;
+    long double A_0;
     /** One of the parameter for the function lambda:
        - tipo_lambda=2;
         - A_1   // estremo sinistro (<0)
      */
-    double A_1;
+    long double A_1;
     /** One of the parameter for the function lambda:
      - tipo_lambda=2;
         - A_2    // moltiplicatore "Q>a1"
      */
-    double A_2;
+    long double A_2;
     /** One of the parameter for the function lambda:
      - tipo_lambda=2;
         - A_3  // moltiplicatore "Q<-a0"
      */
-    double A_3;
+    long double A_3;
     
     /** Memory term in celani vergassola
      Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
@@ -102,7 +102,7 @@ protected:
        \mathcal{Q}(t)=\sum_{k=1}^{k_{N}}\beta_{k}\nu^{k+1}m_{k}(t)
      \f}
      */
-    double Q;
+    long double Q;
     /** vector of the internal dynamic variables: they satisfy
      \f{equation}{
      \frac{d}{dt}m_{k}=-\nu\cdot m_{k} + f_{k},
@@ -110,9 +110,9 @@ protected:
      featuring a relaxation term and a forcing term \f$f_{k} = k\cdot m_{k-1}\f$ for \f$k\geq1\f$ and \f$f_{0}= c\f$ for \f$k=0\f$.
 
      */
-    vector<double> m;
+    vector<long double> m;
     
-    int writeScriptgnuplotSingle(std::string tipo, std::string *names_files_Ecoli_mod, std::string *names_files_tau_mod, std::string *names_info_mod, std::string &names_file_dyn_mod, double T_f, int con_gen_sim, int save_);
+    int writeScriptgnuplotSingle(std::string tipo, std::string *names_files_Ecoli_mod, std::string *names_files_tau_mod, std::string *names_info_mod, std::string &names_file_dyn_mod, long double T_f, int con_gen_sim, int save_);
 //    int writeScriptLunchgnuplotSingle(std::string tipo, int save_, int con_gen_sim);
     
 public:
@@ -126,14 +126,14 @@ public:
       It uses the parameter Q
      @return return the value \f$\lambda(Q)\f$
      */
-    virtual double f_lambda();
-    void stationary_dyn(double dt, std::vector<double> &m0, int changed_pos);
+    virtual long double f_lambda();
+    void stationary_dyn(long double dt, std::vector<long double> &m0, int changed_pos);
     
-    int agg_dyn(double dt, double t);
-    void agg_dyint(double dt, double t);
-    void save_dyn(std::ofstream &file_, double t);
+    int agg_dyn(long double dt, long double t);
+    void agg_dyint(long double dt, long double t);
+    void save_dyn(std::ofstream &file_, long double t);
     
-    void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, double T_f, Funz_C *f, int save_, int con_gen_sim);
+    void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
 //    void gnuplotFunzInternalDynalmic(std::string buffer, int save_, int cont_gen_sim);
     int saveIntDyn(std::string nameFile);
     void reset_par();

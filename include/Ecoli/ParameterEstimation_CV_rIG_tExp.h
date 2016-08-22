@@ -32,23 +32,23 @@ class ParameterEstimation_CV_rIG_tExp : public CV_rIG_tExp{
     ParameterEstimation_CV_rIG_tExp(const ParameterEstimation_CV_rIG_tExp& modello);
     
 //    s_lambda s_lambda_r;
-    //    double s_lambda_t;
+    //    long double s_lambda_t;
     
 //    string distribution_I_r;    
-//    double I_tau_r[2];
+//    long double I_tau_r[2];
 //    string distribution_I_t;
-//    double I_tau_t[2];
+//    long double I_tau_t[2];
     
     // methods
     
 //    friend s_lambda s_F_lambda_r(E_coli *batterio, vector<Q_tau_stat> vector_lambda, int n_vect, int funz_L);
-    double f_lambda();  // virtual from CV_rExp_tExp
-    double f_sigma();
+    long double f_lambda();  // virtual from CV_rExp_tExp
+    long double f_sigma();
     void s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect);
     
 //    void gnuplotFunzInternalDynalmic(string title, int save_, int gen_con_sim);
     int saveIntDyn(string nameFile);
-//    int agg_dyn(double dt, double t);
+//    int agg_dyn(long double dt, long double t);
     
 };
 

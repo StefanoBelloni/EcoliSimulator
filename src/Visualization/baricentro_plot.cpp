@@ -20,7 +20,7 @@ using namespace std;
 
 void funz_clear();
 void lunch_gnuplot(string name_file_gnu);
-int writeScriptBarycenter(int save_, string name, string name_file_bar,double D_msq);
+int writeScriptBarycenter(int save_, string name, string name_file_bar,long double D_msq);
 string setBaricenterName(int cont_gen_sim);
 int renameCpp(string oldname, string newname);
 string setFitName(int cont_gen_sim);
@@ -41,25 +41,25 @@ string setNameScriptBaricenter(string name, int save_);
  * @param name file where the info are saved (see line 55 - ..)
  */
 
-void baricentro_plot(string name, std::vector<std::vector<double> > &x_t,std::vector<std::vector<double> > &y_t,int n_c,int dim_col_t, int cont_gen_sim)
+void baricentro_plot(string name, std::vector<std::vector<long double> > &x_t,std::vector<std::vector<long double> > &y_t,int n_c,int dim_col_t, int cont_gen_sim)
 {
     
     cout << "plot of the baricenter trajectory and the mean square displacement:";
     
     string temp;
-    double Dt=0;
+    long double Dt=0.0L;
     int const_salv=0;
     
-    double x=0,y=0;
-    double x0=0,y0=0;
+    long double x=0.0L,y=0.0L;
+    long double x0=0.0L,y0=0.0L;
     
-    double v_x=0,v_y=0;
-    double x_1=0,y_1=0;  // coordinata prec.   
+    long double v_x=0.0L,v_y=0.0L;
+    long double x_1=0.0L,y_1=0.0L;  // coordinata prec.
     
-    double D2=0.0;
-    double deltaD=0.0;
+    long double D2=0.0L;
+    long double deltaD=0.0L;
 
-    double initalD = 0.0;
+    long double initalD = 0.0L;
     
     ofstream file_baricentro_speed;
     ifstream file_info;
@@ -192,7 +192,7 @@ string setFitName(int cont_gen_sim){
  */
 // One should do the same for the other scripts in the program ...
 
-int writeScriptBarycenter(int save_, string name, string name_file_bar, double initialD){
+int writeScriptBarycenter(int save_, string name, string name_file_bar, long double initialD){
     
     string name_script_baricenter = setNameScriptBaricenter(name, save_);
     

@@ -28,7 +28,7 @@ using namespace std;
 
 /**
  * This function accept a list of .m files, and produed a file that allows a c program to write the m-files
- * NOTE in the fprintf \\n; substitute with : \\\\n (one slash n with double slash n)
+ * NOTE in the fprintf \\n; substitute with : \\\\n (one slash n with long double slash n)
  */
 
 int from_m_files_to_cpp(int argc, char *argv[]){

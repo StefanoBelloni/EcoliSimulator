@@ -30,7 +30,7 @@ using namespace std;
 //
 
 
-//vector<vector<double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
+//vector<vector<long double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
 
 
 // COSTANTI
@@ -52,7 +52,7 @@ void loadbar(unsigned int x, unsigned int n, unsigned int w);
  * @param n_salti_colonne how many time-point jumps between two data to be saved and plot
  */
 
-double histogram_3D_gnuplot(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> > x,vector<vector<double> > y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, double &maxC, string name_file_info)
+long double histogram_3D_gnuplot(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> > x,vector<vector<long double> > y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, string name_file_info)
 {
     
     maxC=-1000;
@@ -61,17 +61,17 @@ double histogram_3D_gnuplot(double max_x, double max_y, double min_x,double min_
         maxC=5;
     
     int i_x,i_y,i_c; // Contatori vari.
-//    double delta_x=0;
-    double delta_x_p=dx; // estremi intervallo x histogram
-//    double delta_y=0;
-    double delta_y_p=dy; // estremi intervallo y histogram
+//    long double delta_x=0;
+    long double delta_x_p=dx; // estremi intervallo x histogram
+//    long double delta_y=0;
+    long double delta_y_p=dy; // estremi intervallo y histogram
 //    int found=0; // se ho sistemato il batterio considerato --> setto la variabile pari a 1.
     int max_z=0;
     
-    double Dt=0.1;
-    array<double,2> x_0;
-//    double T_f=1.0;
-    double c=0.0;
+    long double Dt=0.1;
+    array<long double,2> x_0;
+//    long double T_f=1.0;
+    long double c=0.0;
     int num_funz=0;
     
     char buffer[52]; // The filename buffer.
@@ -191,13 +191,13 @@ double histogram_3D_gnuplot(double max_x, double max_y, double min_x,double min_
  * This function create a "hitsogram-Percentage" of bacteria going up down or constant gradient
  */
 
-int percSignFunzC(vector< vector<double> > c_t, int n_c, int dim_col_t, string nameInfo){
+int percSignFunzC(vector< vector<long double> > c_t, int n_c, int dim_col_t, string nameInfo){
     
     cout << "\nElaboration file 'PercUpDownh.dat'" << endl;
     
     int const_salv;
     string temp;
-    double Dt;
+    long double Dt;
     ifstream file_info;
     
     file_info.open(nameInfo.c_str());
@@ -211,8 +211,8 @@ int percSignFunzC(vector< vector<double> > c_t, int n_c, int dim_col_t, string n
     
     string name = "PercUpDownh.dat"; // The filename buffer.
     ofstream fileP;
-    vector<vector<double> > z;
-    z.resize( dim_col_t , vector<double>( 4 , 0 ) );
+    vector<vector<long double> > z;
+    z.resize( dim_col_t , vector<long double>( 4 , 0 ) );
     
     fileP.open(name.c_str());
     

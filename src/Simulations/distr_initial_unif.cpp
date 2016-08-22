@@ -11,7 +11,7 @@
 
 #include "constants.h" //#define pi 3.141592653589793238462
 
-double unifRand();
+long double unifRand();
 
 /** This function set the initial position.
  * @param x[] position of pacterium (to be set) 
@@ -21,7 +21,7 @@ double unifRand();
  * @return if the initial position change return 1, otherwise 0. If the position didn't change the initial condition for this bacterium are the same as the previous one, so we don't have to perform initial-condition calculation.
  */
 
-int dist_iniz(double x[], double x0[], double R,unsigned int num_dist){
+int dist_iniz(long double x[], long double x0[], long double R,unsigned int num_dist){
     switch (num_dist) {
         case 2:
             x[0] = x0[0]+R*sqrt(unifRand())*cos(2*pi*unifRand());

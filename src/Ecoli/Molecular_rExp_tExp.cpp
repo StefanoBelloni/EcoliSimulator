@@ -27,7 +27,7 @@
 
 using namespace std;
 
-int SecantMethodForEquation(Molecular_rExp_tExp *batterio, double& x, double x0, double x1, double c);
+int SecantMethodForEquation(Molecular_rExp_tExp *batterio, long double& x, long double x0, long double x1, long double c);
 
 Molecular_rExp_tExp::Molecular_rExp_tExp():ParameterEstimation_E_coli(){
     
@@ -110,13 +110,13 @@ Molecular_rExp_tExp::Molecular_rExp_tExp(const Molecular_rExp_tExp& model):Param
     
 }
 
-int Molecular_rExp_tExp::agg_dyn(double dt, double t)
+int Molecular_rExp_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     
     if (salto_==1) {
         
-//        double prob = pow(y_0/y,H)*0.0246600002466;
+//        long double prob = pow(y_0/y,H)*0.0246600002466;
 //        prob=1/prob;
 //        lambda_r+=prob*dt;
         
@@ -145,7 +145,7 @@ int Molecular_rExp_tExp::agg_dyn(double dt, double t)
     return salto_;    
 }
 
-void Molecular_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int changed_pos){
+void Molecular_rExp_tExp::stationary_dyn(long double dt, std::vector<long double> &m0,int changed_pos){
     
     t_r=0.0;
     t_t=0.0;
@@ -168,13 +168,13 @@ void Molecular_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int 
         y=k_a*a/(k_a*a+k_z);
         
         // METHOD 1 ::: CHANGE ALSO IN agg_dynint
-        double h=1/(1+pow(y/y_0,H));
+        long double h=1/(1+pow(y/y_0,H));
         p_r=(h/(1-h))/tau_t;
         
         factor_prob = tau_r*p_r;
         
         // METHOD 2
-//        double h=pow(y_0/y,H)*tau_t;
+//        long double h=pow(y_0/y,H)*tau_t;
 //        p_r=1/tau_t;
 //        
 //        factor_prob = tau_r/h;
@@ -207,7 +207,7 @@ void Molecular_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int 
     
 }
 
-void Molecular_rExp_tExp::save_dyn(std::ofstream &file_, double t){
+void Molecular_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
     
     file_ << t << " " << lambda_r << " " << lambda_t << " " << meth << " " << y << " " << a << " " << p_r << endl;
     

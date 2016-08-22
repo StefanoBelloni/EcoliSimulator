@@ -17,16 +17,16 @@
 
 void funz_clear();
 
-void filmato_3D_gnuplotMultiT(std::string names_info[],double max_x, double max_y, double min_x,double min_y, double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, double max_fc);
+void filmato_3D_gnuplotMultiT(std::string names_info[],long double max_x, long double max_y, long double min_x,long double min_y, long double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, long double max_fc);
 
-int scriptFilmato3DgnuplotMultiT(double Dt/*dt*(epsilon*epsilon)*/, double maxX, double maxY, double minX, double minY, double max_z, double max_fc, int dim_col_t, int save_, int cont_sim,int i = 0, int n_threadTot = 1);
+int scriptFilmato3DgnuplotMultiT(long double Dt/*dt*(epsilon*epsilon)*/, long double maxX, long double maxY, long double minX, long double minY, long double max_z, long double max_fc, int dim_col_t, int save_, int cont_sim,int i = 0, int n_threadTot = 1);
 
-int scriptFilmato3Dgnuplot(double Dt/*dt*(epsilon*epsilon)*/, double maxX, double maxY, double minX, double minY, double max_z, double max_fc, int dim_col_t, int save_, int cont_sim);
+int scriptFilmato3Dgnuplot(long double Dt/*dt*(epsilon*epsilon)*/, long double maxX, long double maxY, long double minX, long double minY, long double max_z, long double max_fc, int dim_col_t, int save_, int cont_sim);
 
-//int scriptMultiPlot(int risp_n, std::string title, double min_x, double max_x, double min_y, double max_y, double max_z, std::vector<int> frame_n, double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int con_gen, int smaller = 0);
+//int scriptMultiPlot(int risp_n, std::string title, long double min_x, long double max_x, long double min_y, long double max_y, long double max_z, std::vector<int> frame_n, long double Dt/*dt*(epsilon*epsilon)*/, int n_iter, int save_, int con_gen, int smaller = 0);
 void lunch_gnuplot(std::string name_file_gnu);
 
-//int scriptUpDownPer(std::string title, double T, int save, int smaller);
+//int scriptUpDownPer(std::string title, long double T, int save, int smaller);
 
 int lunchMultiThread3Dgnuplot(int n_thread, int cont_sim, bool last = false, int n_max = 0, int n_thread_tot = 1);
 std::string setNamescript3DMultiT(int cont_sim, int nthread);
@@ -35,5 +35,5 @@ void deleteSCRIPT_GNUPLOTplay_videoMultiT(int cont_sim, int n_thread_tot);
 
 int checkFrames(int n_thread_tot, int cont_sim, int n_max);
 
-void filmato_3D_gnuplot_gif(std::string names_info[],double max_x, double max_y, double min_x,double min_y, double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, double max_fc);
+void filmato_3D_gnuplot_gif(std::string names_info[],long double max_x, long double max_y, long double min_x,long double min_y, long double max_z, int dim_col_t, Funz_C *f, int cont_gen_sim, long double max_fc);
 #endif /* filmato_3D_gnuplotMultiThread_hpp */

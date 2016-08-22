@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <fstream>
 #include <cmath>
 #include <thread>
+#include <iomanip>
 
 #include <limits>
 #include <ctime>
@@ -57,20 +58,20 @@ int writeLog(string what, string msg);
  */
 // There is a function gnuplot_large_population_iteracting, but it has been absorbed in this one!
 
-void gnuplot_large_population(string file_info[], string name_dyn, double T_f, int n_c, int dim_col_t, string names, Funz_C *f, int cont_gen_sim) 
+void gnuplot_large_population(string file_info[], string name_dyn, long double T_f, int n_c, int dim_col_t, string names, Funz_C *f, int cont_gen_sim) 
 // Nelle variabili -> da aggiungere quanto relativo ai salti per batterio
 {
     int risp;
-    double min_x=10000;
-    double max_x=-10000;
-    double min_y=10000;
-    double max_y=-10000;
-    double max_z=0.0;
-    double maxC = 0.0;
+    long double min_x=10000;
+    long double max_x=-10000;
+    long double min_y=10000;
+    long double max_y=-10000;
+    long double max_z=0.0;
+    long double maxC = 0.0;
     unsigned int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
     // Lettura riga file.
     string temp_string;
-    vector< vector<double> > x_t,y_t,sign_c_t; // matrici equivalenti a P(2,i,j) in Matlab_program
+    vector< vector<long double> > x_t,y_t,sign_c_t; // matrici equivalenti a P(2,i,j) in Matlab_program
     // Files da leggere
     ifstream posizione;        
     posizione.open(names.c_str());
@@ -81,9 +82,9 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
     
     if (automatic_!=1) {
         try {
-            x_t.resize( dim_col_t, vector<double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!!
-            y_t.resize( dim_col_t , vector<double>( n_c , 0 ) );
-            sign_c_t.resize( dim_col_t , vector<double>( n_c , 0 ) );
+            x_t.resize( dim_col_t, vector<long double>( n_c , 0 ) );     // x_t[0 < cont_temp < dim_col_t][0 < j< n_c]  <--  come accedere alla matrice!!
+            y_t.resize( dim_col_t , vector<long double>( n_c , 0 ) );
+            sign_c_t.resize( dim_col_t , vector<long double>( n_c , 0 ) );
         }catch(bad_alloc &e) {
             cout << "error resizing ... " << endl;
             cout << "in gnuplot_large_population.cpp, line 110" << endl;
@@ -94,8 +95,11 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
             for (int i=0; i<dim_col_t; i++) {
                 // Leggo una riga del file (formattato così "x,y\n" ) e la divido nelle due sue parti "x" "," "y"
                 getline(posizione,temp_string); 
-                std::istringstream ss(temp_string);
+                std::stringstream ss(temp_string);
+                ss.precision(20);
+                
                 ss >> x_t[i][j] >> y_t[i][j] >> sign_c_t[i][j];
+//                cout << std::setprecision(25) << x_t[i][j] << endl;
                 min_x=min(min_x,x_t[i][j]);
                 min_y=min(min_y,y_t[i][j]);
                 max_x=max(max_x,x_t[i][j]);
@@ -103,15 +107,15 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
             }
         }
         
-        double max_x_=max(max_x,max_y);
-        double max_y_=max_x;
-        double min_x_=min(min_x,min_y);
-        double min_y_=min_x;
+        long double max_x_=max(max_x,max_y);
+        long double max_y_=max_x;
+        long double min_x_=min(min_x,min_y);
+        long double min_y_=min_x;
         
         // Creo i files per fare il filmato.
 
-        double dx;
-        double dy;
+        long double dx;
+        long double dy;
         
         if (n_c>100) {
             dx=(max_x_-min_x_)/sqrt(n_c);
@@ -128,8 +132,8 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
             dy = 0.001;
         }
   
-        double x_delta_hist=min_x;
-        double y_delta_hist=min_y;
+        long double x_delta_hist=min_x;
+        long double y_delta_hist=min_y;
         
         int n_dx=0;
         int n_dy=0;
@@ -157,19 +161,19 @@ void gnuplot_large_population(string file_info[], string name_dyn, double T_f, i
         
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the creation and saving of the film:\n     ";
-        cout << chrono::duration <double, milli> (diff).count()/1000 << " seconds" << endl;
+        cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
         cout << "***************************************************\n"<<RESET;
         
         
         // LOG FILE
 //        stringstream msg;
 //        msg.str("");
-//        msg << chrono::duration <double, milli> (diff).count()/1000 << " seconds";
+//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
 //        writeLog("HISTOGRAMS: data elaborated and saved to file in ",msg.str());
    
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);
         if (error!=0) {
-            cout << "\nerror in function percSignFunzC(vector< vector<double> > c_t, int n_c, int dim_col_t)\n";
+            cout << "\nerror in function percSignFunzC(vector< vector<long double> > c_t, int n_c, int dim_col_t)\n";
         }
     }
 

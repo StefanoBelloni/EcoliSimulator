@@ -21,6 +21,7 @@
 #include "sssr.h"
 #include "Colori.h"
 
+#include <iomanip>
 
 #ifndef max
 #define max( a, b ) ( ((a) > (b)) ? (a) : (b) )
@@ -28,6 +29,8 @@
 #ifndef min
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
+
+#define precision_output 20
 
 #include "constants.h" //#define pi 3.141592653589793238462
 
@@ -47,7 +50,7 @@ int writeLog(string what, string msg);
 
 //***************************************************************
 
-void E_coli::agg_ligand(double t, Funz_C *f){
+void E_coli::agg_ligand(long double t, Funz_C *f){
     
     c = f->new_F_C(t, x);  
 //    cout << "f("<<t<<","<<x[0]<<","<<x[1]<<") = " << c << endl;
@@ -63,7 +66,7 @@ void E_coli::agg_ligand(double t, Funz_C *f){
 
 //*************************************************************** 
 
-//int E_coli::initial_condition(double t, double *x0, Funz_C *f){
+//int E_coli::initial_condition(long double t, long double *x0, Funz_C *f){
 //    
 //    x[0]=x0[0];
 //    x[1]=x0[1];
@@ -93,7 +96,7 @@ void E_coli::agg_ligand(double t, Funz_C *f){
 //**************************
 //***************************************************************
 
-void E_coli::stationary_dyn(double dt, std::vector<double> &m0, int change_pos){
+void E_coli::stationary_dyn(long double dt, std::vector<long double> &m0, int change_pos){
     
     t_r=0.0;
     t_t=0.0;
@@ -115,16 +118,16 @@ void E_coli::stationary_dyn(double dt, std::vector<double> &m0, int change_pos){
 
 //*************************************************************** 
 
-void E_coli::aggiornamento(double dt,double t, Funz_C *f, int &sign_p , std::ofstream *file_tau, std::ofstream &file_theta){
+void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , std::ofstream *file_tau, std::ofstream &file_theta){
     
-//    double dt=dt_/10;
+//    long double dt=dt_/10;
     
     // many if to check the border!!!
     
-    double x_M=f->max_x;
-    double x_m=f->min_x;
-    double y_M=f->max_y;
-    double y_m=f->min_x;
+    long double x_M=f->max_x;
+    long double x_m=f->min_x;
+    long double y_M=f->max_y;
+    long double y_m=f->min_x;
     
     int salto_risp=0;
     
@@ -147,7 +150,7 @@ void E_coli::aggiornamento(double dt,double t, Funz_C *f, int &sign_p , std::ofs
     
     // Aggiornamento ligant
     
-    double c_p=c;
+    long double c_p=c;
     agg_ligand(t, f);
     
 //----------> up_down index!!!    
@@ -311,7 +314,7 @@ void E_coli::aggiornamento(double dt,double t, Funz_C *f, int &sign_p , std::ofs
 
 //***************************************************************
 
-int E_coli::agg_dyn(double dt, double t)
+int E_coli::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
 
@@ -354,7 +357,7 @@ E_coli::E_coli()/*:std_unifRand(0.0,1.0)*/{
     
 //    std::random_device   m_rd;
 //    engine_theta = new std::mt19937_64(m_rd());
-//    std_unifRand = std::uniform_real_distribution<double>(0.0,1.0);
+//    std_unifRand = std::uniform_real_distribution<long double>(0.0,1.0);
     
     //***************************  
     
@@ -415,7 +418,7 @@ E_coli::E_coli(const E_coli& m)/*:std_unifRand(0.0,1.0)*/{
     this->tipoNewTheta = m.tipoNewTheta;
     this->production_rate = m.production_rate;
     
-//    std_unifRand = std::uniform_real_distribution<double>(0.0,1.0);
+//    std_unifRand = std::uniform_real_distribution<long double>(0.0,1.0);
     
     //***************************
     
@@ -673,10 +676,10 @@ void E_coli::reset_par(){
 //***************************************************************
 
 
-void E_coli::save_run(double t, std::ofstream &file_run, double dt){
+void E_coli::save_run(long double t, std::ofstream &file_run, long double dt){
    
 
-    file_run << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << endl;
+    file_run << std::setprecision(precision_output) << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << endl;
     
 //    if (t-t_r>8) {
 //        my_mutex.lock();
@@ -689,10 +692,10 @@ void E_coli::save_run(double t, std::ofstream &file_run, double dt){
     
 }
 
-void E_coli::save_tumble(double t, ofstream &file_tumble, double dt){
+void E_coli::save_tumble(long double t, ofstream &file_tumble, long double dt){
 
-    double rnd = unifRand_ec();
-    file_tumble << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << endl;
+    long double rnd = unifRand_ec();
+    file_tumble << std::setprecision(precision_output) << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << endl;
 
 //    file_tumble << t << " " << t-t_t << endl << " " << c << endl;
 //    last_tau_r=t-t_t;
@@ -700,24 +703,24 @@ void E_coli::save_tumble(double t, ofstream &file_tumble, double dt){
 }
 
 
-void E_coli::save_theta(double t, double theta, std::ofstream &file_theta){
+void E_coli::save_theta(long double t, long double theta, std::ofstream &file_theta){
     
-    file_theta << t << " " << theta << endl;
+    file_theta << std::setprecision(precision_output) << t << " " << theta << endl;
     
 }
 
-void E_coli::save_E_coli_initial(std::ofstream *file_, double t){
+void E_coli::save_E_coli_initial(std::ofstream *file_, long double t){
     
     my_mutex.lock();
-    file_[0] << x[0] << " " << x[1] << " " << up_down << endl;
+    file_[0] << std::setprecision(precision_output) << x[0] << " " << x[1] << " " << up_down << endl;
         cout << "save        (x,y): " << x[0] << " , " << x[1] << " , " << up_down << endl;
 //        file_[0] << x[0] << " " << x[1] << " " << sign_c << endl;
-    file_[1] << t << " " << theta << endl;
-    file_[2] << t << " " << c << endl;
+    file_[1] << std::setprecision(precision_output) << t << " " << theta << endl;
+    file_[2] << std::setprecision(precision_output) << t << " " << c << endl;
     my_mutex.unlock();
 }
 
-void E_coli::save_E_coli(std::ofstream *file_, double t){
+void E_coli::save_E_coli(std::ofstream *file_, long double t){
     
     // Magari è meglio up/down
     // up_down:
@@ -728,18 +731,18 @@ void E_coli::save_E_coli(std::ofstream *file_, double t){
 //    int val = (up_down==2)?0:up_down;
 
 //    my_mutex.lock();
-    file_[0] << x[0] << " " << x[1] << " " << up_down << endl;
+    file_[0] << std::setprecision(precision_output) << x[0] << " " << x[1] << " " << up_down << endl;
 //    cout << "save (x,y)" << x[0] << " , " << x[1] << " " << up_down << endl;
 //    file_[0] << x[0] << " " << x[1] << " " << sign_c << endl;
-    file_[1] << t << " " << theta << endl;
-    file_[2] << t << " " << c << endl;
+    file_[1] << std::setprecision(precision_output) << t << " " << theta << endl;
+    file_[2] << std::setprecision(precision_output) << t << " " << c << endl;
 //    my_mutex.unlock();
     
 }
 
-void E_coli::save_dyn(ofstream &file_, double t){
+void E_coli::save_dyn(ofstream &file_, long double t){
     
-    file_ << t << " " << lambda_r << " " << lambda_t << endl;
+    file_ << std::setprecision(precision_output) << t << " " << lambda_r << " " << lambda_t << endl;
     
 }
 
@@ -747,10 +750,10 @@ void E_coli::save_dyn(ofstream &file_, double t){
 
 //#define nahrung 0.05;
 
-//void E_coli::eat(Funz_C* f_i, double dt){
+//void E_coli::eat(Funz_C* f_i, long double dt){
 //        
 //    int n_x[2];
-//    double nahrung=dt*0.05;
+//    long double nahrung=dt*0.05;
 //    f_i->get_coordinate(x,n_x);
 //    (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]-=((*(f_i->f_c))[n_x[0]*f_i->n_y+n_x[1]])*nahrung;
 //    
@@ -758,10 +761,10 @@ void E_coli::save_dyn(ofstream &file_, double t){
 //    
 //}
 
-void E_coli::produce(Funz_C* f_i, double dt)
+void E_coli::produce(Funz_C* f_i, long double dt)
 {    
     int n_x[4];
-//    double product=dt*0.5;
+//    long double product=dt*0.5;
     
     // I spilt in 4.
     
@@ -816,7 +819,7 @@ void E_coli::response_function(){
     
 }
 
-void E_coli::set_response(int ftipo_response_c, double fRC_0, double fRC_1, int fRC_q){
+void E_coli::set_response(int ftipo_response_c, long double fRC_0, long double fRC_1, int fRC_q){
     
     tipo_response_c=ftipo_response_c;
     RC_0=fRC_0;
@@ -826,13 +829,13 @@ void E_coli::set_response(int ftipo_response_c, double fRC_0, double fRC_1, int 
     
 }
 
-void E_coli::set_GoodnessFit(int Good, double D_n, double cumD_n){
+void E_coli::set_GoodnessFit(int Good, long double D_n, long double cumD_n){
     
     cout << "No fit possible ...\n";
     
 }
 
-void ParameterEstimation_E_coli::set_GoodnessFit(int Good, double D_n, double cumD_n){
+void ParameterEstimation_E_coli::set_GoodnessFit(int Good, long double D_n, long double cumD_n){
     
     GoodFit = Good;
     KS_D_n = D_n;
@@ -927,7 +930,7 @@ void E_coli::start_simulation(Funz_C *f){
     // comment this if you don't want 'random internal dynamics'
     
 //    std::uniform_int_distribution<int> std_unif_int(1,2);
-    std::uniform_real_distribution<double> std_unif_real(0.0,0.1);
+    std::uniform_real_distribution<long double> std_unif_real(0.0,0.1);
     salto_=(std_unif_real(*engine_altro)>0.5)?1:2;
     
     // random lambra_ iniziale:    
@@ -948,7 +951,7 @@ void E_coli::start_simulation(Funz_C *f){
  * return the position (2D (x,y)) of the bacterium
  */
 
-array<double, 2> E_coli::X(){
+array<long double, 2> E_coli::X(){
     return x;
 }
 
@@ -964,7 +967,7 @@ int E_coli::N_dyn_var(){
  * return the current level of Ligand Concentration that the nbacterium hat registered
  */
 
-double E_coli::C(){
+long double E_coli::C(){
     return c;
 }
 
@@ -972,7 +975,7 @@ double E_coli::C(){
  * return the level of Ligand concentration recorded at the beginning of the simulation
  */
 
-double E_coli::C_iniziale(){
+long double E_coli::C_iniziale(){
     return c_iniziale;
 }
 
@@ -980,11 +983,11 @@ double E_coli::C_iniziale(){
  * Return the production rate of Ligand concentration
  */
 
-double E_coli::Production_rate(){
+long double E_coli::Production_rate(){
     return production_rate;
 }
 
-void E_coli::setProductionRate(double _proRate){
+void E_coli::setProductionRate(long double _proRate){
     production_rate=_proRate;
 }
 
@@ -992,17 +995,17 @@ void E_coli::setProductionRate(double _proRate){
  * set the time the tumble starts
  */
 
-void E_coli::Tau_t(double t){
+void E_coli::Tau_t(long double t){
     tau_t = t;
 }
 
 void E_coli::Get_tipo_response_c(int T_r){
     tipo_response_c = T_r;
 }
-void E_coli::Get_RC_0(double Rc0){
+void E_coli::Get_RC_0(long double Rc0){
     RC_0 = Rc0;
 }
-void E_coli::Get_RC_1(double Rc1){
+void E_coli::Get_RC_1(long double Rc1){
     RC_1 = Rc1;
 }
 void E_coli::Get_RC_q(int Rcq){
@@ -1011,13 +1014,13 @@ void E_coli::Get_RC_q(int Rcq){
 int E_coli::F_tipo_response_c(){
     return tipo_response_c;
 }
-double E_coli::F_RC_0(){
+long double E_coli::F_RC_0(){
     return RC_0;
 }
-double E_coli::F_RC_1(){
+long double E_coli::F_RC_1(){
     return RC_1;
 }
-double E_coli::F_RC_q(){
+long double E_coli::F_RC_q(){
     return RC_q;
 }
 
@@ -1027,14 +1030,14 @@ double E_coli::F_RC_q(){
 // RANDOM
 //**********************
 
-double E_coli::Exp_dist_ec(){
+long double E_coli::Exp_dist_ec(){
     
-//    std::uniform_real_distribution<double> std_unifRand_(0.0,1.0);
+//    std::uniform_real_distribution<long double> std_unifRand_(0.0,1.0);
 //    return -log(std_unifRand_(*engine_theta));
     
-    std::exponential_distribution<double> std_expRand_(1.0);
+    std::exponential_distribution<long double> std_expRand_(1.0);
     
-    return /*double e = */ std_expRand_(*engine_barrier);
+    return /*long double e = */ std_expRand_(*engine_barrier);
     
 //    my_mutex.lock();
 //    cout << "e/t = " << e/tau_r << endl;
@@ -1044,19 +1047,19 @@ double E_coli::Exp_dist_ec(){
     
 }
 
-double E_coli::rand_normal_ec(double stddev){//Box muller method
+long double E_coli::rand_normal_ec(long double stddev){//Box muller method
     
     
-    std::normal_distribution<double> norm_Rand_(0.0,stddev);
+    std::normal_distribution<long double> norm_Rand_(0.0,stddev);
     return norm_Rand_(*engine_altro);
     
 }
 
-double E_coli::gamma_par_double_ec(){
+long double E_coli::gamma_par_double_ec(){
     
-    std::uniform_real_distribution<double> std_unifRand_(0.0,1.0);
+    std::uniform_real_distribution<long double> std_unifRand_(0.0,1.0);
     
-    double x=1;
+    long double x=1;
     
     for(int i=0;i<alpha;i++){
         x=x*std_unifRand_(*engine_theta);
@@ -1065,7 +1068,7 @@ double E_coli::gamma_par_double_ec(){
     return disp_gamma-log(x)*beta;
 }
 
-double E_coli::unifRand_ec(){
+long double E_coli::unifRand_ec(){
     
 //    thread_local static std::mt19937 rng(std::random_device{}());
 //    thread_local static std::uniform_int_distribution<int> uni;
@@ -1074,20 +1077,20 @@ double E_coli::unifRand_ec(){
 //    // than a uniform_int_distribution
 //    return uni(rng, decltype(uni)::param_type{min, max});
     
-    std::uniform_real_distribution<double> std_unifRand_(0.0,1.0);
+    std::uniform_real_distribution<long double> std_unifRand_(0.0L,1.0L);
     return std_unifRand_(*engine_altro);
-//    return rand_r(seed_ecoli) / double(RAND_MAX);
+//    return rand_r(seed_ecoli) / long double(RAND_MAX);
 }
 
-double E_coli::deltaW_ec(double dt){
+long double E_coli::deltaW_ec(long double dt){
     
 
     
-    double dW=0.0;
+    long double dW=0.0L;
     short R=4;
-    double stdt=sqrt(dt/R);
+    long double stdt=sqrt(dt/R);
     
-    std::normal_distribution<double> norm_Rand_(0.0,stdt);
+    std::normal_distribution<long double> norm_Rand_(0.0L,stdt);
     
     for (int j=0; j<R; j++) {
 //        dW+=rand_normal(stdt);
@@ -1097,20 +1100,20 @@ double E_coli::deltaW_ec(double dt){
     return dW;
 }
 
-double E_coli::newtheta_ec(double theta){
+long double E_coli::newtheta_ec(long double theta){
     
-    std::uniform_real_distribution<double> std_unifRand_(0.0,1.0);
+    std::uniform_real_distribution<long double> std_unifRand_(0.0L,1.0L);
 
     
     switch (tipoNewTheta) {
         {case 1:
-            double s=1;
-            double theta_=0;
+            long double s=1;
+            long double theta_=0.0L;
             if (std_unifRand_(*engine_theta)<=.5) {
                 s=-1;
             }
             theta_=theta;
-            double x=1;
+            long double x=1.0L;
             for(int i=0;i<alpha;i++){
                 x=x*std_unifRand_(*engine_theta);
             }
@@ -1118,7 +1121,7 @@ double E_coli::newtheta_ec(double theta){
             theta=theta+pi*s*x/180;
             if (fabs(theta)>5000) {
                 std::cout << "problem generation new_theta: given a default theta=theta+46*Unif[0,1]\n";
-                theta=theta_+s*46*std_unifRand_(*engine_theta)*pi/180;
+                theta=theta_+s*46.0L*std_unifRand_(*engine_theta)*pi/180.0L;
             }
             
             break;
@@ -1139,7 +1142,7 @@ double E_coli::newtheta_ec(double theta){
 }
 
 
-int E_coli::dist_iniz_ec(array<double,2> x0, double R,unsigned int num_dist)
+int E_coli::dist_iniz_ec(array<long double,2> x0, long double R,unsigned int num_dist)
 {
 //    cout << "int E_coli::dist_iniz_ec ..." << endl;
     
@@ -1184,7 +1187,7 @@ int E_coli::dist_iniz_ec(array<double,2> x0, double R,unsigned int num_dist)
  * @return if the initial position change return 1, otherwise 0. If the position didn't change the initial condition for this bacterium are the same as the previous one, so we don't have to perform initial-condition calculation.
  */
 
-int E_coli::initial_position_ec(int j, array<double,2> x0, double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, double Delta_delta_dist)
+int E_coli::initial_position_ec(int j, array<long double,2> x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist)
 {
     int cambiato=0;
     

@@ -22,7 +22,7 @@
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
-//double **createZeroMatrix(int n, int m);
+//long double **createZeroMatrix(int n, int m);
 
 using std::cout;
 using std::endl;
@@ -58,7 +58,7 @@ void Funz_C_Inter::set_parameter(){
     n_x=0;
     n_y=0;
     
-    double x=min_x;
+    long double x=min_x;
     
     while (x<=max_x) {
         x+=dx;
@@ -83,7 +83,7 @@ Funz_C_Inter::Funz_C_Inter(){
     
 }
 
-double Funz_C_Inter::new_F_C(double t, std::array<double,2> x){
+long double Funz_C_Inter::new_F_C(long double t, std::array<long double,2> x){
     
     int n_x[4];
     get_coordinate1(x,n_x);
@@ -96,7 +96,7 @@ double Funz_C_Inter::new_F_C(double t, std::array<double,2> x){
     
 }
 
-void Funz_C_Inter::print_fc(std::ofstream &file_save, double t){
+void Funz_C_Inter::print_fc(std::ofstream &file_save, long double t){
 
     int n=max(1,floor(.1/dx));
     

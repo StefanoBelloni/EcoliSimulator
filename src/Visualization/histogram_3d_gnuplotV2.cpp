@@ -36,7 +36,7 @@ using namespace std;
 //
 
 
-//vector<vector<double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
+//vector<vector<long double> > x,y hanno dim_col_t colonne e n_c righe, le accedo come x[colonne][righe]
 
 
 // COSTANTI
@@ -44,44 +44,44 @@ using namespace std;
 #include "constants.h" //#define pi 3.141592653589793238462
 
 //void wait_for_key ();
-void writeHistToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeHistToFile(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                     const int& cont_sim, const int& n_dx, const int& n_dy, const int& n_c,
-                    const double& min_x, const double& min_y,
-                    const double& dx, const double& dy,
-                    vector<vector<double> >& x,vector<vector<double> >& y,
+                    const long double& min_x, const long double& min_y,
+                    const long double& dx, const long double& dy,
+                    vector<vector<long double> >& x,vector<vector<long double> >& y,
                     const int& n_x_min, const int& n_x_max,
                     const int& n_y_min, const int& n_y_max,int &max_z);
 
-void writeFunzCToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeFunzCToFile(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                       const int cont_sim, const int n_dx, const int n_dy,
-                      const double min_x, const double min_y,
-                      const double dx, const double dy,
+                      const long double min_x, const long double min_y,
+                      const long double dx, const long double dy,
                       const int n_x_min, const int n_x_max,
                       const int n_y_min, const int n_y_max,
-                      double& maxC,
-                      const double Dt,
+                      long double& maxC,
+                      const long double Dt,
                       Funz_C *f);
 
 
 /*! Second version of histogram_3D_gnuplot*/
 
-double histogram_3D_gnuplotV2(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> >& x,vector<vector<double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, double &maxC, int risp_Max, int cont_sim, string name_file_info)
+long double histogram_3D_gnuplotV2(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_file_info)
 {
     if (f->interact!=0)
         maxC=0;
     
     int i_x,i_y,i_c; // Contatori vari.
-    //    double delta_x=0;
-    double delta_x_p=dx; // estremi intervallo x histogram
-    //    double delta_y=0;
-    double delta_y_p=dy; // estremi intervallo y histogram
+    //    long double delta_x=0;
+    long double delta_x_p=dx; // estremi intervallo x histogram
+    //    long double delta_y=0;
+    long double delta_y_p=dy; // estremi intervallo y histogram
     //    int found=0; // se ho sistemato il batterio considerato --> setto la variabile pari a 1.
     int max_z=0;
     
-    double Dt=0.1;
-    array<double,2> x_0;
-    double T_f=1.0;
-    double c=0.0;
+    long double Dt=0.1;
+    array<long double,2> x_0;
+    long double T_f=1.0;
+    long double c=0.0;
     int num_funz=0;
     
     char buffer[52]; // The filename buffer.
@@ -137,8 +137,8 @@ double histogram_3D_gnuplotV2(double max_x, double max_y, double min_x,double mi
         delta_y_p=min_y+dy/2;
     }
     
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
     
     for (int n_colonna=0; n_colonna<dim_col_t-1; n_colonna+=n_salti_colonne) {
         
@@ -238,18 +238,18 @@ double histogram_3D_gnuplotV2(double max_x, double max_y, double min_x,double mi
  * one thread create the histogram for the density, the other create the surface for the function c (if it is no_interaction mode).
  */
 
-double histogram_3D_gnuplotV2MultiThread(double max_x, double max_y, double min_x,double min_y, int n_dx, int n_dy, double dx, double dy, vector<vector<double> >& x,vector<vector<double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, double &maxC, int risp_Max, int cont_sim, string name_file_info)
+long double histogram_3D_gnuplotV2MultiThread(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_file_info)
 {    
     if (f->interact!=0)
         maxC=0;
     
-    double delta_x_p=dx; // estremi intervallo x histogram
-    //    double delta_y=0;
-    double delta_y_p=dy; // estremi intervallo y histogram
+    long double delta_x_p=dx; // estremi intervallo x histogram
+    //    long double delta_y=0;
+    long double delta_y_p=dy; // estremi intervallo y histogram
     //    int found=0; // se ho sistemato il batterio considerato --> setto la variabile pari a 1.
     int max_z=0;
-    double Dt=0.1;
-//    double T_f=1.0;
+    long double Dt=0.1;
+//    long double T_f=1.0;
     int num_funz=0;
     int n_x_min=0;
     int n_y_min = 0;
@@ -314,7 +314,7 @@ double histogram_3D_gnuplotV2MultiThread(double max_x, double max_y, double min_
         no_multithread=true;
     }
 
-    double maxC_temp = maxC;
+    long double maxC_temp = maxC;
     
     if (f->interact!=0) {
         if (no_multithread) {
@@ -350,11 +350,11 @@ double histogram_3D_gnuplotV2MultiThread(double max_x, double max_y, double min_
 /*! \brief This function write the histogram of the density to file.
  */
 
-void writeHistToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeHistToFile(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                     const int& cont_sim, const int& n_dx, const int& n_dy, const int& n_c,
-                    const double& min_x, const double& min_y,
-                    const double& dx, const double& dy,
-                    vector<vector<double> >& x,vector<vector<double> >& y,
+                    const long double& min_x, const long double& min_y,
+                    const long double& dx, const long double& dy,
+                    vector<vector<long double> >& x,vector<vector<long double> >& y,
                     const int& n_x_min, const int& n_x_max,
                     const int& n_y_min, const int& n_y_max,
                     int &max_z)
@@ -364,11 +364,11 @@ void writeHistToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_sa
     
     char buffer[52]; // The filename buffer.
     ofstream file3D_hist;
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
     vector<vector<int> > z;
     z.resize( n_dx , vector<int>( n_dy , 0 ) );
-    array<double,2> x_0;
+    array<long double,2> x_0;
     int i_x=0,i_y=0;
 
     
@@ -458,14 +458,14 @@ void writeHistToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_sa
 /*! \brief This function write the histogram of the density to file.
  */
 
-void writeFunzCToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_salti_colonne,
+void writeFunzCToFile(long double delta_y_p, long double delta_x_p, int dim_col_t, int n_salti_colonne,
                      const int cont_sim, const int n_dx, const int n_dy,
-                     const double min_x, const double min_y,
-                     const double dx, const double dy,
+                     const long double min_x, const long double min_y,
+                     const long double dx, const long double dy,
                      const int n_x_min, const int n_x_max,
                      const int n_y_min, const int n_y_max,
-                     double& maxC,
-                     const double Dt,
+                     long double& maxC,
+                     const long double Dt,
                      Funz_C *f)
 {
     
@@ -473,10 +473,10 @@ void writeFunzCToFile(double delta_y_p, double delta_x_p, int dim_col_t, int n_s
     
     char buffer[52]; // The filename buffer.
     ofstream file3D_c;
-    const double delta_y_p_init = delta_y_p;
-    const double delta_x_p_init = delta_x_p;
-    array<double,2> x_0;
-    double c=0;
+    const long double delta_y_p_init = delta_y_p;
+    const long double delta_x_p_init = delta_x_p;
+    array<long double,2> x_0;
+    long double c=0;
     int i_x=0,i_y=0;
     
     

@@ -41,7 +41,7 @@ Molecular_rIG_tExp::Molecular_rIG_tExp(const Molecular_rIG_tExp& modello)
     
 }
 
-double Molecular_rIG_tExp::f_sigma(){
+long double Molecular_rIG_tExp::f_sigma(){
     
     switch (tipo_sigma) 
     {
@@ -63,17 +63,17 @@ double Molecular_rIG_tExp::f_sigma(){
 }
 
 
-int Molecular_rIG_tExp::agg_dyn(double dt, double t)
+int Molecular_rIG_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     
-    double f=n_a*a_m*(m_0-meth)+n_a*log((1+c/K_off)/(1+c/K_on));
+    long double f=n_a*a_m*(m_0-meth)+n_a*log((1+c/K_off)/(1+c/K_on));
     
-    double a_p=a;
-    double h;
-    double meth_p=meth;
-    double y_p=y;
-    double prob_p=p_r;
+    long double a_p=a;
+    long double h;
+    long double meth_p=meth;
+    long double y_p=y;
+    long double prob_p=p_r;
     int n_iteration=1;
     dt=dt/n_iteration;
     
@@ -105,8 +105,8 @@ int Molecular_rIG_tExp::agg_dyn(double dt, double t)
     
     if (salto_==1) {
         
-        double sigma_x=f_sigma();
-        double lambda_star=lambda_r+dt*prob_p+sigma_x*deltaW_ec(dt);
+        long double sigma_x=f_sigma();
+        long double lambda_star=lambda_r+dt*prob_p+sigma_x*deltaW_ec(dt);
         
         bool condition_salto
         =  (exp(-2*(barriera_r-lambda_r)*(barriera_r-lambda_star)/(dt*pow(sigma_x,2)))>=unifRand_ec())

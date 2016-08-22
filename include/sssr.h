@@ -8,4 +8,4 @@
 
 
 void sssr(int &valore, std::string text);
-void sssr(double &valore, std::string text);
+void sssr(long double &valore, std::string text);

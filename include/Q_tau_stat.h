@@ -17,18 +17,18 @@ class Q_tau_stat
 {
 public:
     
-    double Q;
-    double mean;
-    double var;
-    double invX;
+    long double Q;
+    long double mean;
+    long double var;
+    long double invX;
     int n_rec;
-    double max_tau;
-    std::vector<double> tau_measured;
+    long double max_tau;
+    std::vector<long double> tau_measured;
     
-    void reset(double Q_ext);
-    Q_tau_stat(double Q_ext);    // constructor
+    void reset(long double Q_ext);
+    Q_tau_stat(long double Q_ext);    // constructor
     
-    double V_IG();               // V_n (n-3)/sum(1/X-1/mean(X))
+    long double V_IG();               // V_n (n-3)/sum(1/X-1/mean(X))
     
 };
 
@@ -37,12 +37,12 @@ public:
 class GoodFit{
 public:
     int Good_Fit; 
-    double D_n;
-    double cumD_n;
+    long double D_n;
+    long double cumD_n;
     
-    double Q_min;
-    double Q_max;
-    double dQ;
+    long double Q_min;
+    long double Q_max;
+    long double dQ;
     
     GoodFit(){Good_Fit=1;D_n=100.0;cumD_n=1000.0;}; // constructor
     

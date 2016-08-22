@@ -32,7 +32,7 @@ void ParameterEstimation_E_coli::s_F_lambda_r(vector<Q_tau_stat> vector_lambda, 
 void ParameterEstimation_CV_rExp_tExp::s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect){
     
     vector<int> index_Zero_Rec;
-    double Q_,dQ_;
+    long double Q_,dQ_;
 
     s_lambda_r.lambda.resize(n_vect);
     s_lambda_r.syntetic_indeX.resize(n_vect);
@@ -84,7 +84,7 @@ void ParameterEstimation_CV_rExp_tExp::s_F_lambda_r(vector<Q_tau_stat> vector_la
 void ParameterEstimation_CV_rIG_tExp::s_F_lambda_r(vector<Q_tau_stat> vector_lambda, int n_vect){
     
     vector<int> index_Zero_Rec;
-    double Q_,dQ_;
+    long double Q_,dQ_;
     
     
 //    s_sigma_r.lamba[0]=1.16;
@@ -106,7 +106,7 @@ void ParameterEstimation_CV_rIG_tExp::s_F_lambda_r(vector<Q_tau_stat> vector_lam
         
         if (vector_lambda[i].n_rec==0) {
             index_Zero_Rec.push_back(i);
-            s_lambda_r.lambda[i]=max(0.01, (1-Q_))/0.8;
+            s_lambda_r.lambda[i]=max(0.01L, (1-Q_))/0.8L;
             s_lambda_r.sigma[i]=1.6;
             
             

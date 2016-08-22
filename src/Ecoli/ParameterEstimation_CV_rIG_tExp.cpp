@@ -16,13 +16,13 @@
 #include "Funz_C.h"
 #include "Funz_C_Inter.h"
 
-double ParameterEstimation_CV_rIG_tExp::f_lambda(){
+long double ParameterEstimation_CV_rIG_tExp::f_lambda(){
     
     return s_lambda_r.s_funz_lambda(Q);
     
 }
 
-double ParameterEstimation_CV_rIG_tExp::f_sigma(){
+long double ParameterEstimation_CV_rIG_tExp::f_sigma(){
     
 //    cout << "Q_max = " << s_lambda_r.Q_max << endl;
 //    cout << "Q_min = " << s_lambda_r.Q_min << endl;

@@ -31,15 +31,15 @@ public:
     void change_par(int change);
     void change_sigma_par();
     /** variance for the underlying diffussion rate to tumble */
-    virtual double f_sigma();
+    virtual long double f_sigma();
 
     void print_info(std::ofstream &file_save);
 //    void gnuplotFunzInternalDynalmic(std::string title, int save_, int gen_con_sim);
     int saveIntDyn(std::string nameFile);
     void reset_par();
     /** reset threshold deterministical to level 1*/
-    double reset_barrier();
-    int agg_dyn(double dt, double t);
+    long double reset_barrier();
+    int agg_dyn(long double dt, long double t);
     
     void debugFunction();
     
@@ -47,12 +47,12 @@ protected:
     
     // 
     int tipo_sigma;
-    double B_0;
-    double B_1;
-    double B_2;
+    long double B_0;
+    long double B_1;
+    long double B_2;
     
 
-//    void save_dyn(std::ofstream &file_, double t);
+//    void save_dyn(std::ofstream &file_, long double t);
     
 
 };

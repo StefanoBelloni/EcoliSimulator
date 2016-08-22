@@ -9,7 +9,7 @@
 #include <iostream>
 #include "Q_tau_stat.h"
 
-Q_tau_stat::Q_tau_stat(double Q_ext){
+Q_tau_stat::Q_tau_stat(long double Q_ext){
     
     Q = Q_ext;
     
@@ -26,7 +26,7 @@ Q_tau_stat::Q_tau_stat(double Q_ext){
     
 }
 
-void Q_tau_stat::reset(double Q_ext){
+void Q_tau_stat::reset(long double Q_ext){
     
     Q = Q_ext;
     
@@ -43,7 +43,7 @@ void Q_tau_stat::reset(double Q_ext){
     
 }
 
-double Q_tau_stat::V_IG(){
+long double Q_tau_stat::V_IG(){
     
     return (n_rec-3)/(invX-1/mean);
     

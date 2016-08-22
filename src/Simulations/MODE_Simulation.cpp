@@ -97,12 +97,12 @@ int MODE_simulation(string &versione_Matlab, int &cont_gen_sim, vector<string> *
     //                VARIABILI PER INIZIALIZZARE I PARAMETRI
     //****************************************************************************
     
-    double dt=0.01;                     // Time steps
-    double T_f=1;                         // Tempo finale
+    long double dt=0.01;                     // Time steps
+    long double T_f=1;                         // Tempo finale
     int n_c=1;                          // Numero batteri
-    double x0[2]={0,0};                   // Valori deterministici iniziali
+    long double x0[2]={0,0};                   // Valori deterministici iniziali
     int num_dist=1;                       // Numero distribuzione iniziale
-    double Raggio=0;                      // Raggio distribuzioni
+    long double Raggio=0;                      // Raggio distribuzioni
     int delta_dist=1;                     // Numero sorgente
     int const_salv=1;                     // Ogni quanto tempo (cont_salv*dt) salvo 
     

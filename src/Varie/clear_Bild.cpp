@@ -17,10 +17,10 @@ void funz_clear(){
     #endif
 
     if (automatic_!=2) {
-//        system(clear_command);
+        system(clear_command);
     }
     
-    system(clear_command);
+//    system(clear_command);
     
 }
 
@@ -66,6 +66,6 @@ void getInput(std::string &risposta){
 	risposta=std::string(input);
 }*/
 template void getInput(int &risposta);
-template void getInput(double &risposta);
+template void getInput(long double &risposta);
 template void getInput(bool &risposta);
 template void getInput(std::string &risposta);

@@ -27,21 +27,21 @@ public:
     
     void change_par(int change);
     void change_sigma_par();
-    virtual double f_sigma();
+    virtual long double f_sigma();
     
     // 
     int tipo_sigma;
-    double B_0;
-    double B_1;
-    double B_2;
+    long double B_0;
+    long double B_1;
+    long double B_2;
     
-    int agg_dyn(double dt, double t);
+    int agg_dyn(long double dt, long double t);
     
     void print_info(std::ofstream &file_save);
 //    void gnuplotFunzInternalDynalmic(std::string title, int save_, int gen_con_sim);
     int saveIntDyn(std::string nameFile);
     void reset_par();
-    double reset_barrier();
+    long double reset_barrier();
 };
 
 

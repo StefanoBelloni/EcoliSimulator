@@ -68,7 +68,7 @@ CV_rExp_tExp::CV_rExp_tExp(const CV_rExp_tExp& mod):ParameterEstimation_E_coli(m
     
 }
 
-int CV_rExp_tExp::agg_dyn(double dt, double t)
+int CV_rExp_tExp::agg_dyn(long double dt, long double t)
 // E' il cuore della classe ogni batterio implementa questo in modo diverso.
 {
     if (salto_==1) {
@@ -227,13 +227,13 @@ void CV_rExp_tExp::change_lambda_par()
        
 }
 
-void CV_rExp_tExp::save_dyn(std::ofstream &file_, double t){
+void CV_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
     
     file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << endl;
     
 }
 
-double CV_rExp_tExp::f_lambda(){
+long double CV_rExp_tExp::f_lambda(){
     
 //    my_mutex.lock();
 //    cout << "tipo lambda = " << tipo_lambda << endl;
@@ -286,7 +286,7 @@ double CV_rExp_tExp::f_lambda(){
 
 //****************************************************************************
 
-void CV_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int changed_pos){
+void CV_rExp_tExp::stationary_dyn(long double dt, std::vector<long double> &m0,int changed_pos){
     
     t_r=0.0;
     t_t=0.0;
@@ -300,8 +300,8 @@ void CV_rExp_tExp::stationary_dyn(double dt, std::vector<double> &m0,int changed
         Q=pow(nu_,2)*beta_2*m[1]+pow(nu_,3)*beta_3*m[2];
         
     }else {
-        double T=10;
-        double t=0;
+        long double T=10.0L;
+        long double t=0.0L;
         
         m0[0]=c;
         m0[1]=c/2;
