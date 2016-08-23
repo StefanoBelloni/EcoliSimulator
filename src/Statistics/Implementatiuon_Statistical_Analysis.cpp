@@ -150,7 +150,8 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
     }
 
     // simulate idipendent population ... normally
-   
+  
+	cout << "Implementatiuon_Statistical_Analysis: Simulation independent l. 152\n";   
     int error_indep_pop = independent_population(f[tipo_funz_c_class], n_compare, names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod,  sel_prog, which_compare, batteri_stimati,  T_f, x0,  dt,  n_c,  Raggio,  delta_dist,  num_dist,  const_salv, versione_Matlab, names_jumps,cont_gen_sim, 0 /*=stat_*/);
     
     if (error_indep_pop==-1) {

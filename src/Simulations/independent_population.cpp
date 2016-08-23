@@ -239,11 +239,11 @@ int independent_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         //*********************************           
         // Analysis Runs and tumbles
         //*********************************           
-            if (automatic_!=1) {
+            //if (automatic_!=1) {
                 
                 FunzRunUndTumble(T_f,n_c,cont_gen_sim,n_compare,names_Ecoli_mod,names_indice_mod,names_tau_mod,names_file_dyn_mod, names_info_mod, names_jumps,sel_prog,batteri,which_compare, stat_);
                 
-            }
+            //}
         }
         
         //*********************************           

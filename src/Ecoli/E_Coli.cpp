@@ -127,7 +127,7 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
     long double x_M=f->max_x;
     long double x_m=f->min_x;
     long double y_M=f->max_y;
-    long double y_m=f->min_x;
+    long double y_m=f->min_y;
     
     int salto_risp=0;
     
@@ -141,8 +141,8 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
         
         if (x[0]>= x_M || x[0]<=x_m || x[1]>=y_M || x[1]<=y_m) {        
             salto_risp=3; 
-            x[0]=min(x_M-.01,max(x_m+.01,x[0]));
-            x[1]=min(y_M-.01,max(y_m+.01,x[1]));
+            x[0]=min(x_M-dt*v,max(x_m+dt*v,x[0]));
+            x[1]=min(y_M-dt*v,max(y_m+dt*v,x[1]));
         }
         
     }
@@ -216,7 +216,7 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
         
     }
 
-    agg_dyint(dt, t);
+    //agg_dyint(dt, t);
     int salto_risp_1=this->agg_dyn(dt,t);
     
     if (salto_risp==3 && salto_risp_1==1) {

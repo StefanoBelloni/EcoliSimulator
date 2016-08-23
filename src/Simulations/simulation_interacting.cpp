@@ -207,7 +207,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         std::cout            << "      Tipo batterio: " << batterio[0]->Tipo_batterio << endl;
         std::cout            << "      Tipo function: " << f->num_funz << endl;
         std::cout            << "      Number bacteria: " << n_c << endl;
-        std::cout            << "      Final Time Experiment: " << T_f << " sec"<< endl;
+        std::cout            << "      Final Time Experiment: " << T_f << " sec\n"<< endl;
         
         //std::cout <<  "****************************" << endl;
         
@@ -225,7 +225,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         // TODO: the number of iteratin can be decided by the theory and the parameters of th Diffusion equation ...
         // since it is incoditionally stable, 1 should works!!!
         int n_t= 1;
-        const int n_witout_PDE = 5;
+        const int n_witout_PDE = 10;
         int PDE_iter=0;
         long double dt_=dt*n_witout_PDE;///(long double)n_t;
         
@@ -291,7 +291,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
         // Batteri
 
-        cout <<"      Initial data ... Ligand concentration\r"<< std::flush;
+        cout <<"      Initial data ... bacteria\r"<< std::flush;
         
         int cont_temp_glob=1;
         
@@ -307,9 +307,6 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
         for(int j=0;j<n_c;j++)
         {                       
-            
-
-            
             batterio[indici_b[j]]->engine_altro = &rnd_ecoli.random_engines[0];
             batterio[indici_b[j]]->engine_barrier = &rnd_ecoli.random_engines[0];
             batterio[indici_b[j]]->engine_theta = &rnd_ecoli.random_engines[0];
@@ -383,7 +380,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
 //        cout << "Beginning of the simulation ... " << endl;
         
-        std::cout            << "\n------------------ SIMULATION BEGINS ----------------\n" << RESET << std::endl;
+        std::cout            << "------------------ SIMULATION BEGINS ----------------\n" << RESET << std::endl;
         
         int cont_salvataggio_pos=const_salv;
         

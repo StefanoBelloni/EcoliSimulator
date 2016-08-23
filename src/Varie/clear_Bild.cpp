@@ -17,10 +17,10 @@ void funz_clear(){
     #endif
 
     if (automatic_!=2) {
-        system(clear_command);
+        //system(clear_command);
     }
     
-//    system(clear_command);
+    system(clear_command);
     
 }
 

@@ -169,7 +169,7 @@ void initial_page(){
     cout << BOLDBLUE<<"***********************************************"<< VERSION <<endl;
 
     
-    cout << "press Enter to continue ... " << endl;
+    cout << "press Enter to continue ... " << RESET << endl;
     cin.ignore();
     funz_clear();    
     
