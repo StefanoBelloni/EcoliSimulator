@@ -344,6 +344,10 @@ int E_coli::agg_dyn(long double dt, long double t)
 
 //**********************************************************************************
 
+E_coli::~E_coli(){
+    
+    
+}
 
 E_coli::E_coli()/*:std_unifRand(0.0,1.0)*/{
     

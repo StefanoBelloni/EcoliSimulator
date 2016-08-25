@@ -60,7 +60,7 @@ int interaction_population(Funz_C* f, int n_compare, std::string *names_Ecoli_mo
 
 
 void initialization_interacting_population(int tipo_simulazione, std::vector<E_coli* > *batteri_int, int n_c, int cont_gen_sim);
-
+void clean_interacting_population(int tipo_simulazione, vector<E_coli* > *batteri_int, int n_c, int cont_gen_sim);
 //*****************
 void FunzRunUndTumble(long double T_f, int n_c, int cont_gen_sim, int n_compare, std::string *names_Ecoli_mod, std::string names_indice_mod, std::string *names_tau_mod, std::string names_file_dyn_mod, std::string *names_info_mod, std::string *names_jumps, int sel_prog, std::vector<E_coli*> batteri, std::vector<int> &which_compare, int stat_);
 void FunzRunUndTumble(long double T_f, int n_c, int cont_gen_sim, int n_compare, std::string *names_Ecoli_mod, std::string names_indice_mod, std::string *names_tau_mod, std::string names_file_dyn_mod, std::string *names_info_mod, std::string *names_jumps, int sel_prog, std::vector<E_coli*> batteri, int which_compare, int stat_);

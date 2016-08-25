@@ -134,7 +134,10 @@ int simulation_2MultiT(E_coli *batterio, long double T_f,Funz_C *f,long double *
     }
     
     int err_files =  mergeFilesSimulation(n_thread,names_files_Ecoli_mod, names_indice_mod, names_files_tau_mod, names_file_dyn_mod);
-        
+    
+    
+    deleteDuplicate(batterioCopia, f, funzCcopy, n_thread);
+    
     funz_clear();
 
     if (err_files!=0) {
@@ -495,6 +498,13 @@ void makeDuplicate(E_coli* batterio, vector<E_coli*>& batterioCopy, Funz_C* f, v
     
 }
 
+/*! \brief clean references ... */
+void deleteDuplicate(vector<E_coli*>& batterioCopy, Funz_C* f, vector<Funz_C*>& fCopy, int n_thread){
+    
+    for (int i = 0; i<n_thread-1; i++)
+        delete batterioCopy[i];
+
+}
 
 /*! \brief This function merges the files together.
  */

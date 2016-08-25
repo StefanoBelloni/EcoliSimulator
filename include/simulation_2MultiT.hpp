@@ -31,6 +31,7 @@ string setNametempFiles(string name, int n_thread);
 int simulation_2MultiT(E_coli *batterio, long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int n_thread);
 
 void makeDuplicate(E_coli* batterio, vector<E_coli*>& batterioCopy, Funz_C* f, vector<Funz_C*>& fCopy, int n_thread);
+void deleteDuplicate(vector<E_coli*>& batterioCopy, Funz_C* f, vector<Funz_C*>& fCopy, int n_thread);
 
 int mergeFilesSimulation(int n_thread, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod);
 

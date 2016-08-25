@@ -380,3 +380,15 @@ void setParametersModelBacteriumInteracting(E_coli* batterio, int cont_gen_sim){
     
 }
 
+
+/**
+ * clean up of vector of bacteria (interacting ...)
+ */
+
+void clean_interacting_population(int tipo_simulazione, vector<E_coli* > *batteri_int, int n_c, int cont_gen_sim){
+    
+    for(unsigned int i=1; i<n_c; i++)
+        delete (*batteri_int)[i];
+    
+    
+}

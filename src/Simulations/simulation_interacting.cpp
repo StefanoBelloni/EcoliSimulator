@@ -292,7 +292,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
         // Batteri
 
-        cout <<"      Initial data ... bacteria\r"<< std::flush;
+        cout <<"      Initial data ... population of bacteria          \r"<< std::flush;
         
         int cont_temp_glob=1;
         

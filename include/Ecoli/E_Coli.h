@@ -206,6 +206,7 @@ public:
     
     
     // CONSTRUCTOR & DESTRUCTOR
+    virtual ~E_coli();
     E_coli();
     E_coli(const E_coli& modello);
     //***************************  
