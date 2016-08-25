@@ -17,11 +17,8 @@ void funz_clear(){
     #endif
 
     if (automatic_!=2) {
-        //system(clear_command);
-    }
-    
-    system(clear_command);
-    
+    	system(clear_command);
+	}
 }
 
 
@@ -33,9 +30,7 @@ void funz_clearAll(){
 #else
     const char* clear_command = "clear";
 #endif
-    
     system(clear_command);
-    
 }
 
 /*! get an input from cin and check if the type is the same as the template argument, if not, the user is asked to reinsert the value.*/

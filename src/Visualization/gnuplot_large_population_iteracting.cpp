@@ -201,24 +201,18 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, l
     }
 
 	funz_clear();
-//    if (automatic_==0) {
-//        
-//        cout << "plot the Distribution of the internal dynamic ? \npress 0 for yes, 1 for no ";
-//        getInput( risp)){
-//            cout << "Invalid value ...  ";
-//            cin.clear();
-//            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//            cout << "\nEnter again ... " << endl;
-//        }
-//    }else {
-//        risp=0;
-//    }
-//    
-//    if (automatic_!=1) {
-//        if (risp==0) {
-//            Histogram_Dynamic(file_info[0], name_dyn);
-//        }
-//    }
     
+	if (automatic_==0) {
+        cout << "plot the Distribution of the internal dynamic ? \npress 0 for yes, 1 for no ";
+        getInput( risp);
+    }else {
+        risp=0;
+    }
+
+    if (automatic_!=1 && risp==0) {
+        Histogram_Dynamic(file_info[0], name_dyn, cont_gen_sim);
+    }
+
+
     
 }

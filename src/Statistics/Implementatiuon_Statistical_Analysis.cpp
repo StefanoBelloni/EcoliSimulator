@@ -368,7 +368,8 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
         constract_Q_tau_vect(dq,q_max,q_min,Q_tau_vect,name_file_dati, n_stat_tamb,n_q,tau_0_t_stima, q_max_s, q_min_s);
         tau_0_t_stima=tau_0_t_stima/n_stat_tamb;
         
-        if (n_iterate==6) error_plot= plot_tau_Q(name_file_dati, Q_tau_vect, automatic_, n_iterate);
+        if (n_iterate==6) 
+			error_plot= plot_tau_Q(name_file_dati, Q_tau_vect, automatic_, n_iterate);
         
         if (error_plot!=0) {
             cout << "Error opening the Files\n";

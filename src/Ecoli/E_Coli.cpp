@@ -931,7 +931,7 @@ void E_coli::start_simulation(Funz_C *f){
     
 //    std::uniform_int_distribution<int> std_unif_int(1,2);
     std::uniform_real_distribution<long double> std_unif_real(0.0,0.1);
-    salto_=(std_unif_real(*engine_altro)>0.5)?1:2;
+    salto_=(std_unif_real(*engine_altro)>0.5)?1:-1;
     
     // random lambra_ iniziale:    
     if (salto_==1) //run

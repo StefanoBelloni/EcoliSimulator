@@ -265,7 +265,7 @@ int reset_parameter_Q_tau(long double &dq, long double &q_max, long double &q_mi
 #include <cstring>
 
 int funz_tipo_file(vector<string> &tipo_dati, int n_col);
-void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s,long double &q_min_s);
+void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >&dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s,long double &q_min_s);
 
 int constract_Q_tau_vect(long double dq, long double q_max, long double q_min, vector<Q_tau_stat> &Q_tau_vect, string name_file_dati, int &n_stat_tumb, int n_q, long double &tau_t_stima, long double &q_max_s,long double &q_min_s)
 /*   I file devono essere così formattati 
@@ -376,7 +376,7 @@ int constract_Q_tau_vect(long double dq, long double q_max, long double q_min, v
 
 long double Calculate_Q1(long double *m, long double dt, long double c, long double d_c, long double dQ);
 
-void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s, long double &q_min_s)
+void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, vector<vector<long double> >&dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double dq, long double q_max, long double q_min, long double *m, streampos &position, long double &tau_0_t_stima, long double &q_max_s, long double &q_min_s)
 
 /*   WHICH STATISICAL ANALYSIS IS PERFORMED ?
  *   Q_tau_vect è così strutturato:
@@ -417,9 +417,9 @@ void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, ve
                 long double tau_r=1/(3*D_theta);
                 long double nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
 */
-                m[0]=0.5;
-                m[1]=0.25;
-                m[2]=0.25;
+                m[0]=0.5L;
+                m[1]=0.25L;
+                m[2]=0.25L;
 /*
                 while(t<=T) {
                     m[2]=m[2]+dt*(2*m[1]-nu_*m[2]);
@@ -429,7 +429,7 @@ void set_Q_tau_vec(vector<Q_tau_stat> &Q_tau_vect, int n_q, int &n_stat_tumb, ve
                 }
                 cout << m[0] << "," << m[1] << "," << m[2] <<"\n";
 */
-                Q=0;
+                Q=0.0L;
                 
             }else {
                 Q=Calculate_Q1(m,dati_rec[1][3],dati_rec[1][1],dati_rec[1][2],dq);

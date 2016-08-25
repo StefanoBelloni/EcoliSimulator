@@ -37,6 +37,7 @@ CV_rExp_tExp::CV_rExp_tExp():ParameterEstimation_E_coli(){
     
     D_theta = .25;
     tau_r = 0.8;
+	tau_t = 0.1;
     nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
     beta_2=1;
     beta_3=-beta_2/2;
@@ -333,6 +334,7 @@ void CV_rExp_tExp::reset_par(){
     D_theta=.25;
 //    tau_r=1/(3*D_theta);
     tau_r = 0.8;
+	tau_t = 0.1;
     nu_=4*(1+3*D_theta*tau_r)/(3*tau_r);
     beta_2=1;
     beta_3=-beta_2/2;

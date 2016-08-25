@@ -222,34 +222,34 @@ int set_statistical_file(string name_file_satistics, int tipo_statistical_file,
 //            cout << "*******************************************************************" << endl << endl;
             while (data_sets[3] >> t_run >> last_tau_r >> c && data_sets[4] >> t_tam >> last_tau_t >> c_new) // I read the lines of the two files
             {
-//                cout << "::::::::::: r: " << t_run << " "<< last_tau_r << " "<< c << endl;
-//                cout << "::::::::::: t: "<< t_tam << " "<< last_tau_t << " "<< c_new << endl;
+                //cout << "::::::::::: r: " << t_run << " "<< last_tau_r << " "<< c << endl;
+                //cout << "::::::::::: t: "<< t_tam << " "<< last_tau_t << " "<< c_new << endl;
                 if ( t_tam < last_t_run && t_run > last_t_run){ // if tumble new and run old, I ignore this last run ...
-//                    cout << "???????????????????????????????????????????????????????????????" <<endl;
+                    //cout << "???????????????????????????????????????????????????????????????" <<endl;
                     if (!(data_sets[3] >> t_run >> last_tau_r >> c)) {
                         break; // if I cannot read it I'm done
                     }
-//                    cout << ".....................> r: " << t_run << " "<< last_tau_r << " "<< c << " <...................."<< endl;
+                    //cout << ".....................> r: " << t_run << " "<< last_tau_r << " "<< c << " <...................."<< endl;
                 }
                 if ( t_run < last_t_run /*||  // the run time
                         t_tam < last_t_run*/)    // or tumble time jumps in the past ... new bacterium.
                 {
-//                    cout << "#################################################################" << endl;
+                    //cout << "#################################################################" << endl;
                     c_prec = c_new;
                     last_t=0.00L;
                     if (t_tam < t_run) { // if I strated with a tumble, I skip it
                         if (!(data_sets[4] >> t_tam >> last_tau_t >> c_new)) {
                             break; // if I cannot read it I'm done
                         }
-//                        cout << "------------------> t: "<< t_tam << " "<< last_tau_t << " "<< c_new << " <------------------ "<< endl;
+                        //cout << "------------------> t: "<< t_tam << " "<< last_tau_t << " "<< c_new << " <------------------ "<< endl;
                     }
-//                    else{
-//                        cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
-//                    }
+                    else{
+                        //cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+                    }
                     // if I'm here I'm starting processing a new bacterium
                 }
                 statistical_file << endl << last_t << " " << c_prec << " " << c_new << " " << last_tau_r << " " << last_tau_t;
-//                cout << "--------------------------------------------------------------------> " <<  last_t << " " << c_prec << " " << c_new << " " << last_tau_r << " " << last_tau_t << endl;
+                //cout << "--------------------------------------------------------------------> " <<  last_t << " " << c_prec << " " << c_new << " " << last_tau_r << " " << last_tau_t << endl;
                 c_prec=c_new;
                 last_t=t_tam;
                 last_t_run=t_run;

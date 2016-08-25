@@ -72,7 +72,8 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
     array<long double,2> x0;
     x0[0]=x_0[0];
     x0[1]=x_0[1];
-    funz_clear();
+   const_salv++;
+	funz_clear();
     
     char buffer[52];
 //    int time_stampato=0;
