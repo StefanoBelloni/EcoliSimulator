@@ -58,6 +58,16 @@ void Histogram_Dynamic(std::string name, std::string name_dynamic, int cont_sim)
 
         std::ifstream file_dynamics;
         file_dynamics.open(name_dynamic.c_str());
+        
+        if (!file_dyn_plot.is_open()) {
+            std::cout << "\nERROR" << std::endl;
+            string msg("Error opening file: ");
+            msg+=name_dynamic;
+            std::cout << msg << endl;
+            writeLog("ERROR",msg);
+            return;
+        }
+        
         std::string command;
         
         long double t=0;
