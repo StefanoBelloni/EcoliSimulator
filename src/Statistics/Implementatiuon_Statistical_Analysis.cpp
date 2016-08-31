@@ -63,7 +63,7 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
 
     
     vector<Q_tau_stat> Q_tau_vect;
-    long double tau_0_t_stima = 0.0;
+    long double tau_0_t_stima = 0.0L;
     vector<Funz_C* > f;
     vector<E_coli*> batteri_stimati;
 
@@ -96,23 +96,23 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
     //                VARIABILI PER INIZIALIZZARE I PARAMETRI
     //****************************************************************************
     
-    long double dt=0.01;                       // Time steps
-    long double T_f=1;                         // Tempo finale
-    long double x0[2]={0,0};                   // Valori deterministici iniziali
+    long double dt=0.01L;                       // Time steps
+    long double T_f=1.0L;                         // Tempo finale
+    long double x0[2]={0.0L,0.0L};                   // Valori deterministici iniziali
     int num_dist=1;                       // Numero distribuzione iniziale
-    long double Raggio=0;                      // Raggio distribuzioni
+    long double Raggio=0.0L;                      // Raggio distribuzioni
     int delta_dist=1;                     // Numero sorgente
     int const_salv=1;                     // Ogni quanto tempo (cont_salv*dt) salvo
     int sel_prog=1;
     int tipo_funz_c_class=0;
     int ftipo_response_c=1;
-    long double fRC_0=1.0;
-    long double fRC_1=1.0;
+    long double fRC_0=1.0L;
+    long double fRC_1=1.0L;
     int fRC_q=0;
     
     GoodFit Test;
-    long double D_n=0.0;
-    long double cumD_n=0.0;
+    long double D_n=0.0L;
+    long double cumD_n=0.0L;
     int goodnessFit=0;
     s_lambda lambda;
 
@@ -327,17 +327,17 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
     int noch_eine=0;
     int n_iterate=0;
     int n_stat_tamb=0;
-    long double dq=0.01;
+    long double dq=0.01L;
     int q_0=0;
     vector<Q_tau_stat> Q_tau_vect;
-    long double q_max=-1000, q_min=1000;
+    long double q_max=-1000L, q_min=1000L;
     
     GoodFit Test;
     
-    long double q_max_s=-10000;
-    long double q_min_s= 10000;
-    long double q_max_95=-10000;
-    long double q_min_95= 10000;
+    long double q_max_s=-10000L;
+    long double q_min_s= 10000L;
+    long double q_max_95=-10000L;
+    long double q_min_95= 10000L;
     long double quantile_95=0.0;
     int q_95=0;
     
@@ -353,10 +353,11 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
     
     cout << "Adapt dinamically the statistical fitting ... \n";
     while (noch_eine==0) {
-        
-        
+
         funz_clear();
         
+        lambda.reset_lambda();
+
         cout <<BOLDRED<<"\n****************************\n";
         cout << "Statistical_Analysis \n";
         cout << "Iterata n." << n_iterate << endl;
@@ -437,8 +438,8 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
         }
         
         
-        D_n=0.0;
-        cumD_n=0.0;
+        D_n=0.0L;
+        cumD_n=0.0L;
         goodnessFit = GoodnessFit_PP(name_file_dati, lambda , n_stat_tamb, n_iterate, D_n, cumD_n);
         
         if (goodnessFit==0) {
@@ -467,7 +468,7 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 n_iterate++;
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,6, n_stat_tamb,q_0);
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -483,7 +484,7 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,7, n_stat_tamb,q_0);
                 
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -495,12 +496,12 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 q_max = q_max_s;
                 q_min = q_min_s;
                 
-                dq=dq/20;
+                dq=dq/20.0L;
                 n_iterate++;
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,7, n_stat_tamb,q_0);
                 
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -516,7 +517,7 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,6, n_stat_tamb,q_0);
                 
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -528,11 +529,11 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 q_max = q_max_95;
                 q_min = q_min_95;
                 n_iterate++;
-                dq=dq*10;
+                dq=dq*10.0L;
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,7, n_stat_tamb,q_0);
                 
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -549,7 +550,7 @@ int DynFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &lam
                 n_q=reset_parameter_Q_tau(dq,q_max,q_min,Q_tau_vect,7, n_stat_tamb,q_0);
                 
                 n_stat_tamb=0;
-                tau_0_t_stima=0.0;
+                tau_0_t_stima=0.0L;
                 noch_eine=0;
             }
                 break;
@@ -581,22 +582,22 @@ int ManualFitting(string &name_file_dati, long double &tau_0_t_stima, s_lambda &
     int noch_eine=0;
     int n_iterate=0;
     int n_stat_tamb=0;
-    long double dq=0.01;
+    long double dq=0.01L;
     int q_0=0;
     vector<Q_tau_stat> Q_tau_vect;
-    long double q_max=-1000, q_min=1000;
+    long double q_max=-1000L, q_min=1000L;
     
     GoodFit Test;
     
-    long double q_max_s=-10000;
-    long double q_min_s= 10000;
+    long double q_max_s=-10000L;
+    long double q_min_s= 10000L;
     
     //    long double D_n=0.0;
     //    long double cumD_n=0.0;
     
-    long double q_max_95=-10000;
-    long double q_min_95= 10000;
-    long double quantile_95=0.0;
+    long double q_max_95=-10000L;
+    long double q_min_95= 10000L;
+    long double quantile_95=0.0L;
     int q_95=0;
     
     int tot=0;

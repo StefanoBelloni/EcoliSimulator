@@ -55,7 +55,8 @@ class s_lambda{
     long double StatIntensity(long double dt, long double t, long double Q);
     
     s_lambda();
-    
+    /** \brief This function reset the function lambda */
+    void reset_lambda(); 
 };
 
 #endif

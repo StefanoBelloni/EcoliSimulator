@@ -27,9 +27,9 @@ long double GaussMax(long double t, long double sigma, long double m, long doubl
 //**********************************************************************
 
 
-long double s_lambda::s_funz_lambda(long double Q){
+long double s_lambda::s_funz_lambda(long double Q){ 
     
-    // min(n_records-1,max(1,floor((Q-Q_min)/dQ))) -> trova l'indice datto in lambda.
+    // min(n_records-1,max(1,floor((Q-Q_min)/dQ))) -> trova l'indice datto in lambda.  
     
     if (n_records==0) {
         return lambda[0];
@@ -176,6 +176,14 @@ s_lambda::s_lambda(){
     Q_min= 10000;
     dQ=0.001;
     
+}
+
+void s_lambda::reset_lambda()
+{
+    lambda.clear();
+    sigma.clear();
+    syntetic_indeX.clear();
+    n_data.clear();
 }
 
 //*****************************************************************
