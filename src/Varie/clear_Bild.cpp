@@ -18,7 +18,7 @@ void funz_clear(){
 
     if (automatic_!=2) {
     	system(clear_command);
-	}
+     }
 }
 
 

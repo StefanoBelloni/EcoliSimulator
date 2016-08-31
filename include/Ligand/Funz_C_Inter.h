@@ -44,7 +44,7 @@ public:
 //    vector<vector<long double> > f_c;    
     
     Funz_C_Inter();
-    
+    ////~Funz_C_Inter();    
     
     
     void set_parameter(); 

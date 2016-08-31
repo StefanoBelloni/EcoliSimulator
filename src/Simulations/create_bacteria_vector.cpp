@@ -152,6 +152,25 @@ void create_bacteria_vector(vector<E_coli*> &batteri){
     
 }
 
+/** This function clean the objects created with new ...
+ */
+
+void delete_bacteria_vector(vector<E_coli*> &batteri){
+    
+    for (unsigned int i = 0; i < batteri.size(); i++)
+        delete batteri[i];
+   
+    batteri.clear();
+
+}
+
+void delete_f_vectors(vector<Funz_C*> &f)
+{
+    for (unsigned int i = 0; i < f.size(); i++)
+        delete f[i];
+    f.clear();
+}
+
 /**
  * This file has to be modified if you add a new model like in void create_bacteria_vector(vector<E_coli*> &batteri)
  * but we have to create a vector of number of population bacteria, since they interact with each other.
@@ -386,9 +405,12 @@ void setParametersModelBacteriumInteracting(E_coli* batterio, int cont_gen_sim){
  */
 
 void clean_interacting_population(int tipo_simulazione, vector<E_coli* > *batteri_int, int n_c, int cont_gen_sim){
-    
-    for(unsigned int i=1; i<n_c; i++)
+
+    //std::cout << "clear population ... \n";
+
+    for(unsigned int i=0; i < batteri_int->size(); i++)
         delete (*batteri_int)[i];
-    
+
+    batteri_int->clear();
     
 }

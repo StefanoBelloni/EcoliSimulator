@@ -187,8 +187,8 @@ void setDefoultGlobalVar(){
     //string gnuplotOpen = "C:\\gnuplot\\binary\\wgnuplot.exe ";
 //    string gnuplotOpen = "C:\\\"Program Files (x86)\"\\gnuplot\\bin\\gnuplot ";
     gnuplotOpen = getcwd(NULL,0)+string("\\gnuplot\\bin\\gnuplot.exe ");
-#elif __CYGWIN__
-    gnuplotOpen = "/cygdrive/c/gnuplot/binary/wgnuplot.exe ";
+#elif defined(__linux__) || defined(__linux) || defined(linux) 
+    gnuplotOpen = "gnuplot ";
 #else
     gnuplotOpen = "/opt/local/bin/gnuplot ";
     //string gnuplotOpen = "gnuplot ";
@@ -252,7 +252,10 @@ void setDefoultGlobalVar(){
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
     //        Location=Location+"\\Desktop";
     Location = getcwd(NULL,0);
-    firefox_path = "firefox ";
+    firefox_path = "firefox "; // TODO: open firefox from cmd
+#elif defined(__linux__) ||defined(__linux) || defined(linux) 
+    firefox_path ="firefox ";
+    Location = getcwd(NULL,0);
 #else
     //        Location=Location+"/Desktop";
     Location = getcwd(NULL,0);

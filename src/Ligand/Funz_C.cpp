@@ -35,6 +35,9 @@ using namespace std;
 
 void funz_clear();
 
+Funz_C::~Funz_C(){
+     
+}
 
 Funz_C::Funz_C()
 {

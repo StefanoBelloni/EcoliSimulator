@@ -161,8 +161,14 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
         writeLog("ERROR",msg);
         return -1;
     }
-    
-    
+
+    // clean the new ...
+    for (unsigned int i=0; i < batteri_stimati.size(); i++)
+        delete batteri_stimati[i];
+   
+    for (unsigned int i = 0; i < f.size(); i++)
+        delete f[i];
+
     return 0;
     
 }

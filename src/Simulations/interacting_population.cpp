@@ -66,7 +66,6 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         dim_col_t=simulation_interacting(batteri_int, T_f, f, x0, dt, n_c, Raggio, delta_dist, num_dist, const_salv, names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod, cont_gen_sim, f_max);
     }
 
-    clean_interacting_population(tipo_simulazione, &batteri_int, n_c, cont_gen_sim);
     //*********************************           
     // GNUPLOT + MATLAB
     //********************************* 
@@ -173,7 +172,7 @@ int interaction_population(Funz_C* f, int n_compare, string *names_Ecoli_mod, st
         
 //    }
 
-    batteri_int.resize(0);
+    clean_interacting_population(tipo_simulazione, &batteri_int, n_c, cont_gen_sim);
     
     return 0;
     

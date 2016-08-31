@@ -27,7 +27,6 @@
 using std::cout;
 using std::endl;
 
-
 void Funz_C_Inter::set_parameter(){
     
     int risp=0;

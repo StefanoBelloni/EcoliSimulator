@@ -76,7 +76,8 @@
 class Funz_C{
   
     public:
-    
+
+    virtual ~Funz_C();
     Funz_C();
     Funz_C(const Funz_C& f);
     

@@ -91,7 +91,7 @@ long double Analysis_run(string name_file_read, string names[], int run){
         msg+=read;
         writeLog("ERROR",msg);
         funz_clear();
-        return -1.0;
+        return -1.0L;
     }
     
     cout << "Nome file da leggere: " << read << endl;

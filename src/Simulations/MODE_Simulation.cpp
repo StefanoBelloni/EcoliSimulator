@@ -45,6 +45,8 @@
 
 int Set_Stocasticita(vector<int> &which_compare ,int statisticita);
 void create_bacteria_vector(vector<E_coli*> &batteri);
+void delete_bacteria_vector(vector<E_coli*> &batteri);
+void delete_f_vectors(vector<Funz_C*> &f);
 
 //****************************************************************
 // MODE_simulation + Statistics
@@ -72,9 +74,6 @@ int MODE_simulation(string &versione_Matlab, int &cont_gen_sim, vector<string> *
     vector<E_coli* > batteri;
     vector<Funz_C* > f;
     vector<E_coli* > batteri_int;
-    
-
-    
     
     create_bacteria_vector(batteri);                 // 9  [.]
     
@@ -226,6 +225,9 @@ int MODE_simulation(string &versione_Matlab, int &cont_gen_sim, vector<string> *
             
     }
 
+    delete_bacteria_vector(batteri);    
+    delete_f_vectors(f);
+   
     return n_c;
     
 }
