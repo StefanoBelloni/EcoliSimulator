@@ -32,7 +32,7 @@ void timestamp ( );
 int Stima_tempo(int n_c, int n_val_termine, time_t timer1);
 int funz_tipo_file(vector<string> &tipo_dati, int n_col);
 int plot_goodness_fit(std::string title_, int n_data, int save_, int n_iterata);
-long double rescaled_time(s_lambda lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position);
+long double rescaled_time(s_lambda& lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position);
 void funz_clear();
 
 /** This function implement the test of goodness of fit for point process [Ref. Assessing Model Goodness of Fit from
@@ -41,7 +41,7 @@ void funz_clear();
  * @param lambda estimated value for the probability rate (lambda in the model)
  */
 
-int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_iterata, long double &D_n, long double &cumD_n){
+int GoodnessFit_PP(string name_file_dati, s_lambda& lambda, int n_data, int n_iterata, long double &D_n, long double &cumD_n){
     
     // (dq,q_max,q_min,Q_tau_vect,name_file_dati, n_stat_tamb,n_q,tau_0_t_stima)
     
@@ -215,7 +215,7 @@ int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_ite
  * it calculate the rescaled time using a pice-wise linear approximation in the memory parameter Q(t) in Vergassola celani
  */
 
-long double rescaled_time(s_lambda lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position)
+long double rescaled_time(s_lambda& lambda, vector<vector<long double> >dati_rec, int n_col, int tipo_file, ifstream &file_dati, long double *m, streampos &position)
 {
  
     long double tau=0.0;

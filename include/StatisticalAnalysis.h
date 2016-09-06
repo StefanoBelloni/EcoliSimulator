@@ -17,7 +17,7 @@ int constract_Q_tau_vect(long double dq, long double q_max, long double q_min, v
 int simulation_independent_setting(E_coli *batterio,long double T_f,Funz_C *f,long double *x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv,string *names_Ecoli_mod, string names_indice_mod, string *names_tau_mod, string names_file_dyn_mod, string *names_info_mod, int i, int &cont_gen_sim, int stat_);
 void inizializzazione_parametri(int sel_prog, long double &T_f, int &n_c, long double* x0, int &num_dist,long double &Raggio, int &delta_dist, int &const_salv, long double &dt, string name_file,vector<Funz_C*> &f, int &tipo_funz_c_class, int &tipo_response_c, long double &RC_0, long double &RC_1, int &RC_q);
 int plot_tau_Q(std::string title_, std::vector<Q_tau_stat> &vet_stat, int save_, int n_iterate);
-int GoodnessFit_PP(string name_file_dati, s_lambda lambda, int n_data, int n_iterate,long double &D_n, long double &cumD_n);
+int GoodnessFit_PP(string name_file_dati, s_lambda& lambda, int n_data, int n_iterate,long double &D_n, long double &cumD_n);
 void create_lambda(s_lambda &s_lambda_r, vector<Q_tau_stat> &vector_lambda, int n_vect, int tipo_sim);
 int MovingLeastSquares(int set_epsilon, s_lambda &lambda);
 //not moving!!! ------------------------------------------!!!!!!!!!!!!!!

@@ -100,7 +100,7 @@ install: $(BIN) apngasm_bin gnuplot_bin
 
 install_src: $(BIN) apngasm_src gnuplot_bin  
 
-help: 
+help:
 	@echo options for make:
 	@echo make ............... Install EcoliSimulator
 	@echo make install ....... Intsall EcoliSimulatorm gnuplot and apngasm - it downloads the binary or the installer

@@ -175,6 +175,14 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
 
 //**********************************
 
+/** set the kind of distribution ...*/
+int whichDist(int which_compare){
+    if (which_compare == 2 || which_compare == 3 
+        || which_compare == 5 ||which_compare == 6 
+        ||which_compare == 8 ||which_compare ==9 )    
+    return 0;
+}
+
 /**
  * THis function take the vector_lambda of the statistics related to Q and retun the proper value for the extimated response function lambda
  * According to which model I choose, if run is exponentially distributed or is Inverse gaussian
@@ -198,7 +206,8 @@ void create_lambda(s_lambda &s_lambda_r, vector<Q_tau_stat> &vector_lambda, int 
     s_lambda_r.Q_min=vector_lambda[0].Q;
     Q_=s_lambda_r.Q_min;
     s_lambda_r.n_records=n_vect;
-    
+    s_lambda_r.distr = whichDist(tipo_sim);
+
     switch (tipo_sim) {
         {
             case 2:
