@@ -4,3 +4,4 @@ bin/
 build/
 TODO.txt
 tags
+.vscode/

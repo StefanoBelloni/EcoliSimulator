@@ -307,14 +307,14 @@ int MovingLeastSquares(s_lambda &lambda){
     lambda_approx.Q_min=lambda.Q_min;
     lambda_approx.pos_steady=lambda.pos_steady;
     lambda_approx.dQ=lambda.dQ;
-    
     lambda_approx.lambda.resize(n);
     lambda_approx.sigma.resize(n);
     lambda_approx.syntetic_indeX.resize(n);
     lambda_approx.n_data.resize(n);
-    
     lambda_approx.n_records=lambda.n_records;
     
+    lambda_approx.distr = lambda.distr;
+
     pos_1=lambda.pos_steady;
     lambda_approx.lambda[pos_1]=lambda.lambda[pos_1];
     
@@ -423,7 +423,7 @@ int MovingLeastSquares(s_lambda &lambda){
         }
         
     }
-    
+
     lambda=lambda_approx;
     
     

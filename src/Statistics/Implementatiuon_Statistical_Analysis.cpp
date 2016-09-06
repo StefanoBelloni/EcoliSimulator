@@ -179,7 +179,11 @@ int Statistical_Analysis(string name_file_dati, string name_info_file, vector<in
 int whichDist(int which_compare){
     if (which_compare == 2 || which_compare == 3 
         || which_compare == 5 ||which_compare == 6 
-        ||which_compare == 8 ||which_compare ==9 )    
+        ||which_compare == 8 ||which_compare ==9 ){
+            return 1;
+        }
+
+
     return 0;
 }
 
