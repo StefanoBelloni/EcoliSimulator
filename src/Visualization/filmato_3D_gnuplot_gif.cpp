@@ -177,7 +177,7 @@ void filmato_3D_gnuplot_gif(string names_info[],long double max_x, long double m
                 if (risp==0) {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
                     
-                    string string command_play_video = firefox_path+std::string(" ")+name_;
+                    string command_play_video = firefox_path+std::string(" ")+name_;
                     system(command_play_video.c_str());
 
 #else
