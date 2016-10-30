@@ -142,13 +142,13 @@ long double Analysis_run(string name_file_read, string names[], int run){
         
         cout << "There are " << n_salti_max << " data recorded\nTill now analyzed\n";
         
-        while (!file_salti.eof()) {
+        while (file_salti>>t__) { // get the first to check the file
             // read run/tumble
             loadbar(n_linea,n_salti_max);
             n_linea++;
 
             if (run==1) {
-                file_salti >> t__ >> tau >> up_down;
+                file_salti >> tau >> up_down;
 //                cout << std::setprecision(20) << "tau = " << tau << endl;
 //                file_salti >> tau >> tau >> up_down;
                 if (t__ <= t__p){
@@ -163,7 +163,7 @@ long double Analysis_run(string name_file_read, string names[], int run){
                 t__p=t__;
                 
             } else {
-                file_salti >> tau >> tau >> c;
+		file_salti >> tau >> c;
             }
 // divide which "gradient-case", I'm in up/down etc.
             tipo_tau=4; // all ...

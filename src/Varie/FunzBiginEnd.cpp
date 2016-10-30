@@ -609,6 +609,8 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
 					}
                     {
                     default:
+			printf("ERROR: unknown option: Aborting\n");
+			exit(1);
                         break;
                     }
                 }
@@ -616,6 +618,11 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
             }
             j++;
         }
+	if (search_more){
+		printf("ERROR: unknown option: Aborting\n");
+		exit(1);
+	}
+
         
     }
 //    string str;
