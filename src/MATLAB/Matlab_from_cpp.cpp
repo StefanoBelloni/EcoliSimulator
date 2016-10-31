@@ -47,8 +47,8 @@ int Matlab_from_cpp(int sel_prog, string versione_Matlab){
     
     string command;
     
-//    Scrittura_m_files();
-    Scrittura_m_filesAutomatic();
+    Scrittura_m_files();
+//    Scrittura_m_filesAutomatic();
     
     switch (sel_prog) {
         {    

@@ -53,7 +53,9 @@ CFLAGS= -g -std=c++11 -Wall -pedantic
 LDFLAGS =
 
 ifeq ($(OS),linux)
-	LDFLAGS += -pthread
+	CFLAGS += -fprofile-arcs -ftest-coverage
+	LDFLAGS += -static-libstdc++ #to statically link the stdc++
+	LDFLAGS += -pthread -fprofile-arcs -ftest-coverage
 endif
 
 

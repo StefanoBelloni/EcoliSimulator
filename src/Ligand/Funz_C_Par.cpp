@@ -240,10 +240,10 @@ void Funz_C_Par::set_parameter(){
     
 }
 
-Funz_C_Par::Funz_C_Par(){
-    
+Funz_C_Par::Funz_C_Par():Funz_C(){
+    change_par = 1;
+
 //    cout << "Creato!! "<< endl;
-    
 }
 
 

@@ -42,6 +42,7 @@ Funz_C::~Funz_C(){
 Funz_C::Funz_C()
 {
     num_funz=9;
+    change_par = 0;
     max_x=20;
     min_x=-20;
     max_y=20;
@@ -167,7 +168,7 @@ long double Funz_C::new_F_C(long double t, std::array<long double,2> x){
 void Funz_C::set_parameter(){
     
     interact=1;
-    
+    change_par = 0;    
     funz_clear();
 
     
@@ -272,7 +273,7 @@ void Funz_C::print_fc(std::ofstream &file_save, long double t){
 void Funz_C::reset_parameter(){
     
     num_funz=9;
-    
+    change_par = 0;    
     max_x=20.0L;
     min_x=-20.0L;
     max_y=20.0L;
