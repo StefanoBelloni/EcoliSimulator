@@ -362,6 +362,7 @@ void helpMenu(){
         << "                       with apngasm ('.png' file), but as a '.gif' file." << endl
         << "                       --apngams tells to create multilayer '.png' file. " << endl
         << "                       The defoult (for the first lunch) is '.gif' file." << endl
+        << BOLDBLUE << "   --nobars..... ........" << RESET << " do not show progress bar in simulation and analysis"<< endl
         << BOLDBLUE << "   --nocolors .........." << RESET << "it uses the default colors of the terminal." << endl << endl << endl
     //        cout << "*****************************************************" << endl;
 
@@ -408,6 +409,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
     checks.push_back("--dir=");
     checks.push_back("-qclear");
     checks.push_back("--data"); 
+    checks.push_back("--nobars");
     unsigned int j=0;
     bool initial_p = true;
     bool search_more;
@@ -607,6 +609,12 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
 							save_data = true;	
 						}
 					}
+                    {// colors yes, no ...
+                     case 13:
+                        show_bars=false;
+                        break;
+                    }
+
                     {
                     default:
 			printf("ERROR: unknown option: Aborting\n");

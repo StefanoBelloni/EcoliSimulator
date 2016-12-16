@@ -30,7 +30,7 @@
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
-#define precision_output 20
+#define precision_output 22
 
 #include "constants.h" //#define pi 3.141592653589793238462
 
@@ -54,42 +54,13 @@ void E_coli::agg_ligand(long double t, Funz_C *f){
     
     c = f->new_F_C(t, x);  
 //    cout << "f("<<t<<","<<x[0]<<","<<x[1]<<") = " << c << endl;
-    // Relative concentration ...
-    
+//    Relative concentration ...
 //    c = (c_iniziale>0)?c/c_iniziale:c;
-    
 //    cout << "c(t) = " << c <<"("<<t<<")\n";
     response_function();
     
 }
-
-
 //*************************************************************** 
-
-//int E_coli::initial_condition(long double t, long double *x0, Funz_C *f){
-//    
-//    x[0]=x0[0];
-//    x[1]=x0[1];
-//    this->agg_ligand(t,f);
-//    
-//    // parto SEMPRE con un run (così non ho difficoltà con la creazione del file statistico)!!!
-//    salto_=1;
-//    lambda_r=0.0;
-//    lambda_t=0.0;
-//    
-//    t_t=0.0;
-//    t_r=0.0;
-//    
-//    up_down=2; // indice up/down
-//    sign_c=2;
-//    
-//    reset_par();
-//    
-//    return 0;
-//    
-//}
-
-
 
 //************************** 
 //  VIRTUAL FUNCTIONS
@@ -103,24 +74,12 @@ void E_coli::stationary_dyn(long double dt, std::vector<long double> &m0, int ch
     
     c_iniziale=c;
     
-//    if (change_pos==0) {
-//    
-////        cout << "la dinamica stazionaria ... 'un cambia" << endl;
-//        
-//    }else {
-////        cout << "la dinamica stazionaria ... va cambia'a" << endl;
-//    }
-    
-    
-    
 }
 
 
 //*************************************************************** 
 
 void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , std::ofstream *file_tau, std::ofstream &file_theta){
-    
-//    long double dt=dt_/10;
     
     // many if to check the border!!!
     
@@ -157,35 +116,12 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
     
     // Aggiornamento up_down
     
-    // Devo provare che se faccio un salto nel primo dt devo buttarlo via da const
-    
     sign_c=signum_f(c-c_p);
-    
-//    if (sign_c==0) {
-//        cout << "**********************************" << t << endl;
-//        cout << "t = " << t << endl;
-//        cout << "c(t,x) = " << c << ", c(t-dt,x-dx) = " << c_p << endl;
-//    }
     
     if (sign_p==2) {
         
-//        cout << "*****************************"<< endl;
-//        cout << "t = " << t << endl;
-//        cout << "c = " << c << ", c_p = " << c_p << endl;
-//        cout << "up_down = " << up_down << ", sign_c = " << sign_c << ", sign_p = " << sign_p << endl;
-        
-        // sign_p==2 -> start of new phase.
-        
-//        cout << "\ndebug:\n";
-//        cout << "t = " << t << endl;
-//        cout << "sign_c = " << sign_c << endl;
-//        cout << "up_down = " << up_down << endl;
-        
         sign_p  = sign_c;
         up_down = sign_c;
-        
-//        sign_p=-1;
-//        up_down=-1;
         
         // up_down: 
         //  1 -> up
@@ -194,20 +130,11 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
         
     }else{
         
-//        cout << "t = " << t << endl;
-//        cout << "c = " << c << ", c_p = " << c_p << endl;
-//        cout << "up_down = " << up_down << ", sign_c = " << sign_c << ", sign_p = " << sign_p << endl;
-        
         if (up_down!=2) {
-            
             // CAMBIO GLI INDICI
-            
             if (sign_c!=sign_p) {
-//                cout << "mix .. " << endl;
                 up_down=2;
-
             }else{
-//                sign_p=sign_c;
                 up_down=sign_c;
             } 
         }
@@ -222,19 +149,15 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
     if (salto_risp==3 && salto_risp_1==1) {
         
         {
-                
             theta = theta-pi;
-            
             x[0]=min(x_M,max(x_m,x[0]+dt*v*cos(theta)));
             x[1]=min(y_M,max(y_m,x[1]+dt*v*sin(theta)));
             theta+=D_theta*deltaW_ec(dt);
             
             while (theta<0){
-//                cout << "qui ..." << endl;
                 theta = theta+2*pi;
             }
             while (theta>2*pi){
-//                cout << "qui ..." << endl;
                 theta= theta-2*pi;
             }
             
@@ -252,12 +175,6 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
             {
             case 0:
                 
-//                if (t_r-t<=2*dt) {
-//                    up_down=2;
-//                    cout << "Breve:\n";
-//                    cout << "t= "<< t <<"\n";
-//                }
-                
                 theta=newtheta_ec(theta);
                 salto_=-1;
                 save_theta(t, theta, file_theta);
@@ -269,12 +186,6 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
             {
             case 2:
                 
-//                if (t_t-t<=2*dt) {
-//                    up_down=2;
-//                    cout << "Breve:\n";
-//                    cout << "t= "<< t <<"\n";
-//                }
-
                 salto_=1;
                 save_tumble(t,file_tau[1],dt);
                 t_r=t;
@@ -286,8 +197,6 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
             case 4:
                 
                 cout << "Error in the simulation (Ecoli::aggiornamento) " << endl;
-                
-                
                 string msg("Error in the simulation (Ecoli::aggiornamento).");
 //                msg+=name_script_baricenter;
                 my_mutex.lock();
@@ -297,14 +206,11 @@ void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p 
                 break;
             }   
             default:
-
                 break;
-
             }
     }
       
     // Se interacting mangio e produco, senza crepare!
-    
     if (f->interact==0) {
 //        eat(f,dt);
         produce(f,dt);
@@ -358,56 +264,34 @@ E_coli::E_coli()/*:std_unifRand(0.0,1.0)*/{
     this->engine_altro = &rnd_ecoli.random_engines[0];
     this->engine_barrier = &rnd_ecoli.random_engines[0];
     this->engine_theta = &rnd_ecoli.random_engines[0];
-    
-//    std::random_device   m_rd;
-//    engine_theta = new std::mt19937_64(m_rd());
-//    std_unifRand = std::uniform_real_distribution<long double>(0.0,1.0);
-    
     //***************************  
-    
     x[0]=0.0;        // Position
     x[1]=0.0;        // Position
     v = epsilon*0.016;           // Speed bacterium  mm/s
-//    v=0.16;           // Speed bacterium  mm/s/100
     theta=0;//2*pi*unifRand_ec();       // Direction
     c=0;           // Ligand concentration
     D_theta=0.25;
-    
     //***************************    
-    
     lambda_r=0.0;     // internal variable, _t -> tumble process; _r -> run process.
     lambda_t=0.0;    
     tau_r=0.8;
     tau_t=0.1;
-    
 //    //***************************
-    
     barriera_r=0.8;     //reset_barrier();       // tresch-hold
-//    barriera_t=min(Exp_dist(),1.5);
     barriera_t=0.1;     //reset_barrier_t();
     salto_=1;             // run_fase == 1, tumble_fase == 2, jump_instant == 0, tumble_fase == -1
     t_t=0.0;             // time began tumble
     t_r=0.0;             // time began run
-    
     //***************************
-    
     sign_c=2;
     up_down=2;
     n_dyn_var=0;
-    
     this->production_rate = 10;
-    
     //***************************
-    
     tipo_response_c=0;
     RC_0=1;
     RC_1=0;
     RC_q=0;
-    
-//    cout << "production_rate = " << production_rate << endl;
-//    production_rate = 10;
-//    cout << "production_rate = " << production_rate << endl;
-    
 }
 
 
@@ -421,54 +305,35 @@ E_coli::E_coli(const E_coli& m)/*:std_unifRand(0.0,1.0)*/{
     this->engine_theta = m.engine_theta;
     this->tipoNewTheta = m.tipoNewTheta;
     this->production_rate = m.production_rate;
-    
-//    std_unifRand = std::uniform_real_distribution<long double>(0.0,1.0);
-    
     //***************************
-    
     this->x[0]=m.x[0];        // Position
     this->x[1]=m.x[1];        // Position
     this->v = m.v;           // Speed bacterium  mm/s
-    //    v=0.16;           // Speed bacterium  mm/s/100
     this->theta=0; //2*pi*unifRand_ec();       // Direction
     this->c=m.c;           // Ligand concentration
     this->D_theta=m.D_theta;
-    
     //***************************
-    
     this->lambda_r=m.lambda_r;     // internal variable, _t -> tumble process; _r -> run process.
     this->lambda_t=m.lambda_t;
     this->tau_r=m.tau_r;
     this->tau_t=m.tau_t;
-    
     //    //***************************
-    
     barriera_r=0.8;     //reset_barrier();       // tresch-hold
-    //    barriera_t=min(Exp_dist(),1.5);
     barriera_t=0.1;     //reset_barrier_t();
     this->salto_=1;             // run_fase == 1, tumble_fase == 2, jump_instant == 0, tumble_fase == -1
     this->t_t=0.0;             // time began tumble
     this->t_r=0.0;             // time began run
-    
     //***************************
-    
     this->sign_c=2;
     this->up_down=2;
     this->n_dyn_var=m.n_dyn_var;
-    
     //***************************
-    
     this->tipo_response_c=m.tipo_response_c;
     this->RC_0=m.RC_0;
     this->RC_1=m.RC_1;
     this->RC_q=m.RC_q;
-    
-    //    cout << "production_rate = " << production_rate << endl;
     this->production_rate = m.production_rate;
-    //    cout << "production_rate = " << production_rate << endl;
-    
     this->s_lambda_r = m.s_lambda_r;
-    
 }
 
 void E_coli::change_par(int change){
@@ -477,9 +342,7 @@ void E_coli::change_par(int change){
         
         D_theta=0.25;
         v = 0.016*epsilon;
-        
         //***************************    
-        
         lambda_r=0.0;     // internal variable, _t -> tumble process; _r -> run process.
         lambda_t=0.0;    
         tau_r=0.8;
@@ -491,8 +354,6 @@ void E_coli::change_par(int change){
         RC_q=0;
         tipoNewTheta=1;
         
-        
-        
     }else {
         
         cout << "Insert the speed of a bacterium: " << endl;
@@ -501,9 +362,7 @@ void E_coli::change_par(int change){
         cout << "with epsilon = " << epsilon <<endl;
         cout << "v = ";
         sssr(E_coli::v,"speed of the bacterium:");
-        
         v=v*epsilon;
-        
         //***********************************************************************
         cout << "Insert the response function phi(c): " << endl;
         cout << "0 - phi(c) = C_00*c" << endl;
@@ -517,60 +376,43 @@ void E_coli::change_par(int change){
         switch (tipo_response_c) 
         {
             case 0:
-                
                 cout << "//***********************************************************\n//\n";
                 cout << "0 - phi(c) = C_00*c" << endl;
-                
                 cout << "C_00= ";
                 sssr(RC_0,"C_00");;
-                
-                
                 break;
                 
             case 1:
-                
                 cout << "//***********************************************************\n//\n";
                 cout << "0 - phi(c) = C_01*log(1+C_11*c)" << endl;
-                
                 cout << "C_01= ";
                 sssr(RC_0,"C_01");;
-                
                 cout << "C_11= ";
                 sssr(RC_1,"C_11");;
-                
                 break;
                 
             case 2:
-                
                 cout << "//***********************************************************\n//\n";
                 cout << "0 - phi(c) = c = RC_0*(c/(RC_1+c))" << endl;
-                
                 cout << "RC_0= ";
                 sssr(RC_0,"RC_0");;
-                
                 cout << "RC_1= ";
                 sssr(RC_1,"RC_1");;
-                
                 break;
                 
             case 3:
                 
                 cout << "//***********************************************************\n//\n";
                 cout << "0 - phi(c) = C_03*pow(c,C_13)/(pow(C_23,C_13)+pow(c,C_13))" << endl;
-                
                 cout << "C_03= ";
                 sssr(RC_0,"C_03");;
-                
                 cout << "C_= C_23 ";
                 sssr(RC_1,"C_23");;
-                
                 cout << "integer valued: C_14= ";
                 sssr(RC_q,"C_14");;
-                
                 break;
                 
             default:
-                
                 tipo_response_c=0;
                 RC_0=1;
                 RC_1=0;
@@ -630,79 +472,52 @@ void E_coli::change_par(int change){
 void E_coli::reset_par(){
 
     //***************************  
-    
     x[0]=0.0;        // Position
     x[1]=0.0;        // Position
     v=0.016;           // Speed bacterium
-//    v=0.16;           // Speed bacterium
     theta=2*pi*unifRand_ec();       // Direction
     c=0;           // Ligand concentration
     D_theta=0.25;
     tipoNewTheta=1;
     production_rate = 10;
-    
     //***************************    
-    
     lambda_r=0.0;     // internal variable, _t -> tumble process; _r -> run process.
     lambda_t=0.0;    
     tau_r=0.8;
     tau_t=0.1;
-    
     //***************************
-    
     barriera_r=reset_barrier();       // tresch-hold 
 //    barriera_t=min(Exp_dist(),1.5);
     barriera_t=reset_barrier_t();
-
     salto_=1;             // run_fase == 1, tumble_fase == 2, jump_instant == 0, tumble_fase == -1
     t_t=0.0;             // time began tumble
     t_r=0.0;             // time began run
-    
     //***************************
-    
     sign_c=2;
     up_down=2;
     n_dyn_var=0;
-    
     //***************************
-    
     c_iniziale=0;
-    
     tipo_response_c=0;
     RC_0=1;
     RC_1=0;
     RC_q=1;
-
 }
 
 
 //***************************************************************
 //***************************************************************
 
-
 void E_coli::save_run(long double t, std::ofstream &file_run, long double dt){
-   
 
     file_run << std::setprecision(precision_output) << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << endl;
-    
-//    if (t-t_r>8) {
-//        my_mutex.lock();
-//        cout << t << " " << t-t_r << " " << up_down << endl;
-//        my_mutex.unlock();
-//
-//    }
-    
-//    last_tau_r=t-t_r;
-    
+
 }
 
 void E_coli::save_tumble(long double t, ofstream &file_tumble, long double dt){
 
     long double rnd = unifRand_ec();
     file_tumble << std::setprecision(precision_output) << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << endl;
-
-//    file_tumble << t << " " << t-t_t << endl << " " << c << endl;
-//    last_tau_r=t-t_t;
 
 }
 
@@ -718,7 +533,6 @@ void E_coli::save_E_coli_initial(std::ofstream *file_, long double t){
     my_mutex.lock();
     file_[0] << std::setprecision(precision_output) << x[0] << " " << x[1] << " " << up_down << endl;
         cout << "save        (x,y): " << x[0] << " , " << x[1] << " , " << up_down << endl;
-//        file_[0] << x[0] << " " << x[1] << " " << sign_c << endl;
     file_[1] << std::setprecision(precision_output) << t << " " << theta << endl;
     file_[2] << std::setprecision(precision_output) << t << " " << c << endl;
     my_mutex.unlock();
@@ -769,18 +583,13 @@ void E_coli::produce(Funz_C* f_i, long double dt)
 {    
     int n_x[4];
 //    long double product=dt*0.5;
-    
     // I spilt in 4.
-    
     f_i->get_coordinate1(x,n_x);
-    
 //    (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]+=((*(f_i->f_c))[n_x[0]*f_i->n_y+n_x[1]])*product*dt;
-    
     (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]+=(production_rate*dt/4);
     (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[3]]+=(production_rate*dt/4);
     (*(f_i->q_c))[n_x[2]*f_i->n_y+n_x[1]]+=(production_rate*dt/4);
     (*(f_i->q_c))[n_x[2]*f_i->n_y+n_x[3]]+=(production_rate*dt/4);
-    
 //    cout << "(*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] = " << (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] << endl;
 //    cout << "production_rate = " << production_rate << endl;
     
@@ -791,33 +600,23 @@ void E_coli::response_function(){
     switch (tipo_response_c) 
     {
         case 0:
-            
             c = RC_0*c;
-            
             break;
             
         case 1:
-            
             c = RC_0*log(1+RC_1*c);
-            
             break;
             
         case 2:
-            
             c = RC_0*(c/(RC_1+c));
-            
             break;
             
         case 3:
-            
             c = RC_0*pow(c,RC_q)/(pow(RC_1,RC_q)+pow(c,RC_q));
-            
             break;
             
         default:
-            
 //            c = c;
-            
             break;
     }
     
@@ -829,7 +628,6 @@ void E_coli::set_response(int ftipo_response_c, long double fRC_0, long double f
     RC_0=fRC_0;
     RC_1=fRC_1;
     RC_q=fRC_q;
-    
     
 }
 
@@ -915,9 +713,6 @@ void E_coli::start_simulation(Funz_C *f){
     this->barriera_r=this->reset_barrier();
     this->barriera_t=this->reset_barrier_t();
     this->theta = 2*pi*unifRand_ec();
-    
-
-    
     
 //    this->agg_ligand(0, f);
     this->agg_ligand(0, f);

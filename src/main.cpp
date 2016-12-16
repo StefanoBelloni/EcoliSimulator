@@ -88,6 +88,7 @@ int automatic_ = 100;
 long double epsilon = 1.0;
 bool multithread = false;
 bool colors = true;
+bool show_bars = true;
 unsigned int n_thread_available = 1;
 
 //string fileEcoliRisp = "EcoliTest.Ecoli";
@@ -277,4 +278,5 @@ int main(int argc, const char * argv[])
  * [no] - if I therad gnuplot_film didn't work return a parameter ...
  * [...] - save figure from matlab.
  * [x] - sistemare il video di theta ... --> "::1::b" b non è sincronizzato ...
+ * move the files to tmpEcoli ... create also the directory ./tmpEcoli
  */

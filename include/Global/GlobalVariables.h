@@ -22,7 +22,7 @@ extern const std::string nameLog;
 
 
 extern bool colors;
-
+extern bool show_bars;
 
 /** 
  * Variable to keep track of the MODE of simulation ... in otherwords, how to get the imput,

@@ -42,7 +42,9 @@ static inline void loadbar(unsigned int x, unsigned int n, int time_ = 1, unsign
 {
     /* display or not the load bar */
 //    return;
-    if (time_==0) return;
+    if ( !show_bars ) return;
+
+    if ( time_==0) return;
     
     if ( (x != n) && (x % (n/100+1) != 0) ) return;
     
