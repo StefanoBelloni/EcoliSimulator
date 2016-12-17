@@ -71,6 +71,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <sstream>
 #include "mainFunctions.h"
 #include <unistd.h>
+#include <unistd.h>
+
 using namespace std;
 
 int Funz_C::num_funz = 9;
@@ -93,11 +95,12 @@ unsigned int n_thread_available = 1;
 
 //string fileEcoliRisp = "EcoliTest.Ecoli";
 string fileEcoliRisp = "EcoliRisposte.Ecoli";
-const string nameLog = "LogEcoli.LogEcoli";
+string nameLog = "LogEcoli.LogEcoli";
 const string EcoliPath = "EcoliPath.Ecoli";
 unsigned int seed_ ;
 unsigned int seed_r;
 bool same_seed = false;
+bool verbose = false;
 // automatic: 0 -> step by step version
 //            1 -> setting parameters
 //            2 -> running simulation 
@@ -240,6 +243,11 @@ int main(int argc, const char * argv[])
         return ERROR_SAVING_PATH_TO_FILE;
     }
     // main loop of the program.
+    
+    std::string tmpDir = getcwd(NULL,0);
+    tmpDir+=std::string("/tmpEcoli/");
+    chdir(tmpDir.c_str()); 
+
     do{
         BiginEnd=0;
         FunzBiginEnd(number_routine,cont_gen_sim,read_par_file,versione_Matlab,pt_name_file_satistics,pt_name_info_satistics,demo_mode,stat_sim);
@@ -278,5 +286,5 @@ int main(int argc, const char * argv[])
  * [no] - if I therad gnuplot_film didn't work return a parameter ...
  * [...] - save figure from matlab.
  * [x] - sistemare il video di theta ... --> "::1::b" b non è sincronizzato ...
- * move the files to tmpEcoli ... create also the directory ./tmpEcoli
+ * [...] move the files to tmpEcoli ... create also the directory ./tmpEcoli
  */

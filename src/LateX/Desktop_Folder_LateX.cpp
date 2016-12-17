@@ -60,6 +60,9 @@ int SetMainFolder(int demo_mode)
     
     MainFolder = MainFolder+time_buffer;
     
+    std::string tmpDir = getcwd(NULL,0);
+    tmpDir+=std::string("/tmpEcoli/");
+
     //const char* homeDir = getenv ("HOME");
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
     
@@ -72,10 +75,11 @@ int SetMainFolder(int demo_mode)
     char final_dir [256];
     sprintf (final_dir, "%s/%s",Location.c_str(),MainFolder.c_str());
     err_dir = mkdir(final_dir,0775);
-    
+    // make tempdir if not exists
+
 #endif
     
-    
+
     ofstream file_temp_log;
     file_temp_log.open(nameLog, std::ios_base::binary | std::ios_base::app|std::ios_base::ate);
     file_temp_log << endl << "#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!" << endl;
@@ -90,6 +94,23 @@ int SetMainFolder(int demo_mode)
     file_temp_log << "  --> " << final_dir << endl;
 
     file_temp_log.close();
+    
+    //const char* homeDir = getenv ("HOME");
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+
+    // TODO    
+    
+#else
+    
+    int existDir = system("cd tmpEcoli");
+    if (existDir){
+        cout << "tmpDir: " << tmpDir << endl;
+        sprintf (final_dir, "%s",tmpDir.c_str());
+        err_dir += mkdir(final_dir,0775);
+    }
+
+#endif
+
     
     return err_dir;
     

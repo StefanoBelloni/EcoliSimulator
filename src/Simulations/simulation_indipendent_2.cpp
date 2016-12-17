@@ -80,16 +80,17 @@ int simulation_independent_setting(E_coli *batterio,long double T_f,Funz_C *f,lo
     if (automatic_!=1) {
         
         // LOG FILE
-//        stringstream msg;
-//        msg.str("");
-//        msg << "Simulation number " << cont_gen_sim << endl
-//        << "      Type bacterium: "<< batterio->Tipo_batterio << endl;
-//        msg << "      Type function: " << f->num_funz << endl;
-//        msg << "      Number bacteria: " << n_c << endl;
-//        msg << "      Final Time Experiment: " << T_f << " sec";
-//        
-//        writeLog("SIMULATION INDIPENDENT POPULATION",msg.str());
-        
+    if (verbose){
+       stringstream msg;
+       msg.str("");
+       msg << "Simulation number " << cont_gen_sim << endl
+       << "      Type bacterium: "<< batterio->Tipo_batterio << endl;
+       msg << "      Type function: " << f->num_funz << endl;
+       msg << "      Number bacteria: " << n_c << endl;
+       msg << "      Final Time Experiment: " << T_f << " sec";
+       
+       writeLog("SIMULATION INDIPENDENT POPULATION",msg.str());
+    } 
         print_and_open_info(names_info_mod[0], batterio, f, T_f, x0, dt, n_c, Raggio, delta_dist, num_dist, const_salv,cont_gen_sim);
         if (automatic_==0){
             batterio->gnuplotFunzInternalDynalmic(names_info_mod[0],0,cont_gen_sim);
@@ -126,12 +127,12 @@ int simulation_independent_setting(E_coli *batterio,long double T_f,Funz_C *f,lo
         cout << "Seconds needed to complete the simulation:\n     ";
         cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
         cout << "***************************************************\n"<<RESET;
-        
-//        stringstream msg;        
-//        msg.str("");
-//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
-//        writeLog("Simulation terminated in: ",msg.str());
-        
+       if (verbose){ 
+       stringstream msg;        
+       msg.str("");
+       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+       writeLog("Simulation terminated in: ",msg.str());
+       }
     }
     
     

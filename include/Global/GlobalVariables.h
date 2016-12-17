@@ -18,7 +18,8 @@ extern unsigned int n_thread_available;
 
 extern std::string fileEcoliRisp;
 extern const std::string EcoliPath;
-extern const std::string nameLog;
+extern std::string nameLog;
+extern bool verbose;
 
 
 extern bool colors;

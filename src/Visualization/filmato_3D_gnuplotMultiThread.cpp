@@ -287,11 +287,12 @@ void filmato_3D_gnuplotMultiT(string names_info[],long double max_x, long double
         cout << "***************************************************\n"<<RESET;
 
         // LOG FILE
-//        stringstream msg;
-//        msg.str("");
-//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
-//        writeLog("FILM: (multi-thread) created and saved in ",msg.str());
-        
+        if (verbose){
+       stringstream msg;
+       msg.str("");
+       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+       writeLog("FILM: (multi-thread) created and saved in ",msg.str());
+        }
         //****************************
         // OVERWRITE THE SCRITS ... not to save ...
         // TODO: check this ...

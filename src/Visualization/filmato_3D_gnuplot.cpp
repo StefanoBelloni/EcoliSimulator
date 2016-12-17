@@ -199,11 +199,12 @@ void filmato_3D_gnuplot(string names_info[],long double max_x, long double max_y
 
         
         // LOG FILE
-//        stringstream msg;
-//        msg.str("");
-//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";        
-//        writeLog("FILM: (single-thread) created and saved in ",msg.str());
-        
+        if (verbose){
+       stringstream msg;
+       msg.str("");
+       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";        
+       writeLog("FILM: (single-thread) created and saved in ",msg.str());
+        }
 //******************************************************************
 // OVERWRITE THE SCRITS ... not to save ...
 //******************************************************************

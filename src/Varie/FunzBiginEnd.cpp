@@ -17,7 +17,6 @@
 #include <thread>
 #include "apngasm_Global.h"
 #include "GlobalRandomVariables.h"
-
 #include "ErrorsDefinition.h"
 
 #include "Declar_funz.h"
@@ -53,15 +52,11 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
         if (same_seed) {
             cout << BOLDRED << "same seed ... " << endl << RESET;
             for (unsigned int i=0; i< n_thread_available; i++) {
-                
 //                cout << "ri inizialize random engine saved ... " << endl;
-                
                 rnd_ecoli.random_engines.push_back(*new std::mt19937_64(clock()));
 //                rnd_ecoli.random_engine_saved.push_back(rnd_ecoli.random_engines[i]);
-                
                 rnd_ecoli.random_engines_seeded.push_back(false);
             }
-            
             seedRandomObj(0,this_thread::get_id());
         }
         
@@ -72,35 +67,32 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
         
         if (stat_sim>3||stat_sim<=0) return -1;
         
-        
-        
-        
         // SIMULATIONS AND ANALYSIS
-        
         switch (stat_sim) {
             {case 1:
-                
+
                 MODE_return=MODE_simulation(versione_Matlab, cont_gen_sim);
-                
-                break;}
+                break;
+            }
             {case 2:
                 
                 cout << "How many bacteria do you want to simulate ? ";
                 cin >> MODE_return;
-                
                 MODE_return = MODE_statisticalAnalysis(versione_Matlab, cont_gen_sim, pt_name_file_satistics, pt_name_info_satistics, MODE_return);
-                
-                break;}
+                break;
+             }
             {case 3:
+
                 MODE_return=MODE_simulation(versione_Matlab, cont_gen_sim,pt_name_file_satistics, pt_name_info_satistics);
                 MODE_return = MODE_statisticalAnalysis(versione_Matlab, cont_gen_sim,pt_name_file_satistics, pt_name_info_satistics, MODE_return);
-                
-                break;}
+                break;
+             }
             {default:
                 
                 cout << "ERROR stat_sim out of range ... \n";
                 return ERROR_OVERFLOW_PROGRAM_SELECTOR;
-                break;}
+                break;
+            }
         }
         
         // set folder and LateX
@@ -363,6 +355,7 @@ void helpMenu(){
         << "                       --apngams tells to create multilayer '.png' file. " << endl
         << "                       The defoult (for the first lunch) is '.gif' file." << endl
         << BOLDBLUE << "   --nobars..... ........" << RESET << " do not show progress bar in simulation and analysis"<< endl
+        << BOLDBLUE << "   --verbose............." << RESET << " produce a detailed Log file"<< endl
         << BOLDBLUE << "   --nocolors .........." << RESET << "it uses the default colors of the terminal." << endl << endl << endl
     //        cout << "*****************************************************" << endl;
 
@@ -407,9 +400,10 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
     checks.push_back("--apngasm");
     checks.push_back("--script");
     checks.push_back("--dir=");
-    checks.push_back("-qclear");
+    checks.push_back("--qclear");
     checks.push_back("--data"); 
     checks.push_back("--nobars");
+    checks.push_back("--verbose");
     unsigned int j=0;
     bool initial_p = true;
     bool search_more;
@@ -612,6 +606,11 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                     {// colors yes, no ...
                      case 13:
                         show_bars=false;
+                        break;
+                    }
+                    {// verbose
+                     case 14:
+                        verbose=true;
                         break;
                     }
 

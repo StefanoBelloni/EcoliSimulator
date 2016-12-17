@@ -166,11 +166,12 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
         
         
         // LOG FILE
-//        stringstream msg;
-//        msg.str("");
-//        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
-//        writeLog("HISTOGRAMS: data elaborated and saved to file in ",msg.str());
-   
+        if (verbose){
+       stringstream msg;
+       msg.str("");
+       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+       writeLog("HISTOGRAMS: data elaborated and saved to file in ",msg.str());
+        } 
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);
         if (error!=0) {
             cout << "\nerror in function percSignFunzC(vector< vector<long double> > c_t, int n_c, int dim_col_t)\n";

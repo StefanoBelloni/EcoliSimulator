@@ -180,6 +180,7 @@ void initial_page(){
 
 void setDefoultGlobalVar(){
     
+    // TODO: remove tmpDir ... 
     //******************************************************************************************
     //                                      GLOBAL GNUPLOT
     //******************************************************************************************
@@ -191,6 +192,7 @@ void setDefoultGlobalVar(){
     gnuplotOpen = "gnuplot ";
 #else
     gnuplotOpen = "/opt/local/bin/gnuplot ";
+    system("rm tmpEcoli/*");
     //string gnuplotOpen = "gnuplot ";
     //string gnuplotOpen = "/usr/bin/gnuplot ";
 #endif
@@ -261,7 +263,10 @@ void setDefoultGlobalVar(){
     Location = getcwd(NULL,0);
     firefox_path ="open -a firefox ";
 #endif
-   
+
+  // set the Log file where the bin was lunched , so I can delete inside tmpEcoli without worry
+   nameLog = Location + std::string("/") + nameLog;
+
    save_data = false;
     
 }
