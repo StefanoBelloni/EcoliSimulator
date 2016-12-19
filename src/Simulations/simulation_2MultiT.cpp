@@ -26,7 +26,11 @@
 #include <fstream>
 #include <cmath>
 #include <sstream>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include <system_error>
 #include <sys/stat.h>
 #include "GlobalVariables.h"
@@ -60,6 +64,7 @@ using namespace std;
 #define n_val_termine 200
 
 
+#ifndef NO_M_THREAD
 
 /*! \brief Function that performs the actual simulation of independent population */
 
@@ -169,8 +174,11 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
     
     long double errore = 0.000000001;
     
+#ifndef NO_M_THREAD
     seedRandomObj(n_thread+1,this_thread::get_id());
-
+#else
+    seedRandomObj(n_thread+1,rand());
+#endif 
     int n=n_thread+1;
     if (!same_seed) {
         //        cout << "other seed " << endl;
@@ -665,3 +673,5 @@ int mergeFilesSimulation(int n_thread, string *names_files_Ecoli_mod, string nam
     return 0;
     
 }
+
+#endif

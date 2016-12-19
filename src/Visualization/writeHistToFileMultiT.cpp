@@ -16,7 +16,11 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include <array>
 
 using namespace std;
@@ -30,6 +34,8 @@ using namespace std;
 #endif
 
 int writeLog(std::string what, string msg);
+
+#ifndef NO_M_THREAD
 
 /*! \brief This function write the histogram of the density to file: multithread.
  */
@@ -373,4 +379,4 @@ void startThred_writeFunC(const int start_for, const int end_for, const int upda
         file3D_c.close();
     }
 }
-
+#endif

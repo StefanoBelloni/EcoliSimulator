@@ -7,7 +7,11 @@
 //
 
 #include <iostream>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include <sstream>
 
 #include "GlobalVariables.h"
@@ -100,12 +104,20 @@ int simulation_independent_setting(E_coli *batterio,long double T_f,Funz_C *f,lo
         
     }
     
-    auto start = chrono::steady_clock::now();
+    #if NO_M_THREAD     
+    time_t start;     
+    time(&start); 
+    #else     
+    auto start = chrono::steady_clock::now(); 
+    #endif
     
     int simulation_return=0;
     
     if (automatic_!=1) {
         
+#if NO_M_THREAD
+        simulation_return = simulation_2(batterio,T_f,f,x0,dt,n_c,Raggio,delta_dist,num_dist,const_salv, names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod,i, cont_gen_sim,n_c);
+#else
         if (n_c>=1000 && T_f >= 50 && multithread) {
             
             int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
@@ -117,20 +129,35 @@ int simulation_independent_setting(E_coli *batterio,long double T_f,Funz_C *f,lo
         
             simulation_return = simulation_2(batterio,T_f,f,x0,dt,n_c,Raggio,delta_dist,num_dist,const_salv, names_Ecoli_mod, names_indice_mod, names_tau_mod, names_file_dyn_mod, names_info_mod,i, cont_gen_sim,n_c);
         }
-        
-        
+#endif    
+
+#if NO_M_THREAD
+        time_t end;
+        double diff;
+        time(&end);
+        diff=difftime(start,end); // gives in seconds
+#else
         auto end = chrono::steady_clock::now();
         auto diff = end - start;
+#endif
         
         
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the simulation:\n     ";
+#if NO_M_THREAD
+        cout << diff << " seconds" << endl;
+#else
         cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
+#endif
         cout << "***************************************************\n"<<RESET;
        if (verbose){ 
        stringstream msg;        
        msg.str("");
-       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#if NO_M_THREAD
+        msg << diff << " seconds";
+#else
+        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#endif       
        writeLog("Simulation terminated in: ",msg.str());
        }
     }

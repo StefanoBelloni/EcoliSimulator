@@ -14,7 +14,9 @@
 #include "GnuplotGlobal.h"
 #include "Colori.h"
 #include "Dir_Global.h"
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
 #include "apngasm_Global.h"
 #include "GlobalRandomVariables.h"
 #include "ErrorsDefinition.h"
@@ -57,7 +59,13 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
 //                rnd_ecoli.random_engine_saved.push_back(rnd_ecoli.random_engines[i]);
                 rnd_ecoli.random_engines_seeded.push_back(false);
             }
-            seedRandomObj(0,this_thread::get_id());
+
+#ifndef NO_M_THREAD
+    seedRandomObj(0,this_thread::get_id());
+    #else
+    seedRandomObj(0,rand());
+    #endif 
+
         }
         
         if (read_par_file!=0) funz_clear();
@@ -358,8 +366,12 @@ void helpMenu(){
         << BOLDBLUE << "   --verbose............." << RESET << " produce a detailed Log file"<< endl
         << BOLDBLUE << "   --nocolors .........." << RESET << "it uses the default colors of the terminal." << endl << endl << endl
     //        cout << "*****************************************************" << endl;
-
+#ifndef NO_M_THREAD
         << "NOTE: on this computers " << std::thread::hardware_concurrency() << " cores are available. default is " << n_thread_available << " threads." << endl << endl;
+#else
+        << "NOTE: installed version without multithread option." << endl  << endl ;
+#endif
+
     
 }
 
@@ -494,7 +506,12 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                         cout << temp << endl;
                         
                         n_thread_available = atoi(temp.c_str());
+#if NO_M_THREAD
+                        unsigned int maxthread = 1;
+#else
                         unsigned int maxthread = std::thread::hardware_concurrency();
+
+#endif
                         n_thread_available=std::min(n_thread_available,maxthread);
                         cout << "n_thread_available = " << n_thread_available << endl;
                         if (n_thread_available < 2) {
@@ -646,7 +663,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
 }
 //***************************************************************************************************************************************
 //***************************************************************************************************************************************
-
+#ifndef NO_M_THREAD
 /*! \brief seed random object
  */
 
@@ -673,6 +690,31 @@ void seedRandomObj(int n_this_thread, thread::id hash_code){
         }
     }
 }
+#else
+void seedRandomObj(int n_this_thread, long hash_code){
+    
+    if (!rnd_ecoli.random_engines_seeded[n_this_thread])
+    {
+        // seed the engine!
+        rnd_ecoli.random_engines[n_this_thread]         = std::mt19937_64(clock()+1000*(1+n_this_thread));
+        rnd_ecoli.random_engines_seeded[n_this_thread]  = true;
+        rnd_ecoli.random_engines_barrier[n_this_thread] = std::mt19937_64(clock()+2000*(1+n_this_thread));
+        rnd_ecoli.random_engines_theta[n_this_thread]   = std::mt19937_64(clock()+3000*(1+n_this_thread));
+        rnd_ecoli.random_engine_saved[n_this_thread]          = rnd_ecoli.random_engines[n_this_thread];
+        rnd_ecoli.random_engines_barrier_saved[n_this_thread] = rnd_ecoli.random_engines[n_this_thread];
+        rnd_ecoli.random_engines_theta_saved[n_this_thread]   = rnd_ecoli.random_engines[n_this_thread];
+    }
+    else{
+        if (same_seed) {
+            cout << BOLDRED << "same seed ... " << endl << RESET;
+            rnd_ecoli.random_engines[n_this_thread]         = rnd_ecoli.random_engine_saved[n_this_thread];
+            rnd_ecoli.random_engines_barrier[n_this_thread] = rnd_ecoli.random_engines_barrier[n_this_thread];
+            rnd_ecoli.random_engines_theta[n_this_thread]   = rnd_ecoli.random_engines_theta[n_this_thread];
+            //            rnd_ecoli.random_engines_seeded[n_this_thread]=true;
+        }
+    }
+}
+#endif
 //***************************************************************************************************************************************
 //***************************************************************************************************************************************
 

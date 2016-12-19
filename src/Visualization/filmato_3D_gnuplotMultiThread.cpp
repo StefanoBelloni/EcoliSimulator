@@ -33,7 +33,11 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 
 #include <sys/stat.h>
 #include <unistd.h>
@@ -178,7 +182,13 @@ void filmato_3D_gnuplotMultiT(string names_info[],long double max_x, long double
         }else {
             risp_save=0;
         }
-        auto start = chrono::steady_clock::now();
+        #if NO_M_THREAD     
+        time_t start;     
+        time(&start); 
+        #else     
+        auto start = chrono::steady_clock::now(); 
+        #endif
+        
         //************************
         //      CREATION FRAMES ...
 //        scriptFilmato3Dgnuplot(dt*(epsilon*epsilon), maxX, maxY, minX, minY, max_z, max_fc, dim_col_t, NO_SAVE,cont_gen_sim);
@@ -279,18 +289,34 @@ void filmato_3D_gnuplotMultiT(string names_info[],long double max_x, long double
         
         deleteSCRIPT_GNUPLOTplay_videoMultiT(cont_gen_sim, n_thread_available);
         
-        auto end = chrono::steady_clock::now();
-        auto diff = end - start;
+#if NO_M_THREAD
+    time_t end;
+    double diff;
+    time(&end);
+    diff=difftime(start,end); // gives in seconds
+#else
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+#endif
+
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the creation and saving of the film:\n     ";
+#if NO_M_THREAD
+        cout << diff << " seconds" << endl;
+#else
         cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
+#endif        
         cout << "***************************************************\n"<<RESET;
 
         // LOG FILE
         if (verbose){
        stringstream msg;
        msg.str("");
-       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#if NO_M_THREAD
+        msg << diff << " seconds";
+#else
+        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#endif           
        writeLog("FILM: (multi-thread) created and saved in ",msg.str());
         }
         //****************************

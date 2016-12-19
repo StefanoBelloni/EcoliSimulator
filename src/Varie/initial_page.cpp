@@ -188,8 +188,10 @@ void setDefoultGlobalVar(){
     //string gnuplotOpen = "C:\\gnuplot\\binary\\wgnuplot.exe ";
 //    string gnuplotOpen = "C:\\\"Program Files (x86)\"\\gnuplot\\bin\\gnuplot ";
     gnuplotOpen = getcwd(NULL,0)+string("\\gnuplot\\bin\\gnuplot.exe ");
+    system("del tmpEcoli/*");
 #elif defined(__linux__) || defined(__linux) || defined(linux) 
     gnuplotOpen = "gnuplot ";
+    system("rm tmpEcoli/*");
 #else
     gnuplotOpen = "/opt/local/bin/gnuplot ";
     system("rm tmpEcoli/*");

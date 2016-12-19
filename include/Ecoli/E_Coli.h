@@ -47,7 +47,7 @@ namespace EcoliType {
         PAR_E_COLI,
         PAR_CV_REXP_TEXP,
         PAR_CV_RIG_TEXP,
-        PAR_CV_RIGEXP_TEXP,
+        PAR_CV_RIGEXP_TEXP
         
     };
 

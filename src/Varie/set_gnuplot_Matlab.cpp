@@ -65,6 +65,7 @@ void set_gnuplot_Matlab_apngas(string &versione_Matlab)
 /*! \brief Settings of n. cores and the use or not of the program apngasm.*/
 void general_settings(){
     int risp_=1;
+#ifndef NO_M_THREAD
     cout << BOLDBLUE <<"##############################################################\n";
     cout << BOLDBLUE << "Actual number of cores in use: " << n_thread_available << endl;
     cout << "Maximum number of cores available: " << std::thread::hardware_concurrency() << endl;
@@ -72,6 +73,7 @@ void general_settings(){
     cout << "n. cores: ";
     getInput( risp_);
     n_thread_available = fmin(std::thread::hardware_concurrency(), risp_);
+#endif
     cout << BOLDBLUE <<"\n##############################################################\n";
     cout << BOLDBLUE << "Do you want to use apngams?\n"<< RESET;
     cout << "press 0 for yes, 1 for no: ";

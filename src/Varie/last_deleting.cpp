@@ -10,6 +10,15 @@
 #include <unistd.h>
 
 void last_deleting(){
+
+    std::string correntDir = getcwd(NULL,0);
+
+    bool inTmp = false;
+    if (correntDir.find("tmpEcoli")!=std::string::npos){
+        inTmp=true;
+    }else{
+        system("cd tmpEcoli");
+    }
     
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
     // TODO: change dir if not in tmp for windows    
@@ -37,14 +46,6 @@ void last_deleting(){
     
 #else
 
-    std::string correntDir = getcwd(NULL,0);
-
-    bool inTmp = false;
-    if (correntDir.find("tmpEcoli")!=std::string::npos){
-        inTmp=true;
-    }else{
-        system("cd tmpEcoli");
-    }
 
 
     std::string command_line_txt_rem = "rm -Rf *.txt ";
@@ -69,10 +70,10 @@ void last_deleting(){
     command_line_txt_rem = "rm -Rf *.gif ";
     system(command_line_txt_rem.c_str());
     
+#endif
+    
     if (!inTmp){
         system("cd ..");
     }
-#endif
-    
     
 }

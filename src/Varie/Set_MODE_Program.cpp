@@ -10,7 +10,11 @@
 #include "Colori.h"
 #include "sssr.h"
 #include <limits>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include "Declar_funz.h"
 #include "apngasm_Global.h"
 #include "GlobalVariables.h"

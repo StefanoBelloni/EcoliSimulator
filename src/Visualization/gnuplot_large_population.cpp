@@ -26,7 +26,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <vector>
 #include <fstream>
 #include <cmath>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include <iomanip>
 
 #include <limits>
@@ -68,7 +72,12 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
     long double max_y=-10000;
     long double max_z=0.0;
     long double maxC = 0.0;
+
+#ifndef NO_M_THREAD
     unsigned int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
+#else
+    unsigned int nthread =1; 
+#endif
     // Lettura riga file.
     string temp_string;
     vector< vector<long double> > x_t,y_t,sign_c_t; // matrici equivalenti a P(2,i,j) in Matlab_program
@@ -147,7 +156,16 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
             n_dy++;
             y_delta_hist+=dy;
         }
-        auto start = chrono::steady_clock::now();
+        #if NO_M_THREAD     
+        time_t start;     
+        time(&start); 
+        #else     
+        auto start = chrono::steady_clock::now(); 
+        #endif
+
+#if NO_M_THREAD
+       max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, risp_Max,cont_gen_sim,file_info[0]);
+#else
         if (nthread<=1 || !multithread) {
             cout << BOLDRED << "No Multithread ... " << endl << RESET;
             max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, risp_Max,cont_gen_sim,file_info[0]);
@@ -155,13 +173,25 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
             cout << BOLDRED << "Multithread ... " << endl << RESET;
             max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, risp_Max,cont_gen_sim, file_info[0]);
         }
-        
-        auto end = chrono::steady_clock::now();
-        auto diff = end - start;
-        
+#endif
+
+#if NO_M_THREAD
+    time_t end;
+    double diff;
+    time(&end);
+    diff=difftime(start,end); // gives in seconds
+#else
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+#endif
+
         cout <<BOLDBLACK << "***************************************************\n";
         cout << "Seconds needed to complete the creation and saving of the film:\n     ";
+#if NO_M_THREAD
+        cout << diff << " seconds" << endl;
+#else
         cout << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
+#endif        
         cout << "***************************************************\n"<<RESET;
         
         
@@ -169,7 +199,11 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
         if (verbose){
        stringstream msg;
        msg.str("");
-       msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#if NO_M_THREAD
+        msg << diff << " seconds";
+#else
+        msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds";
+#endif           
        writeLog("HISTOGRAMS: data elaborated and saved to file in ",msg.str());
         } 
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);
@@ -178,7 +212,7 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
         }
     }
 
-    
+
     if (risp_Max==0) {
         max_x=f->max_x; max_y=f->max_y; min_x=f->min_x; min_y=f->min_y;
     }
@@ -186,6 +220,9 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
         cout << BOLDRED << "no_apngams ... " << endl << RESET;
         filmato_3D_gnuplot_gif(file_info, max_x, max_y, min_x, min_y, max_z, dim_col_t,f,cont_gen_sim,maxC);
     }else{
+#if NO_M_THREAD
+        filmato_3D_gnuplot(file_info, max_x, max_y, min_x, min_y, max_z, dim_col_t,f,cont_gen_sim,maxC);
+#else    
         if (!multithread) {
             cout << BOLDRED << "No Multithread ... " << endl << RESET;
             filmato_3D_gnuplot(file_info, max_x, max_y, min_x, min_y, max_z, dim_col_t,f,cont_gen_sim,maxC);
@@ -193,6 +230,7 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
             cout << BOLDRED << "Multithread ... " << endl << RESET;
             filmato_3D_gnuplotMultiT(file_info, max_x, max_y, min_x, min_y, max_z, dim_col_t,f,cont_gen_sim,maxC);
         }
+#endif
     }    
     // multiplot snapshots
     cout << "Du you want to plot the density at time T=j*T_f/n, j=0...n? \npress 0 for yes, 1 for no ";

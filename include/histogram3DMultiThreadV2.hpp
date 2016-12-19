@@ -16,7 +16,11 @@
 #include "Colori.h"
 #include <cmath>
 #include <iostream>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include "writeHistToFileMultiT.hpp"
 
 

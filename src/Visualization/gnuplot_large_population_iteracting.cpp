@@ -13,7 +13,10 @@
 #include <vector>
 #include <fstream>
 #include <cmath>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
 #include "Declar_funz.h"
 #include <limits>
 #include <ctime>
@@ -40,7 +43,9 @@ using namespace std;
  * it changes how we read the file ... first loop on time or bacteria ??
  */
 
+#ifndef NO_M_THREAD
 long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_info);
+#endif
 
 void gnuplot_large_population_interacting(string file_info[], string name_dyn, long double T_f, int n_c, int dim_col_t, string names, Funz_C *f, int cont_gen_sim, long double maxC)
 // Nelle variabili -> da aggiungere quanto relativo ai salti per batterio
@@ -135,14 +140,19 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, l
             y_delta_hist+=dy;
         }
 
+
+#if NO_M_THREAD 
+        int nthread = 1;
+       max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
+#else
+
         int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
-        
         if (nthread<=1) {
             max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
         }else{
             max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, 0,cont_gen_sim,file_info[0]);
         }
-        
+#endif     
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);
         
         if (error!=0) {

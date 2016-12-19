@@ -8,7 +8,11 @@
 
 #include <random>
 #include <vector>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 
 /*! \brief this struct is used to generate random variables for the multi-thread case
  */
@@ -39,4 +43,8 @@ struct randomObj{
 
 extern randomObj rnd_ecoli;
 
+#ifndef NO_M_THREAD
 void seedRandomObj(int n_this_thread, std::thread::id hash_code);
+#else
+void seedRandomObj(int n_this_thread, long hash_code);
+#endif

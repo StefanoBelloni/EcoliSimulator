@@ -12,8 +12,9 @@
 #include <cmath>
 #include <sstream>
 #include <ctime>
+#ifndef NO_M_THREAD
 #include <thread>
-
+#endif
 #include <cstring>
 
 #include "Funz_C.h"
@@ -58,8 +59,11 @@ int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double *x_0,lo
 {        
 //    funz_clear();      
     
+     #ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
-    
+    #else
+    seedRandomObj(0,rand());
+    #endif 
 //    cout << "same seed true = " << true << ", seed: " << same_seed << endl;
     
     int n=0;

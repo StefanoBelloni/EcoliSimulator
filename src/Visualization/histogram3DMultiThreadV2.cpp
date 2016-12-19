@@ -13,7 +13,11 @@
 #include "Colori.h"
 #include <cmath>
 #include <iostream>
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include "writeHistToFileMultiT.hpp"
 #include "GlobalVariables.h"
 
@@ -26,7 +30,7 @@
 using namespace std;
 
 // SISTEMARE MULTI-THREAD ...
-
+#ifndef NO_M_THREAD
 
 long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double max_y, long double min_x,long double min_y, int n_dx, int n_dy, long double dx, long double dy, vector<vector<long double> >& x,vector<vector<long double> >& y, int n_c, int dim_col_t, int n_salti_colonne, Funz_C *f, long double &maxC, int risp_Max, int cont_sim, string name_file_info)
 {
@@ -82,7 +86,12 @@ long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double m
         delta_x_p=min_x+dx/2;
         delta_y_p=min_y+dy/2;
     }
+#ifndef NO_M_THREAD
     int n_thread = min_(n_thread_available,std::thread::hardware_concurrency());
+#else
+    int n_thread = 1;
+#endif 
+
     n_thread=n_thread/2;
     bool no_multithread;
     if (n_thread>1) {
@@ -92,6 +101,11 @@ long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double m
     }
     cout << "n_thread:= " << n_thread << endl;
     // solo Hist multi-Th
+#if NO_M_THREAD
+            writeFunC_andHist(delta_y_p,delta_x_p,dim_col_t,n_salti_colonne,cont_sim,n_dx,n_dy,min_x,min_y,dx,dy,n_x_min,n_x_max,n_y_min,n_y_max,std::ref(maxC_temp),Dt,f,n_thread,x,y,n_c,max_z,maxC_temp);
+            maxC = maxC_temp;            
+#else
+
     if (f->interact==0) {
         writeHistToFileMultiT(delta_y_p,delta_x_p,dim_col_t,n_salti_colonne,cont_sim,n_dx,n_dy,n_c,min_x,min_y,dx,dy,x,y,n_x_min,n_x_max,n_y_min,n_y_max,max_z,n_thread);
     }
@@ -121,6 +135,8 @@ long double histogram_3D_gnuplotV2MultiThreadV2(long double max_x, long double m
             maxC = maxC_temp;            
         }
     }
+
+#endif
 
 //    maxC = maxC_temp;
     cout << "maxC = " << maxC << endl;
@@ -328,3 +344,5 @@ void writeFunC_andHist(long double delta_y_p, long double delta_x_p, int dim_col
     }
     
 }
+
+#endif

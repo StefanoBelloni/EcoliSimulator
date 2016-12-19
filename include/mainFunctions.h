@@ -9,9 +9,9 @@
 //#ifndef mainFunctions_h
 //#define mainFunctions_h
 
-
+#ifndef NO_M_THREAD
 #include <thread>
-
+#endif
 /**
  * This function drow the initial page for the command line program.
  * note: for windows it is without colors. To change modify the definition of color in Color.h
@@ -126,8 +126,11 @@ int Congedo(int number_routine);
 //#endif /* mainFunctions_h */
 
 
+#ifndef NO_M_THREAD
 //void seedRandomObj(int n_this_thread, long hash_code);
 void seedRandomObj(int n_this_thread, std::thread::id hash_code);
+#else
+void seedRandomObj(int n_this_thread, long hash_code);
+#endif
 
-
-int writeLog(string topic, string message);
+int writeLog(std::string topic, std::string message);

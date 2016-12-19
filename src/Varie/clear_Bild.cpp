@@ -63,4 +63,4 @@ void getInput(std::string &risposta){
 template void getInput(int &risposta);
 template void getInput(long double &risposta);
 template void getInput(bool &risposta);
-template void getInput(std::string &risposta);
+//template void getInput(std::string &risposta);

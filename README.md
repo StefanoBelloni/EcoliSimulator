@@ -63,7 +63,7 @@ Firefox) is a free and open-source web browser.
 - LateX compiler - In order to read and visualize the report it is necessary to have 
 installed a program which read LateX language.
 
-NOTE: You need a c++ compiler which support c++11
+NOTE: To uese the multithread options you need a c++ compiler which support c++11
 
 
 2) Optional Programs
@@ -126,6 +126,8 @@ If you are using different programs to achive these tasks, you can modify the de
         - To show the different options to build the program.
                 >:EcoliSimulator stefanobelloni$ make help
 
+        - If you do not want to use c++11 features, first of all multitrhread simulations, you can deactivate it by passing the option opt=NO_M_THREAD to make, i.e. write
+                >:make [options] opt=NO_M_THREAD
 
     -cmake: This will only build EcoliSimulator in the bin folder.
     

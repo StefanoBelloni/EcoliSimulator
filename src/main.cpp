@@ -43,10 +43,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include <string.h>
 #include <limits>
 #include <ctime>
+#include <time.h>
 #include <cstdlib>
 #include <cstring>
 
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
 
 #include "FunzRand.h"
 #include "GlobalVariables.h"
@@ -163,10 +166,15 @@ int main(int argc, const char * argv[])
 {
     //createMakeFile();
     setDefoultGlobalVar();
-    
+
+
     seed_ = (unsigned int) time(NULL);
     seed_r = seed_;
+    #if NO_M_THREAD
+    n_thread_available = 1; 
+    #else
     n_thread_available = fmax(1,std::thread::hardware_concurrency()/2);
+    #endif
     if (n_thread_available>1) {
         multithread = true;
     }
@@ -208,7 +216,13 @@ int main(int argc, const char * argv[])
         ErrorImportPath(versione_Matlab);
     
     int number_routine;
+
+#if NO_M_THREAD
+    time_t start;
+    time(&start);
+#else
     auto start = chrono::steady_clock::now();
+#endif
     
     // initialize max engine to be used ...
     for (unsigned int i=0; i< n_thread_available; i++) {
@@ -220,7 +234,11 @@ int main(int argc, const char * argv[])
         rnd_ecoli.random_engines_theta_saved.push_back(rnd_ecoli.random_engines_theta[i]);   //
         rnd_ecoli.random_engines_seeded.push_back(false);
     }
+    #ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
+    #else
+    seedRandomObj(0,rand());
+    #endif    
     
     int read_par_file = set_MODE_Program(versione_Matlab, demo_mode,read_from_file);
     
@@ -245,7 +263,12 @@ int main(int argc, const char * argv[])
     // main loop of the program.
     
     std::string tmpDir = getcwd(NULL,0);
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+    tmpDir+=std::string("\\tmpEcoli");
+#else
+
     tmpDir+=std::string("/tmpEcoli/");
+#endif
     chdir(tmpDir.c_str()); 
 
     do{
@@ -267,9 +290,18 @@ int main(int argc, const char * argv[])
     
     // LOG FILE
     stringstream msg;
+
+#if NO_M_THREAD
+    time_t end;
+    double diff;
+    time(&end);
+    diff=difftime(start,end); // gives in seconds
+#else
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     msg << chrono::duration <long double, milli> (diff).count()/1000 << " seconds" << endl;
+#endif
+
     msg << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
     string topic("Time to complete the program: ");
     writeLog(topic, msg.str());

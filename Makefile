@@ -49,8 +49,19 @@ endif
 # name
 TARGET = EcoliSimulator
 
-CFLAGS= -g -std=c++11 -Wall -pedantic
+
+CFLAGS= -g -Wall -pedantic 
+#CFLAGS+=-std=c++11
 LDFLAGS =
+
+
+ifneq ($(opt),NO_M_THREAD)
+	CFLAGS+=-std=c++11
+else
+	CFLAGS+=-D$(opt)
+endif
+
+
 
 ifeq ($(OS),linux)
 	CFLAGS += -fprofile-arcs -ftest-coverage
@@ -111,7 +122,8 @@ help:
 	@echo make apngasm_src ... to download the surce: you need cmake in order to compile it automatically
 	@echo make gnuplot ... ... to download the binary - for osx the .dmg file, for windows the 64-bit binary
 	@echo make clean ......... eliminate all the objects .o
-
+	@echo make [previous options] opt=NO_M_THREAD ...if you want to compile without c++11 extention.
+	@echo -D$(opt)
 ############################################
 # Create a directory, if it does not exist #
 ############################################

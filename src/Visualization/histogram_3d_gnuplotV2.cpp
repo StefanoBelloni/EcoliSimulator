@@ -12,7 +12,11 @@
 #include <cmath>
 #include <system_error>
 
+
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 
 #include "LoadBar.hpp"
 #include "GlobalVariables.h"
@@ -233,6 +237,7 @@ long double histogram_3D_gnuplotV2(long double max_x, long double max_y, long do
     return max_z;
 }
 
+#ifndef NO_M_THREAD
 
 /*! \brief This is a variation of histogram_3D_gnuplotV2, where we use mutithread ...
  * one thread create the histogram for the density, the other create the surface for the function c (if it is no_interaction mode).
@@ -346,6 +351,7 @@ long double histogram_3D_gnuplotV2MultiThread(long double max_x, long double max
     return max_z;
 }
 
+#endif
 
 /*! \brief This function write the histogram of the density to file.
  */

@@ -20,7 +20,10 @@
 #include <cstring>
 #include<ctime>
 
+#ifndef NO_M_THREAD
 #include <thread>
+#endif
+
 #include "GlobalRandomVariables.h"
 
 #include "GlobalVariables.h"
@@ -304,8 +307,12 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         titolo.erase(titolo.end()-4, titolo.end());
         file_info[0] << titolo << endl;
 
-        seedRandomObj(0,this_thread::get_id());
-        
+#ifndef NO_M_THREAD
+    seedRandomObj(0,this_thread::get_id());
+#else
+    seedRandomObj(0,rand());
+#endif  
+
         for(int j=0;j<n_c;j++)
         {                       
             batterio[indici_b[j]]->engine_altro = &rnd_ecoli.random_engines[0];
