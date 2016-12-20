@@ -59,6 +59,7 @@ ifneq ($(opt),NO_M_THREAD)
 	CFLAGS+=-std=c++11
 else
 	CFLAGS+=-D$(opt)
+	TARGET = EcoliSimulator_0
 endif
 
 
@@ -66,7 +67,10 @@ endif
 ifeq ($(OS),linux)
 	CFLAGS += -fprofile-arcs -ftest-coverage
 	LDFLAGS += -static-libstdc++ #to statically link the stdc++
-	LDFLAGS += -pthread -fprofile-arcs -ftest-coverage
+ifneq ($(opt),NO_M_THREAD)
+	LDFLAGS += -pthread 
+endif
+	LDFLAGS += -fprofile-arcs -ftest-coverage
 endif
 
 

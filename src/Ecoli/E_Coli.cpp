@@ -750,7 +750,12 @@ void E_coli::start_simulation(Funz_C *f){
  * return the position (2D (x,y)) of the bacterium
  */
 
-array<long double, 2> E_coli::X(){
+#if NO_M_THREAD
+long double* E_coli::X()
+#else
+array<long double, 2> E_coli::X()
+#endif
+{
     return x;
 }
 
@@ -941,7 +946,11 @@ long double E_coli::newtheta_ec(long double theta){
 }
 
 
+#if NO_M_THREAD
+int E_coli::dist_iniz_ec(long double* x0, long double R,unsigned int num_dist)
+#else
 int E_coli::dist_iniz_ec(array<long double,2> x0, long double R,unsigned int num_dist)
+#endif
 {
 //    cout << "int E_coli::dist_iniz_ec ..." << endl;
     
@@ -986,7 +995,11 @@ int E_coli::dist_iniz_ec(array<long double,2> x0, long double R,unsigned int num
  * @return if the initial position change return 1, otherwise 0. If the position didn't change the initial condition for this bacterium are the same as the previous one, so we don't have to perform initial-condition calculation.
  */
 
+#if NO_M_THREAD
+int E_coli::initial_position_ec(int j, long double* x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist)
+#else
 int E_coli::initial_position_ec(int j, array<long double,2> x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist)
+#endif
 {
     int cambiato=0;
     

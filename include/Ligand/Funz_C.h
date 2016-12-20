@@ -10,7 +10,10 @@
 #define E_Coli2_0_Funz_C_h
 
 #include <vector>
+
+#ifndef NO_M_THREAD
 #include <array>
+#endif
 
 /** \brief Base class for the function describing the ligand concentration.
  
@@ -123,8 +126,6 @@ class Funz_C{
     /** pointer to a matrix(n_x,n_y) with the value of the sorce: it is used to solve the PDE in the interacting case */
     long double **q_c;  // pointer to a matrix(n_x,n_y) with the value of the sorce
     
-    /** return the value of Ligand concentration in the point x */
-    virtual long double new_F_C(long double t, std::array<long double,2> x);
     /** reset parameters to the default*/
     void reset_parameter();
     /** set parameters of the ligand concentration 
@@ -132,11 +133,25 @@ class Funz_C{
       - in the function set_funz_c(vector<Funz_C*> &f, int interacting) you actually change the parameters of the function.
      */
     virtual void set_parameter();
+
+#if NO_M_THREAD
+    /** set in which the rectangle (dx_n,dy_n) of the mesh of the domain the point x fells
+     * @param n is the array where the "coordinate" of the rectangle are saved
+     */
+    virtual void get_coordinate(long double* x, int *n);
+    virtual void get_coordinate1(long double* x, int *n);
+    /** return the value of Ligand concentration in the point x */
+    virtual long double new_F_C(long double t, long double* x);
+#else
     /** set in which the rectangle (dx_n,dy_n) of the mesh of the domain the point x fells
      * @param n is the array where the "coordinate" of the rectangle are saved
      */
     virtual void get_coordinate(std::array<long double,2> x, int *n);
     virtual void get_coordinate1(std::array<long double,2> x, int *n);
+    /** return the value of Ligand concentration in the point x */
+    virtual long double new_F_C(long double t, std::array<long double,2> x);
+#endif    
+
     /** save information for the report
      */
     virtual void all_informations(std::ofstream &file_save);

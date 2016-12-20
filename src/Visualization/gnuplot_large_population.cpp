@@ -75,8 +75,6 @@ void gnuplot_large_population(string file_info[], string name_dyn, long double T
 
 #ifndef NO_M_THREAD
     unsigned int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
-#else
-    unsigned int nthread =1; 
 #endif
     // Lettura riga file.
     string temp_string;

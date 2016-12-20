@@ -72,7 +72,13 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
     // In file_fc salvo la funzione c(t,x,y) come "x y f(x,y)"
     
     f_max = 0.0;
+
+#if NO_M_THREAD
+    long double x0[2];
+#else
     array<long double,2> x0;
+#endif    
+    
     x0[0]=x_0[0];
     x0[1]=x_0[1];
    const_salv++;
@@ -239,7 +245,11 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
 //        cout << "      PDE solution update every "<< dt_ << " seconds" << endl;
 //        r=D_c*dt_/pow(f->dx,2);
         
+#if NO_M_THREAD
+        long double x_f[2];
+#else
         array<long double,2> x_f;
+#endif        
         long double dx=f->dx;
         
         int n_x=f->n_x;

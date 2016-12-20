@@ -11,7 +11,9 @@
 #include <fstream>
 #include <cmath>
 
+#ifndef NO_M_THREAD
 #include <array>
+#endif
 
 #include "LoadBar.hpp"
 #include "GlobalVariables.h"
@@ -69,7 +71,11 @@ long double histogram_3D_gnuplot(long double max_x, long double max_y, long doub
     int max_z=0;
     
     long double Dt=0.1;
+#if NO_M_THREAD
+    long double x_0[2];
+#else
     array<long double,2> x_0;
+#endif    
 //    long double T_f=1.0;
     long double c=0.0;
     int num_funz=0;

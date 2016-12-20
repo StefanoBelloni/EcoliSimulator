@@ -7,7 +7,11 @@
 //
 
 #include <vector>
+#if NO_M_THREAD
+#include "MyMutex.h"
+#else
 #include <mutex>
+#endif
 
 extern std::vector<long double> vettore_risposte;
 extern std::vector<std::string> vettore_text;
@@ -46,7 +50,11 @@ extern bool same_seed;
 //extern unsigned long int cont_rand;
 
 
-extern std::mutex my_mutex;
+#ifndef NO_M_THREAD
+  extern std::mutex my_mutex;
+#else
+  extern MyMutex my_mutex;
+#endif
 /** global variable to save or not the DATA .dat and gnuplot scripts
   * default is false: otherwise too much space is needed */
 extern bool save_data;

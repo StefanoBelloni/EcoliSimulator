@@ -10,7 +10,10 @@
 #include <fstream>
 #include <limits>
 #include <ctime>
+
+#ifndef NO_M_THREAD
 #include <array>
+#endif
 
 #include <cmath>
 #include "Funz_C.h"
@@ -68,7 +71,12 @@ Funz_C::Funz_C(const Funz_C& f)
     interact = f.interact;
 }
 
-void Funz_C::get_coordinate1(array<long double,2> x, int *n){
+#if NO_M_THREAD
+void Funz_C::get_coordinate1(long double* x, int *n)
+#else
+void Funz_C::get_coordinate1(array<long double,2> x, int *n)
+#endif
+{
     
     n[0]=min(n_x-2,max(1,floor((x[0]-min_x)/dx))); // Non voglio andare sul bordo
     n[1]=min(n_y-2,max(1,floor((x[1]-min_y)/dy)));
@@ -76,14 +84,21 @@ void Funz_C::get_coordinate1(array<long double,2> x, int *n){
     n[3]=min(n_y-2,n[1]+1);
 }
 
-void Funz_C::get_coordinate(array<long double,2> x, int *n)
+#if NO_M_THREAD
+void Funz_C::get_coordinate(long double* x, int *n)
+#else
+void Funz_C::get_coordinate(std::array<long double,2> x, int *n)
+#endif
 {
     n[0]=min(n_x-2,max(1,floor((x[0]-min_x)/dx))); // Non voglio andare sul bordo
     n[1]=min(n_y-2,max(1,floor((x[1]-min_y)/dy)));
 }
                                 
-
+#if NO_M_THREAD
+long double Funz_C::new_F_C(long double t, long double* x){
+#else
 long double Funz_C::new_F_C(long double t, std::array<long double,2> x){
+#endif
     
     long double R = sqrt(pow(x[0], 2) + pow(x[1], 2));
     long double T=50.0L;
@@ -252,8 +267,12 @@ void Funz_C::all_informations(std::ofstream &file_save){
 }
 
 void Funz_C::print_fc(std::ofstream &file_save, long double t){
-    
+
+#if NO_M_THREAD 
+    long double x[2];
+#else
     array<long double,2> x;
+#endif
     
     int n=max(1,floor(.1L/dx));
     

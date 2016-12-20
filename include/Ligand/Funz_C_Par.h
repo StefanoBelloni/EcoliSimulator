@@ -89,8 +89,13 @@ public:
     long double C_2;
     /** parameters in the model: see general information*/    
     long double C_3;
-    
+
+#if NO_M_THREAD    
+    long double new_F_C(long double t, long double* x);
+#else
     long double new_F_C(long double t, std::array<long double,2> x);
+#endif    
+
     /** set parameters of the ligand concentration
      It call the base function <br>
      if the user wants to change parameters, the 

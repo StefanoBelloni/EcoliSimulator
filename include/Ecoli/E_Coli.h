@@ -11,8 +11,12 @@
 
 #include <iostream>
 #include <vector>
-#include "s_lambda.h"
+
+#ifndef NO_M_THREAD
 #include <array>
+#endif
+
+#include "s_lambda.h"
 #include <random>
 #include <chrono>
 
@@ -28,6 +32,8 @@
 #define alpha 4.0
 #define beta 18.32
 #define disp_gamma 4.6
+
+
 
 namespace EcoliType {
     
@@ -74,7 +80,12 @@ protected:
 
     //***************************
     /** Position*/
+//**********************************************************
+#if NO_M_THREAD
+    long double x[2];
+#else
     std::array<long double,2> x;
+#endif
     
     /** Direction */
     long double theta;
@@ -217,11 +228,21 @@ public:
 //    int initial_condition(long double t, long double *x0, Funz_C *f);
     
     // Funzioni per accedere protected variables ...
-    
+
+//************************************************************    
+#if NO_M_THREAD
+    int initial_position_ec(int j, long double* x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
+    int dist_iniz_ec(long double*  x0, long double R,unsigned int num_dist);
+    /** return position bacterium*/
+    long double* X();      // Potrebbe essere una brutta pratica, dacchè viola la classe protetta  !!
+#else
     int initial_position_ec(int j, std::array<long double,2> x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
     int dist_iniz_ec(std::array<long double,2>  x0, long double R,unsigned int num_dist);
     /** return position bacterium*/
     std::array<long double,2> X();      // Potrebbe essere una brutta pratica, dacchè viola la classe protetta  !!
+#endif
+//************************************************************    
+
     /** return speed bacterium*/
     long double V(){return v;};      // Potrebbe essere una brutta pratica, dacchè viola la classe protetta  !!
     /** return number of internal variables in the current model*/

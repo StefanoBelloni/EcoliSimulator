@@ -19,9 +19,9 @@
 
 #ifndef NO_M_THREAD
 #include <thread>
+#include <array>
 #endif
 
-#include <array>
 
 using namespace std;
 

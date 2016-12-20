@@ -10,7 +10,10 @@
 #include <fstream>
 #include <cmath>
 #include "Funz_C_Inter.h"
+
+#ifndef NO_M_THREAD
 #include <array> 
+#endif
 
 #include "GlobalVariables.h"
 #include "sssr.h"
@@ -82,7 +85,12 @@ Funz_C_Inter::Funz_C_Inter(){
     
 }
 
-long double Funz_C_Inter::new_F_C(long double t, std::array<long double,2> x){
+#if NO_M_THREAD
+long double Funz_C_Inter::new_F_C(long double t, long double* x)
+#else
+long double Funz_C_Inter::new_F_C(long double t, std::array<long double,2> x)
+#endif
+{
     
     int n_x[4];
     get_coordinate1(x,n_x);

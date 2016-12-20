@@ -50,7 +50,14 @@ public:
     void set_parameter(); 
 //    void get_coordinate(long double *x, int *n);
     /** it returns the value of the discretized version of c(t,x) on a grid*/
+
+#if NO_M_THREAD
+    long double new_F_C(long double t, long double* x);
+#else
     long double new_F_C(long double t, std::array<long double,2> x);
+#endif    
+
+
     void print_fc(std::ofstream &file_save, long double t);
     void print_info(std::ofstream &file_save);
 

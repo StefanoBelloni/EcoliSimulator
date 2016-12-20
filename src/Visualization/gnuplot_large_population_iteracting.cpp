@@ -142,7 +142,6 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, l
 
 
 #if NO_M_THREAD 
-        int nthread = 1;
        max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
 #else
 

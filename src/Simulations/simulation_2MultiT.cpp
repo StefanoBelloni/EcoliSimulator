@@ -154,17 +154,7 @@ int simulation_2MultiT(E_coli *batterio, long double T_f,Funz_C *f,long double *
     
 }
 
-/*! \brief set the name of the temporary files ... */
 
-string setNametempFiles(string name, int n_thread){
-    
-    char buffer[12];
-    snprintf(buffer, sizeof(char) * 12,"temp%d_", n_thread);
-    string temp = name;
-    temp=buffer+temp;
-    
-    return temp;
-}
 
 /*! start a thread of simulation. */
 
@@ -174,11 +164,7 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
     
     long double errore = 0.000000001;
     
-#ifndef NO_M_THREAD
     seedRandomObj(n_thread+1,this_thread::get_id());
-#else
-    seedRandomObj(n_thread+1,rand());
-#endif 
     int n=n_thread+1;
     if (!same_seed) {
         //        cout << "other seed " << endl;
@@ -390,7 +376,7 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
     
 }
 
-
+#endif
 
 /*! \brief This function create a duplicate of the base bacterium and f_c:
  */
@@ -674,4 +660,14 @@ int mergeFilesSimulation(int n_thread, string *names_files_Ecoli_mod, string nam
     
 }
 
-#endif
+/*! \brief set the name of the temporary files ... */
+
+string setNametempFiles(string name, int n_thread){
+    
+    char buffer[12];
+    snprintf(buffer, sizeof(char) * 12,"temp%d_", n_thread);
+    string temp = name;
+    temp=buffer+temp;
+    
+    return temp;
+}

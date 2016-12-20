@@ -84,7 +84,12 @@ int Funz_C::num_funz = 9;
 // GLOBAL VARIABLES ...
 //********************************************************************************************************************
 
-std::mutex my_mutex;
+#if NO_M_THREAD
+    MyMutex my_mutex;
+#else
+    std::mutex my_mutex;
+#endif
+
 bool save_data;
 vector<long double> vettore_risposte;
 vector<std::string> vettore_text;
@@ -319,4 +324,5 @@ int main(int argc, const char * argv[])
  * [...] - save figure from matlab.
  * [x] - sistemare il video di theta ... --> "::1::b" b non è sincronizzato ...
  * [...] move the files to tmpEcoli ... create also the directory ./tmpEcoli
+ * Does not compile on linux: my_mutex, std::array (c++11),  <random> mt19937_64
  */

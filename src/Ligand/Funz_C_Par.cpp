@@ -9,7 +9,10 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+
+#ifndef NO_M_THREAD
 #include <array>
+#endif
 
 #include "GlobalVariables.h"
 #include "sssr.h"
@@ -27,7 +30,11 @@
 
 using namespace std;
 
+#if NO_M_THREAD
+long double Funz_C_Par::new_F_C(long double t, long double* x)
+#else
 long double Funz_C_Par::new_F_C(long double t, std::array<long double,2> x)
+#endif
 {
     
     long double c=1;

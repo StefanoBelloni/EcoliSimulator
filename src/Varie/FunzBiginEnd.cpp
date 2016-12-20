@@ -62,9 +62,9 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
 
 #ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
-    #else
+#else
     seedRandomObj(0,rand());
-    #endif 
+#endif 
 
         }
         
@@ -507,6 +507,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                         
                         n_thread_available = atoi(temp.c_str());
 #if NO_M_THREAD
+                        std::cout << RED << "Warning: " << RESET << "multithread not available in this version." << std::endl;
                         unsigned int maxthread = 1;
 #else
                         unsigned int maxthread = std::thread::hardware_concurrency();

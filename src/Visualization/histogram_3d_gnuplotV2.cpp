@@ -15,6 +15,7 @@
 
 #ifndef NO_M_THREAD
 #include <thread>
+#include <array>
 #endif
 
 
@@ -22,7 +23,6 @@
 #include "GlobalVariables.h"
 #include "Funz_C.h"
 
-#include <array>
 
 #include "writeHistToFileMultiT.hpp"
 
@@ -83,7 +83,11 @@ long double histogram_3D_gnuplotV2(long double max_x, long double max_y, long do
     int max_z=0;
     
     long double Dt=0.1;
+#if NO_M_THREAD
+    long double x_0[2];
+#else
     array<long double,2> x_0;
+#endif    
     long double T_f=1.0;
     long double c=0.0;
     int num_funz=0;
@@ -374,7 +378,11 @@ void writeHistToFile(long double delta_y_p, long double delta_x_p, int dim_col_t
     const long double delta_x_p_init = delta_x_p;
     vector<vector<int> > z;
     z.resize( n_dx , vector<int>( n_dy , 0 ) );
+#if NO_M_THREAD
+    long double x_0[2];
+#else
     array<long double,2> x_0;
+#endif    
     int i_x=0,i_y=0;
 
     
@@ -481,7 +489,11 @@ void writeFunzCToFile(long double delta_y_p, long double delta_x_p, int dim_col_
     ofstream file3D_c;
     const long double delta_y_p_init = delta_y_p;
     const long double delta_x_p_init = delta_x_p;
+#if NO_M_THREAD
+    long double x_0[2];
+#else
     array<long double,2> x_0;
+#endif    
     long double c=0;
     int i_x=0,i_y=0;
     

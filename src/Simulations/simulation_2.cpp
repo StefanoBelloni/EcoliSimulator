@@ -54,16 +54,15 @@ void funz_clear();
  * Function that performs the actual simulation of independent population
  */
 
-
-int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double *x_0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread)
-{        
+int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double *x_0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread){
+        
 //    funz_clear();      
     
-     #ifndef NO_M_THREAD
+#ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
-    #else
+#else
     seedRandomObj(0,rand());
-    #endif 
+#endif 
 //    cout << "same seed true = " << true << ", seed: " << same_seed << endl;
     
     int n=0;
@@ -83,7 +82,13 @@ int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double *x_0,lo
     
     char buffer[52];
     int time_stampato=(n_c==1)?0:1;
+
+#if NO_M_THREAD
+    long double x0[2];
+#else
     array<long double,2> x0;
+#endif        
+
     x0[0]=x_0[0];
     x0[1]=x_0[1];
     long double errore = 0.000000001;

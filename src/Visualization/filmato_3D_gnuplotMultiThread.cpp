@@ -36,6 +36,7 @@
 
 #ifndef NO_M_THREAD
 #include <thread>
+#include <array>
 #endif
 
 
@@ -45,9 +46,6 @@
 
 #include <limits>
 #include <ctime>
-#include <array>
-
-#include <sys/stat.h>
 
 #include "GlobalVariables.h"
 #include "GnuplotGlobal.h"

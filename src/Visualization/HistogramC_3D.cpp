@@ -14,7 +14,10 @@
 #include <vector>
 #include <fstream>
 #include <cmath>
+
+#ifndef NO_M_THREAD
 #include <array>
+#endif
 
 #include "LoadBar.hpp"
 #include "Funz_C.h"
@@ -66,7 +69,11 @@ long double max_fc=-1.0;
 long double t=0.0;
 long double fc=0.0;
     
+#if NO_M_THREAD
+long double x_0[2];
+#else
 array<long double,2> x_0;
+#endif
     
 char buffer[52]; // The filename buffer.
 

@@ -35,7 +35,9 @@ using namespace std;
 
 void timestamp();
 void print_and_open_info(string name, E_coli* batterio, Funz_C* f, long double T_f, long double *x0,  long double dt,  int n_c,  long double Raggio,  int delta_dist,  int num_dist,  int const_salv, int cont_gen_sim);
-int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,array<long double,2> x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread);
+
+int simulation_2(E_coli *batterio, long double T_f,Funz_C *f,long double* x0,long double dt,int n_c,long double Raggio,int delta_dist, int num_dist,int const_salv, string *names_files_Ecoli_mod, string names_indice_mod, string *names_files_tau_mod, string names_file_dyn_mod, string *names_info_mod, int n_sim, int cont_gen_sim, int tot_bacteria, int n_thread);
+
 int writeLog(string what, string msg);
 
 /**
