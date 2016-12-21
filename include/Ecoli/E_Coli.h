@@ -14,10 +14,10 @@
 
 #ifndef NO_M_THREAD
 #include <array>
+#include <random>
 #endif
 
 #include "s_lambda.h"
-#include <random>
 #include <chrono>
 
 #include "FunzRand.h"
@@ -178,25 +178,21 @@ protected:
     
     
 //    std::uniform_real_distribution<long double> std_unifRand; // construct it on (0,1)!
-    
+
     long double Exp_dist_ec();
     long double rand_normal_ec(long double stddev);
     long double gamma_par_double_ec();
     long double unifRand_ec();
     long double deltaW_ec(long double dt);
     long double newtheta_ec(long double theta);
-    void setEngine_ec(std::mt19937_64* engine_thread_theta,std::mt19937_64* engine_thread_bar,std::mt19937_64* engine_thread_altro);
 
+#ifndef NO_M_THREAD 
+    void setEngine_ec(std::mt19937_64* engine_thread_theta,std::mt19937_64* engine_thread_bar,std::mt19937_64* engine_thread_altro);
+#endif
     /*************************************************************/
     
 public:
-    
-    /** \brief pointer to a engine (if I want to use std::uniform_real_distribution<long double>) */
-    
-    std::mt19937_64* engine_theta;
-    std::mt19937_64* engine_barrier;
-    std::mt19937_64* engine_altro;
-    
+
     /**
      * MODE of simulation:<br>
      * - simulation = 0 -> MODE simulation,
@@ -231,11 +227,19 @@ public:
 
 //************************************************************    
 #if NO_M_THREAD
+
     int initial_position_ec(int j, long double* x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
     int dist_iniz_ec(long double*  x0, long double R,unsigned int num_dist);
     /** return position bacterium*/
     long double* X();      // Potrebbe essere una brutta pratica, dacchè viola la classe protetta  !!
+
 #else
+
+    /** \brief pointer to a engine (if I want to use std::uniform_real_distribution<long double>) */
+    std::mt19937_64* engine_theta;
+    std::mt19937_64* engine_barrier;
+    std::mt19937_64* engine_altro;
+
     int initial_position_ec(int j, std::array<long double,2> x0, long double Raggio, int num_dist, int &cont_dist_5, int delta_dist_cont, long double Delta_delta_dist);
     int dist_iniz_ec(std::array<long double,2>  x0, long double R,unsigned int num_dist);
     /** return position bacterium*/

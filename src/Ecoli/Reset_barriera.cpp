@@ -21,7 +21,13 @@
 //*****************************************
 
 long double E_coli::reset_barrier_t(){    
+
+#ifndef NO_M_THREAD
     return Exp_dist_ec();
+#else
+    return Exp_dist();
+#endif        
+
 }
 
 //*****************************************
@@ -29,28 +35,46 @@ long double E_coli::reset_barrier_t(){
 //*****************************************
 
 long double E_coli::reset_barrier(){    
+
+#ifndef NO_M_THREAD
     return Exp_dist_ec();
+#else
+    return Exp_dist();
+#endif
+    
 }
 
 long double CV_rIG_tExp::reset_barrier(){
     return 1.0;    
 }
 long double CV_rExpIG_tExp::reset_barrier(){
+#ifndef NO_M_THREAD
     return Exp_dist_ec();
+#else
+    return Exp_dist();
+#endif    
 }
 
 long double Molecular_rIG_tExp::reset_barrier(){
     return 1.0;
 }
 long double Molecular_rExpIG_tExp::reset_barrier(){
+#ifndef NO_M_THREAD
     return Exp_dist_ec();
+#else
+    return Exp_dist();
+#endif    
 }
 
 long double EO_rIG_tExp::reset_barrier(){
     return 1.0;    
 }
 long double EO_rExpIG_tExp::reset_barrier(){
+#ifndef NO_M_THREAD
     return Exp_dist_ec();
+#else
+    return Exp_dist();
+#endif    
 }
 
 

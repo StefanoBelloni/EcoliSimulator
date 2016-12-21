@@ -261,9 +261,11 @@ E_coli::E_coli()/*:std_unifRand(0.0,1.0)*/{
     codice_batterio = EcoliType::E_COLI;
     tipoNewTheta = 1;
     
+#ifndef NO_M_THREAD
     this->engine_altro = &rnd_ecoli.random_engines[0];
     this->engine_barrier = &rnd_ecoli.random_engines[0];
     this->engine_theta = &rnd_ecoli.random_engines[0];
+#endif
     //***************************  
     x[0]=0.0;        // Position
     x[1]=0.0;        // Position
@@ -300,9 +302,11 @@ E_coli::E_coli(const E_coli& m)/*:std_unifRand(0.0,1.0)*/{
     Tipo_batterio = m.Tipo_batterio;
     codice_batterio = m.codice_batterio;
     
+#ifndef NO_M_THREAD
     this->engine_altro = m.engine_theta;
     this->engine_barrier = m.engine_barrier;
     this->engine_theta = m.engine_theta;
+#endif
     this->tipoNewTheta = m.tipoNewTheta;
     this->production_rate = m.production_rate;
     //***************************
@@ -719,16 +723,13 @@ void E_coli::start_simulation(Funz_C *f){
     this->c_iniziale = this-> c;
     
 //    cout << "Start simulation: c = " << this->c << endl;
-    
     this->up_down = 0;
 //    this->agg_ligand(0, f);
 //    this->agg_ligand(c, f);
     
     this->salto_=1;
-    
-    // comment this if you don't want 'random internal dynamics'
-    
-//    std::uniform_int_distribution<int> std_unif_int(1,2);
+
+#ifndef NO_M_THREAD    
     std::uniform_real_distribution<long double> std_unif_real(0.0,0.1);
     salto_=(std_unif_real(*engine_altro)>0.5)?1:-1;
     
@@ -737,18 +738,19 @@ void E_coli::start_simulation(Funz_C *f){
         lambda_r =std_unif_real(*engine_altro)*barriera_r*0.8;
     else
         lambda_r =std_unif_real(*engine_altro)*barriera_t*0.8;
+#else
+    salto_=(unifRand()>=0.5)?1:-1;
+    if (salto_==1) //run
+        lambda_r =unifRand()*barriera_r*0.8;
+    else
+        lambda_r =unifRand()*barriera_t*0.8;
+#endif
     
-//    if (salto_!=1){
-//        my_mutex.lock();
-//        cout << "tumble ... " << endl;
-//        my_mutex.unlock();
-//    }
-
 }
 
 /*
  * return the position (2D (x,y)) of the bacterium
- */
+ * */
 
 #if NO_M_THREAD
 long double* E_coli::X()
@@ -835,32 +837,26 @@ long double E_coli::F_RC_q(){
 //**********************
 
 long double E_coli::Exp_dist_ec(){
-    
-//    std::uniform_real_distribution<long double> std_unifRand_(0.0,1.0);
-//    return -log(std_unifRand_(*engine_theta));
-    
+#ifndef NO_M_THREAD    
     std::exponential_distribution<long double> std_expRand_(1.0);
-    
     return /*long double e = */ std_expRand_(*engine_barrier);
-    
-//    my_mutex.lock();
-//    cout << "e/t = " << e/tau_r << endl;
-//    my_mutex.unlock();
-    
-//    return e;
+#else
+    return Exp_dist();
+#endif
     
 }
 
 long double E_coli::rand_normal_ec(long double stddev){//Box muller method
-    
-    
+#ifndef NO_M_THREAD    
     std::normal_distribution<long double> norm_Rand_(0.0,stddev);
     return norm_Rand_(*engine_altro);
-    
+#else
+    return rand_normal(stddev);
+#endif
 }
 
 long double E_coli::gamma_par_double_ec(){
-    
+#ifndef NO_M_THREAD    
     std::uniform_real_distribution<long double> std_unifRand_(0.0,1.0);
     
     long double x=1;
@@ -870,20 +866,21 @@ long double E_coli::gamma_par_double_ec(){
     }
     
     return disp_gamma-log(x)*beta;
+#else
+    return gamma_par_double();
+#endif    
+
 }
 
 long double E_coli::unifRand_ec(){
     
-//    thread_local static std::mt19937 rng(std::random_device{}());
-//    thread_local static std::uniform_int_distribution<int> uni;
-//    
-//    // assuming param_type is lighter weight to construct
-//    // than a uniform_int_distribution
-//    return uni(rng, decltype(uni)::param_type{min, max});
-    
+#ifndef NO_M_THREAD
     std::uniform_real_distribution<long double> std_unifRand_(0.0L,1.0L);
     return std_unifRand_(*engine_altro);
-//    return rand_r(seed_ecoli) / long double(RAND_MAX);
+#else
+    return unifRand();
+#endif
+
 }
 
 long double E_coli::deltaW_ec(long double dt){
@@ -893,24 +890,31 @@ long double E_coli::deltaW_ec(long double dt){
     long double dW=0.0L;
     short R=4;
     long double stdt=sqrt(dt/R);
-    
+
+#ifndef NO_M_THREAD 
     std::normal_distribution<long double> norm_Rand_(0.0L,stdt);
+#endif
     
     for (int j=0; j<R; j++) {
-//        dW+=rand_normal(stdt);
+#ifndef NO_M_THREAD
         dW+=norm_Rand_(*engine_altro);
+#else
+        dW+=rand_normal(stdt);
+#endif
     }
-    
     return dW;
 }
 
 long double E_coli::newtheta_ec(long double theta){
     
+#ifndef NO_M_THREAD
     std::uniform_real_distribution<long double> std_unifRand_(0.0L,1.0L);
-
+#endif
     
     switch (tipoNewTheta) {
         {case 1:
+
+#ifndef NO_M_THREAD
             long double s=1;
             long double theta_=0.0L;
             if (std_unifRand_(*engine_theta)<=.5) {
@@ -927,11 +931,18 @@ long double E_coli::newtheta_ec(long double theta){
                 std::cout << "problem generation new_theta: given a default theta=theta+46*Unif[0,1]\n";
                 theta=theta_+s*46.0L*std_unifRand_(*engine_theta)*pi/180.0L;
             }
-            
+#else
+            theta=newtheta(theta);
+#endif
+         
             break;
         }
         {default:
+#ifndef NO_M_THREAD
             theta=2*pi*std_unifRand_(*engine_theta);
+#else
+            theta=2*pi*unifRand(); 
+#endif
             break;
         }
     }

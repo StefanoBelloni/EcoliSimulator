@@ -168,6 +168,8 @@ int menu_simulation(){
     if (stat_sim!=0){
         
         int risp=0;
+
+#ifndef NO_M_THREAD
         cout << BOLDBLUE<< "\nDo you want to use the same seed for the random generator\nfor every simulation in the same routine?\n";
         cout << BOLDRED <<"\nNOTE:" << RESET << " You'll have the same values for newly generated angles\npress 0 for yes, 1 for no :" << RESET;
         sssr(risp, "same seed for the random generator");
@@ -181,6 +183,11 @@ int menu_simulation(){
             seed_r = seed_;
             
         }
+#else
+       cout << BOLDBLUE << "\nIn this version no option to use the same random generator for every simulation." << endl; 
+       cout << "Press 0 to continue" << endl; 
+       sssr(risp,"same seed no-opt");
+#endif
     
 //        cout << "seed same ... " << endl;
         

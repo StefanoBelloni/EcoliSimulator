@@ -52,6 +52,7 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
         
         // If I use the same seed at the new cycle of simulation I clear the random engines ...
         if (same_seed) {
+#ifndef NO_M_THREAD
             cout << BOLDRED << "same seed ... " << endl << RESET;
             for (unsigned int i=0; i< n_thread_available; i++) {
 //                cout << "ri inizialize random engine saved ... " << endl;
@@ -60,7 +61,6 @@ int FunzBiginEnd(int &number_routine, int &cont_gen_sim, int &read_par_file, str
                 rnd_ecoli.random_engines_seeded.push_back(false);
             }
 
-#ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
 #else
     seedRandomObj(0,rand());
@@ -693,27 +693,7 @@ void seedRandomObj(int n_this_thread, thread::id hash_code){
 }
 #else
 void seedRandomObj(int n_this_thread, long hash_code){
-    
-    if (!rnd_ecoli.random_engines_seeded[n_this_thread])
-    {
-        // seed the engine!
-        rnd_ecoli.random_engines[n_this_thread]         = std::mt19937_64(clock()+1000*(1+n_this_thread));
-        rnd_ecoli.random_engines_seeded[n_this_thread]  = true;
-        rnd_ecoli.random_engines_barrier[n_this_thread] = std::mt19937_64(clock()+2000*(1+n_this_thread));
-        rnd_ecoli.random_engines_theta[n_this_thread]   = std::mt19937_64(clock()+3000*(1+n_this_thread));
-        rnd_ecoli.random_engine_saved[n_this_thread]          = rnd_ecoli.random_engines[n_this_thread];
-        rnd_ecoli.random_engines_barrier_saved[n_this_thread] = rnd_ecoli.random_engines[n_this_thread];
-        rnd_ecoli.random_engines_theta_saved[n_this_thread]   = rnd_ecoli.random_engines[n_this_thread];
-    }
-    else{
-        if (same_seed) {
-            cout << BOLDRED << "same seed ... " << endl << RESET;
-            rnd_ecoli.random_engines[n_this_thread]         = rnd_ecoli.random_engine_saved[n_this_thread];
-            rnd_ecoli.random_engines_barrier[n_this_thread] = rnd_ecoli.random_engines_barrier[n_this_thread];
-            rnd_ecoli.random_engines_theta[n_this_thread]   = rnd_ecoli.random_engines_theta[n_this_thread];
-            //            rnd_ecoli.random_engines_seeded[n_this_thread]=true;
-        }
-    }
+    seed();    
 }
 #endif
 //***************************************************************************************************************************************

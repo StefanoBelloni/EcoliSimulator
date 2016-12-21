@@ -174,12 +174,12 @@ long double newtheta(long double theta)
         theta=theta_+s*46*unifRand();
     }
   
-    while (theta<0){
-        theta = theta+2*pi;
-    }
-    while (theta>2*pi){
-        theta= theta-2*pi;
-    }
+    //while (theta<0){
+        //theta = theta+2*pi;
+    //}
+    //while (theta>2*pi){
+        //theta= theta-2*pi;
+    //}
     
     
     return theta;

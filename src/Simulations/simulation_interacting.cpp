@@ -325,10 +325,11 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
 
         for(int j=0;j<n_c;j++)
         {                       
+#ifndef NO_M_THREAD
             batterio[indici_b[j]]->engine_altro = &rnd_ecoli.random_engines[0];
             batterio[indici_b[j]]->engine_barrier = &rnd_ecoli.random_engines[0];
             batterio[indici_b[j]]->engine_theta = &rnd_ecoli.random_engines[0];
-            
+#endif     
             //change_pos=
 //            initial_position(j,batterio[indici_b[j]]->X(),x0,Raggio,num_dist,cont_dist_5,delta_dist_cont,Delta_delta_dist);
 

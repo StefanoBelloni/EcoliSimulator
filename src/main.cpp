@@ -172,9 +172,8 @@ int main(int argc, const char * argv[])
     //createMakeFile();
     setDefoultGlobalVar();
 
-
-    seed_ = (unsigned int) time(NULL);
-    seed_r = seed_;
+    // seed_ = (unsigned int) time(NULL);
+    // seed_r = seed_;
     #if NO_M_THREAD
     n_thread_available = 1; 
     #else
@@ -230,6 +229,7 @@ int main(int argc, const char * argv[])
 #endif
     
     // initialize max engine to be used ...
+#ifndef NO_M_THREAD
     for (unsigned int i=0; i< n_thread_available; i++) {
         rnd_ecoli.random_engines.push_back(*new std::mt19937_64(clock()));
         rnd_ecoli.random_engine_saved.push_back(rnd_ecoli.random_engines[i]);
@@ -239,11 +239,10 @@ int main(int argc, const char * argv[])
         rnd_ecoli.random_engines_theta_saved.push_back(rnd_ecoli.random_engines_theta[i]);   //
         rnd_ecoli.random_engines_seeded.push_back(false);
     }
-    #ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
-    #else
+#else
     seedRandomObj(0,rand());
-    #endif    
+#endif    
     
     int read_par_file = set_MODE_Program(versione_Matlab, demo_mode,read_from_file);
     

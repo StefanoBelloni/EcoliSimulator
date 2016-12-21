@@ -6,10 +6,10 @@
 //  Copyright © 2016 Stefano Belloni. All rights reserved.
 //
 
-#include <random>
 #include <vector>
 
 #ifndef NO_M_THREAD
+#include <random>
 #include <thread>
 #endif
 
@@ -19,6 +19,7 @@
 
 struct randomObj{
 
+#ifndef NO_M_THREAD
     std::vector<bool> random_engines_seeded;
     
     std::vector<std::mt19937_64> random_engines;
@@ -33,7 +34,7 @@ struct randomObj{
     
     std::vector<bool> random_engines_seeded_theta;
     std::vector<bool> random_engines_seeded_barrier;
-
+#endif
     //    std::vector<bool> random_engines_seeded_saved;
     
 };

@@ -59,7 +59,7 @@ ifneq ($(opt),NO_M_THREAD)
 	CFLAGS+=-std=c++11
 else
 	CFLAGS+=-D$(opt)
-	TARGET = EcoliSimulator_0
+	TARGET = EcoliSimulator_
 endif
 
 

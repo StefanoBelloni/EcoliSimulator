@@ -376,7 +376,6 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
     
 }
 
-#endif
 
 /*! \brief This function create a duplicate of the base bacterium and f_c:
  */
@@ -671,3 +670,5 @@ string setNametempFiles(string name, int n_thread){
     
     return temp;
 }
+
+#endif
