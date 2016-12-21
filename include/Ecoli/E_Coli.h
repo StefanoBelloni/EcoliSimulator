@@ -15,10 +15,10 @@
 #ifndef NO_M_THREAD
 #include <array>
 #include <random>
+#include <chrono>
 #endif
 
 #include "s_lambda.h"
-#include <chrono>
 
 #include "FunzRand.h"
 #include "Funz_C.h"
