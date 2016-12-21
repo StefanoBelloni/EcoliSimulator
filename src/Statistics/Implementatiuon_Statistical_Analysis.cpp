@@ -28,7 +28,7 @@
 #include <vector>
 #include <cmath>
 #include <iomanip>
-
+#include <cstdio>
 #include "Q_tau_stat.h"
 #include "Declar_funz.h"
 #include "GlobalVariables.h"

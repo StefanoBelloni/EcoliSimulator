@@ -94,14 +94,16 @@ int import_path(string version_MATLAB){
         apngas_opt = temp_string;
         getline(path,temp_string);
         try{
-            no_apngams = std::stoi(temp_string.c_str());
+            no_apngams = atoi( temp_string.c_str() );
+            // no_apngams = std::stoi(temp_string.c_str());
         }catch(std::invalid_argument&){
             cout << "Error getting value for no_apngasm" << endl;
             no_apngams = true;
         }
         getline(path,temp_string);
         try{
-            save_data = std::stoi(temp_string.c_str());
+            // save_data = std::stoi(temp_string.c_str());
+            save_data = atoi( temp_string.c_str() );
         }catch(std::invalid_argument&){
             cout << "Error getting value for save_data" << endl;
             save_data= false;

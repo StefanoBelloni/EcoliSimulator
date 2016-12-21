@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <cstdio>
 #include <sstream>
 #include <string>
 #include "FunzRunUndTumble.h"

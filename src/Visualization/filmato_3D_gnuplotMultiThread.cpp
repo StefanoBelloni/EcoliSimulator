@@ -37,12 +37,12 @@
 #ifndef NO_M_THREAD
 #include <thread>
 #include <array>
+#include <chrono>
 #endif
 
 
 #include <sys/stat.h>
 #include <unistd.h>
-#include <chrono>
 
 #include <limits>
 #include <ctime>

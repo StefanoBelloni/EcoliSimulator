@@ -7,6 +7,8 @@
 //
 
 #include <iostream>
+#include <sstream>
+#include <cstdlib>
 #include "Colori.h"
 #include "ErrorsDefinition.h"
 #include "GlobalRandomVariables.h"
@@ -51,8 +53,12 @@ void FullWindows(){
 void SetWindow(int Width = 60, int Height = 98){
     
     string command =string("printf '\\e[8;");
-    command+=to_string(Width)+string(";");
-    command+=to_string(Height)+string("t'");
+    std::stringstream ssW;
+    ssW << Width;
+    std::stringstream ssH;
+    ssW << Height;
+    command+=ssW.str()+string(";");
+    command+=ssH.str()+string("t'");
     
     system(command.c_str()); // metà
 }

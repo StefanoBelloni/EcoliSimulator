@@ -300,6 +300,7 @@ int main(int argc, const char * argv[])
     double diff;
     time(&end);
     diff=difftime(start,end); // gives in seconds
+    msg << diff << " seconds" << endl;
 #else
     auto end = chrono::steady_clock::now();
     auto diff = end - start;

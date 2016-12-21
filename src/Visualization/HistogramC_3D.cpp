@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <cstdlib>
 #include "Funz_C.h"
 
 

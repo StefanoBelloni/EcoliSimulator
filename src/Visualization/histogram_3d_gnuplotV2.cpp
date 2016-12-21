@@ -10,12 +10,12 @@
 #include <vector>
 #include <fstream>
 #include <cmath>
-#include <system_error>
 
 
 #ifndef NO_M_THREAD
 #include <thread>
 #include <array>
+#include <system_error>
 #endif
 
 
