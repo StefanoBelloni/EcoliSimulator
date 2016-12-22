@@ -16,12 +16,12 @@
 
 #ifndef NO_M_THREAD
 #include <thread>
+#include <system_error>
 #endif
 
 #include "writeHistToFileMultiT.hpp"
 #include "GlobalVariables.h"
 
-#include <system_error>
 
 #ifndef min
 #define min_( a, b ) ( ((a) < (b)) ? (a) : (b) )

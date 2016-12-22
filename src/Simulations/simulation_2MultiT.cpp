@@ -29,9 +29,9 @@
 
 #ifndef NO_M_THREAD
 #include <thread>
+#include <system_error>
 #endif
 
-#include <system_error>
 #include <sys/stat.h>
 #include "GlobalVariables.h"
 #include <cstring>

@@ -208,7 +208,7 @@ int scriptInternalDynamics(const long double& Q_m, const long double& Q_M,const 
     
     std::ofstream file_dyn_plot;
     
-    file_dyn_plot.open(setNameScriptDyn(cont_sim,save_));
+    file_dyn_plot.open(setNameScriptDyn(cont_sim,save_).c_str());
     
     if (!file_dyn_plot.is_open()){
         std::cout << "Error opening file";

@@ -10,6 +10,7 @@
 #include "Colori.h"
 #include "sssr.h"
 #include <limits>
+#include <cstdio>
 
 #ifndef NO_M_THREAD
 #include <thread>

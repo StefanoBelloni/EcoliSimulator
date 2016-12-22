@@ -10,7 +10,6 @@
 #include "Colori.h"
 #include "LoadBar.hpp"
 #include "Funz_C.h"
-#include <system_error>
 
 #include <sstream>
 #include <iostream>
@@ -20,6 +19,7 @@
 #ifndef NO_M_THREAD
 #include <thread>
 #include <array>
+#include <system_error>
 #endif
 
 

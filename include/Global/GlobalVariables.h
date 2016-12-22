@@ -7,6 +7,7 @@
 //
 
 #include <vector>
+#include <string>
 #if NO_M_THREAD
 #include "MyMutex.h"
 #else

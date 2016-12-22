@@ -10,6 +10,7 @@
 #define E_Coli2_0_Funz_C_h
 
 #include <vector>
+#include <fstream>
 
 #ifndef NO_M_THREAD
 #include <array>

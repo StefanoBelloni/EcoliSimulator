@@ -50,7 +50,7 @@ void gnuplot_run_multiplot(string nome_info, string names[], int save_, int cont
     
     ofstream file_run_plot;  
     
-    file_run_plot.open(nameFile);
+    file_run_plot.open(nameFile.c_str());
     
     if (tipo_grafico==0) {        
         

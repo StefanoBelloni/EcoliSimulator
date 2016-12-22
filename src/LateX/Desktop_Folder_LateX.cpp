@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdio>
+#include <cstdlib>
 #include "dirent.h"
 #include <sys/stat.h>
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
@@ -88,7 +90,7 @@ int SetMainFolder(int demo_mode)
     
 
     ofstream file_temp_log;
-    file_temp_log.open(nameLog, std::ios_base::binary | std::ios_base::app|std::ios_base::ate);
+    file_temp_log.open(nameLog.c_str(), std::ios_base::binary | std::ios_base::app|std::ios_base::ate);
     file_temp_log << endl << "#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!" << endl;
     file_temp_log << "                 ECOLI SIMULATOR" << endl;
     file_temp_log << "#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!" << endl;

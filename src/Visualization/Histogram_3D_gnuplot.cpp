@@ -10,6 +10,8 @@
 #include <vector>
 #include <fstream>
 #include <cmath>
+#include <cstdio>
+#include <cstdlib>
 
 #ifndef NO_M_THREAD
 #include <array>
