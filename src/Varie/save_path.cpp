@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <fstream>
-
+#include <exception>
 #include "GnuplotGlobal.h"
 #include "apngasm_Global.h"
 #include "MATLAB_Global.h"
