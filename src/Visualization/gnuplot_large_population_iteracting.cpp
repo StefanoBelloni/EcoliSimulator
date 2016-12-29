@@ -51,7 +51,9 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, l
 // Nelle variabili -> da aggiungere quanto relativo ai salti per batterio
 {
     int risp;
-    
+
+    int n_salti_colonne=1;
+
     // big number to be set to the proper limit of the domain
     long double min_x=10000;
     long double max_x=-10000;
@@ -142,14 +144,14 @@ void gnuplot_large_population_interacting(string file_info[], string name_dyn, l
 
 
 #if NO_M_THREAD 
-       max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
+       max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, n_salti_colonne,f,maxC, 1,cont_gen_sim, file_info[0]);
 #else
 
         int nthread = min_(n_thread_available,std::thread::hardware_concurrency());
         if (nthread<=1) {
-            max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 0,f,maxC, 1,cont_gen_sim, file_info[0]);
+            max_z=histogram_3D_gnuplotV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, n_salti_colonne,f,maxC, 1,cont_gen_sim, file_info[0]);
         }else{
-            max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, 1,f,maxC, 0,cont_gen_sim,file_info[0]);
+            max_z = histogram_3D_gnuplotV2MultiThreadV2(max_x, max_y, min_x, min_y,n_dx ,n_dy , dx, dy, x_t, y_t, n_c, dim_col_t, n_salti_colonne,f,maxC, 0,cont_gen_sim,file_info[0]);
         }
 #endif     
         int error = percSignFunzC(sign_c_t,n_c,dim_col_t,file_info[0]);

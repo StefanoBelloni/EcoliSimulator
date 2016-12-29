@@ -102,6 +102,10 @@ If you are using different programs to achive these tasks, you can modify the de
                       redefine the variable CC accordingly, for example if the compiler you want to use is g++ and 
                       it is inside the folder C:\Dev-cpp\Ming64\bin\g++.exe, substitute the definition of the variable CC as follows:
                                   CC = C:\Dev-cpp\Ming64\bin\g++.exe
+                NOTE: If you do not have a compiler which support c++11, it is still possible to build the program, but it will lack of the possibility 
+                      to perform the simulation and analysis in parallel. In order to compile with this option, you have to pass the option 
+                        - opt=NO_M_THREAD to make, i.e.
+                            >:EcoliSimulator stefanobelloni$ make opt=NO_M_THREAD
 
         - Install gnuplot 
               type make gnuplot
@@ -141,6 +145,8 @@ If you are using different programs to achive these tasks, you can modify the de
             >:build stefanobelloni$ make
         - you can use the options of cmake to customize the installation path.
 
+        NOTE: in this case is necerrasy a c++ compiler with c++11 support.
+
  By default the Makefile and the cmake will create a bin folder, where the executable can be found and a build folder where the .o objects are saved. 
 
     -compile by hand:
@@ -148,7 +154,7 @@ If you are using different programs to achive these tasks, you can modify the de
         -create a folder (for example be it bin)
             >:build stefanobelloni$ mkdir bin
         - go inside it 
-            >:build stefanobelloni$ cin bin
+            >:build stefanobelloni$ cd bin
         - type
             g++ -std=c++11 -I../include -Wall -o EcoliSimulator ../src/*.cpp ../src/*/*.cpp
             (instead of g++, use the compiler you prefer ...)
@@ -182,7 +188,10 @@ Aviable options:
                             but as a '.gif' file.
                             --apngams tells to create multilayer '.png' file.
                             NOTE: The defoult (for the first lunch) is '.gif' file.
+    - --nobars..... ........ do not show progress bar in simulation and analysis
+    - --verbose............. produce a detailed Log file
     - --clclog ............ clear the file Ecoli.LogEcoli.
+
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
