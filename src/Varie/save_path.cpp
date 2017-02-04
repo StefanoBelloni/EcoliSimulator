@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
+#include <stdexcept>
 #include "GnuplotGlobal.h"
 #include "apngasm_Global.h"
 #include "MATLAB_Global.h"
