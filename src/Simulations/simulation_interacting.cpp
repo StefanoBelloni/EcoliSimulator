@@ -154,11 +154,11 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
     
     // Analysis general
     
-    ofstream file_Ecoli[3];
-    ofstream file_tau[2];
-    ofstream file_index;
-    ofstream file_fc;
-    ofstream file_info[3];
+    TmpFile file_Ecoli[3];
+    TmpFile file_tau[2];
+    TmpFile file_index;
+    std::ofstream file_fc;
+    TmpFile file_info[3];
     
     stringstream sstm;
     
@@ -309,13 +309,13 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
         int cont_temp_glob=1;
         
-        file_index << cont_temp_glob << endl;
+        file_index << cont_temp_glob << "\n";
         
         
         string titolo;
         titolo = batterio[0]->Tipo_batterio+names_info_mod[0];        
         titolo.erase(titolo.end()-4, titolo.end());
-        file_info[0] << titolo << endl;
+        file_info[0] << titolo << "\n";
 
 #ifndef NO_M_THREAD
     seedRandomObj(0,this_thread::get_id());
@@ -378,7 +378,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         
 //        cout << "f Printed " << endl;
         
-        file_index << cont_temp_glob << endl;
+        file_index << cont_temp_glob << "\n";
         cont_temp_glob++;
         
         // VARIABILI TEMPO: DATA ORA
@@ -448,7 +448,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
                     dim_col_t++;
                     
                     cont_salvataggio_pos=cont_salvataggio_pos+const_salv;                    
-                    file_index << cont_temp_glob << endl;
+                    file_index << cont_temp_glob << "\n";
                     
                     // Print f
                     // Cambio il nome e salvo f_c
@@ -458,7 +458,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
                     snprintf(buffer, sizeof(char) * 52, "sim%03dfilm3Dc%i.dat", cont_gen_sim, dim_col_t+1);
                     sstm.str("");
                     file_fc.open(buffer);
-                    f->print_fc(file_fc, t);                    
+                    f->print_fc(file_fc, t);
                     file_fc.close();  
                     
                     //cout << "... ";
@@ -514,8 +514,8 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
                 //************
                 
                 if (i_temp==0) {
-                    file_info[0] << cont_temp_glob << endl;
-                    file_info[0] << dt << endl;
+                    file_info[0] << cont_temp_glob << "\n";
+                    file_info[0] << dt << "\n" ;
                     file_info[0] << const_salv;
                 }
                 
@@ -553,7 +553,7 @@ int simulation_interacting(vector<E_coli*> batterio, long double T_f,Funz_C *f,l
         std::cout << "\n\n---------------- END SIMULATION ------------\n" << std::endl;
         
         
-        file_index << const_salv << endl;
+        file_index << const_salv << "\n";
         
         file_call_Matlab << names_files_Ecoli_mod[0] << endl;
         file_call_Matlab << names_indice_mod << endl;

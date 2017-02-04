@@ -131,7 +131,7 @@ public:
     
     int agg_dyn(long double dt, long double t);
     void agg_dyint(long double dt, long double t);
-    void save_dyn(std::ofstream &file_, long double t);
+    void save_dyn(TmpFile &file_, long double t);
     
     void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
 //    void gnuplotFunzInternalDynalmic(std::string buffer, int save_, int cont_gen_sim);

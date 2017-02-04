@@ -26,6 +26,7 @@
 
 #include "Q_tau_stat.h"
 
+#include "tmpfile.h"
 
 #include "constants.h" //#define pi 3.141592653589793238462
 //#define lim_alpha 2.5327805161251
@@ -36,9 +37,9 @@
 
 
 namespace EcoliType {
-    
+
     enum{
-    
+
         E_COLI = 0,
         CV_REXP_TEXP,
         CV_RIG_TEXP,
@@ -54,7 +55,7 @@ namespace EcoliType {
         PAR_CV_REXP_TEXP,
         PAR_CV_RIG_TEXP,
         PAR_CV_RIGEXP_TEXP
-        
+
     };
 
 }
@@ -67,9 +68,9 @@ namespace EcoliType {
  */
 
 class E_coli  {
-    
+
 protected:
-    
+
     /** Production rate bacterium*/
     /*static */long double production_rate;
     /** Speed bacterium*/
@@ -86,14 +87,14 @@ protected:
 #else
     std::array<long double,2> x;
 #endif
-    
+
     /** Direction */
     long double theta;
     /** Ligand concentration*/
     long double c;
     /** Diffusion coefficient direction */
     long double D_theta;
-    
+
     //***************************    
     
     /** probability rate to tumble*/
@@ -192,6 +193,10 @@ protected:
     /*************************************************************/
     
 public:
+
+    /* write to tmpfile operator<<*/
+
+    //friend TmpFile& operator<<(TmpFile &tmpfile, const std::string str);
 
     /**
      * MODE of simulation:<br>
@@ -292,7 +297,7 @@ public:
     void agg_ligand(long double t, Funz_C *f);
     
     /** update all the parameters of the bacterium during the simulation*/
-    void aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , ofstream *file_tau, std::ofstream &file_theta);
+    void aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , TmpFile *file_tau, TmpFile &file_theta);
     
     /** set initial data for the simulation */
     void start_simulation(Funz_C *f);
@@ -308,19 +313,19 @@ public:
     void response_function();
     
     /** save position, concentration and direction to file*/
-    void save_E_coli(ofstream *file, long double t);
-    void save_E_coli_initial(std::ofstream *file_, long double t);
+    void save_E_coli(TmpFile *file, long double t);
+    void save_E_coli_initial(TmpFile *file_, long double t);
     /** save time and duration of a run
      */
-    void save_run(long double t, ofstream &file_salto, long double dt);
+    void save_run(long double t, TmpFile &file_salto, long double dt);
     
     /** save time and duration of a tumble
      * @param dt time-step in the simulation
      */
-    void save_tumble(long double t, ofstream &file_tumble, long double dt);
+    void save_tumble(long double t, TmpFile &file_tumble, long double dt);
 
     /*! function used to save the angle at the moment of a tumble.*/
-    void save_theta(long double t, long double theta, std::ofstream &file_run);
+    void save_theta(long double t, long double theta, TmpFile &file_run);
     
 //    long double lambda_prod();
 //    long double lambda_eat();
@@ -374,7 +379,7 @@ public:
     //---> Aggiorno la dinamica interna{m,Q,lambda_-> salto_}
     
     /** save internal dynamic in a file*/
-    virtual void save_dyn(ofstream &file, long double t);
+    virtual void save_dyn(TmpFile &file, long double t);
     /** plot via gnuplot trajectory and data for single tracking*/
     virtual void gnuplot_single(std::string *names_files_Ecoli_mod, std::string &names_indice_mod, std::string *names_files_tau_mod, std::string &names_file_dyn_mod, std::string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
     /** save and produce film of single tracking */

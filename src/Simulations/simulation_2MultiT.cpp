@@ -182,10 +182,10 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
 
     
     // FILES
-    ofstream file_Ecoli[3];
-    ofstream file_tau[2];
-    ofstream file_index;
-    ofstream file_dyn;
+    TmpFile file_Ecoli[3];
+    TmpFile file_tau[2];
+    TmpFile file_index;
+    TmpFile file_dyn;
     
     stringstream sstm;
 
@@ -319,7 +319,7 @@ void startThreadSimulation(E_coli *batterio, long double T_f,Funz_C *f,array<lon
 //            my_mutex.unlock();
 //        }
         
-        file_index << cont_temp_glob << endl;
+        file_index << cont_temp_glob << "\n";
         
         cont_temp_glob++;
         cont_salvataggio_pos=const_salv;

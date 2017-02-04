@@ -59,3 +59,5 @@ extern bool same_seed;
 /** global variable to save or not the DATA .dat and gnuplot scripts
   * default is false: otherwise too much space is needed */
 extern bool save_data;
+/*RAM optimization*/
+extern long MAX_SIZE_TMP_FILE;

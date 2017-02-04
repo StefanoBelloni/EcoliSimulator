@@ -225,9 +225,9 @@ void EO_rExp_tExp::change_lambda_par()
     
 }
 
-void EO_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
+void EO_rExp_tExp::save_dyn(TmpFile &file_, long double t){
     
-    file_ << t << " " << lambda_r << " " << lambda_t << " " << m[0] << " " << m[1] << endl;
+    file_ << t << " " << lambda_r << " " << lambda_t << " " << m[0] << " " << m[1] << "\n";
     
 }
 

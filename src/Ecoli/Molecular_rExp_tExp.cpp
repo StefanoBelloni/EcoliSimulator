@@ -207,9 +207,9 @@ void Molecular_rExp_tExp::stationary_dyn(long double dt, std::vector<long double
     
 }
 
-void Molecular_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
+void Molecular_rExp_tExp::save_dyn(TmpFile &file_, long double t){
     
-    file_ << t << " " << lambda_r << " " << lambda_t << " " << meth << " " << y << " " << a << " " << p_r << endl;
+    file_ << t << " " << lambda_r << " " << lambda_t << " " << meth << " " << y << " " << a << " " << p_r << "\n";
     
 }
 

@@ -9,6 +9,8 @@
 #ifndef constants_h
 #define constants_h
 #include <math.h>
+
 const long double pi = acos(-1.0L);
+const int precision_output = 22;
 
 #endif /* constants_h */

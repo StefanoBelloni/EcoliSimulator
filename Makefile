@@ -51,7 +51,7 @@ TARGET = EcoliSimulator
 
 
 CFLAGS= -g -Wall -pedantic 
-#CFLAGS+=-std=c++11
+
 LDFLAGS =
 
 

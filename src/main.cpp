@@ -100,6 +100,7 @@ bool multithread = false;
 bool colors = true;
 bool show_bars = true;
 unsigned int n_thread_available = 1;
+long MAX_SIZE_TMP_FILE = 1024*1024*1024*1024L;
 
 //string fileEcoliRisp = "EcoliTest.Ecoli";
 string fileEcoliRisp = "EcoliRisposte.Ecoli";
@@ -111,7 +112,7 @@ bool same_seed = false;
 bool verbose = false;
 // automatic: 0 -> step by step version
 //            1 -> setting parameters
-//            2 -> running simulation 
+//            2 -> running simulation
 
 randomObj rnd_ecoli;
 
@@ -180,6 +181,7 @@ int main(int argc, const char * argv[])
     n_thread_available = fmax(1,std::thread::hardware_concurrency()/2);
     #endif
     if (n_thread_available>1) {
+        MAX_SIZE_TMP_FILE/=n_thread_available;
         multithread = true;
     }
     seed();
@@ -187,7 +189,7 @@ int main(int argc, const char * argv[])
         helpMenu();
         return 0;
     }
-    
+
     //****************************************************************************
     //                           VARIABILI VARIE
     //****************************************************************************
@@ -196,7 +198,7 @@ int main(int argc, const char * argv[])
     vector<string> name_info_satistics;
     vector<string> *pt_name_file_satistics=&name_file_satistics;  // pointer to names and info stat, so that we can pass default argument = 0(= null)
     vector<string> *pt_name_info_satistics=&name_info_satistics;
-    
+
     // general counter for the simulation: it is used to set the name univocally of the files
     int cont_gen_sim=0;
     int stat_sim=-1;    // save which kind of simulation: simulation, statistic analy. or both
@@ -218,7 +220,7 @@ int main(int argc, const char * argv[])
 
     if (error_imporing_file!=0)
         ErrorImportPath(versione_Matlab);
-    
+
     int number_routine;
 
 #if NO_M_THREAD
@@ -227,7 +229,7 @@ int main(int argc, const char * argv[])
 #else
     auto start = chrono::steady_clock::now();
 #endif
-    
+
     // initialize max engine to be used ...
 #ifndef NO_M_THREAD
     for (unsigned int i=0; i< n_thread_available; i++) {
@@ -242,21 +244,21 @@ int main(int argc, const char * argv[])
     seedRandomObj(0,this_thread::get_id());
 #else
     seedRandomObj(0,rand());
-#endif    
-    
+#endif
+
     int read_par_file = set_MODE_Program(versione_Matlab, demo_mode,read_from_file);
-    
+
 //    if (read_par_file!=121) {
         if(SetMainFolder(demo_mode)!=0) {
             timestamp();
             cout << BOLDRED<< "FATAL ERROR CREATING FOLDER ON THE DESKTOP\n" << RESET;
-            writeLog("ERROR", "fatal error creating main folder");            
+            writeLog("ERROR", "fatal error creating main folder");
             return ERROR_CREATING_MAIN_FOLDER;
         }
 //    }
 
     contatore_risposte=0;
-    
+
     if (read_par_file==0){
         ReadableFileRisp(stat_sim, demo_mode);
     }
@@ -265,7 +267,7 @@ int main(int argc, const char * argv[])
         return ERROR_SAVING_PATH_TO_FILE;
     }
     // main loop of the program.
-    
+
     std::string tmpDir = getcwd(NULL,0);
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
     tmpDir+=std::string("\\tmpEcoli");
@@ -273,25 +275,25 @@ int main(int argc, const char * argv[])
 
     tmpDir+=std::string("/tmpEcoli/");
 #endif
-    chdir(tmpDir.c_str()); 
+    chdir(tmpDir.c_str());
 
     do{
         BiginEnd=0;
         FunzBiginEnd(number_routine,cont_gen_sim,read_par_file,versione_Matlab,pt_name_file_satistics,pt_name_info_satistics,demo_mode,stat_sim);
         ConditionEnd(read_par_file,stat_sim,BiginEnd);
     }while (BiginEnd==1);
-    
+
     last_deleting();
     funz_clear();
     timestamp();
-    
+
     // Salvo global Variables in un file, da poter usare in futuro ...
-    if (save_path(versione_Matlab)!=0) {        
+    if (save_path(versione_Matlab)!=0) {
         return ERROR_SAVING_PATH_TO_FILE;
     }else{
         CopyEcoliFiles();
     }
-    
+
     // LOG FILE
     stringstream msg;
 
@@ -310,7 +312,7 @@ int main(int argc, const char * argv[])
     msg << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" << endl;
     string topic("Time to complete the program: ");
     writeLog(topic, msg.str());
-    
+
     return Congedo(number_routine);
 }
 
@@ -324,5 +326,6 @@ int main(int argc, const char * argv[])
  * [...] - save figure from matlab.
  * [x] - sistemare il video di theta ... --> "::1::b" b non è sincronizzato ...
  * [...] move the files to tmpEcoli ... create also the directory ./tmpEcoli
- * Does not compile on linux: my_mutex, std::array (c++11),  <random> mt19937_64
+ * [x] Does not compile on linux: my_mutex, std::array (c++11),  <random> mt19937_64
+ * [] move set precision from the code inside TmpFile
  */

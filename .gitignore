@@ -5,3 +5,6 @@ build/
 TODO.txt
 tags
 .vscode/
+GTAGS
+GPATH
+GRTAGS

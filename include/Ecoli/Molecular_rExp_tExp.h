@@ -104,7 +104,7 @@ public:
     friend long double F_CSV(Molecular_rExp_tExp *batterio, long double m_s, long double L_use);
     int agg_dyn(long double dt, long double t);
     void agg_dyint(long double dt, long double t);
-    void save_dyn(std::ofstream &file_, long double t);
+    void save_dyn(TmpFile &file_, long double t);
     void gnuplot_single(string *names_files_Ecoli_mod, string &names_indice_mod, string *names_files_tau_mod, string &names_file_dyn_mod, string *names_info_mod, long double T_f, Funz_C *f, int save_, int con_gen_sim);
     void print_info(std::ofstream &file_save);
     void reset_par();

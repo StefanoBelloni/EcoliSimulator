@@ -20,7 +20,7 @@
 #include "GlobalRandomVariables.h"
 #include "sssr.h"
 #include "Colori.h"
-
+#include "constants.h"
 #include <iomanip>
 
 #ifndef max
@@ -30,7 +30,8 @@
 #define min( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
-#define precision_output 22
+
+//#define precision_output 22
 
 #include "constants.h" //#define pi 3.141592653589793238462
 
@@ -79,7 +80,7 @@ void E_coli::stationary_dyn(long double dt, std::vector<long double> &m0, int ch
 
 //*************************************************************** 
 
-void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , std::ofstream *file_tau, std::ofstream &file_theta){
+void E_coli::aggiornamento(long double dt,long double t, Funz_C *f, int &sign_p , TmpFile *file_tau, TmpFile &file_theta){
     
     // many if to check the border!!!
     
@@ -512,38 +513,44 @@ void E_coli::reset_par(){
 //***************************************************************
 //***************************************************************
 
-void E_coli::save_run(long double t, std::ofstream &file_run, long double dt){
+void E_coli::save_run(long double t, TmpFile &file_run, long double dt){
 
-    file_run << std::setprecision(precision_output) << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << endl;
+    file_run //<< std::setprecision(precision_output)
+             << t << " " << t-t_r+ unifRand_ec()*dt<< " " << up_down << "\n";
 
 }
 
-void E_coli::save_tumble(long double t, ofstream &file_tumble, long double dt){
+void E_coli::save_tumble(long double t, TmpFile &file_tumble, long double dt){
 
     long double rnd = unifRand_ec();
-    file_tumble << std::setprecision(precision_output) << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << endl;
+    file_tumble //<< std::setprecision(precision_output)
+                << t << " " << t-t_t +(rnd<0.5)*rnd*dt << " " << c << "\n";
 
 }
 
 
-void E_coli::save_theta(long double t, long double theta, std::ofstream &file_theta){
-    
-    file_theta << std::setprecision(precision_output) << t << " " << theta << endl;
-    
+void E_coli::save_theta(long double t, long double theta, TmpFile &file_theta){
+
+    file_theta //<< std::setprecision(precision_output)
+               << t << " " << theta << "\n";
+
 }
 
-void E_coli::save_E_coli_initial(std::ofstream *file_, long double t){
-    
+void E_coli::save_E_coli_initial(TmpFile *file_, long double t){
+
     my_mutex.lock();
-    file_[0] << std::setprecision(precision_output) << x[0] << " " << x[1] << " " << up_down << endl;
+    file_[0] //<< std::setprecision(precision_output)
+        << x[0] << " " << x[1] << " " << up_down << "\n";
         cout << "save        (x,y): " << x[0] << " , " << x[1] << " , " << up_down << endl;
-    file_[1] << std::setprecision(precision_output) << t << " " << theta << endl;
-    file_[2] << std::setprecision(precision_output) << t << " " << c << endl;
+    file_[1] //<< std::setprecision(precision_output)
+            << t << " " << theta << "\n";
+    file_[2] //<< std::setprecision(precision_output)
+                << t << " " << c << "\n";
     my_mutex.unlock();
 }
 
-void E_coli::save_E_coli(std::ofstream *file_, long double t){
-    
+void E_coli::save_E_coli(TmpFile *file_, long double t){
+
     // Magari è meglio up/down
     // up_down:
     //  1 -> up
@@ -553,19 +560,23 @@ void E_coli::save_E_coli(std::ofstream *file_, long double t){
 //    int val = (up_down==2)?0:up_down;
 
 //    my_mutex.lock();
-    file_[0] << std::setprecision(precision_output) << x[0] << " " << x[1] << " " << up_down << endl;
+    file_[0] //<< std::setprecision(precision_output)
+             << x[0] << " " << x[1] << " " << up_down << "\n";
 //    cout << "save (x,y)" << x[0] << " , " << x[1] << " " << up_down << endl;
 //    file_[0] << x[0] << " " << x[1] << " " << sign_c << endl;
-    file_[1] << std::setprecision(precision_output) << t << " " << theta << endl;
-    file_[2] << std::setprecision(precision_output) << t << " " << c << endl;
+    file_[1] //<< std::setprecision(precision_output)
+             << t << " " << theta << "\n";
+    file_[2] //<< std::setprecision(precision_output)
+             << t << " " << c << "\n";
 //    my_mutex.unlock();
-    
+
 }
 
-void E_coli::save_dyn(ofstream &file_, long double t){
-    
-    file_ << std::setprecision(precision_output) << t << " " << lambda_r << " " << lambda_t << endl;
-    
+void E_coli::save_dyn(TmpFile &file_, long double t){
+
+    file_ //<< std::setprecision(precision_output)
+          << t << " " << lambda_r << " " << lambda_t << "\n";
+
 }
 
 //************************************************************************************
@@ -573,18 +584,18 @@ void E_coli::save_dyn(ofstream &file_, long double t){
 //#define nahrung 0.05;
 
 //void E_coli::eat(Funz_C* f_i, long double dt){
-//        
+//
 //    int n_x[2];
 //    long double nahrung=dt*0.05;
 //    f_i->get_coordinate(x,n_x);
 //    (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]]-=((*(f_i->f_c))[n_x[0]*f_i->n_y+n_x[1]])*nahrung;
-//    
+//
 ////    cout << "f_q = " << ((*(f_i->f_c))[n_x[0]*f_i->n_y+n_x[1]])*nahrung << endl;
-//    
+//
 //}
 
 void E_coli::produce(Funz_C* f_i, long double dt)
-{    
+{
     int n_x[4];
 //    long double product=dt*0.5;
     // I spilt in 4.
@@ -596,29 +607,29 @@ void E_coli::produce(Funz_C* f_i, long double dt)
     (*(f_i->q_c))[n_x[2]*f_i->n_y+n_x[3]]+=(production_rate*dt/4);
 //    cout << "(*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] = " << (*(f_i->q_c))[n_x[0]*f_i->n_y+n_x[1]] << endl;
 //    cout << "production_rate = " << production_rate << endl;
-    
+
 }
 
 void E_coli::response_function(){
-    
+
     switch (tipo_response_c) 
     {
         case 0:
             c = RC_0*c;
             break;
-            
+
         case 1:
             c = RC_0*log(1+RC_1*c);
             break;
-            
+
         case 2:
             c = RC_0*(c/(RC_1+c));
             break;
-            
+
         case 3:
             c = RC_0*pow(c,RC_q)/(pow(RC_1,RC_q)+pow(c,RC_q));
             break;
-            
+
         default:
 //            c = c;
             break;

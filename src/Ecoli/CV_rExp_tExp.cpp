@@ -228,9 +228,9 @@ void CV_rExp_tExp::change_lambda_par()
        
 }
 
-void CV_rExp_tExp::save_dyn(std::ofstream &file_, long double t){
+void CV_rExp_tExp::save_dyn(TmpFile &file_, long double t){
     
-    file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << endl;
+    file_ << t << " " << lambda_r << " " << lambda_t << " " << Q << "\n" ;
     
 }
 
