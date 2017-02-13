@@ -26,6 +26,7 @@
 
 #include "Q_tau_stat.h"
 
+// #include "tmpfile.h"
 
 #include "constants.h" //#define pi 3.141592653589793238462
 //#define lim_alpha 2.5327805161251
@@ -36,9 +37,9 @@
 
 
 namespace EcoliType {
-    
+
     enum{
-    
+
         E_COLI = 0,
         CV_REXP_TEXP,
         CV_RIG_TEXP,
@@ -54,7 +55,7 @@ namespace EcoliType {
         PAR_CV_REXP_TEXP,
         PAR_CV_RIG_TEXP,
         PAR_CV_RIGEXP_TEXP
-        
+
     };
 
 }
@@ -67,9 +68,9 @@ namespace EcoliType {
  */
 
 class E_coli  {
-    
+
 protected:
-    
+
     /** Production rate bacterium*/
     /*static */long double production_rate;
     /** Speed bacterium*/
@@ -86,14 +87,14 @@ protected:
 #else
     std::array<long double,2> x;
 #endif
-    
+
     /** Direction */
     long double theta;
     /** Ligand concentration*/
     long double c;
     /** Diffusion coefficient direction */
     long double D_theta;
-    
+
     //***************************    
     
     /** probability rate to tumble*/
@@ -192,6 +193,10 @@ protected:
     /*************************************************************/
     
 public:
+
+    /* write to tmpfile operator<<*/
+
+    //friend TmpFile& operator<<(TmpFile &tmpfile, const std::string str);
 
     /**
      * MODE of simulation:<br>
