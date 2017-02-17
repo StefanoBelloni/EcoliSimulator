@@ -30,7 +30,7 @@ extern bool verbose;
 extern bool colors;
 extern bool show_bars;
 
-/** 
+/**
  * Variable to keep track of the MODE of simulation ... in otherwords, how to get the imput,
  * from keybord and run the imput (0)
  * from keybord and save the imput in std::vector<long double> vettore_risposte; contatore_risposte keep track of the answer we read from the std::vector of answers (1)
@@ -59,5 +59,7 @@ extern bool same_seed;
 /** global variable to save or not the DATA .dat and gnuplot scripts
   * default is false: otherwise too much space is needed */
 extern bool save_data;
+
 /*RAM optimization*/
 extern long MAX_SIZE_TMP_FILE;
+extern long SIZE_SINGLE_TMP_FILE;

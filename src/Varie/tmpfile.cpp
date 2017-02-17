@@ -1,12 +1,12 @@
 #include "tmpfile.h"
 
 TmpFile::TmpFile(){
-	mMaxSize = MAX_SIZE_TMP_FILE;
+	mMaxSize = SIZE_SINGLE_TMP_FILE;
 	mSizeBuf = 0;
 }
 
 TmpFile::TmpFile(const char* name){
-	mMaxSize = MAX_SIZE_TMP_FILE;
+	mMaxSize = SIZE_SINGLE_TMP_FILE;
 	mSizeBuf = 0;
 }
 

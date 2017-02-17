@@ -101,7 +101,7 @@ bool colors = true;
 bool show_bars = true;
 unsigned int n_thread_available = 1;
 long MAX_SIZE_TMP_FILE = 1024*1024*1024*1024L;
-
+long SIZE_SINGLE_TMP_FILE = 0L;
 //string fileEcoliRisp = "EcoliTest.Ecoli";
 string fileEcoliRisp = "EcoliRisposte.Ecoli";
 string nameLog = "LogEcoli.LogEcoli";
@@ -184,6 +184,12 @@ int main(int argc, const char * argv[])
         MAX_SIZE_TMP_FILE/=n_thread_available;
         multithread = true;
     }
+
+
+    // single size tmp file divided by all the files inside the functions simulatior_*
+    // NOTE: without file_info, since occupies not a lot of space.
+    SIZE_SINGLE_TMP_FILE=MAX_SIZE_TMP_FILE/7;
+
     seed();
     if (argc>1 && strcmp(argv[1],"--help")==0) {
         helpMenu();
