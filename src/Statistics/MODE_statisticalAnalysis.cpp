@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-#include "dirent.h"
+//#include "dirent.h"
 
 #include <limits>
 #include <ctime>

@@ -36,7 +36,13 @@
 #include "GlobalVariables.h"
 #include <cstring>
 #include "simulation_2MultiT.hpp"
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include <direct.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
 #include <unistd.h>
+#endif
+
 
 #include "CV_rExp_tExp.h"
 #include "CV_rIG_tExp.h"

@@ -61,5 +61,5 @@ extern bool same_seed;
 extern bool save_data;
 
 /*RAM optimization*/
-extern long MAX_SIZE_TMP_FILE;
-extern long SIZE_SINGLE_TMP_FILE;
+extern unsigned long MAX_SIZE_TMP_FILE;
+extern unsigned long SIZE_SINGLE_TMP_FILE;

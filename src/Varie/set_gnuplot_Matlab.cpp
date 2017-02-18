@@ -113,6 +113,9 @@ void set_Location()
     #endif
             cout << homeDir;
             cin.clear();
+#if defined max
+#undef max
+#endif
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             std::getline (std::cin,Location);
             Location=homeDir+Location;
@@ -171,6 +174,10 @@ void set_gnuplot()
 #else
             string gnuplot_ = "gnuplot ";
             
+#endif
+
+#if defined max
+#undef max
 #endif
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');

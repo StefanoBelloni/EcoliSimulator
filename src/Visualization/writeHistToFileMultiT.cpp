@@ -180,8 +180,8 @@ void startThred_writeHist(const int start_for, const int end_for, const int upda
                 
                 //                find the index, and add the presence of a bacterium for that index
                 
-                i_x=max(0,min(n_dx-1,floor((x[n_colonna][i_c]-min_x)/dx)));
-                i_y=max(0,min(n_dy-1,floor((y[n_colonna][i_c]-min_y)/dy)));
+                i_x=max(0,min(n_dx-1,(int)floor((x[n_colonna][i_c]-min_x)/dx)));
+                i_y=max(0,min(n_dy-1,(int)floor((y[n_colonna][i_c]-min_y)/dy)));
                 z[i_x][i_y]++;
                 
             }

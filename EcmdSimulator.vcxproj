@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EB2E9F90-2423-4779-BC1A-DBD48208B93C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Bauu\Documents\PROGRAMMAZIONE\SourceCode\ECOLISIMULATOR\EcmdSimulator\include\Visualization;C:\Users\Bauu\Documents\PROGRAMMAZIONE\SourceCode\ECOLISIMULATOR\EcmdSimulator\include\Ligand;C:\Users\Bauu\Documents\PROGRAMMAZIONE\SourceCode\ECOLISIMULATOR\EcmdSimulator\include\Global;C:\Users\Bauu\Documents\PROGRAMMAZIONE\SourceCode\ECOLISIMULATOR\EcmdSimulator\include;C:\Users\Bauu\Documents\PROGRAMMAZIONE\SourceCode\ECOLISIMULATOR\EcmdSimulator\include\Ecoli;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\analysis_runs\Analysis_run.cpp" />
+    <ClCompile Include="src\analysis_runs\fraction_run_file.cpp" />
+    <ClCompile Include="src\analysis_runs\FunzRunUndTumble.cpp" />
+    <ClCompile Include="src\analysis_runs\Name_jumps.cpp" />
+    <ClCompile Include="src\analysis_runs\RunUpDownDivision.cpp" />
+    <ClCompile Include="src\analysis_runs\setFileNamesRun.cpp" />
+    <ClCompile Include="src\ecoli\CV_rExpIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\CV_rExp_tExp.cpp" />
+    <ClCompile Include="src\ecoli\CV_rIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\EO_rExpIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\EO_rExp_tExp.cpp" />
+    <ClCompile Include="src\ecoli\EO_rIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\E_Coli.cpp" />
+    <ClCompile Include="src\ecoli\Funzioni_support_molecular.cpp" />
+    <ClCompile Include="src\ecoli\Internal_dynamic.cpp" />
+    <ClCompile Include="src\ecoli\Molecular_rExpIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\Molecular_rExp_tExp.cpp" />
+    <ClCompile Include="src\ecoli\Molecular_rIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\ParameterEstimation_CV_rExp_tExp.cpp" />
+    <ClCompile Include="src\ecoli\ParameterEstimation_CV_rIG_tExp.cpp" />
+    <ClCompile Include="src\ecoli\ParameterEstimation_E_coli.cpp" />
+    <ClCompile Include="src\ecoli\Reset_barriera.cpp" />
+    <ClCompile Include="src\latex\Desktop_Folder_LateX.cpp" />
+    <ClCompile Include="src\latex\LateX_Corpo.cpp" />
+    <ClCompile Include="src\latex\LateX_Preambolo.cpp" />
+    <ClCompile Include="src\latex\print_and_open_info.cpp" />
+    <ClCompile Include="src\latex\print_and_open_run.cpp" />
+    <ClCompile Include="src\latex\Write_LateX_file.cpp" />
+    <ClCompile Include="src\ligand\Funz_C.cpp" />
+    <ClCompile Include="src\ligand\Funz_C_Inter.cpp" />
+    <ClCompile Include="src\ligand\Funz_C_Par.cpp" />
+    <ClCompile Include="src\ligand\Funz_C_Preview.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\matlab\Matlab_from_cpp.cpp" />
+    <ClCompile Include="src\matlab\Matlab_large_population.cpp" />
+    <ClCompile Include="src\matlab\mintocpp.cpp" />
+    <ClCompile Include="src\matlab\Scrittura_m_files.cpp" />
+    <ClCompile Include="src\simulations\create_bacteria_vector.cpp" />
+    <ClCompile Include="src\simulations\distr_initial_unif.cpp" />
+    <ClCompile Include="src\simulations\independent_population.cpp" />
+    <ClCompile Include="src\simulations\initial_distribution.cpp" />
+    <ClCompile Include="src\simulations\iniz_par_sim.cpp" />
+    <ClCompile Include="src\simulations\interacting_population.cpp" />
+    <ClCompile Include="src\simulations\Manipulation_Marix.cpp" />
+    <ClCompile Include="src\simulations\MODE_Simulation.cpp" />
+    <ClCompile Include="src\simulations\setNames.cpp" />
+    <ClCompile Include="src\simulations\set_funz_c.cpp" />
+    <ClCompile Include="src\simulations\simulation_2.cpp" />
+    <ClCompile Include="src\simulations\simulation_2MultiT.cpp" />
+    <ClCompile Include="src\simulations\simulation_indipendent_2.cpp" />
+    <ClCompile Include="src\simulations\simulation_interacting.cpp" />
+    <ClCompile Include="src\simulations\SolveHeat2D_Neumann.cpp" />
+    <ClCompile Include="src\simulations\Stima_tempo.cpp" />
+    <ClCompile Include="src\simulations\Transpose_Matrix.cpp" />
+    <ClCompile Include="src\statistics\compareModels.cpp" />
+    <ClCompile Include="src\statistics\File_statistics.cpp" />
+    <ClCompile Include="src\statistics\GoodnessFit_PP.cpp" />
+    <ClCompile Include="src\statistics\Implementatiuon_Statistical_Analysis.cpp" />
+    <ClCompile Include="src\statistics\MODE_statisticalAnalysis.cpp" />
+    <ClCompile Include="src\statistics\MovingLeastSquares.cpp" />
+    <ClCompile Include="src\statistics\plot_goodness_fit.cpp" />
+    <ClCompile Include="src\statistics\plot_tau_Q.cpp" />
+    <ClCompile Include="src\statistics\Q_tau_stat.cpp" />
+    <ClCompile Include="src\statistics\s_F_lambda_r.cpp" />
+    <ClCompile Include="src\statistics\s_lambda.cpp" />
+    <ClCompile Include="src\varie\Cancella_tutto.cpp" />
+    <ClCompile Include="src\varie\clear_Bild.cpp" />
+    <ClCompile Include="src\varie\createMakeFile.cpp" />
+    <ClCompile Include="src\varie\FunzBiginEnd.cpp" />
+    <ClCompile Include="src\varie\funzioni_risposta.cpp" />
+    <ClCompile Include="src\varie\FunzRand.cpp" />
+    <ClCompile Include="src\varie\initial_page.cpp" />
+    <ClCompile Include="src\varie\last_deleting.cpp" />
+    <ClCompile Include="src\varie\LoadBar.cpp" />
+    <ClCompile Include="src\varie\mainpage.cc" />
+    <ClCompile Include="src\varie\Read_file_par.cpp" />
+    <ClCompile Include="src\varie\save_path.cpp" />
+    <ClCompile Include="src\varie\set_gnuplot_Matlab.cpp" />
+    <ClCompile Include="src\varie\Set_MODE_Program.cpp" />
+    <ClCompile Include="src\varie\set_parameters_demo.cpp" />
+    <ClCompile Include="src\varie\step_by_step_save_risp_run.cpp" />
+    <ClCompile Include="src\varie\timestamp.cpp" />
+    <ClCompile Include="src\varie\tmpfile.cpp" />
+    <ClCompile Include="src\visualization\baricentro_plot.cpp" />
+    <ClCompile Include="src\visualization\Cancell_histFile.cpp" />
+    <ClCompile Include="src\visualization\filmato_3D_gnuplot.cpp" />
+    <ClCompile Include="src\visualization\filmato_3D_gnuplotMultiThread.cpp" />
+    <ClCompile Include="src\visualization\filmato_3D_gnuplot_gif.cpp" />
+    <ClCompile Include="src\visualization\gnuplotFunzInternalDynalmic.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_large_population.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_large_population_iteracting.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_run.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_run_multiplot.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_single_3.cpp" />
+    <ClCompile Include="src\visualization\gnuplot_single_film.cpp" />
+    <ClCompile Include="src\visualization\histogram3DMultiThreadV2.cpp" />
+    <ClCompile Include="src\visualization\HistogramC_3D.cpp" />
+    <ClCompile Include="src\visualization\Histogram_2D_gnuplot.cpp" />
+    <ClCompile Include="src\visualization\Histogram_3D_gnuplot.cpp" />
+    <ClCompile Include="src\visualization\histogram_3d_gnuplotV2.cpp" />
+    <ClCompile Include="src\visualization\Hystogram_Dynamic.cpp" />
+    <ClCompile Include="src\visualization\lunch_gnuplot.cpp" />
+    <ClCompile Include="src\visualization\multiplot_film_snapshots.cpp" />
+    <ClCompile Include="src\visualization\setSizesTitles.cpp" />
+    <ClCompile Include="src\visualization\stamp_gnuplot_instruction.cpp" />
+    <ClCompile Include="src\visualization\Statistical_Analysis.cpp" />
+    <ClCompile Include="src\visualization\Verifica_gnuplot.cpp" />
+    <ClCompile Include="src\visualization\writeHistToFileMultiT.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Colori.h" />
+    <ClInclude Include="include\constants.h" />
+    <ClInclude Include="include\Declar_funz.h" />
+    <ClInclude Include="include\ecoli\CV_rExpIG_tExp.h" />
+    <ClInclude Include="include\ecoli\CV_rExp_tExp.h" />
+    <ClInclude Include="include\ecoli\CV_rIG_tExp.h" />
+    <ClInclude Include="include\ecoli\EO_rExpIG_tExp.h" />
+    <ClInclude Include="include\ecoli\EO_rExp_tExp.h" />
+    <ClInclude Include="include\ecoli\EO_rIG_tExp.h" />
+    <ClInclude Include="include\ecoli\E_Coli.h" />
+    <ClInclude Include="include\ecoli\Molecular_rExpIG_tExp.h" />
+    <ClInclude Include="include\ecoli\Molecular_rExp_tExp.h" />
+    <ClInclude Include="include\ecoli\Molecular_rIG_tExp.h" />
+    <ClInclude Include="include\ecoli\ParameterEstimation_CV_rExp_tExp.h" />
+    <ClInclude Include="include\ecoli\ParameterEstimation_CV_rIG_tExp.h" />
+    <ClInclude Include="include\ecoli\ParameterEstimation_E_Coli.h" />
+    <ClInclude Include="include\ErrorsDefinition.h" />
+    <ClInclude Include="include\FunzRand.h" />
+    <ClInclude Include="include\FunzRunUndTumble.h" />
+    <ClInclude Include="include\global\apngasm_Global.h" />
+    <ClInclude Include="include\global\Dir_Global.h" />
+    <ClInclude Include="include\global\GlobalRandomVariables.h" />
+    <ClInclude Include="include\global\GlobalVariables.h" />
+    <ClInclude Include="include\global\GnuplotGlobal.h" />
+    <ClInclude Include="include\gnuplot_3D.h" />
+    <ClInclude Include="include\Dirent_Header.h" />
+    <ClInclude Include="include\histogram3DMultiThreadV2.hpp" />
+    <ClInclude Include="include\ligand\Funz_C.h" />
+    <ClInclude Include="include\ligand\Funz_C_Inter.h" />
+    <ClInclude Include="include\ligand\Funz_C_Par.h" />
+    <ClInclude Include="include\LoadBar.hpp" />
+    <ClInclude Include="include\mainFunctions.h" />
+    <ClInclude Include="include\Manipulation_Matrix.h" />
+    <ClInclude Include="include\MATLAB_Global.h" />
+    <ClInclude Include="include\MyMutex.h" />
+    <ClInclude Include="include\Q_tau_stat.h" />
+    <ClInclude Include="include\setFileNamesRun.hpp" />
+    <ClInclude Include="include\simulation_2MultiT.hpp" />
+    <ClInclude Include="include\sssr.h" />
+    <ClInclude Include="include\StatisticalAnalysis.h" />
+    <ClInclude Include="include\s_lambda.h" />
+    <ClInclude Include="include\tmpfile.h" />
+    <ClInclude Include="include\visualization\filmato_3D_gnuplotMultiThread.hpp" />
+    <ClInclude Include="include\visualization\filmato_3D_gnuplot_gif.hpp" />
+    <ClInclude Include="include\visualization\multiplot_film_snapshots.h" />
+    <ClInclude Include="include\writeHistToFileMultiT.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

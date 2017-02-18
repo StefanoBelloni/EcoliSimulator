@@ -27,7 +27,7 @@
 #include "Colori.h"
 #include "simulation_2MultiT.hpp"
 
-#ifndef min
+#ifdef min
 #define min_( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 

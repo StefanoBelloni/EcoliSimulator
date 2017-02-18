@@ -22,7 +22,15 @@
 #include "ErrorsDefinition.h"
 
 #include "Declar_funz.h"
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include <direct.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
 #include <unistd.h>
+#endif
+
+#define min_macro( a, b ) ( ((a) < (b)) ? (a) : (b) )
 
 
 //***************************************************************************************************************************************
@@ -513,7 +521,7 @@ int GestioneArgvV2(int argc, const char * argv[], string &versione_Matlab, int &
                         unsigned int maxthread = std::thread::hardware_concurrency();
 
 #endif
-                        n_thread_available=std::min(n_thread_available,maxthread);
+                        n_thread_available=min_macro(n_thread_available,maxthread);
                         cout << "n_thread_available = " << n_thread_available << endl;
                         if (n_thread_available < 2) {
                             multithread = false;

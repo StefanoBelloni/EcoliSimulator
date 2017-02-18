@@ -49,7 +49,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include "sssr.h"
 #include "apngasm_Global.h"
 
-#ifndef min
+#ifdef min
 #define min_( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 

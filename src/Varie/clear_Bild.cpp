@@ -36,6 +36,10 @@ void funz_clearAll(){
 }
 
 /*! get an input from cin and check if the type is the same as the template argument, if not, the user is asked to reinsert the value.*/
+#if defined max
+#define tmp_max max
+#undef max
+#endif
 template<typename T>
 void getInput(T &risposta){
     
@@ -53,6 +57,13 @@ void getInput(std::string &risposta){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline (std::cin,risposta);
 }
+
+
+#if defined tmp_max
+#define max tmp_max
+#endif
+
+
 // alternative version for string:
 /*
 void getInput(std::string &risposta){

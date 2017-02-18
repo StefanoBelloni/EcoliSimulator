@@ -12,7 +12,11 @@
 
 #include <cstdlib>
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include "Dirent_Header.h"
+#else
 #include "dirent.h"
+#endif
 
 void Write_LateX_file(std::string name_file, std::ofstream &file_teX);
 

@@ -35,8 +35,8 @@ class TmpFile
  private:
 	const char* mName;
 	std::ios_base::openmode mMode;
-	long mSizeBuf;
-	long mMaxSize;
+	unsigned long mSizeBuf;
+	unsigned long mMaxSize;
 	std::stringstream mTmpBuf;
 	void writeTmpFile();
 	std::ofstream mTmpfile;

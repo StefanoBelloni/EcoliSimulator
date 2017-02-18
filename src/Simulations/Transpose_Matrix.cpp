@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 
 using namespace std;
 
@@ -16,12 +17,15 @@ using namespace std;
  * @param U_T pointer to the traspose matrix
  */
 
+ 
+ #define max_macro( a, b ) ( ((a) > (b)) ? (a) : (b) )
+ 
 void Transpose_Matrix(long double *U, long double *U_T, int n_x, int n_y, long double &f_max){
     
     for (int i=0; i<n_x; i++) {
         for (int j=0; j<n_y; j++) {
             U_T[j*n_x+i]=U[i*n_y+j];
-            f_max = std::max(U_T[j*n_x+i], f_max);
+            f_max = max_macro(U_T[j*n_x+i], f_max);
         }
     }
     

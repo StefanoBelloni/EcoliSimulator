@@ -32,7 +32,7 @@
 #include "filmato_3D_gnuplotMultiThread.hpp"
 #include "multiplot_film_snapshots.h"
 
-#ifndef min
+#ifdef min
 #define min_( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 

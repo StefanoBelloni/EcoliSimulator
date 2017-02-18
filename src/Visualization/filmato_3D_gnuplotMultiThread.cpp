@@ -42,7 +42,14 @@
 
 
 #include <sys/stat.h>
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include <direct.h>
+#include <Windows.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#define sleep Sleep
+#else
 #include <unistd.h>
+#endif
 
 #include <limits>
 #include <ctime>

@@ -10,11 +10,13 @@
 #include <fstream>
 #include <cstdio>
 #include <cstdlib>
-#include "dirent.h"
+//#include "dirent.h"
 #include <sys/stat.h>
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
     #include <direct.h>
     #define getcwd _getcwd // stupid MSFT "deprecation" warning
+	#define sprintf sprintf_s
+	#define mkdir _mkdir
 #else
     #include <unistd.h>
 #endif
@@ -111,7 +113,7 @@ int SetMainFolder(int demo_mode)
         sprintf (final_dir, "%s",tmpDir.c_str());
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
         // make dir is different
-        err_dir += mkdir(final_dir,0775);
+        err_dir += mkdir(final_dir);
 #else
         err_dir += mkdir(final_dir,0775);
 #endif

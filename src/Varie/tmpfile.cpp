@@ -50,7 +50,7 @@ TmpFile& TmpFile::operator<<(const T& str){
 	}
 	mTmpBuf << std::setprecision(precision_output) << str;
 	//mSizeBuf = mTmpBuf.str().length();
-	mSizeBuf = mTmpBuf.seekg(0, std::ios::end).tellg();
+	mSizeBuf = (unsigned long)mTmpBuf.seekg(0, std::ios::end).tellg();
 	return *this;
 }
 
@@ -62,7 +62,7 @@ TmpFile& TmpFile::operator<<(const char *str){
 	}
 	mTmpBuf << std::setprecision(precision_output) << str;
 	//mSizeBuf = mTmpBuf.str().length();
-	mSizeBuf = mTmpBuf.seekg(0, std::ios::end).tellg();
+	mSizeBuf = (unsigned long)mTmpBuf.seekg(0, std::ios::end).tellg();
 	//mSizeBuf+=precision_output;
 	return *this;
 }

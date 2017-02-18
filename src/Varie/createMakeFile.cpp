@@ -12,7 +12,7 @@
 #include <vector>
 #include <cstdlib>
 
-#include "dirent.h"
+//#include "dirent.h"
 
 int createMakeFile(){
 

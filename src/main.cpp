@@ -73,8 +73,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #include "ErrorsDefinition.h"
 #include <sstream>
 #include "mainFunctions.h"
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include <direct.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
 #include <unistd.h>
-#include <unistd.h>
+#endif
+
 
 using namespace std;
 
@@ -100,8 +106,8 @@ bool multithread = false;
 bool colors = true;
 bool show_bars = true;
 unsigned int n_thread_available = 1;
-long MAX_SIZE_TMP_FILE = 1024*1024*1024*1024L;
-long SIZE_SINGLE_TMP_FILE = 0L;
+unsigned long MAX_SIZE_TMP_FILE = 1024L*1024L*1024L;
+unsigned long SIZE_SINGLE_TMP_FILE = 0L;
 //string fileEcoliRisp = "EcoliTest.Ecoli";
 string fileEcoliRisp = "EcoliRisposte.Ecoli";
 string nameLog = "LogEcoli.LogEcoli";

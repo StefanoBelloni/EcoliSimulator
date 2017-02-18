@@ -16,7 +16,13 @@
 #include "GnuplotGlobal.h"
 #include "Dir_Global.h"
 #include "MATLAB_Global.h"
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(_WIN64) || defined(WIN64)
+#include <direct.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
 #include <unistd.h>
+#endif
+
 
 using namespace std;
 

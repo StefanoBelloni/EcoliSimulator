@@ -49,7 +49,7 @@ static inline void loadbar(unsigned int x, unsigned int n, int time_ = 1, unsign
     if ( (x != n) && (x % (n/100+1) != 0) ) return;
     
     float ratio  =  x/(float)n;
-    unsigned int   c      =  ratio * w;
+    unsigned int   c      =  (unsigned int)(ratio * (float)w);
     
     std::cout << std::setw(3) << (int)(ratio*100) << "% [";
     for (unsigned int y=0; y<c; y++) std::cout << BOLDRED<< "=";

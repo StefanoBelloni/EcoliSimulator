@@ -23,7 +23,7 @@
 #include "GlobalVariables.h"
 
 
-#ifndef min
+#ifdef min
 #define min_( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #endif
 
